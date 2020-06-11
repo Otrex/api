@@ -1,0 +1,44 @@
+{
+  "name": "pointograph_api",
+  "version": "1.0.0",
+  "description": "Pointograph API",
+  "main": "index.js",
+  "repository": "https://git.chigisoft.dev/pointograph/pointograph_api.git",
+  "author": "Alor Tochukwu <alortochukwu@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "npm run prod",
+    "dev": "cross-env NODE_ENV=development nodemon pointograph.js",
+    "prod": "cross-env NODE_ENV=production node pointograph.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@jest/test-sequencer": "^26.0.1",
+    "eslint": "^7.1.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "fastest-validator": "^1.4.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.26.0",
+    "mongoose": "^5.9.17",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2"
+  }
+}
