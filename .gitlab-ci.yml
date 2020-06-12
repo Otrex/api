@@ -1,0 +1,36 @@
+stages:
+  - deploy
+
+deploy_staging:
+  stage: deploy
+  tags:
+    - pointograph
+    - shell
+  environment: Staging
+  only:
+    - develop
+  script:
+    - echo $CI_RUNNER_DESCRIPTION
+    - ls -la
+    - yarn
+    - rm -rf /var/www/staging/node/pointograph_api/src
+    - cp -ra . /var/www/staging/node/pointograph_api/
+    - cd /var/www/staging/node/pointograph_api
+    - pm2 restart pointograph_api_staging
+
+deploy_production:
+  stage: deploy
+  tags:
+    - pointograph
+    - shell
+  environment: Production
+  only:
+    - master
+  script:
+    - echo $CI_RUNNER_DESCRIPTION
+    - ls -la
+    - yarn
+    - rm -rf /var/www/production/node/pointograph_api/src
+    - cp -ra . /var/www/production/node/pointograph_api/
+    - cd /var/www/production/node/pointograph_api
+    - pm2 restart pointograph_api
