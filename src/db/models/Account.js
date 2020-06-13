@@ -12,6 +12,10 @@ const schema = new Schema({
     lowercase: true,
     unique: true
   },
+  password: {
+    type: String,
+    required: true
+  },
   countryCode: {
     type: String,
     required: true

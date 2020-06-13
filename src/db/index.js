@@ -3,6 +3,7 @@ module.exports = {
   models: {
     MailingList: require("./models/MailingList"),
     PhoneVerification: require("./models/PhoneVerification"),
-    Account: require("./models/Account")
+    Account: require("./models/Account"),
+    Session: require("./models/Session")
   }
 };
