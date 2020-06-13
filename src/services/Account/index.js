@@ -27,6 +27,7 @@ const PhoneVerification = require("../PhoneVerification");
 * */
 module.exports.createAccount = wrapServiceAction({
   params: {
+    $$strict: true,
     email: { ...email },
     username: {
       ...string,
