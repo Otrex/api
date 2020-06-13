@@ -8,7 +8,7 @@ const config = require("../config");
 module.exports = {
   bcryptHash,
   bcryptCompare,
-  generateToken,
+  generateJWTToken,
   decodeToken,
   groupBy,
   errorResponse,
@@ -16,7 +16,8 @@ module.exports = {
   slugify,
   generateRandomCode,
   generateHash,
-  deleteUploadedFile
+  deleteUploadedFile,
+  isEmail
 };
 
 async function bcryptHash(password) {
@@ -34,7 +35,7 @@ function groupBy(array, key) {
   }, {});
 }
 
-async function generateToken(payload) {
+async function generateJWTToken(payload) {
   return new Promise((resolve, reject) => {
     jwt.sign({
       ...payload,
@@ -159,4 +160,8 @@ function deleteUploadedFile(filename) {
 function logg(...args) {
   console.log(...args);
   // ["test", "development"].includes(process.env.NODE_ENV) && console.log(...args)
+}
+
+function isEmail(subject) {
+  return subject.toString().includes("@");
 }

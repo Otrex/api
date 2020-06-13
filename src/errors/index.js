@@ -20,7 +20,14 @@ class ValidationError extends GenericError {
   }
 }
 
+class AuthenticationError extends GenericError {
+  constructor(message) {
+    super(message);
+  }
+}
+
 module.exports = {
   ServiceError,
-  ValidationError
+  ValidationError,
+  AuthenticationError
 };
