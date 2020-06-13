@@ -19,7 +19,12 @@ const schema = new Schema({
     required: true
   },
   name: {
-    type: String
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
   },
   visibility: {
     type: String,
@@ -35,10 +40,7 @@ const schema = new Schema({
     required: true
   },
   eddress: {
-    id: {
-      type: String,
-      required: true
-    }
+    type: String
   }
 }, { timestamps: true });
 
