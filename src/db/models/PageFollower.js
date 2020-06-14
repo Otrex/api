@@ -12,5 +12,5 @@ const schema = new Schema({
   }
 }, { timestamps: true });
 
-const Model = mongoose.model("AccountFollower", schema);
+const Model = mongoose.model("PageFollower", schema);
 module.exports = Model;

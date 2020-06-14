@@ -37,7 +37,7 @@ module.exports.createAccount = wrapServiceAction({
       pattern: /^[a-z0-9]+$/
     },
     password: { ...string, min: 6 },
-    countryCode: { ...string },
+    countryCode: { ...string, length: 2 },
     phoneNumber: { ...string, min: 9 },
     phoneNumberVerificationToken: { ...string }
   },
@@ -49,10 +49,11 @@ module.exports.createAccount = wrapServiceAction({
       ]
     });
     if (item) {
-      const match = item.email === params.email ? "email" : "phone number";
+      const match = item.email === params.email ? "email" : "username";
       throw new ServiceError(`an account with this ${match} already exists`);
     }
-    await PhoneVerification.checkVerificationToken({
+    const verification = await PhoneVerification.checkVerificationToken({
+      countryCode: params.countryCode,
       phoneNumber: params.phoneNumber,
       verificationToken: params.phoneNumberVerificationToken
     });
@@ -62,7 +63,7 @@ module.exports.createAccount = wrapServiceAction({
       username: params.username,
       password: await utils.bcryptHash(params.password),
       countryCode: params.countryCode,
-      phoneNumber: params.phoneNumber
+      phoneNumber: verification.phoneNumber
     });
     // TODO: registration successful event
     console.log(account._id);

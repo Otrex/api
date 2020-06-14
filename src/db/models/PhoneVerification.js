@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const schema = new Schema({
-  countryCode: {
-    type: String,
-    required: true
-  },
   phoneNumber: {
     type: String,
     required: true,

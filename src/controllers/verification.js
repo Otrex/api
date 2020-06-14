@@ -16,10 +16,12 @@ module.exports.sendPhoneVerificationCode = async (req, res, next) => {
 
 module.exports.checkPhoneVerificationCode = async (req, res, next) => {
   try {
-    await PhoneVerificationService.checkVerificationCode({
+    const verification = await PhoneVerificationService.checkVerificationCode({
       ...req.body
     });
-    return res.send(successResponse("verification code has been verified"));
+    return res.send(successResponse("verification code has been verified", {
+      verificationToken: verification.verificationToken
+    }));
   } catch (e) {
     next(e);
   }

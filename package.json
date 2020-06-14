@@ -33,6 +33,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
     "fastest-validator": "^1.4.1",
+    "google-libphonenumber": "^3.2.10",
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
