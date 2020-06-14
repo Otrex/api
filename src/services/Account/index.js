@@ -149,6 +149,10 @@ module.exports.followAccount = wrapServiceAction({
       throw new ServiceError("account not found");
     }
 
+    if (account._id.equals(follower._id)) {
+      throw new ServiceError("you cannot follow yourself");
+    }
+
     account.followersCount++;
     follower.followingsCount++;
 
@@ -177,6 +181,10 @@ module.exports.unfollowAccount = wrapServiceAction({
       throw new ServiceError("account not found");
     }
 
+    if (account._id.equals(follower._id)) {
+      throw new ServiceError("you cannot unfollow yourself");
+    }
+
     account.followersCount--;
     follower.followingsCount--;
 
@@ -197,20 +205,28 @@ module.exports.getAccountFollowers = wrapServiceAction({
     accountId: { ...any }
   },
   async handler(params) {
-    return await models.AccountFollower.find({
+    const followers = await models.AccountFollower.find({
       accountId: params.accountId
-    });
+    }).populate({
+      path: "followerId",
+      select: "username"
+    }).exec();
+    return followers;
   }
 });
 
 module.exports.getAccountFollowings = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any }
+    accountId: { ...any },
   },
   async handler(params) {
-    return await models.AccountFollower.find({
+    const followings = models.AccountFollower.find({
       followerId: params.accountId
-    });
+    }).populate({
+      path: "accountId",
+      select: "username"
+    }).exec();
+    return followings;
   }
 });

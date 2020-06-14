@@ -31,6 +31,7 @@ random.mockReturnValue(1234);
 beforeAll(async () => {
   state.connection = await db.createConnection();
   await state.connection.dropDatabase();
+  await new Promise(resolve => setTimeout(resolve, 5000));
 });
 
 afterAll(async () => {
@@ -173,6 +174,23 @@ describe("followings and followers", () => {
     }
   });
 
+  it("/accounts/follow", async () => {
+    const res = await request(app)
+      .post("/accounts/follow")
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        accountId: state.sessions[0].account._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
   it("/accounts/followers", async () => {
     const res = await request(app)
       .get("/accounts/followers")
@@ -181,6 +199,7 @@ describe("followings and followers", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
+      console.log(res.body)
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
       throw err;
@@ -195,6 +214,7 @@ describe("followings and followers", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
+      console.log(res.body)
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
       throw err;

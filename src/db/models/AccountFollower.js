@@ -4,11 +4,15 @@ const { Schema } = mongoose;
 const schema = new Schema({
   accountId: {
     type: mongoose.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "Account",
+    index: true
   },
   followerId: {
     type: mongoose.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "Account",
+    index: true
   }
 }, { timestamps: true });
 
