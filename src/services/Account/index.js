@@ -133,3 +133,83 @@ module.exports.changeAccountPassword = wrapServiceAction({
     return true;
   }
 });
+
+
+module.exports.followAccount = wrapServiceAction({
+  params: {
+    $$strict: true,
+    accountId: { ...any },
+    followerId: { ...any }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!account || !follower) {
+      throw new ServiceError("account not found");
+    }
+
+    account.followersCount++;
+    follower.followingsCount++;
+
+    await Promise.all([
+      account.save(),
+      follower.save()
+    ]);
+
+    return await models.AccountFollower.findOneAndUpdate({
+      accountId: params.accountId,
+      followerId: params.followerId
+    }, {}, { upsert: true, new: true });
+  }
+});
+
+module.exports.unfollowAccount = wrapServiceAction({
+  params: {
+    $$strict: true,
+    accountId: { ...any },
+    followerId: { ...any }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!account || !follower) {
+      throw new ServiceError("account not found");
+    }
+
+    account.followersCount--;
+    follower.followingsCount--;
+
+    await Promise.all([
+      account.save(),
+      follower.save()
+    ]);
+    return await models.AccountFollower.findOneAndDelete({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+  }
+});
+
+module.exports.getAccountFollowers = wrapServiceAction({
+  params: {
+    $$strict: true,
+    accountId: { ...any }
+  },
+  async handler(params) {
+    return await models.AccountFollower.find({
+      accountId: params.accountId
+    });
+  }
+});
+
+module.exports.getAccountFollowings = wrapServiceAction({
+  params: {
+    $$strict: true,
+    accountId: { ...any }
+  },
+  async handler(params) {
+    return await models.AccountFollower.find({
+      followerId: params.accountId
+    });
+  }
+});
