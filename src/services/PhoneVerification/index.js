@@ -91,7 +91,7 @@ module.exports.checkVerificationCode = wrapServiceAction({
       throw new ServiceError("verification attempts exceeded");
     }
 
-    if (verificationEntry.verificationCode !== params.code) {
+    if (verificationEntry.verificationCode !== params.verificationCode) {
       verificationEntry.verificationAttempts.push({
         ip: params.ip
       });

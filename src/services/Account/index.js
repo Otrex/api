@@ -27,7 +27,7 @@ const PhoneVerification = require("../PhoneVerification");
 * */
 module.exports.createAccount = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     email: { ...email },
     username: {
       ...string,
@@ -73,7 +73,7 @@ module.exports.createAccount = wrapServiceAction({
 
 module.exports.createLoginSession = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     identifier: { ...string }, // phone number or username
     password: { ...string },
     ip: { ...string, optional: true },
@@ -114,7 +114,7 @@ module.exports.createLoginSession = wrapServiceAction({
 
 module.exports.changeAccountPassword = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     accountId: { ...any },
     currentPassword: { ...string },
     password: { ...string, min: 6 }
@@ -138,7 +138,7 @@ module.exports.changeAccountPassword = wrapServiceAction({
 
 module.exports.followAccount = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     accountId: { ...any },
     followerId: { ...any }
   },
@@ -166,7 +166,7 @@ module.exports.followAccount = wrapServiceAction({
 
 module.exports.unfollowAccount = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     accountId: { ...any },
     followerId: { ...any }
   },
@@ -193,7 +193,7 @@ module.exports.unfollowAccount = wrapServiceAction({
 
 module.exports.getAccountFollowers = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     accountId: { ...any }
   },
   async handler(params) {
@@ -205,7 +205,7 @@ module.exports.getAccountFollowers = wrapServiceAction({
 
 module.exports.getAccountFollowings = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     accountId: { ...any }
   },
   async handler(params) {

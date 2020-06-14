@@ -17,7 +17,8 @@ module.exports.sendPhoneVerificationCode = async (req, res, next) => {
 module.exports.checkPhoneVerificationCode = async (req, res, next) => {
   try {
     const verification = await PhoneVerificationService.checkVerificationCode({
-      ...req.body
+      ...req.body,
+      ip: req.ip
     });
     return res.send(successResponse("verification code has been verified", {
       verificationToken: verification.verificationToken
