@@ -3,6 +3,7 @@ const {
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 
+const moment = require("moment");
 const omit = require("lodash/omit");
 const utils = require("../../utils");
 
@@ -130,11 +131,58 @@ module.exports.changeAccountPassword = wrapServiceAction({
     }
     account.password = await utils.bcryptHash(params.password);
     await account.save();
-
     return true;
   }
 });
 
+module.exports.sendResetPasswordToken = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    email: { ...email }
+  },
+  async handler(params) {
+    const account = await models.Account.findOne({
+      email: params.email
+    });
+    if (!account) {
+      return false;
+    }
+    const resetToken = utils.generateRandomCode(32);
+    await models.PasswordReset.create({
+      accountId: account._id,
+      resetToken,
+      resetTokenExpiresAt: moment().add(1, "h")
+    });
+    // TODO: send the mail
+    return true;
+  }
+});
+
+module.exports.resetAccountPassword = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    resetToken: { ...string },
+    password: { ...string, min: 6 }
+  },
+  async handler(params) {
+    const reset = await models.PasswordReset.findOne({
+      resetToken: params.resetToken
+    });
+    if (!reset) {
+      throw new ServiceError("reset token is invalid");
+    }
+    if (moment().isAfter(reset.resetTokenExpiresAt)) {
+      throw new ServiceError("reset token has expired");
+    }
+    const account = await models.Account.findById(reset.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    account.password = await utils.bcryptHash(params.password);
+    await account.save();
+    return true;
+  }
+});
 
 module.exports.followAccount = wrapServiceAction({
   params: {

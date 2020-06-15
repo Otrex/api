@@ -61,6 +61,7 @@ describe("account registration", () => {
       password: "password",
     },
   ];
+
   data.forEach((data, index) => {
     it("/verification/phone/send" + " - " + index, async () => {
       const res = await request(app)
@@ -150,8 +151,23 @@ describe("account registration", () => {
       }
     });
   });
-});
 
+  it("/auth/reset-password/initiate", async () => {
+    const res = await request(app)
+      .post("/auth/reset-password/initiate")
+      .send({
+        email: data[0].email
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+});
 
 describe("followings and followers", () => {
   // eslint-disable-next-line no-undef
@@ -199,7 +215,7 @@ describe("followings and followers", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
-      console.log(res.body)
+      console.log(res.body);
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
       throw err;
@@ -214,7 +230,7 @@ describe("followings and followers", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
-      console.log(res.body)
+      console.log(res.body);
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
       throw err;

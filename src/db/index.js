@@ -9,5 +9,6 @@ module.exports = {
     AccountFollower: require("./models/AccountFollower"),
     Page: require("./models/Page"),
     PageFollower: require("./models/PageFollower"),
+    PasswordReset: require("./models/PasswordReset")
   }
 };

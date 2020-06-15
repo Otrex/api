@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "faaf184af97d006aeed3f021cb7636b4c6019807402b3590be9306e167fa045d"
+                    "verificationToken": "643c48651d0d48f325fc81260f5eefa75536dcfbdcfde363677dc41b46c31cd3"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "faaf184af97d006aeed3f021cb7636b4c6019807402b3590be9306e167fa045d"
+                "phoneNumberVerificationToken": "643c48651d0d48f325fc81260f5eefa75536dcfbdcfde363677dc41b46c31cd3"
               }
             }
           }
@@ -234,15 +234,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ee7392391ee41516539e32b",
+                      "_id": "5ee7b307548e78225ac944d5",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-15T09:02:27.201Z",
-                      "updatedAt": "2020-06-15T09:02:27.201Z"
+                      "createdAt": "2020-06-15T17:42:31.818Z",
+                      "updatedAt": "2020-06-15T17:42:31.818Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTczOTIzOTFlZTQxNTE2NTM5ZTMyYiIsImNvdW50ZXIiOiI4T0NPczciLCJpYXQiOjE1OTIyMTE3NDcsImV4cCI6MTU5MjI5ODE0N30.DuhMOddemOVf75NIwNeVNx6txZ5VTTGRNjWtVdVgdP8"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTdiMzA3NTQ4ZTc4MjI1YWM5NDRkNSIsImNvdW50ZXIiOiI5aXRJUTIiLCJpYXQiOjE1OTIyNDI5NTEsImV4cCI6MTU5MjMyOTM1MX0.2jNAGsDKamL_G8pXz64bgkvTfetTKv5W11te4znyhYs"
                   }
                 }
               }
@@ -339,16 +339,63 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ee7392391ee41516539e32b",
+                      "_id": "5ee7b307548e78225ac944d5",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-15T09:02:27.201Z",
-                      "updatedAt": "2020-06-15T09:02:27.201Z"
+                      "createdAt": "2020-06-15T17:42:31.818Z",
+                      "updatedAt": "2020-06-15T17:42:31.818Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTczOTIzOTFlZTQxNTE2NTM5ZTMyYiIsImNvdW50ZXIiOiJPRTlsemoiLCJpYXQiOjE1OTIyMTE3NDcsImV4cCI6MTU5MjI5ODE0N30.VY8TrVEDDXdJfv1ZUBfiGT1k4vybgm1ITRXzmje_XKI"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTdiMzA3NTQ4ZTc4MjI1YWM5NDRkNSIsImNvdW50ZXIiOiJaaXAxODIiLCJpYXQiOjE1OTIyNDI5NTIsImV4cCI6MTU5MjMyOTM1Mn0.NkwyENm1wQzAHOFGuN5lwzEYlM8uu2k1cT2-LSOpIBE"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password/initiate": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "email": "test1@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "password reset link has been sent to your email"
                 }
               }
             }
@@ -380,7 +427,7 @@
                 }
               },
               "example": {
-                "accountId": "5ee7392291ee41516539e327"
+                "accountId": "5ee7b306548e78225ac944d1"
               }
             }
           }
@@ -478,15 +525,15 @@
                   "message": "successful",
                   "data": [
                     {
-                      "_id": "5ee73925feefaf867662839e",
-                      "accountId": "5ee7392391ee41516539e32b",
+                      "_id": "5ee7b308eb22565a2537be0a",
+                      "accountId": "5ee7b307548e78225ac944d5",
                       "followerId": {
-                        "_id": "5ee7392291ee41516539e327",
+                        "_id": "5ee7b306548e78225ac944d1",
                         "username": "test1"
                       },
                       "__v": 0,
-                      "createdAt": "2020-06-15T09:02:27.695Z",
-                      "updatedAt": "2020-06-15T09:02:27.695Z"
+                      "createdAt": "2020-06-15T17:42:32.771Z",
+                      "updatedAt": "2020-06-15T17:42:32.771Z"
                     }
                   ]
                 }
@@ -563,15 +610,15 @@
                   "message": "successful",
                   "data": [
                     {
-                      "_id": "5ee73925feefaf867662839e",
+                      "_id": "5ee7b308eb22565a2537be0a",
                       "accountId": {
-                        "_id": "5ee7392391ee41516539e32b",
+                        "_id": "5ee7b307548e78225ac944d5",
                         "username": "test2"
                       },
-                      "followerId": "5ee7392291ee41516539e327",
+                      "followerId": "5ee7b306548e78225ac944d1",
                       "__v": 0,
-                      "createdAt": "2020-06-15T09:02:27.695Z",
-                      "updatedAt": "2020-06-15T09:02:27.695Z"
+                      "createdAt": "2020-06-15T17:42:32.771Z",
+                      "updatedAt": "2020-06-15T17:42:32.771Z"
                     }
                   ]
                 }
@@ -605,7 +652,7 @@
                 }
               },
               "example": {
-                "accountId": "5ee7392391ee41516539e32b"
+                "accountId": "5ee7b307548e78225ac944d5"
               }
             }
           }
