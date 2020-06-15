@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "2915257a3e75d779f2987688514e40de595006c4364b0df26328e546c01d36b2"
+                    "verificationToken": "faaf184af97d006aeed3f021cb7636b4c6019807402b3590be9306e167fa045d"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "2915257a3e75d779f2987688514e40de595006c4364b0df26328e546c01d36b2"
+                "phoneNumberVerificationToken": "faaf184af97d006aeed3f021cb7636b4c6019807402b3590be9306e167fa045d"
               }
             }
           }
@@ -234,15 +234,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ee6628f829c677e7b379449",
+                      "_id": "5ee7392391ee41516539e32b",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-14T17:46:55.178Z",
-                      "updatedAt": "2020-06-14T17:46:55.178Z"
+                      "createdAt": "2020-06-15T09:02:27.201Z",
+                      "updatedAt": "2020-06-15T09:02:27.201Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTY2MjhmODI5YzY3N2U3YjM3OTQ0OSIsImNvdW50ZXIiOiJGQ2xSbm0iLCJpYXQiOjE1OTIxNTY4MTUsImV4cCI6MTU5MjI0MzIxNX0.HnYX-W-JkOygkF9Bn_mGdg4TO4vE4B2L3BWUNtxxcyA"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTczOTIzOTFlZTQxNTE2NTM5ZTMyYiIsImNvdW50ZXIiOiI4T0NPczciLCJpYXQiOjE1OTIyMTE3NDcsImV4cCI6MTU5MjI5ODE0N30.DuhMOddemOVf75NIwNeVNx6txZ5VTTGRNjWtVdVgdP8"
                   }
                 }
               }
@@ -339,15 +339,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ee6628f829c677e7b379449",
+                      "_id": "5ee7392391ee41516539e32b",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-14T17:46:55.178Z",
-                      "updatedAt": "2020-06-14T17:46:55.178Z"
+                      "createdAt": "2020-06-15T09:02:27.201Z",
+                      "updatedAt": "2020-06-15T09:02:27.201Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTY2MjhmODI5YzY3N2U3YjM3OTQ0OSIsImNvdW50ZXIiOiJMTnlFbmEiLCJpYXQiOjE1OTIxNTY4MTUsImV4cCI6MTU5MjI0MzIxNX0.NOI2sQSb33_QyQnflatEYVWWoO-nNFw-JU1Fx2YCOcs"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTczOTIzOTFlZTQxNTE2NTM5ZTMyYiIsImNvdW50ZXIiOiJPRTlsemoiLCJpYXQiOjE1OTIyMTE3NDcsImV4cCI6MTU5MjI5ODE0N30.VY8TrVEDDXdJfv1ZUBfiGT1k4vybgm1ITRXzmje_XKI"
                   }
                 }
               }
@@ -380,7 +380,7 @@
                 }
               },
               "example": {
-                "accountId": "5ee6628e829c677e7b379445"
+                "accountId": "5ee7392291ee41516539e327"
               }
             }
           }
@@ -478,15 +478,15 @@
                   "message": "successful",
                   "data": [
                     {
-                      "_id": "5ee6628f5601d7f4e62512cb",
-                      "accountId": "5ee6628f829c677e7b379449",
+                      "_id": "5ee73925feefaf867662839e",
+                      "accountId": "5ee7392391ee41516539e32b",
                       "followerId": {
-                        "_id": "5ee6628e829c677e7b379445",
+                        "_id": "5ee7392291ee41516539e327",
                         "username": "test1"
                       },
                       "__v": 0,
-                      "createdAt": "2020-06-14T17:46:55.739Z",
-                      "updatedAt": "2020-06-14T17:46:55.739Z"
+                      "createdAt": "2020-06-15T09:02:27.695Z",
+                      "updatedAt": "2020-06-15T09:02:27.695Z"
                     }
                   ]
                 }
@@ -563,15 +563,15 @@
                   "message": "successful",
                   "data": [
                     {
-                      "_id": "5ee6628f5601d7f4e62512cb",
+                      "_id": "5ee73925feefaf867662839e",
                       "accountId": {
-                        "_id": "5ee6628f829c677e7b379449",
+                        "_id": "5ee7392391ee41516539e32b",
                         "username": "test2"
                       },
-                      "followerId": "5ee6628e829c677e7b379445",
+                      "followerId": "5ee7392291ee41516539e327",
                       "__v": 0,
-                      "createdAt": "2020-06-14T17:46:55.739Z",
-                      "updatedAt": "2020-06-14T17:46:55.739Z"
+                      "createdAt": "2020-06-15T09:02:27.695Z",
+                      "updatedAt": "2020-06-15T09:02:27.695Z"
                     }
                   ]
                 }
@@ -605,7 +605,7 @@
                 }
               },
               "example": {
-                "accountId": "5ee6628f829c677e7b379449"
+                "accountId": "5ee7392391ee41516539e32b"
               }
             }
           }
