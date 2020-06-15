@@ -32,3 +32,25 @@ module.exports.login = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.initiatePasswordReset = async (req, res, next) => {
+  try {
+    await AccountService.sendResetPasswordToken({
+      ...req.body
+    });
+    return res.send(successResponse("password reset link has been sent to your email"));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.completePasswordReset = async (req, res, next) => {
+  try {
+    await AccountService.resetAccountPassword({
+      ...req.body
+    });
+    return res.send(successResponse("password reset successful. proceed to login"));
+  } catch (e) {
+    next(e);
+  }
+};
