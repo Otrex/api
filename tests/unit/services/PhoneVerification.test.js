@@ -20,8 +20,8 @@ afterAll(async () => {
 
 it("should call #sendVerificationCode without errors", async () => {
   const data = {
-    countryCode: "+234",
-    phoneNumber: "8012345678",
+    countryCode: "NG",
+    phoneNumber: "+2348012345678",
   };
   const result = await PhoneVerificationService.sendVerificationCode(data);
   console.log(result);

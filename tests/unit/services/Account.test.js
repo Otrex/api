@@ -26,18 +26,20 @@ it("should call #createAccount without errors", async () => {
     email: "test@example.com",
     username: "test",
     password: "password",
-    countryCode: "+234",
+    countryCode: "NG",
     phoneNumber: "8012345678",
     phoneNumberVerificationToken: "ac3c29cb9ea9dbf7ea2dfe8278ad1e82"
   };
-  PhoneVerificationService.checkVerificationToken.mockResolvedValue(true);
+  PhoneVerificationService.checkVerificationToken.mockResolvedValue({
+    phoneNumber: "+2348012345678",
+  });
   const result = await AccountService.createAccount(data);
   console.log(result);
 });
 
-it("should call #createLoginSession passing email without errors", async () => {
+it("should call #createLoginSession passing phone number without errors", async () => {
   const data = {
-    identifier: "test@example.com",
+    identifier: "+2348012345678",
     password: "password"
   };
   const result = await AccountService.createLoginSession(data);

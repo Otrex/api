@@ -27,6 +27,14 @@ const schema = new Schema({
   },
   phoneNumberVerifiedAt: {
     type: Date
+  },
+  followersCount: {
+    type: Number,
+    default: 0
+  },
+  followingsCount: {
+    type: Number,
+    default: 0
   }
 }, { timestamps: true });
 

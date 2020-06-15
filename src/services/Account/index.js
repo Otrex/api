@@ -27,7 +27,7 @@ const PhoneVerification = require("../PhoneVerification");
 * */
 module.exports.createAccount = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     email: { ...email },
     username: {
       ...string,
@@ -37,7 +37,7 @@ module.exports.createAccount = wrapServiceAction({
       pattern: /^[a-z0-9]+$/
     },
     password: { ...string, min: 6 },
-    countryCode: { ...string },
+    countryCode: { ...string, length: 2 },
     phoneNumber: { ...string, min: 9 },
     phoneNumberVerificationToken: { ...string }
   },
@@ -49,10 +49,11 @@ module.exports.createAccount = wrapServiceAction({
       ]
     });
     if (item) {
-      const match = item.email === params.email ? "email" : "phone number";
+      const match = item.email === params.email ? "email" : "username";
       throw new ServiceError(`an account with this ${match} already exists`);
     }
-    await PhoneVerification.checkVerificationToken({
+    const verification = await PhoneVerification.checkVerificationToken({
+      countryCode: params.countryCode,
       phoneNumber: params.phoneNumber,
       verificationToken: params.phoneNumberVerificationToken
     });
@@ -62,7 +63,7 @@ module.exports.createAccount = wrapServiceAction({
       username: params.username,
       password: await utils.bcryptHash(params.password),
       countryCode: params.countryCode,
-      phoneNumber: params.phoneNumber
+      phoneNumber: verification.phoneNumber
     });
     // TODO: registration successful event
     console.log(account._id);
@@ -72,7 +73,7 @@ module.exports.createAccount = wrapServiceAction({
 
 module.exports.createLoginSession = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     identifier: { ...string }, // phone number or username
     password: { ...string },
     ip: { ...string, optional: true },
@@ -113,7 +114,7 @@ module.exports.createLoginSession = wrapServiceAction({
 
 module.exports.changeAccountPassword = wrapServiceAction({
   params: {
-    $$strict: true,
+    $$strict: "remove",
     accountId: { ...any },
     currentPassword: { ...string },
     password: { ...string, min: 6 }
@@ -131,5 +132,101 @@ module.exports.changeAccountPassword = wrapServiceAction({
     await account.save();
 
     return true;
+  }
+});
+
+
+module.exports.followAccount = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    followerId: { ...any }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!account || !follower) {
+      throw new ServiceError("account not found");
+    }
+
+    if (account._id.equals(follower._id)) {
+      throw new ServiceError("you cannot follow yourself");
+    }
+
+    account.followersCount++;
+    follower.followingsCount++;
+
+    await Promise.all([
+      account.save(),
+      follower.save()
+    ]);
+
+    return await models.AccountFollower.findOneAndUpdate({
+      accountId: params.accountId,
+      followerId: params.followerId
+    }, {}, { upsert: true, new: true });
+  }
+});
+
+module.exports.unfollowAccount = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    followerId: { ...any }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!account || !follower) {
+      throw new ServiceError("account not found");
+    }
+
+    if (account._id.equals(follower._id)) {
+      throw new ServiceError("you cannot unfollow yourself");
+    }
+
+    account.followersCount--;
+    follower.followingsCount--;
+
+    await Promise.all([
+      account.save(),
+      follower.save()
+    ]);
+    return await models.AccountFollower.findOneAndDelete({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+  }
+});
+
+module.exports.getAccountFollowers = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any }
+  },
+  async handler(params) {
+    const followers = await models.AccountFollower.find({
+      accountId: params.accountId
+    }).populate({
+      path: "followerId",
+      select: "username"
+    }).exec();
+    return followers;
+  }
+});
+
+module.exports.getAccountFollowings = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+  },
+  async handler(params) {
+    const followings = models.AccountFollower.find({
+      followerId: params.accountId
+    }).populate({
+      path: "accountId",
+      select: "username"
+    }).exec();
+    return followings;
   }
 });

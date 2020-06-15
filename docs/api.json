@@ -1,0 +1,640 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pointograph",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.pointograph.com"
+    },
+    {
+      "url": "https://api.pointograph.com/_dev"
+    }
+  ],
+  "paths": {
+    "/verification/phone/send": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "countryCode": "NG",
+                "phoneNumber": "+2348023456789"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "verification code has been sent"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verification/phone/check": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "verificationCode": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "countryCode": "NG",
+                "phoneNumber": "+2348023456789",
+                "verificationCode": "1234"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "verificationToken": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "verification code has been verified",
+                  "data": {
+                    "verificationToken": "faaf184af97d006aeed3f021cb7636b4c6019807402b3590be9306e167fa045d"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "countryCode": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phoneNumberVerificationToken": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "countryCode": "NG",
+                "phoneNumber": "+2348023456789",
+                "email": "test2@example.com",
+                "username": "test2",
+                "password": "password",
+                "phoneNumberVerificationToken": "faaf184af97d006aeed3f021cb7636b4c6019807402b3590be9306e167fa045d"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "account": {
+                          "type": "object",
+                          "properties": {
+                            "followersCount": {
+                              "type": "number"
+                            },
+                            "followingsCount": {
+                              "type": "number"
+                            },
+                            "_id": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            },
+                            "countryCode": {
+                              "type": "string"
+                            },
+                            "phoneNumber": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "token": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "account created successfully",
+                  "data": {
+                    "account": {
+                      "followersCount": 0,
+                      "followingsCount": 0,
+                      "_id": "5ee7392391ee41516539e32b",
+                      "email": "test2@example.com",
+                      "username": "test2",
+                      "countryCode": "NG",
+                      "phoneNumber": "+2348023456789",
+                      "createdAt": "2020-06-15T09:02:27.201Z",
+                      "updatedAt": "2020-06-15T09:02:27.201Z"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTczOTIzOTFlZTQxNTE2NTM5ZTMyYiIsImNvdW50ZXIiOiI4T0NPczciLCJpYXQiOjE1OTIyMTE3NDcsImV4cCI6MTU5MjI5ODE0N30.DuhMOddemOVf75NIwNeVNx6txZ5VTTGRNjWtVdVgdP8"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "identifier": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "identifier": "+2348023456789",
+                "password": "password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "account": {
+                          "type": "object",
+                          "properties": {
+                            "followersCount": {
+                              "type": "number"
+                            },
+                            "followingsCount": {
+                              "type": "number"
+                            },
+                            "_id": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            },
+                            "countryCode": {
+                              "type": "string"
+                            },
+                            "phoneNumber": {
+                              "type": "string"
+                            },
+                            "createdAt": {
+                              "type": "string"
+                            },
+                            "updatedAt": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "token": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "login successful",
+                  "data": {
+                    "account": {
+                      "followersCount": 0,
+                      "followingsCount": 0,
+                      "_id": "5ee7392391ee41516539e32b",
+                      "email": "test2@example.com",
+                      "username": "test2",
+                      "countryCode": "NG",
+                      "phoneNumber": "+2348023456789",
+                      "createdAt": "2020-06-15T09:02:27.201Z",
+                      "updatedAt": "2020-06-15T09:02:27.201Z"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTczOTIzOTFlZTQxNTE2NTM5ZTMyYiIsImNvdW50ZXIiOiJPRTlsemoiLCJpYXQiOjE1OTIyMTE3NDcsImV4cCI6MTU5MjI5ODE0N30.VY8TrVEDDXdJfv1ZUBfiGT1k4vybgm1ITRXzmje_XKI"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/follow": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "accountId": "5ee7392291ee41516539e327"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "successful"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/followers": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "accountId": {
+                            "type": "string"
+                          },
+                          "followerId": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string"
+                              },
+                              "username": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "__v": {
+                            "type": "number"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "successful",
+                  "data": [
+                    {
+                      "_id": "5ee73925feefaf867662839e",
+                      "accountId": "5ee7392391ee41516539e32b",
+                      "followerId": {
+                        "_id": "5ee7392291ee41516539e327",
+                        "username": "test1"
+                      },
+                      "__v": 0,
+                      "createdAt": "2020-06-15T09:02:27.695Z",
+                      "updatedAt": "2020-06-15T09:02:27.695Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/followings": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "accountId": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string"
+                              },
+                              "username": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "followerId": {
+                            "type": "string"
+                          },
+                          "__v": {
+                            "type": "number"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "successful",
+                  "data": [
+                    {
+                      "_id": "5ee73925feefaf867662839e",
+                      "accountId": {
+                        "_id": "5ee7392391ee41516539e32b",
+                        "username": "test2"
+                      },
+                      "followerId": "5ee7392291ee41516539e327",
+                      "__v": 0,
+                      "createdAt": "2020-06-15T09:02:27.695Z",
+                      "updatedAt": "2020-06-15T09:02:27.695Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/unfollow": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "accountId": "5ee7392391ee41516539e32b"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "successful"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

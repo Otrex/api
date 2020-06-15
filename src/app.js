@@ -10,6 +10,9 @@ const {
   notFoundHandler,
   errorHandler
 } = require("./middlewares");
+const {
+  setAccountSession
+} = require("./middlewares/authentication");
 
 app.set("trust proxy", true);
 app.use(cors());
@@ -22,12 +25,14 @@ config.env.isProduction
   ? app.use(morgan("common"))
   : app.use(morgan("dev"));
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   return res.send({
     status: "success",
     message: "Pointograph"
   });
 });
+
+app.use(setAccountSession);
 
 // routes
 app.use(require("./routes"));
