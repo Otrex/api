@@ -253,12 +253,27 @@ module.exports.getAccountFollowers = wrapServiceAction({
     accountId: { ...any }
   },
   async handler(params) {
-    const followers = await models.AccountFollower.find({
-      accountId: params.accountId
-    }).populate({
-      path: "followerId",
-      select: "username"
-    }).exec();
+    const followers = await models.AccountFollower.aggregate([
+      { $match: { accountId: params.accountId } },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "followerId",
+          foreignField: "_id",
+          as: "follower",
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$follower", 0] }
+        }
+      },
+      {
+        $project: {
+          username: 1
+        }
+      }
+    ]);
     return followers;
   }
 });
@@ -269,12 +284,27 @@ module.exports.getAccountFollowings = wrapServiceAction({
     accountId: { ...any },
   },
   async handler(params) {
-    const followings = models.AccountFollower.find({
-      followerId: params.accountId
-    }).populate({
-      path: "accountId",
-      select: "username"
-    }).exec();
+    const followings = models.AccountFollower.aggregate([
+      { $match: { followerId: params.accountId } },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "accountId",
+          foreignField: "_id",
+          as: "follower",
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$follower", 0] }
+        }
+      },
+      {
+        $project: {
+          username: 1
+        }
+      }
+    ]);
     return followings;
   }
 });
