@@ -3,6 +3,17 @@ const {
   successResponse
 } = require("../utils");
 
+module.exports.getProfile = async (req, res, next) => {
+  try {
+    const data = await AccountService.getAccount({
+      accountId: req.params.accountId || req.session.account._id
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.followAccount = async (req, res, next) => {
   try {
     await AccountService.followAccount({
@@ -32,7 +43,7 @@ module.exports.getFollowers = async (req, res, next) => {
     const data = await AccountService.getAccountFollowers({
       accountId: req.params.accountId || req.session.account._id
     });
-    return res.send(successResponse("successful", data));
+    return res.send(successResponse(undefined, data));
   } catch (e) {
     next(e);
   }
@@ -43,7 +54,7 @@ module.exports.getFollowings = async (req, res, next) => {
     const data = await AccountService.getAccountFollowings({
       accountId: req.params.accountId || req.session.account._id
     });
-    return res.send(successResponse("successful", data));
+    return res.send(successResponse(undefined, data));
   } catch (e) {
     next(e);
   }

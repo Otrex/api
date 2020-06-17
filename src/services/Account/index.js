@@ -184,6 +184,21 @@ module.exports.resetAccountPassword = wrapServiceAction({
   }
 });
 
+module.exports.getAccount = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId)
+      .select("username followersCount followingsCount");
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    return account;
+  }
+});
+
 module.exports.followAccount = wrapServiceAction({
   params: {
     $$strict: "remove",

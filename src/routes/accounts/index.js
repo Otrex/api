@@ -6,6 +6,7 @@ const {
 } = require("../../middlewares/authentication");
 
 const {
+  getProfile,
   followAccount,
   unfollowAccount,
   getFollowers,
@@ -14,6 +15,9 @@ const {
 
 
 router.use(verifyAccountAuth());
+
+router.route("/:accountId?/profile")
+  .get(getProfile);
 
 router.route("/follow")
   .post(followAccount);
