@@ -184,6 +184,21 @@ module.exports.resetAccountPassword = wrapServiceAction({
   }
 });
 
+module.exports.getAccount = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId)
+      .select("username followersCount followingsCount");
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    return account;
+  }
+});
+
 module.exports.followAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
@@ -253,13 +268,27 @@ module.exports.getAccountFollowers = wrapServiceAction({
     accountId: { ...any }
   },
   async handler(params) {
-    const followers = await models.AccountFollower.find({
-      accountId: params.accountId
-    }).populate({
-      path: "followerId",
-      select: "username"
-    }).exec();
-    return followers;
+    return models.AccountFollower.aggregate([
+      { $match: { accountId: params.accountId } },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "followerId",
+          foreignField: "_id",
+          as: "follower",
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$follower", 0] }
+        }
+      },
+      {
+        $project: {
+          username: 1
+        }
+      }
+    ]);
   }
 });
 
@@ -269,12 +298,26 @@ module.exports.getAccountFollowings = wrapServiceAction({
     accountId: { ...any },
   },
   async handler(params) {
-    const followings = models.AccountFollower.find({
-      followerId: params.accountId
-    }).populate({
-      path: "accountId",
-      select: "username"
-    }).exec();
-    return followings;
+    return models.AccountFollower.aggregate([
+      { $match: { followerId: params.accountId } },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "accountId",
+          foreignField: "_id",
+          as: "follower",
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$follower", 0] }
+        }
+      },
+      {
+        $project: {
+          username: 1
+        }
+      }
+    ]);
   }
 });

@@ -150,6 +150,20 @@ describe("account registration", () => {
         throw err;
       }
     });
+
+    it("/accounts/profile" + " - " + index, async () => {
+      const res = await request(app)
+        .get("/accounts/profile")
+        .set("x-api-token", state.sessions[index].token);
+      try {
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.status).toBe("success");
+        addEndpoint(res);
+      } catch (err) {
+        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        throw err;
+      }
+    });
   });
 
   it("/auth/reset-password/initiate", async () => {
@@ -215,7 +229,6 @@ describe("followings and followers", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
-      console.log(res.body);
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
       throw err;
@@ -230,7 +243,6 @@ describe("followings and followers", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
-      console.log(res.body);
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
       throw err;

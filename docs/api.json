@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "643c48651d0d48f325fc81260f5eefa75536dcfbdcfde363677dc41b46c31cd3"
+                    "verificationToken": "136f0421c8258b7577a7313b3a2a957a426adcfafe045cb0a289a992e1bf1f2e"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "643c48651d0d48f325fc81260f5eefa75536dcfbdcfde363677dc41b46c31cd3"
+                "phoneNumberVerificationToken": "136f0421c8258b7577a7313b3a2a957a426adcfafe045cb0a289a992e1bf1f2e"
               }
             }
           }
@@ -234,15 +234,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ee7b307548e78225ac944d5",
+                      "_id": "5ee9c34b48dba63dfc525e1a",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-15T17:42:31.818Z",
-                      "updatedAt": "2020-06-15T17:42:31.818Z"
+                      "createdAt": "2020-06-17T07:16:27.990Z",
+                      "updatedAt": "2020-06-17T07:16:27.990Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTdiMzA3NTQ4ZTc4MjI1YWM5NDRkNSIsImNvdW50ZXIiOiI5aXRJUTIiLCJpYXQiOjE1OTIyNDI5NTEsImV4cCI6MTU5MjMyOTM1MX0.2jNAGsDKamL_G8pXz64bgkvTfetTKv5W11te4znyhYs"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTljMzRiNDhkYmE2M2RmYzUyNWUxYSIsImNvdW50ZXIiOiI3OU05ckoiLCJpYXQiOjE1OTIzNzgxODgsImV4cCI6MTU5MjQ2NDU4OH0.lk7TYerOtn2cpmEzZJ_ZPktIUeJ7CK2hrhuw4rCRvUw"
                   }
                 }
               }
@@ -339,15 +339,72 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ee7b307548e78225ac944d5",
+                      "_id": "5ee9c34b48dba63dfc525e1a",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-15T17:42:31.818Z",
-                      "updatedAt": "2020-06-15T17:42:31.818Z"
+                      "createdAt": "2020-06-17T07:16:27.990Z",
+                      "updatedAt": "2020-06-17T07:16:27.990Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTdiMzA3NTQ4ZTc4MjI1YWM5NDRkNSIsImNvdW50ZXIiOiJaaXAxODIiLCJpYXQiOjE1OTIyNDI5NTIsImV4cCI6MTU5MjMyOTM1Mn0.NkwyENm1wQzAHOFGuN5lwzEYlM8uu2k1cT2-LSOpIBE"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZTljMzRiNDhkYmE2M2RmYzUyNWUxYSIsImNvdW50ZXIiOiI2UmIwT0IiLCJpYXQiOjE1OTIzNzgxODgsImV4cCI6MTU5MjQ2NDU4OH0.bq1weySvpjLfHf-nDdO2nbnNHmmQZn1sCXNerbjkQUI"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/profile": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "followersCount": {
+                          "type": "number"
+                        },
+                        "followingsCount": {
+                          "type": "number"
+                        },
+                        "_id": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": {
+                    "followersCount": 0,
+                    "followingsCount": 0,
+                    "_id": "5ee9c34b48dba63dfc525e1a",
+                    "username": "test2"
                   }
                 }
               }
@@ -427,7 +484,7 @@
                 }
               },
               "example": {
-                "accountId": "5ee7b306548e78225ac944d1"
+                "accountId": "5ee9c34a48dba63dfc525e16"
               }
             }
           }
@@ -481,9 +538,6 @@
                     "status": {
                       "type": "string"
                     },
-                    "message": {
-                      "type": "string"
-                    },
                     "data": {
                       "type": "array",
                       "items": {
@@ -492,27 +546,7 @@
                           "_id": {
                             "type": "string"
                           },
-                          "accountId": {
-                            "type": "string"
-                          },
-                          "followerId": {
-                            "type": "object",
-                            "properties": {
-                              "_id": {
-                                "type": "string"
-                              },
-                              "username": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "__v": {
-                            "type": "number"
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          },
-                          "updatedAt": {
+                          "username": {
                             "type": "string"
                           }
                         }
@@ -522,18 +556,10 @@
                 },
                 "example": {
                   "status": "success",
-                  "message": "successful",
                   "data": [
                     {
-                      "_id": "5ee7b308eb22565a2537be0a",
-                      "accountId": "5ee7b307548e78225ac944d5",
-                      "followerId": {
-                        "_id": "5ee7b306548e78225ac944d1",
-                        "username": "test1"
-                      },
-                      "__v": 0,
-                      "createdAt": "2020-06-15T17:42:32.771Z",
-                      "updatedAt": "2020-06-15T17:42:32.771Z"
+                      "_id": "5ee9c34a48dba63dfc525e16",
+                      "username": "test1"
                     }
                   ]
                 }
@@ -566,9 +592,6 @@
                     "status": {
                       "type": "string"
                     },
-                    "message": {
-                      "type": "string"
-                    },
                     "data": {
                       "type": "array",
                       "items": {
@@ -577,27 +600,7 @@
                           "_id": {
                             "type": "string"
                           },
-                          "accountId": {
-                            "type": "object",
-                            "properties": {
-                              "_id": {
-                                "type": "string"
-                              },
-                              "username": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "followerId": {
-                            "type": "string"
-                          },
-                          "__v": {
-                            "type": "number"
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          },
-                          "updatedAt": {
+                          "username": {
                             "type": "string"
                           }
                         }
@@ -607,18 +610,10 @@
                 },
                 "example": {
                   "status": "success",
-                  "message": "successful",
                   "data": [
                     {
-                      "_id": "5ee7b308eb22565a2537be0a",
-                      "accountId": {
-                        "_id": "5ee7b307548e78225ac944d5",
-                        "username": "test2"
-                      },
-                      "followerId": "5ee7b306548e78225ac944d1",
-                      "__v": 0,
-                      "createdAt": "2020-06-15T17:42:32.771Z",
-                      "updatedAt": "2020-06-15T17:42:32.771Z"
+                      "_id": "5ee9c34b48dba63dfc525e1a",
+                      "username": "test2"
                     }
                   ]
                 }
@@ -652,7 +647,7 @@
                 }
               },
               "example": {
-                "accountId": "5ee7b307548e78225ac944d5"
+                "accountId": "5ee9c34b48dba63dfc525e1a"
               }
             }
           }
