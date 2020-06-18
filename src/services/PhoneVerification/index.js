@@ -74,7 +74,7 @@ module.exports.checkVerificationCode = wrapServiceAction({
     const filter = {
       phoneNumber: formattedPhoneNumber,
       phoneNumberVerifiedAt: { $exists: false },
-      verificationToken: { $exists: false }
+      // verificationToken: { $exists: false }
     };
     let verificationEntry = await models.PhoneVerification.findOne(filter);
     if (!verificationEntry) {

@@ -268,7 +268,7 @@ module.exports.getAccountFollowers = wrapServiceAction({
     accountId: { ...any }
   },
   async handler(params) {
-    const followers = await models.AccountFollower.aggregate([
+    return models.AccountFollower.aggregate([
       { $match: { accountId: params.accountId } },
       {
         $lookup: {
@@ -289,7 +289,6 @@ module.exports.getAccountFollowers = wrapServiceAction({
         }
       }
     ]);
-    return followers;
   }
 });
 
@@ -299,7 +298,7 @@ module.exports.getAccountFollowings = wrapServiceAction({
     accountId: { ...any },
   },
   async handler(params) {
-    const followings = models.AccountFollower.aggregate([
+    return models.AccountFollower.aggregate([
       { $match: { followerId: params.accountId } },
       {
         $lookup: {
@@ -320,6 +319,5 @@ module.exports.getAccountFollowings = wrapServiceAction({
         }
       }
     ]);
-    return followings;
   }
 });
