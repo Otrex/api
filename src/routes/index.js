@@ -10,3 +10,7 @@ router.use("/verification", require("./verification"));
 router.use("/auth", require("./authentication"));
 
 router.use("/accounts", require("./accounts"));
+
+router.use("/search", require("./search"));
+
+router.use("/locations", require("./locations"));

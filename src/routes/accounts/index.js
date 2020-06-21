@@ -7,6 +7,7 @@ const {
 
 const {
   getProfile,
+  updateProfile,
   followAccount,
   unfollowAccount,
   getFollowers,
@@ -18,6 +19,9 @@ router.use(verifyAccountAuth());
 
 router.route("/:accountId?/profile")
   .get(getProfile);
+
+router.route("/profile/update")
+  .post(updateProfile);
 
 router.route("/follow")
   .post(followAccount);

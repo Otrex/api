@@ -7,6 +7,14 @@ const schema = new Schema({
     lowercase: true,
     unique: true
   },
+  name: {
+    first: {
+      type: String
+    },
+    last: {
+      type: String
+    }
+  },
   email: {
     type: String,
     lowercase: true,
@@ -35,8 +43,15 @@ const schema = new Schema({
   followingsCount: {
     type: Number,
     default: 0
+  },
+  location: {
+    type: String
   }
 }, { timestamps: true });
+
+schema.index({
+  username: 1
+});
 
 const Model = mongoose.model("Account", schema);
 module.exports = Model;

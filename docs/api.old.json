@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "3db403d5b4db9cd6921001e9e9685f36d32039e82358e98c4b9d110b370d17e5"
+                    "verificationToken": "67b3876f79549bb1208d6c9e325f6924f20e28c747ea76ffd392827f89047601"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "3db403d5b4db9cd6921001e9e9685f36d32039e82358e98c4b9d110b370d17e5"
+                "phoneNumberVerificationToken": "67b3876f79549bb1208d6c9e325f6924f20e28c747ea76ffd392827f89047601"
               }
             }
           }
@@ -234,15 +234,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5eef38bc3c5157599ad8dcfb",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-21T11:01:30.860Z",
-                      "updatedAt": "2020-06-21T11:01:30.860Z"
+                      "createdAt": "2020-06-21T10:38:52.837Z",
+                      "updatedAt": "2020-06-21T10:38:52.837Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWYzZTBhYzExNTcyMTQ4OWQ0YmQ1MyIsImNvdW50ZXIiOiJEYmNRYVQiLCJpYXQiOjE1OTI3MzcyOTAsImV4cCI6MTU5MjgyMzY5MH0.GD7GmI5T_Odn1By1cTwvV9EGh3RESjcZp0ErjlR772A"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWYzOGJjM2M1MTU3NTk5YWQ4ZGNmYiIsImNvdW50ZXIiOiJIUExCakciLCJpYXQiOjE1OTI3MzU5MzIsImV4cCI6MTU5MjgyMjMzMn0.Xx_etm6LloSP0A60UVGZ3Dl0TtPF6ojQMiGRfp4WkJQ"
                   }
                 }
               }
@@ -339,15 +339,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5eef38bc3c5157599ad8dcfb",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-21T11:01:30.860Z",
-                      "updatedAt": "2020-06-21T11:01:30.860Z"
+                      "createdAt": "2020-06-21T10:38:52.837Z",
+                      "updatedAt": "2020-06-21T10:38:52.837Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWYzZTBhYzExNTcyMTQ4OWQ0YmQ1MyIsImNvdW50ZXIiOiJlNU9HVTIiLCJpYXQiOjE1OTI3MzcyOTEsImV4cCI6MTU5MjgyMzY5MX0.FcTd-gO4VPElcQUVj3vJTP8cvKCGSzzopyBlMFEHAow"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWYzOGJjM2M1MTU3NTk5YWQ4ZGNmYiIsImNvdW50ZXIiOiIydEtkbm4iLCJpYXQiOjE1OTI3MzU5MzMsImV4cCI6MTU5MjgyMjMzM30.1_6pdw88V9z7D1_ZkP9RnV6im6l05YxwoGoHhTuOHPg"
                   }
                 }
               }
@@ -403,7 +403,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5eef3e0ac115721489d4bd53",
+                    "_id": "5eef38bc3c5157599ad8dcfb",
                     "username": "test2"
                   }
                 }
@@ -632,7 +632,7 @@
                 }
               },
               "example": {
-                "accountId": "5eef3e09c115721489d4bd4f"
+                "accountId": "5eef38bb3c5157599ad8dcf7"
               }
             }
           }
@@ -706,7 +706,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5eef3e09c115721489d4bd4f",
+                      "_id": "5eef38bb3c5157599ad8dcf7",
                       "username": "test1"
                     }
                   ]
@@ -760,7 +760,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5eef38bc3c5157599ad8dcfb",
                       "username": "test2"
                     }
                   ]
@@ -921,7 +921,7 @@
                 }
               },
               "example": {
-                "accountId": "5eef3e0ac115721489d4bd53"
+                "accountId": "5eef38bc3c5157599ad8dcfb"
               }
             }
           }
@@ -945,241 +945,6 @@
                 "example": {
                   "status": "success",
                   "message": "successful"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/search": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "query": "test"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "followersCount": {
-                            "type": "number"
-                          },
-                          "username": {
-                            "type": "string"
-                          },
-                          "_type": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5eef3e09c115721489d4bd4f",
-                      "followersCount": 1,
-                      "username": "test1",
-                      "_type": "account"
-                    },
-                    {
-                      "_id": "5eef3e0ac115721489d4bd53",
-                      "followersCount": 0,
-                      "username": "test2",
-                      "_type": "account"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locations": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "visibility": {
-                    "type": "string"
-                  },
-                  "eddress": {
-                    "type": "string"
-                  },
-                  "coordinates": {
-                    "type": "object",
-                    "properties": {
-                      "latitude": {
-                        "type": "number"
-                      },
-                      "longitude": {
-                        "type": "number"
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "name": "my house",
-                "description": "my house at bayelsa",
-                "visibility": "private",
-                "eddress": "myhouse",
-                "coordinates": {
-                  "latitude": 4.384938,
-                  "longitude": 4.89898
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "visibility": {
-                          "type": "string"
-                        },
-                        "_id": {
-                          "type": "string"
-                        },
-                        "accountId": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "eddress": {
-                          "type": "string"
-                        },
-                        "preciseLocation": {
-                          "type": "object",
-                          "properties": {
-                            "coordinates": {
-                              "type": "array",
-                              "items": {
-                                "type": "number"
-                              }
-                            },
-                            "_id": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "plusCode": {
-                          "type": "string"
-                        },
-                        "createdAt": {
-                          "type": "string"
-                        },
-                        "updatedAt": {
-                          "type": "string"
-                        },
-                        "__v": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": {
-                    "visibility": "private",
-                    "_id": "5eef3e0cc115721489d4bd58",
-                    "accountId": "5eef3e09c115721489d4bd4f",
-                    "name": "my house",
-                    "description": "my house at bayelsa",
-                    "eddress": "myhouse",
-                    "preciseLocation": {
-                      "coordinates": [
-                        4.89898,
-                        4.384938
-                      ],
-                      "_id": "5eef3e0cc115721489d4bd59",
-                      "type": "Point"
-                    },
-                    "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-06-21T11:01:32.215Z",
-                    "updatedAt": "2020-06-21T11:01:32.215Z",
-                    "__v": 0
-                  }
                 }
               }
             }

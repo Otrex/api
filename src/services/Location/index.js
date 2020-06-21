@@ -27,6 +27,7 @@ module.exports.createLocation = wrapServiceAction({
     name: { ...string, min: 4 },
     description: { ...string, min: 16 },
     visibility: { type: "enum", values: ["public", "private"] },
+    eddress: { ...string, min: 4, lowercase: true, alphanum: true },
     coordinates: {
       type: "object",
       props: {
@@ -40,37 +41,24 @@ module.exports.createLocation = wrapServiceAction({
       latitude,
       longitude
     } = params.coordinates;
+    const location = await models.Location.findOne({
+      accountId: params.accountId,
+      eddress: params.eddress
+    });
+    if (location) {
+      throw new ServiceError("you have already added a location with this eddress");
+    }
     return models.Location.create({
       accountId: params.accountId,
       name: params.name,
       description: params.description,
       visibility: params.visibility,
+      eddress: params.eddress,
       preciseLocation: {
         type: "Point",
         coordinates: [longitude, latitude]
       },
       plusCode: OpenLocationCode.encode(latitude, longitude)
     });
-  }
-});
-
-module.exports.tagLocation = wrapServiceAction({
-  params: {
-    accountId: { ...any },
-    locationId: { ...any },
-    eddress: { ...string, min: 4, lowercase: true, alphanum: true }
-  },
-  async handler(params) {
-    const location = models.Location.findOne({
-      accountId: params.accountId,
-      locationId: params.locationId,
-      eddress: params.eddress
-    });
-    if (location) {
-      throw new ServiceError("you have already tagged a location with this eddress");
-    }
-    return models.Location.findByIdAndUpdate(params.locationId, {
-      eddress: params.eddress
-    }, { new: true });
   }
 });
