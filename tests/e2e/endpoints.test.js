@@ -164,6 +164,23 @@ describe("account registration", () => {
         throw err;
       }
     });
+
+    it("/accounts/profile/update" + " - " + index, async () => {
+      const res = await request(app)
+        .post("/accounts/profile/update")
+        .set("x-api-token", state.sessions[index].token)
+        .send({
+          location: "Choba, Port Harcourt"
+        });
+      try {
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.status).toBe("success");
+        addEndpoint(res);
+      } catch (err) {
+        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        throw err;
+      }
+    });
   });
 
   it("/auth/reset-password/initiate", async () => {
@@ -255,6 +272,47 @@ describe("followings and followers", () => {
       .set("x-api-token", state.sessions[0].token)
       .send({
         accountId: state.sessions[1].account._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/search", async () => {
+    const res = await request(app)
+      .post("/search")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        query: "test"
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/locations", async () => {
+    const res = await request(app)
+      .post("/locations")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        name: "my house",
+        description: "my house at bayelsa",
+        visibility: "private",
+        eddress: "myhouse",
+        coordinates: {
+          latitude: 4.384938,
+          longitude: 4.89898
+        }
       });
     try {
       expect(res.statusCode).toEqual(200);

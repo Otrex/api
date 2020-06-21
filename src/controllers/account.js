@@ -6,9 +6,22 @@ const {
 module.exports.getProfile = async (req, res, next) => {
   try {
     const data = await AccountService.getAccount({
-      accountId: req.params.accountId || req.session.account._id
+      accountId: req.params.accountId || req.session.account._id,
+      isOwnAccount: req.params.accountId === req.session.account._id.toString()
     });
     return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.updateProfile = async (req, res, next) => {
+  try {
+    const data = await AccountService.updateAccount({
+      accountId: req.session.account._id,
+      location: req.body.location
+    });
+    return res.send(successResponse("profile updated", data));
   } catch (e) {
     next(e);
   }

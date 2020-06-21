@@ -5,6 +5,7 @@ const wrapServiceAction = require("../_core/wrapServiceAction");
 
 const moment = require("moment");
 const omit = require("lodash/omit");
+const pick = require("lodash/pick");
 const utils = require("../../utils");
 
 const models = require("../../db").models;
@@ -187,15 +188,38 @@ module.exports.resetAccountPassword = wrapServiceAction({
 module.exports.getAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any }
+    accountId: { ...any },
+    isOwnAccount: { type: "boolean" }
   },
   async handler(params) {
-    const account = await models.Account.findById(params.accountId)
-      .select("username followersCount followingsCount");
+    const account = await models.Account.findOne({
+      $or: [
+        { _id: params.accountId },
+        { username: params.accountId }
+      ]
+    })
+      .select(`username${ params.isOwnAccount ? " email " : " " }location followersCount followingsCount`);
     if (!account) {
       throw new ServiceError("account not found");
     }
     return account;
+  }
+});
+
+module.exports.updateAccount = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    location: { ...string }
+  },
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    account.location = params.location;
+    await account.save();
+    return pick(account.toJSON(), ["username", "email", "location", "followersCount", "followingsCount"]);
   }
 });
 
