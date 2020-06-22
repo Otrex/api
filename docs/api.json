@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "3db403d5b4db9cd6921001e9e9685f36d32039e82358e98c4b9d110b370d17e5"
+                    "verificationToken": "a798ea48f5e2d30b7ba7118d12d5d21ee6656e33e939449d3b1b4fe3c173babb"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "3db403d5b4db9cd6921001e9e9685f36d32039e82358e98c4b9d110b370d17e5"
+                "phoneNumberVerificationToken": "a798ea48f5e2d30b7ba7118d12d5d21ee6656e33e939449d3b1b4fe3c173babb"
               }
             }
           }
@@ -234,15 +234,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5ef0d3badde5084fc7d126b6",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-21T11:01:30.860Z",
-                      "updatedAt": "2020-06-21T11:01:30.860Z"
+                      "createdAt": "2020-06-22T15:52:26.925Z",
+                      "updatedAt": "2020-06-22T15:52:26.925Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWYzZTBhYzExNTcyMTQ4OWQ0YmQ1MyIsImNvdW50ZXIiOiJEYmNRYVQiLCJpYXQiOjE1OTI3MzcyOTAsImV4cCI6MTU5MjgyMzY5MH0.GD7GmI5T_Odn1By1cTwvV9EGh3RESjcZp0ErjlR772A"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjBkM2JhZGRlNTA4NGZjN2QxMjZiNiIsImNvdW50ZXIiOiJGNGVJWGkiLCJpYXQiOjE1OTI4NDExNDcsImV4cCI6MTU5MjkyNzU0N30.ahDVCrNg-ZFJz2vLlPjvQ81LAjdfdEPOC1ndbzH3HvM"
                   }
                 }
               }
@@ -339,15 +339,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5ef0d3badde5084fc7d126b6",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-21T11:01:30.860Z",
-                      "updatedAt": "2020-06-21T11:01:30.860Z"
+                      "createdAt": "2020-06-22T15:52:26.925Z",
+                      "updatedAt": "2020-06-22T15:52:26.925Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWYzZTBhYzExNTcyMTQ4OWQ0YmQ1MyIsImNvdW50ZXIiOiJlNU9HVTIiLCJpYXQiOjE1OTI3MzcyOTEsImV4cCI6MTU5MjgyMzY5MX0.FcTd-gO4VPElcQUVj3vJTP8cvKCGSzzopyBlMFEHAow"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjBkM2JhZGRlNTA4NGZjN2QxMjZiNiIsImNvdW50ZXIiOiJWbFZsVGwiLCJpYXQiOjE1OTI4NDExNDcsImV4cCI6MTU5MjkyNzU0N30.ZALN1RcWBObUhZI2UG00_W36MHfmZkULzXWCqlimGi0"
                   }
                 }
               }
@@ -403,7 +403,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5eef3e0ac115721489d4bd53",
+                    "_id": "5ef0d3badde5084fc7d126b6",
                     "username": "test2"
                   }
                 }
@@ -632,7 +632,7 @@
                 }
               },
               "example": {
-                "accountId": "5eef3e09c115721489d4bd4f"
+                "accountId": "5ef0d3b9dde5084fc7d126b2"
               }
             }
           }
@@ -706,7 +706,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5eef3e09c115721489d4bd4f",
+                      "_id": "5ef0d3b9dde5084fc7d126b2",
                       "username": "test1"
                     }
                   ]
@@ -760,10 +760,65 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5ef0d3badde5084fc7d126b6",
                       "username": "test2"
                     }
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/unfollow": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "accountId": "5ef0d3badde5084fc7d126b6"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "successful"
                 }
               }
             }
@@ -897,61 +952,6 @@
         }
       }
     },
-    "/accounts/unfollow": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "accountId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "accountId": "5eef3e0ac115721489d4bd53"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "successful"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/search": {
       "post": {
         "description": "",
@@ -1018,13 +1018,13 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5eef3e09c115721489d4bd4f",
+                      "_id": "5ef0d3b9dde5084fc7d126b2",
                       "followersCount": 1,
                       "username": "test1",
                       "_type": "account"
                     },
                     {
-                      "_id": "5eef3e0ac115721489d4bd53",
+                      "_id": "5ef0d3badde5084fc7d126b6",
                       "followersCount": 0,
                       "username": "test2",
                       "_type": "account"
@@ -1162,8 +1162,8 @@
                   "status": "success",
                   "data": {
                     "visibility": "private",
-                    "_id": "5eef3e0cc115721489d4bd58",
-                    "accountId": "5eef3e09c115721489d4bd4f",
+                    "_id": "5ef0d3bbdde5084fc7d126bb",
+                    "accountId": "5ef0d3b9dde5084fc7d126b2",
                     "name": "my house",
                     "description": "my house at bayelsa",
                     "eddress": "myhouse",
@@ -1172,14 +1172,123 @@
                         4.89898,
                         4.384938
                       ],
-                      "_id": "5eef3e0cc115721489d4bd59",
+                      "_id": "5ef0d3bbdde5084fc7d126bc",
                       "type": "Point"
                     },
                     "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-06-21T11:01:32.215Z",
-                    "updatedAt": "2020-06-21T11:01:32.215Z",
+                    "createdAt": "2020-06-22T15:52:27.971Z",
+                    "updatedAt": "2020-06-22T15:52:27.971Z",
                     "__v": 0
                   }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "visibility": {
+                            "type": "string"
+                          },
+                          "_id": {
+                            "type": "string"
+                          },
+                          "accountId": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "eddress": {
+                            "type": "string"
+                          },
+                          "preciseLocation": {
+                            "type": "object",
+                            "properties": {
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                }
+                              },
+                              "_id": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "plusCode": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          },
+                          "__v": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    {
+                      "visibility": "private",
+                      "_id": "5ef0d3bbdde5084fc7d126bb",
+                      "accountId": "5ef0d3b9dde5084fc7d126b2",
+                      "name": "my house",
+                      "description": "my house at bayelsa",
+                      "eddress": "myhouse",
+                      "preciseLocation": {
+                        "coordinates": [
+                          4.89898,
+                          4.384938
+                        ],
+                        "_id": "5ef0d3bbdde5084fc7d126bc",
+                        "type": "Point"
+                      },
+                      "plusCode": "6FP69VMX+XH",
+                      "createdAt": "2020-06-22T15:52:27.971Z",
+                      "updatedAt": "2020-06-22T15:52:27.971Z",
+                      "__v": 0
+                    }
+                  ]
                 }
               }
             }

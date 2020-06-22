@@ -63,3 +63,15 @@ module.exports.createLocation = wrapServiceAction({
     });
   }
 });
+
+module.exports.getAccountLocations = wrapServiceAction({
+  params: {
+    accountId: { ...any }
+  },
+  async handler(params) {
+    const locations = await models.Location.find({
+      accountId: params.accountId
+    });
+    return locations;
+  }
+});

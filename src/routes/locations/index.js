@@ -6,10 +6,14 @@ const {
 } = require("../../middlewares/authentication");
 
 const {
-  createLocation
+  createLocation,
+  getAccountLocations
 } = require("../../controllers/location");
 
 router.use(verifyAccountAuth());
+
+router.route("/")
+  .get(getAccountLocations);
 
 router.route("/")
   .post(createLocation);
