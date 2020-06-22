@@ -188,15 +188,12 @@ module.exports.resetAccountPassword = wrapServiceAction({
 module.exports.getAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
+    username: { ...any },
     isOwnAccount: { type: "boolean" }
   },
   async handler(params) {
     const account = await models.Account.findOne({
-      $or: [
-        { _id: params.accountId },
-        { username: params.accountId }
-      ]
+      username: params.username
     })
       .select(`username${ params.isOwnAccount ? " email " : " " }location followersCount followingsCount`);
     if (!account) {

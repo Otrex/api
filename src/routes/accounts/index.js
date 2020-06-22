@@ -17,7 +17,7 @@ const {
 
 router.use(verifyAccountAuth());
 
-router.route("/:accountId?/profile")
+router.route("/:username?/profile")
   .get(getProfile);
 
 router.route("/profile/update")

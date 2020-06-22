@@ -45,6 +45,7 @@ const schema = new Schema({
 }, { timestamps: true });
 
 schema.index({ preciseLocation: "2dsphere" });
+schema.index({ visibilty: 1, eddress: 1 });
 
 const Model = mongoose.model("Location", schema);
 module.exports = Model;

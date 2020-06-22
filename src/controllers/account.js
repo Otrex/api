@@ -6,8 +6,8 @@ const {
 module.exports.getProfile = async (req, res, next) => {
   try {
     const data = await AccountService.getAccount({
-      accountId: req.params.accountId || req.session.account._id,
-      isOwnAccount: req.params.accountId === req.session.account._id.toString()
+      username: req.params.username || req.session.account.username,
+      isOwnAccount: req.params.username === req.session.account.username.toString()
     });
     return res.send(successResponse(undefined, data));
   } catch (e) {
