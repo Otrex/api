@@ -78,6 +78,25 @@ module.exports.getAccountLocations = wrapServiceAction({
   }
 });
 
+module.exports.getLocationDetails = wrapServiceAction({
+  params: {
+    username: { ...string },
+    eddress: { ...string }
+  },
+  async handler(params) {
+    const account = await models.Account.findOne({
+      username: params.username
+    });
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    return await models.Location.findOne({
+      accountId: account._id,
+      eddress: params.eddress
+    });
+  }
+});
+
 module.exports.getAccountLocationsCount = wrapServiceAction({
   params: {
     accountId: { ...any }

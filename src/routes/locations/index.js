@@ -7,15 +7,19 @@ const {
 
 const {
   createLocation,
-  getAccountLocations
+  getAccountLocations,
+  getLocationDetails
 } = require("../../controllers/location");
 
 router.use(verifyAccountAuth());
 
 router.route("/")
-  .get(getAccountLocations);
+  .post(createLocation);
 
 router.route("/")
-  .post(createLocation);
+  .get(getAccountLocations);
+
+router.route("/:username/:eddress")
+  .get(getLocationDetails);
 
 module.exports = router;

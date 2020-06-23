@@ -14,6 +14,18 @@ module.exports.getAccountLocations = async (req, res, next) => {
   }
 };
 
+module.exports.getLocationDetails = async (req, res, next) => {
+  try {
+    const data = await LocationService.getLocationDetails({
+      username: req.params.username,
+      eddress: req.params.eddress
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.createLocation = async (req, res, next) => {
   try {
     const data = await LocationService.createLocation({
