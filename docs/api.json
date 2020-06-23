@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "f6e51e1b085ffc3ffdc53a59ba265208d70d8a9be4d09f51be7d7bba2520b42a"
+                    "verificationToken": "9767a103d446f4ca953842340ef6e1d4293dd448b99e59044afc6d8e962a3d80"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "f6e51e1b085ffc3ffdc53a59ba265208d70d8a9be4d09f51be7d7bba2520b42a"
+                "phoneNumberVerificationToken": "9767a103d446f4ca953842340ef6e1d4293dd448b99e59044afc6d8e962a3d80"
               }
             }
           }
@@ -234,15 +234,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ef1c8e82b78fd2ec24206bb",
+                      "_id": "5ef200e1dd5a6c64c8672e39",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-23T09:18:32.066Z",
-                      "updatedAt": "2020-06-23T09:18:32.066Z"
+                      "createdAt": "2020-06-23T13:17:21.593Z",
+                      "updatedAt": "2020-06-23T13:17:21.593Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjFjOGU4MmI3OGZkMmVjMjQyMDZiYiIsImNvdW50ZXIiOiJvNFNENkIiLCJpYXQiOjE1OTI5MDM5MTIsImV4cCI6MTU5Mjk5MDMxMn0.AODP__wkc7dnqxDi0gze3G4uKXrTYKNXRU9H2IT191k"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjIwMGUxZGQ1YTZjNjRjODY3MmUzOSIsImNvdW50ZXIiOiJxTktESTQiLCJpYXQiOjE1OTI5MTgyNDEsImV4cCI6MTU5MzAwNDY0MX0.hOc69xk57vrzvnHt5jcWfTl9QXfVBq2zF_8Hq9fIVhk"
                   }
                 }
               }
@@ -339,15 +339,15 @@
                     "account": {
                       "followersCount": 0,
                       "followingsCount": 0,
-                      "_id": "5ef1c8e82b78fd2ec24206bb",
+                      "_id": "5ef200e1dd5a6c64c8672e39",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-06-23T09:18:32.066Z",
-                      "updatedAt": "2020-06-23T09:18:32.066Z"
+                      "createdAt": "2020-06-23T13:17:21.593Z",
+                      "updatedAt": "2020-06-23T13:17:21.593Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjFjOGU4MmI3OGZkMmVjMjQyMDZiYiIsImNvdW50ZXIiOiJEeFh4bUMiLCJpYXQiOjE1OTI5MDM5MTIsImV4cCI6MTU5Mjk5MDMxMn0.a7bWAgWStY56V8FwXpTpF3_vKNSw4gwPrwQcrhd76s8"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjIwMGUxZGQ1YTZjNjRjODY3MmUzOSIsImNvdW50ZXIiOiIyYko0REgiLCJpYXQiOjE1OTI5MTgyNDIsImV4cCI6MTU5MzAwNDY0Mn0.TNPnpBSsMyrXQqHVDRYY1v-15j_uofrzAHYAfTVocAg"
                   }
                 }
               }
@@ -471,15 +471,15 @@
                   "data": {
                     "followersCount": 1,
                     "followingsCount": 0,
-                    "_id": "5ef1c8e52b78fd2ec24206b7",
+                    "_id": "5ef200dfdd5a6c64c8672e35",
                     "username": "test1",
                     "location": "Choba, Port Harcourt",
                     "placesCount": 1,
                     "places": [
                       {
                         "visibility": "private",
-                        "_id": "5ef1c8e92b78fd2ec24206c0",
-                        "accountId": "5ef1c8e52b78fd2ec24206b7",
+                        "_id": "5ef200e3dd5a6c64c8672e3e",
+                        "accountId": "5ef200dfdd5a6c64c8672e35",
                         "name": "my house",
                         "description": "my house at bayelsa",
                         "eddress": "myhouse",
@@ -488,12 +488,12 @@
                             4.89898,
                             4.384938
                           ],
-                          "_id": "5ef1c8e92b78fd2ec24206c1",
+                          "_id": "5ef200e3dd5a6c64c8672e3f",
                           "type": "Point"
                         },
                         "plusCode": "6FP69VMX+XH",
-                        "createdAt": "2020-06-23T09:18:33.587Z",
-                        "updatedAt": "2020-06-23T09:18:33.587Z",
+                        "createdAt": "2020-06-23T13:17:23.146Z",
+                        "updatedAt": "2020-06-23T13:17:23.146Z",
                         "__v": 0
                       }
                     ],
@@ -811,7 +811,7 @@
                 }
               },
               "example": {
-                "accountId": "5ef1c8e52b78fd2ec24206b7"
+                "accountId": "5ef200dfdd5a6c64c8672e35"
               }
             }
           }
@@ -885,7 +885,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5ef1c8e52b78fd2ec24206b7",
+                      "_id": "5ef200dfdd5a6c64c8672e35",
                       "username": "test1"
                     }
                   ]
@@ -939,7 +939,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5ef1c8e82b78fd2ec24206bb",
+                      "_id": "5ef200e1dd5a6c64c8672e39",
                       "username": "test2"
                     }
                   ]
@@ -1100,7 +1100,7 @@
                 }
               },
               "example": {
-                "accountId": "5ef1c8e82b78fd2ec24206bb"
+                "accountId": "5ef200e1dd5a6c64c8672e39"
               }
             }
           }
@@ -1185,6 +1185,9 @@
                           "username": {
                             "type": "string"
                           },
+                          "location": {
+                            "type": "string"
+                          },
                           "_type": {
                             "type": "string"
                           }
@@ -1197,15 +1200,18 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5ef1c8e52b78fd2ec24206b7",
+                      "_id": "5ef200dfdd5a6c64c8672e35",
                       "followersCount": 1,
                       "username": "test1",
+                      "location": "Choba, Port Harcourt",
                       "_type": "account"
                     },
                     {
-                      "_id": "5ef1c8e82b78fd2ec24206bb",
+                      "_id": "5ef200e1dd5a6c64c8672e39",
                       "followersCount": 0,
+                      "isFollowing": 1,
                       "username": "test2",
+                      "location": "Choba, Port Harcourt",
                       "_type": "account"
                     }
                   ]
@@ -1341,8 +1347,8 @@
                   "status": "success",
                   "data": {
                     "visibility": "private",
-                    "_id": "5ef1c8e92b78fd2ec24206c0",
-                    "accountId": "5ef1c8e52b78fd2ec24206b7",
+                    "_id": "5ef200e3dd5a6c64c8672e3e",
+                    "accountId": "5ef200dfdd5a6c64c8672e35",
                     "name": "my house",
                     "description": "my house at bayelsa",
                     "eddress": "myhouse",
@@ -1351,12 +1357,12 @@
                         4.89898,
                         4.384938
                       ],
-                      "_id": "5ef1c8e92b78fd2ec24206c1",
+                      "_id": "5ef200e3dd5a6c64c8672e3f",
                       "type": "Point"
                     },
                     "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-06-23T09:18:33.587Z",
-                    "updatedAt": "2020-06-23T09:18:33.587Z",
+                    "createdAt": "2020-06-23T13:17:23.146Z",
+                    "updatedAt": "2020-06-23T13:17:23.146Z",
                     "__v": 0
                   }
                 }
@@ -1449,8 +1455,8 @@
                   "data": [
                     {
                       "visibility": "private",
-                      "_id": "5ef1c8e92b78fd2ec24206c0",
-                      "accountId": "5ef1c8e52b78fd2ec24206b7",
+                      "_id": "5ef200e3dd5a6c64c8672e3e",
+                      "accountId": "5ef200dfdd5a6c64c8672e35",
                       "name": "my house",
                       "description": "my house at bayelsa",
                       "eddress": "myhouse",
@@ -1459,12 +1465,12 @@
                           4.89898,
                           4.384938
                         ],
-                        "_id": "5ef1c8e92b78fd2ec24206c1",
+                        "_id": "5ef200e3dd5a6c64c8672e3f",
                         "type": "Point"
                       },
                       "plusCode": "6FP69VMX+XH",
-                      "createdAt": "2020-06-23T09:18:33.587Z",
-                      "updatedAt": "2020-06-23T09:18:33.587Z",
+                      "createdAt": "2020-06-23T13:17:23.146Z",
+                      "updatedAt": "2020-06-23T13:17:23.146Z",
                       "__v": 0
                     }
                   ]
