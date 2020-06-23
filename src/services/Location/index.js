@@ -66,12 +66,25 @@ module.exports.createLocation = wrapServiceAction({
 
 module.exports.getAccountLocations = wrapServiceAction({
   params: {
+    accountId: { ...any },
+    limit: { type: "number", default: 0 },
+    filter: { type: "object", default: {} }
+  },
+  async handler(params) {
+    return await models.Location.find({
+      accountId: params.accountId,
+      ...params.filter,
+    }).sort({ _id: -1 }).limit(params.limit);
+  }
+});
+
+module.exports.getAccountLocationsCount = wrapServiceAction({
+  params: {
     accountId: { ...any }
   },
   async handler(params) {
-    const locations = await models.Location.find({
-      accountId: params.accountId
+    return await models.Location.countDocuments({
+      accountId: params.accountId,
     });
-    return locations;
   }
 });

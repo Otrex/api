@@ -337,4 +337,18 @@ describe("followings and followers", () => {
       throw err;
     }
   });
+
+  it("/accounts/profile", async () => {
+    const res = await request(app)
+      .get("/accounts/profile")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
 });

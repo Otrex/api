@@ -188,14 +188,19 @@ module.exports.resetAccountPassword = wrapServiceAction({
 module.exports.getAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    username: { ...any },
-    isOwnAccount: { type: "boolean" }
+    username: { ...any }
   },
   async handler(params) {
     const account = await models.Account.findOne({
       username: params.username
     })
-      .select(`username${ params.isOwnAccount ? " email " : " " }location followersCount followingsCount`);
+      .select({
+        username: 1,
+        email: 1,
+        location: 1,
+        followersCount: 1,
+        followingsCount: 1,
+      });
     if (!account) {
       throw new ServiceError("account not found");
     }

@@ -1,15 +1,36 @@
 const AccountService = require("../services/Account");
+const LocationService = require("../services/Location");
 const {
   successResponse
 } = require("../utils");
 
 module.exports.getProfile = async (req, res, next) => {
   try {
-    const data = await AccountService.getAccount({
-      username: req.params.username || req.session.account.username,
-      isOwnAccount: req.params.username === req.session.account.username.toString()
+    const isOwnAccount = req.params.username === req.session.account.username.toString();
+    let account = await AccountService.getAccount({
+      username: req.params.username || req.session.account.username
     });
-    return res.send(successResponse(undefined, data));
+    account = account.toJSON();
+    if (!isOwnAccount) {
+      delete account.email;
+    }
+    const placesCount = await LocationService.getAccountLocationsCount({
+      accountId: account._id
+    });
+    const places = await LocationService.getAccountLocations({
+      accountId: account._id,
+      limit: 6,
+      filters: isOwnAccount ? {} : {
+        visibility: "public"
+      }
+    });
+    return res.send(successResponse(undefined, {
+      ...account,
+      placesCount,
+      places,
+      projects: [],
+      projectsCount: 0
+    }));
   } catch (e) {
     next(e);
   }
