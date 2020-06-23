@@ -24,9 +24,10 @@ const { string } = require("../../validation");
 module.exports.search = wrapServiceAction({
   params: {
     query: { ...string },
+    accountId: { type: "any" },
     limit: {
       type: "number",
-      optional: true
+      default: 3
     }
   },
   async handler(params) {
@@ -39,14 +40,46 @@ module.exports.search = wrapServiceAction({
         }
       },
       {
+        $lookup:
+          {
+            from: models.AccountFollower.collection.collectionName,
+            let: { accountId: "$_id" },
+            pipeline: [
+              {
+                $match: {
+                  $expr:
+                    {
+                      $and: [
+                        { $eq: ["$$accountId", "$accountId" ] },
+                        { $eq: [params.accountId, "$followerId" ] }
+                      ]
+                    }
+                }
+              },
+              {
+                $count: "count"
+              }
+            ],
+            as: "isFollowing"
+          }
+      },
+      {
         $project: {
           username: 1,
-          followersCount: 1
+          followersCount: 1,
+          location: 1,
+          isFollowing: 1
         }
       },
       {
         $set: {
+          isFollowing: { $arrayElemAt: ["$isFollowing", 0] },
           _type: "account"
+        }
+      },
+      {
+        $set: {
+          isFollowing: "$isFollowing.count"
         }
       }
     ]);

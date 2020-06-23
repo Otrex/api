@@ -6,7 +6,8 @@ const {
 module.exports.search = async (req, res, next) => {
   try {
     const results = await SearchService.search({
-      ...req.body
+      ...req.body,
+      accountId: req.session.account._id
     });
     return res.send(successResponse(undefined, results));
   } catch (e) {

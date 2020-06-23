@@ -242,6 +242,15 @@ module.exports.followAccount = wrapServiceAction({
       throw new ServiceError("you cannot follow yourself");
     }
 
+    const record = await models.AccountFollower.findOne({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+
+    if (record) {
+      throw new ServiceError("you are already following this account");
+    }
+
     account.followersCount++;
     follower.followingsCount++;
 
