@@ -1144,98 +1144,6 @@
         }
       }
     },
-    "/search": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "query": "test"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "followersCount": {
-                            "type": "number"
-                          },
-                          "username": {
-                            "type": "string"
-                          },
-                          "location": {
-                            "type": "string"
-                          },
-                          "_type": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5ef3a8061ed45611f0253cdc",
-                      "followersCount": 1,
-                      "username": "test1",
-                      "location": "Choba, Port Harcourt",
-                      "isFollowing": true,
-                      "_type": "account"
-                    },
-                    {
-                      "_id": "5ef3a8081ed45611f0253ce0",
-                      "followersCount": 0,
-                      "username": "test2",
-                      "location": "Choba, Port Harcourt",
-                      "isFollowing": false,
-                      "_type": "account"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/locations/categories": {
       "get": {
         "description": "",
@@ -1977,6 +1885,116 @@
                 "example": {
                   "status": "success",
                   "message": "you are no longer tracking this territory"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "query": "test"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "followersCount": {
+                            "type": "number"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "location": {
+                            "type": "string"
+                          },
+                          "_type": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    {
+                      "_id": "5ef3b1b21f3006083fb1b6e0",
+                      "followersCount": 1,
+                      "username": "test1",
+                      "location": "Choba, Port Harcourt",
+                      "isFollowing": true,
+                      "_type": "account"
+                    },
+                    {
+                      "_id": "5ef3b1b31f3006083fb1b6e4",
+                      "followersCount": 0,
+                      "username": "test2",
+                      "location": "Choba, Port Harcourt",
+                      "isFollowing": false,
+                      "_type": "account"
+                    },
+                    {
+                      "_id": "5ef3b1b71f3006083fb1b6f4",
+                      "name": "Port Harcourt",
+                      "description": "Bole City test",
+                      "_type": "territory"
+                    },
+                    {
+                      "_id": "5ef3b1b71f3006083fb1b6f5",
+                      "name": "Lagos",
+                      "description": "Banana Island City test",
+                      "_type": "territory"
+                    },
+                    {
+                      "_id": "5ef3b1b71f3006083fb1b6ef",
+                      "name": "my house",
+                      "eddress": "myhouse",
+                      "_type": "location"
+                    }
+                  ]
                 }
               }
             }

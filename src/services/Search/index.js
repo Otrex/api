@@ -35,7 +35,7 @@ module.exports.search = wrapServiceAction({
       {
         $match: {
           username: {
-            $regex: new RegExp(params.query)
+            $regex: new RegExp(params.query, "i")
           }
         }
       },
@@ -89,6 +89,74 @@ module.exports.search = wrapServiceAction({
         }
       }
     ]);
-    return users;
+    const territories = models.Territory.aggregate([
+      {
+        $match: {
+          $or: [
+            {
+              name: {
+                $regex: new RegExp(params.query, "i")
+              }
+            },
+            {
+              description: {
+                $regex: new RegExp(params.query, "i")
+              }
+            },
+          ]
+        }
+      },
+      {
+        $project: {
+          name: 1,
+          description: 1
+        }
+      },
+      {
+        $set: {
+          _type: "territory"
+        }
+      },
+    ]);
+    const locations = models.Location.aggregate([
+      {
+        $match: {
+          $and: [
+            {
+              $or: [
+                {
+                  name: {
+                    $regex: new RegExp(params.query, "i")
+                  }
+                },
+                {
+                  description: {
+                    $regex: new RegExp(params.query, "i")
+                  }
+                }
+              ]
+            },
+            { visibility: "public" }
+          ]
+        }
+      },
+      {
+        $project: {
+          name: 1,
+          eddress: 1
+        }
+      },
+      {
+        $set: {
+          _type: "location"
+        }
+      },
+    ]);
+    const results = await Promise.all([
+      users,
+      territories,
+      locations
+    ]);
+    return Array.from([]).concat(...results);
   }
 });

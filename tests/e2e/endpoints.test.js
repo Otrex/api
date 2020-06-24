@@ -289,23 +289,6 @@ describe("locations and search", () => {
   // eslint-disable-next-line no-undef
   jest.setTimeout(30000);
 
-  it("/search", async () => {
-    const res = await request(app)
-      .post("/search")
-      .set("x-api-token", state.sessions[1].token)
-      .send({
-        query: "test"
-      });
-    try {
-      expect(res.statusCode).toEqual(200);
-      expect(res.body.status).toBe("success");
-      addEndpoint(res);
-    } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
-      throw err;
-    }
-  });
-
   it("/locations/categories", async () => {
     state.locationCategories = await db.models.LocationCategory.insertMany([
       { name: "Office / Business Premises" },
@@ -334,9 +317,9 @@ describe("locations and search", () => {
       .set("x-api-token", state.sessions[0].token)
       .send({
         name: "my house",
-        description: "my house at bayelsa",
+        description: "my house at bayelsa test",
         categoryId: state.locationCategories.pop()._id,
-        visibility: "private",
+        visibility: "public",
         eddress: "myhouse",
         coordinates: {
           latitude: 4.384938,
@@ -402,8 +385,8 @@ describe("territory", () => {
 
   it("/territories/track", async () => {
     state.territories = await db.models.Territory.insertMany([
-      { name: "Port Harcourt", description: "Bole City" },
-      { name: "Lagos", description: "Banana Island City" }
+      { name: "Port Harcourt", description: "Bole City test" },
+      { name: "Lagos", description: "Banana Island City test" }
     ]);
     const res = await request(app)
       .post("/territories/track")
@@ -445,3 +428,19 @@ describe("territory", () => {
   });
 });
 
+it("/search", async () => {
+  const res = await request(app)
+    .post("/search")
+    .set("x-api-token", state.sessions[1].token)
+    .send({
+      query: "test"
+    });
+  try {
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.status).toBe("success");
+    addEndpoint(res);
+  } catch (err) {
+    err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+    throw err;
+  }
+});
