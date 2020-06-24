@@ -14,3 +14,5 @@ router.use("/accounts", require("./accounts"));
 router.use("/search", require("./search"));
 
 router.use("/locations", require("./locations"));
+
+router.use("/territories", require("./territories"));

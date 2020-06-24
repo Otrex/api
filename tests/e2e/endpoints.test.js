@@ -41,7 +41,7 @@ afterAll(async () => {
 });
 
 
-describe("account registration", () => {
+describe("accounts", () => {
   // eslint-disable-next-line no-undef
   jest.setTimeout(30000);
 
@@ -283,10 +283,16 @@ describe("followings and followers", () => {
     }
   });
 
+});
+
+describe("locations and search", () => {
+  // eslint-disable-next-line no-undef
+  jest.setTimeout(30000);
+
   it("/search", async () => {
     const res = await request(app)
       .post("/search")
-      .set("x-api-token", state.sessions[0].token)
+      .set("x-api-token", state.sessions[1].token)
       .send({
         query: "test"
       });
@@ -300,13 +306,36 @@ describe("followings and followers", () => {
     }
   });
 
-  it("/locations", async () => {
+  it("/locations/categories", async () => {
+    state.locationCategories = await db.models.LocationCategory.insertMany([
+      { name: "Office / Business Premises" },
+      { name: "Event Venue" },
+      { name: "Project Site" },
+      { name: "Property for Sale/Lease/Rent" },
+      { name: "Place of Worship / Religion" },
+      { name: "Others" },
+    ]);
+    const res = await request(app)
+      .get("/locations/categories")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/locations - post", async () => {
     const res = await request(app)
       .post("/locations")
       .set("x-api-token", state.sessions[0].token)
       .send({
         name: "my house",
         description: "my house at bayelsa",
+        categoryId: state.locationCategories.pop()._id,
         visibility: "private",
         eddress: "myhouse",
         coordinates: {
@@ -338,6 +367,20 @@ describe("followings and followers", () => {
     }
   });
 
+  it("/locations/{username}/{eddress} - get", async () => {
+    const res = await request(app)
+      .get(`/locations/${state.sessions[0].account.username}/${"myhouse"}`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
   it("/accounts/profile", async () => {
     const res = await request(app)
       .get("/accounts/profile")
@@ -352,3 +395,53 @@ describe("followings and followers", () => {
     }
   });
 });
+
+describe("territory", () => {
+  // eslint-disable-next-line no-undef
+  jest.setTimeout(30000);
+
+  it("/territories/track", async () => {
+    state.territories = await db.models.Territory.insertMany([
+      { name: "Port Harcourt", description: "Bole City" },
+      { name: "Lagos", description: "Banana Island City" }
+    ]);
+    const res = await request(app)
+      .post("/territories/track")
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        territoryId: state.territories[0]._id
+      });
+    await request(app)
+      .post("/territories/track")
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        territoryId: state.territories[1]._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/territories/untrack", async () => {
+    const res = await request(app)
+      .post("/territories/untrack")
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        territoryId: state.territories[0]._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+});
+

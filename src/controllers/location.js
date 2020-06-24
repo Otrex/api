@@ -37,3 +37,12 @@ module.exports.createLocation = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.getLocationsCategories = async (req, res, next) => {
+  try {
+    const data = await LocationService.getLocationCategories();
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};

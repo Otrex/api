@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const schema = new Schema({
-  accountId: {
+  territoryId: {
     type: mongoose.Types.ObjectId,
     required: true
   },
-  followerId: {
+  trackerId: {
     type: mongoose.Types.ObjectId,
     required: true
   }
 }, { timestamps: true });
 
-schema.index({ accountId: 1, followerId: 1 });
+schema.index({ territoryId: 1, trackerId: 1 });
 
-const Model = mongoose.model("AccountFollower", schema);
+const Model = mongoose.model("TerritoryTracker", schema);
 module.exports = Model;

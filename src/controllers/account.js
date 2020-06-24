@@ -50,11 +50,10 @@ module.exports.updateProfile = async (req, res, next) => {
 
 module.exports.followAccount = async (req, res, next) => {
   try {
-    const result = await AccountService.followAccount({
+    await AccountService.followAccount({
       ...req.body,
       followerId: req.session.account._id
     });
-    console.log(result);
     return res.send(successResponse("successful"));
   } catch (e) {
     next(e);

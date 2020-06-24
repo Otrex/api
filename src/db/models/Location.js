@@ -26,6 +26,10 @@ const schema = new Schema({
     type: String,
     required: true
   },
+  categoryId: {
+    type: mongoose.Types.ObjectId,
+    required: true
+  },
   visibility: {
     type: String,
     enum: ["public", "private"],

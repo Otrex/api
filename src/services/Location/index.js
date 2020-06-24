@@ -26,6 +26,7 @@ module.exports.createLocation = wrapServiceAction({
     accountId: { ...any },
     name: { ...string, min: 4 },
     description: { ...string, min: 16 },
+    categoryId: { ...any },
     visibility: { type: "enum", values: ["public", "private"] },
     eddress: { ...string, min: 4, lowercase: true, alphanum: true },
     coordinates: {
@@ -53,6 +54,7 @@ module.exports.createLocation = wrapServiceAction({
       accountId: params.accountId,
       name: params.name,
       description: params.description,
+      categoryId: params.categoryId,
       visibility: params.visibility,
       eddress: params.eddress,
       preciseLocation: {
@@ -105,5 +107,11 @@ module.exports.getAccountLocationsCount = wrapServiceAction({
     return await models.Location.countDocuments({
       accountId: params.accountId,
     });
+  }
+});
+
+module.exports.getLocationCategories = wrapServiceAction({
+  async handler() {
+    return await models.LocationCategory.find();
   }
 });

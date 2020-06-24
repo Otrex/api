@@ -50,8 +50,8 @@ module.exports.search = wrapServiceAction({
                   $expr:
                     {
                       $and: [
-                        { $eq: ["$$accountId", "$accountId" ] },
-                        { $eq: [params.accountId, "$followerId" ] }
+                        { $eq: ["$$accountId", "$accountId"] },
+                        { $eq: [params.accountId, "$followerId"] }
                       ]
                     }
                 }
@@ -79,7 +79,13 @@ module.exports.search = wrapServiceAction({
       },
       {
         $set: {
-          isFollowing: "$isFollowing.count"
+          isFollowing: {
+            $cond: [
+              { $gte: ["$isFollowing.count", 1] },
+              true,
+              false
+            ]
+          }
         }
       }
     ]);
