@@ -8,5 +8,7 @@ const schema = new Schema({
   }
 }, { timestamps: true });
 
+schema.index({ name: 1 });
+
 const Model = mongoose.model("LocationCategory", schema);
 module.exports = Model;
