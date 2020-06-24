@@ -37,7 +37,7 @@ module.exports.sendVerificationCode = wrapServiceAction({
 
     const filter = {
       phoneNumber: formattedPhoneNumber,
-      phoneNumberVerifiedAt: { $exists: true }
+      verifiedAt: { $exists: true }
     };
     let verificationEntry = await models.PhoneVerification.findOne(filter);
     if (verificationEntry) {
@@ -48,7 +48,7 @@ module.exports.sendVerificationCode = wrapServiceAction({
       verificationCode: code,
       verificationCodeExpiresAt: moment().add(1, "h")
     };
-    verificationEntry = await models.PhoneVerification.findOneAndUpdate(omit(filter, "phoneNumberVerifiedAt"), updates, {
+    verificationEntry = await models.PhoneVerification.findOneAndUpdate(omit(filter, "verifiedAt"), updates, {
       new: true,
       upsert: true
     });
@@ -73,7 +73,7 @@ module.exports.checkVerificationCode = wrapServiceAction({
 
     const filter = {
       phoneNumber: formattedPhoneNumber,
-      phoneNumberVerifiedAt: { $exists: false }
+      verifiedAt: { $exists: false }
     };
     let verificationEntry = await models.PhoneVerification.findOne(filter);
     if (!verificationEntry) {
