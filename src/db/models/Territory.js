@@ -25,6 +25,10 @@ const schema = new Schema({
   bounds: {
     type: Polygon,
     required: false
+  },
+  trackersCount: {
+    type: Number,
+    default: 0
   }
 }, { timestamps: true });
 

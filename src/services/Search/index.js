@@ -107,16 +107,54 @@ module.exports.search = wrapServiceAction({
         }
       },
       {
+        $lookup:
+          {
+            from: models.TerritoryTracker.collection.collectionName,
+            let: { territoryId: "$_id" },
+            pipeline: [
+              {
+                $match: {
+                  $expr:
+                    {
+                      $and: [
+                        { $eq: ["$$territoryId", "$territoryId"] },
+                        { $eq: [params.accountId, "$trackerId"] }
+                      ]
+                    }
+                }
+              },
+              {
+                $count: "count"
+              }
+            ],
+            as: "isTracking"
+          }
+      },
+      {
         $project: {
           name: 1,
-          description: 1
+          description: 1,
+          isTracking: 1,
+          trackersCount: 1
         }
       },
       {
         $set: {
+          isTracking: { $arrayElemAt: ["$isTracking", 0] },
           _type: "territory"
         }
       },
+      {
+        $set: {
+          isTracking: {
+            $cond: [
+              { $gte: ["$isTracking.count", 1] },
+              true,
+              false
+            ]
+          }
+        }
+      }
     ]);
     const locations = models.Location.aggregate([
       {

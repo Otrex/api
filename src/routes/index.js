@@ -3,6 +3,9 @@ const router = express.Router();
 
 module.exports = router;
 
+// file uploads
+router.use("/files", require("./files"));
+
 router.use("/mailing-list", require("./mailingList"));
 
 router.use("/verification", require("./verification"));

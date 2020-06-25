@@ -13,5 +13,6 @@ module.exports = {
     PasswordReset: require("./models/PasswordReset"),
     Territory: require("./models/Territory"),
     TerritoryTracker: require("./models/TerritoryTracker"),
+    PendingUpload: require("./models/PendingUpload")
   }
 };

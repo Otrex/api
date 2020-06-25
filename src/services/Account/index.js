@@ -41,7 +41,8 @@ module.exports.createAccount = wrapServiceAction({
     password: { ...string, min: 6 },
     countryCode: { ...string, length: 2 },
     phoneNumber: { ...string, min: 9 },
-    phoneNumberVerificationToken: { ...string }
+    phoneNumberVerificationToken: { ...string },
+    profileImage: { ...string, optional: true }
   },
   async handler(params) {
     const item = await models.Account.findOne({
@@ -65,10 +66,17 @@ module.exports.createAccount = wrapServiceAction({
       username: params.username,
       password: await utils.bcryptHash(params.password),
       countryCode: params.countryCode,
-      phoneNumber: verification.phoneNumber
+      phoneNumber: verification.phoneNumber,
+      profileImage: params.profileImage
     });
+
     // TODO: registration successful event
-    console.log(account._id);
+
+    if (params.profileImage) {
+      await models.PendingUpload.deleteOne({
+        filename: params.profileImage
+      });
+    }
     return account;
   }
 });

@@ -56,6 +56,9 @@ module.exports.trackTerritory = wrapServiceAction({
       throw new ServiceError("you are already tracking this territory");
     }
 
+    territory.trackersCount++;
+    await territory.save();
+
     return await models.TerritoryTracker.findOneAndUpdate({
       territoryId: params.territoryId,
       trackerId: params.trackerId
@@ -77,6 +80,19 @@ module.exports.unTrackTerritory = wrapServiceAction({
     if (!tracker) {
       throw new ServiceError("account not found");
     }
+
+    const record = await models.TerritoryTracker.findOne({
+      territoryId: params.territoryId,
+      trackerId: params.trackerId
+    });
+
+    if (!record) {
+      throw new ServiceError("you are not tracking this territory");
+    }
+
+    territory.trackersCount--;
+    await territory.save();
+
     return await models.TerritoryTracker.findOneAndDelete({
       territoryId: params.territoryId,
       trackerId: params.trackerId
