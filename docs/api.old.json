@@ -2001,6 +2001,59 @@
           }
         }
       }
+    },
+    "/files/upload": {
+      "post": {
+        "description": "",
+        "parameters": [
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "filename": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": {
+                    "filename": "23OE0rL4M3t3UwwGbknFqVpiAlloFWY0KXw2PswBfXOupJHZuSukHAo7BWAnTSb4.file"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
