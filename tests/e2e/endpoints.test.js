@@ -296,7 +296,7 @@ describe("locations and search", () => {
       { name: "Project Site" },
       { name: "Property for Sale/Lease/Rent" },
       { name: "Place of Worship / Religion" },
-      { name: "Others" },
+      { name: "Others" }
     ]);
     const res = await request(app)
       .get("/locations/categories")

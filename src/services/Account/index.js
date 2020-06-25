@@ -283,6 +283,15 @@ module.exports.unfollowAccount = wrapServiceAction({
       throw new ServiceError("you cannot unfollow yourself");
     }
 
+    const record = await models.AccountFollower.findOne({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+
+    if (!record) {
+      throw new ServiceError("you are not following this account");
+    }
+
     account.followersCount--;
     follower.followingsCount--;
 
