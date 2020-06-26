@@ -13,7 +13,13 @@ module.exports.getProfile = async (req, res, next) => {
       username: req.params.username || req.session.account.username
     });
     account = account.toJSON();
+
+    let isFollowing;
     if (is3rdPartyAccount) {
+      isFollowing = await AccountService.checkAccountFollower({
+        accountId: account._id,
+        followerId: req.session.account._id
+      });
       delete account.email;
     }
     const placesCount = await LocationService.getAccountLocationsCount({
@@ -28,6 +34,7 @@ module.exports.getProfile = async (req, res, next) => {
     });
     return res.send(successResponse(undefined, {
       ...account,
+      isFollowing,
       placesCount,
       places,
       projects: [],

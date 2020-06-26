@@ -300,6 +300,22 @@ module.exports.followAccount = wrapServiceAction({
   }
 });
 
+
+module.exports.checkAccountFollower = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    followerId: { ...any }
+  },
+  async handler(params) {
+    const record = await models.AccountFollower.findOne({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+    return !!record;
+  }
+});
+
 module.exports.unfollowAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
