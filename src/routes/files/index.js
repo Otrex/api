@@ -21,12 +21,12 @@ router.post("/upload", async (req, res, next) => {
   }
   let file = req.files[Object.keys(req.files)[0]];
   let hash = utils.generateRandomCode("64");
-  let ext = "";
-  if (file.name && file.name.includes(".")) {
-    ext = file.name.split(".").pop();
-    ext = `.${ext}`;
-  }
-  let filename = `${hash}${ext}`;
+  // let ext = "";
+  // if (file.name && file.name.includes(".")) {
+  //   ext = file.name.split(".").pop();
+  //   ext = `.${ext}`;
+  // }
+  let filename = `${hash}`;
   file.mv(path.join(config.app.uploadsDir, filename), async (err) => {
     if (err) {
       return next(err);
