@@ -208,6 +208,8 @@ module.exports.getAccount = wrapServiceAction({
         location: 1,
         followersCount: 1,
         followingsCount: 1,
+        profileImage: 1,
+        coverImage: 1
       });
     if (!account) {
       throw new ServiceError("account not found");
@@ -220,16 +222,40 @@ module.exports.updateAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
     accountId: { ...any },
-    location: { ...string }
+    location: { ...string },
+    profileImage: { ...string, optional: true },
+    coverImage: { ...string, optional: true }
   },
   async handler(params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
     }
+
+    if (params.profileImage && account.profileImage) {
+      if (params.profileImage !== account.profileImage) {
+        await utils.deleteUploadedFile(account.profileImage).catch(console.error);
+      }
+    }
+    if (params.coverImage && account.coverImage) {
+      if (params.coverImage !== account.coverImage) {
+        await utils.deleteUploadedFile(account.coverImage).catch(console.error);
+      }
+    }
+
     account.location = params.location;
+    account.profileImage = params.profileImage || account.profileImage;
+    account.coverImage = params.coverImage || account.coverImage;
     await account.save();
-    return pick(account.toJSON(), ["username", "email", "location", "followersCount", "followingsCount"]);
+
+    await models.PendingUpload.deleteOne({
+      filename: account.profileImage
+    });
+    await models.PendingUpload.deleteOne({
+      filename: account.coverImage
+    });
+
+    return pick(account.toJSON(), ["username", "email", "profileImage", "coverImage",  "location", "followersCount", "followingsCount"]);
   }
 });
 

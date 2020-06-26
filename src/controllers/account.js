@@ -6,12 +6,14 @@ const {
 
 module.exports.getProfile = async (req, res, next) => {
   try {
-    const isOwnAccount = req.params.username === req.session.account.username.toString();
+    const is3rdPartyAccount = req.params.username &&
+      (req.params.username !== req.session.account.username);
+
     let account = await AccountService.getAccount({
       username: req.params.username || req.session.account.username
     });
     account = account.toJSON();
-    if (!isOwnAccount) {
+    if (is3rdPartyAccount) {
       delete account.email;
     }
     const placesCount = await LocationService.getAccountLocationsCount({
@@ -20,9 +22,9 @@ module.exports.getProfile = async (req, res, next) => {
     const places = await LocationService.getAccountLocations({
       accountId: account._id,
       limit: 6,
-      filters: isOwnAccount ? {} : {
+      filters: is3rdPartyAccount ? {
         visibility: "public"
-      }
+      } : {}
     });
     return res.send(successResponse(undefined, {
       ...account,
@@ -39,8 +41,8 @@ module.exports.getProfile = async (req, res, next) => {
 module.exports.updateProfile = async (req, res, next) => {
   try {
     const data = await AccountService.updateAccount({
-      accountId: req.session.account._id,
-      location: req.body.location
+      ...req.body,
+      accountId: req.session.account._id
     });
     return res.send(successResponse("profile updated", data));
   } catch (e) {
