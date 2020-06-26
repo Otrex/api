@@ -25,7 +25,7 @@ module.exports.createLocation = wrapServiceAction({
   params: {
     accountId: { ...any },
     name: { ...string, min: 4 },
-    description: { ...string, min: 16 },
+    description: { ...string, min: 8 },
     categoryId: { ...any },
     visibility: { type: "enum", values: ["public", "private"] },
     eddress: { ...string, min: 4, lowercase: true, pattern: /^[a-zA-Z0-9-_]+$/ },
