@@ -7,10 +7,14 @@ const {
 
 const {
   trackTerritory,
-  unTrackTerritory
+  unTrackTerritory,
+  getTerritoryDetails
 } = require("../../controllers/territory");
 
 router.use(verifyAccountAuth());
+
+router.route("/:territoryId")
+  .get(getTerritoryDetails);
 
 router.route("/track")
   .post(trackTerritory);

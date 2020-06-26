@@ -7,7 +7,7 @@ const utils = require("../../utils");
 
 module.exports = router;
 
-if (config.env.isDevelopment || !!1 === true) {
+if (config.env.isDevelopment) {
   /*
   * /files/:filename
   * */

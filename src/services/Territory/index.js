@@ -99,3 +99,16 @@ module.exports.unTrackTerritory = wrapServiceAction({
     });
   }
 });
+
+module.exports.getTerritoryDetails = wrapServiceAction({
+  params: {
+    territoryId: { ...any }
+  },
+  async handler(params) {
+    const territory = await models.Territory.findById(params.territoryId);
+    if (!territory) {
+      throw new ServiceError("territory not found");
+    }
+    return territory;
+  }
+});

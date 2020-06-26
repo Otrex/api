@@ -26,3 +26,14 @@ module.exports.unTrackTerritory = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.getTerritoryDetails = async (req, res, next) => {
+  try {
+    const data = await TerritoryService.getTerritoryDetails({
+      territoryId: req.params.territoryId
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};

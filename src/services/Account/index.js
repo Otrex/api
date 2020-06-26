@@ -222,7 +222,7 @@ module.exports.updateAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
     accountId: { ...any },
-    location: { ...string },
+    location: { ...string, optional: true },
     profileImage: { ...string, optional: true },
     coverImage: { ...string, optional: true }
   },
