@@ -30,7 +30,8 @@ module.exports.unTrackTerritory = async (req, res, next) => {
 module.exports.getTerritoryDetails = async (req, res, next) => {
   try {
     const data = await TerritoryService.getTerritoryDetails({
-      territoryId: req.params.territoryId
+      territoryId: req.params.territoryId,
+      accountId: req.session.account._id
     });
     return res.send(successResponse(undefined, data));
   } catch (e) {

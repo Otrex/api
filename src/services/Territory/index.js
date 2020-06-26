@@ -102,13 +102,21 @@ module.exports.unTrackTerritory = wrapServiceAction({
 
 module.exports.getTerritoryDetails = wrapServiceAction({
   params: {
-    territoryId: { ...any }
+    territoryId: { ...any },
+    accountId: { ...any }
   },
   async handler(params) {
     const territory = await models.Territory.findById(params.territoryId);
+    const isTracking = await models.TerritoryTracker.findOne({
+      territoryId: params.territoryId,
+      trackerId: params.accountId
+    });
     if (!territory) {
       throw new ServiceError("territory not found");
     }
-    return territory;
+    return {
+      ...territory.toJSON(),
+      isTracking: !!isTracking
+    };
   }
 });
