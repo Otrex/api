@@ -7,12 +7,10 @@ const utils = require("../../utils");
 
 module.exports = router;
 
-if (config.env.isDevelopment) {
-  /*
-  * /files/:filename
-  * */
-  router.use("/", express.static(config.app.uploadsDir));
-}
+/*
+* /files/:filename
+* */
+router.use("/", express.static(config.app.uploadsDir));
 
 /*
 * /files/upload

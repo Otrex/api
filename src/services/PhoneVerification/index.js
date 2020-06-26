@@ -36,10 +36,9 @@ module.exports.sendVerificationCode = wrapServiceAction({
     const formattedPhoneNumber = phoneUtil.format(phoneNumber, PNF.E164);
 
     const filter = {
-      phoneNumber: formattedPhoneNumber,
-      verifiedAt: { $exists: true }
+      phoneNumber: formattedPhoneNumber
     };
-    let verificationEntry = await models.PhoneVerification.findOne(filter);
+    let verificationEntry = await models.Account.findOne(filter);
     if (verificationEntry) {
       throw new ServiceError("an account with this phone number already exists");
     }
