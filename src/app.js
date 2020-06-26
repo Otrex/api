@@ -27,13 +27,6 @@ config.env.isProduction
   ? app.use(morgan("common"))
   : app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  return res.send({
-    status: "success",
-    message: "Pointograph"
-  });
-});
-
 app.use(setAccountSession);
 
 // routes
