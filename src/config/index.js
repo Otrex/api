@@ -11,7 +11,7 @@ const config = {
     bcryptRounds: 10,
     jwtSigningKey: process.env.JWT_SIGNING_KEY,
     port: process.env.PORT,
-    uploadsDir: path.join(__dirname, "../../public/uploads")
+    uploadsDir: path.join(__dirname, "../../public/files")
   },
   db: {
     host: process.env.DB_HOST,
