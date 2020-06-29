@@ -49,6 +49,10 @@ const schema = new Schema({
   },
   profileImage: { type: String },
   coverImage: { type: String },
+  status: {
+    type: String,
+    default: "active"
+  }
 }, { timestamps: true });
 
 schema.index({
