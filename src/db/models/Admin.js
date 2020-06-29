@@ -13,9 +13,5 @@ const schema = new Schema({
   }
 }, { timestamps: true });
 
-schema.index({
-  username: 1
-});
-
 const Model = mongoose.model("Admin", schema);
 module.exports = Model;
