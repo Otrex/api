@@ -30,8 +30,9 @@ config.env.isProduction
 app.use(setAccountSession);
 
 // routes
-// app.use(express.static("../public"));
 app.use(require("./routes"));
+
+app.use("/admin", require("./routes/admin"));
 
 app.use(notFoundHandler);
 app.use(errorHandler);

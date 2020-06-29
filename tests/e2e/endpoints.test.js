@@ -444,3 +444,24 @@ it("/search", async () => {
     throw err;
   }
 });
+
+it("/pages - post", async () => {
+  const res = await request(app)
+    .post("/pages")
+    .set("x-api-token", state.sessions[1].token)
+    .send({
+      name: "United Bank of Africa",
+      description: "United Bank of Africa",
+      shortName: "UBA",
+      pageType: "bank",
+      industry: "finance"
+    });
+  try {
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.status).toBe("success");
+    addEndpoint(res);
+  } catch (err) {
+    err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+    throw err;
+  }
+});

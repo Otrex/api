@@ -29,6 +29,7 @@ module.exports.createLocation = wrapServiceAction({
     categoryId: { ...any },
     visibility: { type: "enum", values: ["public", "private"] },
     eddress: { ...string, min: 4, lowercase: true, pattern: /^[a-zA-Z0-9-_]+$/ },
+    tags: { type: "array", items: "string", optional: true },
     coordinates: {
       type: "object",
       props: {
@@ -57,6 +58,7 @@ module.exports.createLocation = wrapServiceAction({
       categoryId: params.categoryId,
       visibility: params.visibility,
       eddress: params.eddress,
+      tags: params.tags,
       preciseLocation: {
         type: "Point",
         coordinates: [longitude, latitude]

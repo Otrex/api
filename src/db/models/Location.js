@@ -45,7 +45,10 @@ const schema = new Schema({
   },
   eddress: {
     type: String
-  }
+  },
+  tags: [
+    { type: String }
+  ]
 }, { timestamps: true });
 
 schema.index({ preciseLocation: "2dsphere" });

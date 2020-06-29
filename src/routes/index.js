@@ -19,3 +19,5 @@ router.use("/search", require("./search"));
 router.use("/locations", require("./locations"));
 
 router.use("/territories", require("./territories"));
+
+router.use("/pages", require("./pages"));

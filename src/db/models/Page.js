@@ -1,6 +1,23 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+const TeamMember = new Schema({
+  accountId: {
+    type: mongoose.Types.ObjectId,
+    required: true
+  },
+  role: {
+    type: String,
+    required: true
+  },
+  assignedObjects: [
+    {
+      objectType: String,
+      objectPath: String
+    }
+  ]
+}, { timestamps: true });
+
 const schema = new Schema({
   name: {
     type: String,
@@ -13,6 +30,12 @@ const schema = new Schema({
   shortName: {
     type: String,
     required: true
+  },
+  image: {
+    type: String,
+  },
+  coverImage: {
+    type: String,
   },
   pageType: {
     type: String,
@@ -42,11 +65,12 @@ const schema = new Schema({
       type: String
     }
   ],
-  contactEmail: [
+  contactEmails: [
     {
       type: String
     }
-  ]
+  ],
+  teamMembers: [TeamMember]
 }, { timestamps: true });
 
 schema.index({

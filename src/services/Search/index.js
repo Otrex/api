@@ -25,6 +25,10 @@ module.exports.search = wrapServiceAction({
   params: {
     query: { ...string },
     accountId: { type: "any" },
+    filter: {
+      type: "enum", values: ["all", "places", "people", "events", "projects", "pages"],
+      default: "all"
+    },
     limit: {
       type: "number",
       default: 3
