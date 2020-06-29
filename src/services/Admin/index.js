@@ -59,18 +59,7 @@ module.exports.createLoginSession = wrapServiceAction({
 
 module.exports.getAccounts = wrapServiceAction({
   async handler() {
-    return await models.Account.find()
-      .select({
-        username: 1,
-        email: 1,
-        location: 1,
-        phoneNumber: 1,
-        followersCount: 1,
-        followingsCount: 1,
-        profileImage: 1,
-        coverImage: 1,
-        status: 1
-      });
+    return await models.Account.find();
   }
 });
 
