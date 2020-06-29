@@ -64,10 +64,12 @@ module.exports.getAccounts = wrapServiceAction({
         username: 1,
         email: 1,
         location: 1,
+        phoneNumber: 1,
         followersCount: 1,
         followingsCount: 1,
         profileImage: 1,
-        coverImage: 1
+        coverImage: 1,
+        status: 1
       });
   }
 });
@@ -108,6 +110,8 @@ module.exports.getLocations = wrapServiceAction({
 
 module.exports.getPages = wrapServiceAction({
   async handler() {
-    return await models.Page.find();
+    return await models.Page.find().select({
+      teamMembers: -1
+    });
   }
 });
