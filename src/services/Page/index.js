@@ -110,6 +110,10 @@ module.exports.getPages = wrapServiceAction({
   async handler (params) {
     const pages = await models.Page.find({
       "teamMembers.accountId": params.accountId
+    }).select({
+      name: 1,
+      image: 1,
+      followersCount: 1
     });
     return pages;
   }

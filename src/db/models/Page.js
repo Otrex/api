@@ -31,6 +31,10 @@ const schema = new Schema({
     type: String,
     required: true
   },
+  followersCount: {
+    type: Number,
+    default: 0
+  },
   image: {
     type: String,
   },
