@@ -43,11 +43,13 @@ const getSchema = variable => {
 };
 
 const getHeaderParameters = headers => {
-  return Object.keys(headers).filter(key => !["User-Agent", "Content-Type"].includes(key)).map(header => ({
-    in: "header",
-    name: header,
-    schema: getSchema(headers[header])
-  }));
+  return Object.keys(headers)
+    .filter(key => !["User-Agent", "Content-Type"].includes(key))
+    .map(header => ({
+      in: "header",
+      name: header,
+      schema: getSchema(headers[header])
+    }));
 };
 
 const getPath = (req, res) => {
@@ -95,7 +97,8 @@ module.exports.addEndpoint = (res) => {
     body: res.body
   };
   endpoints.push({
-    request, response
+    request,
+    response
   });
 };
 

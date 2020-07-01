@@ -237,6 +237,7 @@ module.exports.updateAccount = wrapServiceAction({
         await utils.deleteUploadedFile(account.profileImage).catch(console.error);
       }
     }
+
     if (params.coverImage && account.coverImage) {
       if (params.coverImage !== account.coverImage) {
         await utils.deleteUploadedFile(account.coverImage).catch(console.error);

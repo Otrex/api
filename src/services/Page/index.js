@@ -87,6 +87,32 @@ module.exports.createPage = wrapServiceAction({
       ]
     });
     await page.save();
+
+    if (params.image) {
+      await models.PendingUpload.deleteOne({
+        filename: params.image,
+      });
+    }
+    if (params.coverImage) {
+      await models.PendingUpload.deleteOne({
+        filename: params.coverImage
+      });
+    }
     return true;
+  }
+});
+
+module.exports.getPages = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any }
+  },
+  async handler (params) {
+    const pages = await models.Page.find({
+      "teamMembers.accountId": params.accountId
+    }).select({
+      teamMembers: -1
+    });
+    return pages;
   }
 });

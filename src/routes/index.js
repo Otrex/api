@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
+const {
+  setAccountSession
+} = require("../middlewares/authentication");
+
 module.exports = router;
+
+router.use(setAccountSession);
 
 // file uploads
 router.use("/files", require("./files"));

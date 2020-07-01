@@ -27,8 +27,6 @@ config.env.isProduction
   ? app.use(morgan("common"))
   : app.use(morgan("dev"));
 
-app.use(setAccountSession);
-
 // routes
 app.use(require("./routes"));
 
@@ -38,3 +36,5 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 module.exports = app;
+
+

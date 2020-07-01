@@ -6,12 +6,14 @@ const {
 } = require("../../middlewares/authentication");
 
 const {
-  createPage
+  createPage,
+  getPages
 } = require("../../controllers/page");
 
 router.use(verifyAccountAuth());
 
 router.route("/")
+  .get(getPages)
   .post(createPage);
 
 module.exports = router;

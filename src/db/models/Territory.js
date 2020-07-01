@@ -13,6 +13,18 @@ const Polygon = new mongoose.Schema({
   }
 });
 
+const MultiPolygon = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ["MultiPolygon"],
+    required: true
+  },
+  coordinates: {
+    type: [[[[Number]]]],
+    required: true
+  }
+});
+
 const schema = new Schema({
   name: {
     type: String,
@@ -22,8 +34,12 @@ const schema = new Schema({
     type: String,
     required: true
   },
-  bounds: {
-    type: Polygon,
+  properties: {
+    ADMIN: String,
+    ISO_A3: String
+  },
+  geometry: {
+    type: Schema.Types.Mixed,
     required: false
   },
   trackersCount: {
@@ -32,7 +48,7 @@ const schema = new Schema({
   }
 }, { timestamps: true });
 
-schema.index({ bounds: "2dsphere" });
+schema.index({ geometry: "2dsphere" });
 
 const Model = mongoose.model("Territory", schema);
 module.exports = Model;

@@ -6,10 +6,10 @@ const {
   successResponse
 } = utils;
 
-const {
-  setAdminSession,
-  verifyAdminAuth
-} = require("../middlewares/authentication");
+// const {
+//   setAdminSession,
+//   verifyAdminAuth
+// } = require("../middlewares/authentication");
 
 // router.use(setAdminSession);
 
