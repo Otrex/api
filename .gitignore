@@ -106,5 +106,3 @@ dist
 # Editor directories
 .idea
 .vscode
-
-src/lib/countries.json
