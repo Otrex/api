@@ -110,8 +110,6 @@ module.exports.getPages = wrapServiceAction({
   async handler (params) {
     const pages = await models.Page.find({
       "teamMembers.accountId": params.accountId
-    }).select({
-      teamMembers: -1
     });
     return pages;
   }
