@@ -6,12 +6,12 @@ const {
   successResponse
 } = utils;
 
-// const {
-//   setAdminSession,
-//   verifyAdminAuth
-// } = require("../middlewares/authentication");
+const {
+  setAdminSession,
+  verifyAdminAuth
+} = require("../middlewares/authentication");
 
-// router.use(setAdminSession);
+router.use(setAdminSession);
 
 router.route("/login")
   .post(async (req, res, next) => {
@@ -28,7 +28,7 @@ router.route("/login")
   });
 
 router.route("/users")
-  .get(async (req, res, next) => {
+  .get(verifyAdminAuth(), async (req, res, next) => {
     try {
       const data = await AdminService.getAccounts();
       return res.send(successResponse(undefined, data));
@@ -38,7 +38,7 @@ router.route("/users")
   });
 
 router.route("/users/:id/activate")
-  .post(async (req, res, next) => {
+  .post(verifyAdminAuth(), async (req, res, next) => {
     try {
       const data = await AdminService.activateAccount({
         id: req.params.id
@@ -50,7 +50,7 @@ router.route("/users/:id/activate")
   });
 
 router.route("/users/:id/deactivate")
-  .post(async (req, res, next) => {
+  .post(verifyAdminAuth(), async (req, res, next) => {
     try {
       const data = await AdminService.deactivateAccount({
         id: req.params.id
@@ -62,7 +62,7 @@ router.route("/users/:id/deactivate")
   });
 
 router.route("/places")
-  .get(async (req, res, next) => {
+  .get(verifyAdminAuth(), async (req, res, next) => {
     try {
       const data = await AdminService.getLocations();
       return res.send(successResponse(undefined, data));
@@ -72,7 +72,7 @@ router.route("/places")
   });
 
 router.route("/pages")
-  .get(async (req, res, next) => {
+  .get(verifyAdminAuth(), async (req, res, next) => {
     try {
       const data = await AdminService.getPages();
       return res.send(successResponse(undefined, data));

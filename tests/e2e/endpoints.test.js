@@ -30,7 +30,9 @@ random.mockReturnValue(1234);
 
 beforeAll(async () => {
   state.connection = await db.createConnection();
-  await state.connection.dropDatabase();
+  for (const model in db.models) {
+    await db.models[model].deleteMany({});
+  }
   await new Promise(resolve => setTimeout(resolve, 5000));
 });
 
@@ -39,7 +41,6 @@ afterAll(async () => {
   renderDocumentation();
   await new Promise(resolve => setTimeout(resolve, 5000));
 });
-
 
 describe("accounts", () => {
   // eslint-disable-next-line no-undef
@@ -343,6 +344,36 @@ describe("locations and search", () => {
     try {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
+      state.locations = res.body.data;
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/photos - add photo to location", async () => {
+    await request(app)
+      .post("/photos")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        ownerId: state.locations[0]._id,
+        ownerType: "location",
+        filename: "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
+        description: "1975"
+      });
+    const res = await request(app)
+      .post("/photos")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        ownerId: state.locations[0]._id,
+        ownerType: "location",
+        filename: "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
+        description: "1955"
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
       err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
@@ -353,6 +384,21 @@ describe("locations and search", () => {
   it("/locations/{username}/{eddress} - get", async () => {
     const res = await request(app)
       .get(`/locations/${state.sessions[0].account.username}/${"myhouse"}`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.photo = res.body.data.photos[0];
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/photos - remove photo", async () => {
+    const res = await request(app)
+      .post(`/photos/${state.photo._id}/delete`)
       .set("x-api-token", state.sessions[0].token);
     try {
       expect(res.statusCode).toEqual(200);
@@ -384,10 +430,20 @@ describe("territory", () => {
   jest.setTimeout(30000);
 
   it("/territories/track", async () => {
-    state.territories = await db.models.Territory.insertMany([
-      { name: "Port Harcourt", description: "Bole City test" },
-      { name: "Lagos", description: "Banana Island City test" }
-    ]);
+    // populate territories
+    const countries = require("../../src/lib/countries.json");
+    for (const feature of countries.features) {
+      if (feature.properties.ADMIN === "Antarctica") {
+        continue;
+      }
+      await db.models.Territory.create({
+        name: feature.properties.ADMIN,
+        description: feature.properties.ADMIN,
+        properties: feature.properties,
+        geometry: feature.geometry
+      }).catch(console.error);
+    }
+    state.territories = await db.models.Territory.find();
     const res = await request(app)
       .post("/territories/track")
       .set("x-api-token", state.sessions[1].token)
@@ -454,8 +510,29 @@ it("/pages - post", async () => {
       description: "United Bank of Africa",
       shortName: "UBA",
       pageType: "bank",
-      industry: "finance"
+      industry: "finance",
+      image: "image.jpg",
+      coverImage: "cover-image.jpg",
+      services: ["money lending", "money doubling"],
+      tags: ["money", "bank", "loan", "finance"],
+      streetAddress: "33 Road Lane Street",
+      contactPhoneNumbers: ["+234909099009", "+234909099001"],
+      contactEmails: ["contact@uba.com", "help@uba.com"]
     });
+  try {
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.status).toBe("success");
+    addEndpoint(res);
+  } catch (err) {
+    err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+    throw err;
+  }
+});
+
+it("/pages - get", async () => {
+  const res = await request(app)
+    .get("/pages")
+    .set("x-api-token", state.sessions[1].token);
   try {
     expect(res.statusCode).toEqual(200);
     expect(res.body.status).toBe("success");

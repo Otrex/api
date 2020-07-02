@@ -14,8 +14,13 @@ const Point = new mongoose.Schema({
 });
 
 const schema = new Schema({
-  accountId: {
+  ownerId: {
     type: mongoose.Types.ObjectId,
+    required: true
+  },
+  ownerType: {
+    type: String,
+    enum: ["account", "page"],
     required: true
   },
   name: {
@@ -52,7 +57,7 @@ const schema = new Schema({
 }, { timestamps: true });
 
 schema.index({ preciseLocation: "2dsphere" });
-schema.index({ visibilty: 1, eddress: 1 });
+schema.index({ visibility: 1, eddress: 1 });
 
 const Model = mongoose.model("Location", schema);
 module.exports = Model;

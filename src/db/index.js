@@ -16,5 +16,6 @@ module.exports = {
     PendingUpload: require("./models/PendingUpload"),
     Admin: require("./models/Admin"),
     AdminSession: require("./models/AdminSession"),
+    Photo: require("./models/Photo")
   }
 };

@@ -27,3 +27,5 @@ router.use("/locations", require("./locations"));
 router.use("/territories", require("./territories"));
 
 router.use("/pages", require("./pages"));
+
+router.use("/photos", require("./photos"));
