@@ -1,5 +1,8 @@
+const MongoPaging = require("mongo-cursor-pagination");
 const mongoose = require("mongoose");
 const config = require("../config");
+
+mongoose.plugin(MongoPaging.mongoosePlugin);
 
 const options = {
   user: config.db.user,

@@ -3,15 +3,17 @@ const router = express.Router();
 
 const {
   verifyAccountAuth,
-} = require("../../middlewares/authentication");
+} = require("../../../middlewares/authentication");
 
 const {
   createLocation,
   getAccountLocations,
   getLocationDetails,
   getLocationsCategories,
-  updateLocation
-} = require("../../controllers/location");
+  updateLocation,
+  createLocationAlarm,
+  getLocationAlarms
+} = require("../../../controllers/location");
 
 router.use(verifyAccountAuth());
 
@@ -27,5 +29,11 @@ router.route("/:locationId/update")
 
 router.route("/categories")
   .get(getLocationsCategories);
+
+router.route("/alarms")
+  .get(getLocationAlarms);
+
+router.route("/alarms")
+  .post(createLocationAlarm);
 
 module.exports = router;

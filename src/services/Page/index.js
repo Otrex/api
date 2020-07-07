@@ -1,5 +1,6 @@
 const {
-  ServiceError
+  ServiceError,
+  AuthorizationError
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 
@@ -12,7 +13,57 @@ const omit = require("lodash/omit");
 /*
 * Validation Helpers
 * */
-const { string, any } = require("../../validation");
+const { email, string, any } = require("../../validation");
+const createAndUpdateParams = {
+  $$strict: "remove",
+  accountId: { ...any },
+  name: {
+    ...string,
+    min: 4
+  },
+  description: {
+    ...string,
+    min: 8
+  },
+  shortName: {
+    ...string,
+    min: 2
+  },
+  image: {
+    ...string,
+    optional: true
+  },
+  coverImage: {
+    ...string,
+    optional: true
+  },
+  pageType: { ...string },
+  industry: { ...string },
+  services: {
+    type: "array",
+    items: "string",
+    optional: true
+  },
+  tags: {
+    type: "array",
+    items: "string",
+    optional: true
+  },
+  streetAddress: {
+    ...string,
+    optional: true
+  },
+  contactPhoneNumbers: {
+    type: "array",
+    items: "string",
+    optional: true
+  },
+  contactEmails: {
+    type: "array",
+    items: "string",
+    optional: true
+  }
+};
 
 /*
 * Service Dependencies
@@ -22,56 +73,7 @@ const { string, any } = require("../../validation");
 * Service Actions
 * */
 module.exports.createPage = wrapServiceAction({
-  params: {
-    $$strict: "remove",
-    accountId: { ...any },
-    name: {
-      ...string,
-      min: 4
-    },
-    description: {
-      ...string,
-      min: 8
-    },
-    shortName: {
-      ...string,
-      min: 2
-    },
-    image: {
-      ...string,
-      optional: true
-    },
-    coverImage: {
-      ...string,
-      optional: true
-    },
-    pageType: { ...string },
-    industry: { ...string },
-    services: {
-      type: "array",
-      items: "string",
-      optional: true
-    },
-    tags: {
-      type: "array",
-      items: "string",
-      optional: true
-    },
-    streetAddress: {
-      ...string,
-      optional: true
-    },
-    contactPhoneNumbers: {
-      type: "array",
-      items: "string",
-      optional: true
-    },
-    contactEmails: {
-      type: "array",
-      items: "string",
-      optional: true
-    }
-  },
+  params: createAndUpdateParams,
   async handler (params) {
     const page = await models.Page.create({
       ...omit(params, ["accountId"])
@@ -102,19 +104,395 @@ module.exports.createPage = wrapServiceAction({
   }
 });
 
+module.exports.getPage = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any }
+  },
+  async handler (params) {
+    return await models.Page.findById(params.pageId).select({
+      teamMembers: 0
+    });
+  }
+});
+
+module.exports.updatePage = wrapServiceAction({
+  params: {
+    pageId: { ...any },
+    ...createAndUpdateParams
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const updatedPage = await models.Page.findByIdAndUpdate(page._id, {
+      ...omit(params, ["accountId", "pageId"])
+    }, { new: true });
+    if (page.image && params.image && page.image !== params.image) {
+      await utils.deleteUploadedFile(page.image);
+      await models.PendingUpload.deleteOne({
+        filename: params.image,
+      });
+    }
+    if (page.coverImage && params.coverImage && page.coverImage !== params.coverImage) {
+      await utils.deleteUploadedFile(page.coverImage);
+      await models.PendingUpload.deleteOne({
+        filename: params.coverImage
+      });
+    }
+    return updatedPage;
+  }
+});
+
 module.exports.getPages = wrapServiceAction({
   params: {
     $$strict: "remove",
     accountId: { ...any }
   },
   async handler (params) {
-    const pages = await models.Page.find({
+    return await models.Page.find({
       "teamMembers.accountId": params.accountId
     }).select({
       name: 1,
       image: 1,
       followersCount: 1
     });
-    return pages;
+  }
+});
+
+module.exports.followPage = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    followerId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    if (!follower) {
+      throw new ServiceError("account not found");
+    }
+
+    const record = await models.PageFollower.findOne({
+      pageId: params.pageId,
+      followerId: params.followerId
+    });
+
+    if (record) {
+      throw new ServiceError("you are already following this page");
+    }
+
+    page.followersCount++;
+
+    await Promise.all([
+      page.save()
+    ]);
+
+    return await models.PageFollower.findOneAndUpdate({
+      pageId: params.pageId,
+      followerId: params.followerId
+    }, {}, {
+      upsert: true,
+      new: true
+    });
+  }
+});
+
+module.exports.unfollowPage = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    followerId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    if (!follower) {
+      throw new ServiceError("account not found");
+    }
+
+    const record = await models.PageFollower.findOne({
+      pageId: params.pageId,
+      followerId: params.followerId
+    });
+
+    if (!record) {
+      throw new ServiceError("you are not following this page");
+    }
+
+    page.followersCount--;
+
+    await Promise.all([
+      page.save()
+    ]);
+    return await models.PageFollower.findOneAndDelete({
+      pageId: params.pageId,
+      followerId: params.followerId
+    });
+  }
+});
+
+module.exports.getPageFollowers = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any }
+  },
+  async handler (params) {
+    return models.PageFollower.aggregate([
+      { $match: { pageId: params.pageId } },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "followerId",
+          foreignField: "_id",
+          as: "follower",
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$follower", 0] }
+        }
+      },
+      {
+        $project: {
+          username: 1,
+          profileImage: 1
+        }
+      }
+    ]);
+  }
+});
+
+module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    pageId: { ...any },
+    email: { ...email }
+  },
+  async handler (params) {
+    const page = models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    const record = await models.PageTeamMemberInvitation.findOne({
+      pageId: params.pageId,
+      inviteeEmail: params.email,
+      invitationStatus: "pending"
+    });
+    if (record) {
+      throw new ServiceError("you have already invited this person");
+    }
+    const inviteToken = utils.generateRandomCode(32);
+    await models.PageTeamMemberInvitation.create({
+      pageId: params.pageId,
+      inviteeEmail: params.email,
+      inviteToken: inviteToken,
+      inviteStatus: "pending"
+    });
+    // TODO: send invitation email
+    return true;
+  }
+});
+
+module.exports.acceptPageTeamMemberInvitation = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    inviteToken: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const pageTeamMemberInvitation = await models.PageTeamMemberInvitation.findOne({
+      inviteToken: params.inviteToken,
+      inviteeEmail: account.email,
+      inviteStatus: "pending"
+    });
+    if (!pageTeamMemberInvitation) {
+      throw new ServiceError("invitation has expired or has been revoked");
+    }
+    pageTeamMemberInvitation.inviteStatus = "accepted";
+    await pageTeamMemberInvitation.save();
+    const page = models.Page.findById(pageTeamMemberInvitation.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    page.teamMembers.push({
+      accountId: account._id,
+      role: "maintainer",
+      assignedObjects: pageTeamMemberInvitation.assignedObjects
+    });
+    await page.save();
+    return true;
+  }
+});
+
+module.exports.rejectPageTeamMemberInvitation = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    inviteToken: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const pageTeamMemberInvitation = await models.PageTeamMemberInvitation.findOne({
+      inviteToken: params.inviteToken,
+      inviteeEmail: account.email,
+      inviteStatus: "pending"
+    });
+    if (!pageTeamMemberInvitation) {
+      throw new ServiceError("invitation has expired or has been revoked");
+    }
+    pageTeamMemberInvitation.inviteStatus = "rejected";
+    return true;
+  }
+});
+
+module.exports.getPageTeamMembers = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    return page.teamMembers;
+  }
+});
+
+module.exports.removePageTeamMember = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any },
+    memberId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    page.teamMembers = page.teamMembers.filter(m => m.accountId.toString() !== params.memberId.toString());
+    await page.save();
+    return true;
+  }
+});
+
+module.exports.assignObjectsToPageTeamMember = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any },
+    memberId: { ...any },
+    objects: {
+      type: "array",
+      items: {
+        type: "object",
+        props: {
+          objectType: {
+            type: "enum",
+            values: ["location", "event", "project"]
+          },
+          objectPath: {
+            ...string,
+            optional: true
+          }
+        }
+      }
+    }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    const teamMember = page.teamMembers.find(m => m.accountId.toString() === params.memberId.toString());
+    const teamMemberIndex = page.teamMembers.findIndex(m => m.accountId.toString() === params.memberId.toString());
+    if (!teamMember) {
+      throw new ServiceError("user is not managing this page");
+    }
+    teamMember.assignedObjects = teamMember.assignedObjects.concat(params.objects.map(object => ({
+      objectType: object.objectType,
+      objectPath: object.objectPath || "*"
+    })));
+    page.teamMembers[teamMemberIndex] = teamMember;
+    await page.save();
+    return true;
+  }
+});
+
+module.exports.removeAssignedObjectFromPageTeamMember = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any },
+    memberId: { ...any },
+    assignedObjectId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    const teamMember = page.teamMembers.find(m => m.accountId.toString() === params.memberId.toString());
+    const teamMemberIndex = page.teamMembers.findIndex(m => m.accountId.toString() === params.memberId.toString());
+    if (!teamMember) {
+      throw new ServiceError("user is not managing this page");
+    }
+    teamMember.assignedObjects = teamMember.assignedObjects.filter(object => object._id.toString() !== params.assignedObjectId);
+    page.teamMembers[teamMemberIndex] = teamMember;
+    await page.save();
+    return true;
   }
 });

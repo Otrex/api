@@ -3,13 +3,13 @@ const router = express.Router();
 
 const {
   verifyAccountAuth,
-} = require("../../middlewares/authentication");
+} = require("../../../middlewares/authentication");
 
 const {
   trackTerritory,
   unTrackTerritory,
   getTerritoryDetails
-} = require("../../controllers/territory");
+} = require("../../../controllers/territory");
 
 router.use(verifyAccountAuth());
 

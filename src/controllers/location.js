@@ -69,3 +69,26 @@ module.exports.getLocationsCategories = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.createLocationAlarm = async (req, res, next) => {
+  try {
+    const data = await LocationService.createLocationAlarm({
+      accountId: req.session.account._id,
+      locationId: req.body.locationId
+    });
+    return res.send(successResponse("alarm created", data));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.getLocationAlarms = async (req, res, next) => {
+  try {
+    const data = await LocationService.getAccountLocationAlarms({
+      accountId: req.session.account._id
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};

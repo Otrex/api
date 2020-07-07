@@ -1,9 +1,9 @@
 const path = require("path");
 const express = require("express");
 const router = express.Router();
-const config = require("../../config");
-const db = require("../../db");
-const utils = require("../../utils");
+const config = require("../../../config");
+const db = require("../../../db");
+const utils = require("../../../utils");
 
 module.exports = router;
 

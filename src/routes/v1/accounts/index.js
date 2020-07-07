@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
   verifyAccountAuth,
-} = require("../../middlewares/authentication");
+} = require("../../../middlewares/authentication");
 
 const {
   getProfile,
@@ -12,7 +12,7 @@ const {
   unfollowAccount,
   getFollowers,
   getFollowings
-} = require("../../controllers/account");
+} = require("../../../controllers/account");
 
 
 router.use(verifyAccountAuth());

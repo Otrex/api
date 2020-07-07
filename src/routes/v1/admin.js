@@ -1,7 +1,7 @@
 const express = require("express");
-const AdminService = require("../services/Admin");
+const AdminService = require("../../services/Admin");
 const router = express.Router();
-const utils = require("../utils");
+const utils = require("../../utils");
 const {
   successResponse
 } = utils;
@@ -9,7 +9,7 @@ const {
 const {
   setAdminSession,
   verifyAdminAuth
-} = require("../middlewares/authentication");
+} = require("../../middlewares/authentication");
 
 router.use(setAdminSession);
 

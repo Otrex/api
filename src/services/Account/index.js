@@ -301,7 +301,6 @@ module.exports.followAccount = wrapServiceAction({
   }
 });
 
-
 module.exports.checkAccountFollower = wrapServiceAction({
   params: {
     $$strict: "remove",
@@ -380,7 +379,8 @@ module.exports.getAccountFollowers = wrapServiceAction({
       },
       {
         $project: {
-          username: 1
+          username: 1,
+          profileImage: 1
         }
       }
     ]);
@@ -410,7 +410,8 @@ module.exports.getAccountFollowings = wrapServiceAction({
       },
       {
         $project: {
-          username: 1
+          username: 1,
+          profileImage: 1
         }
       }
     ]);

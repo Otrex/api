@@ -40,6 +40,10 @@ const schema = new Schema({
     enum: ["public", "private"],
     default: "private"
   },
+  followersCount: {
+    type: Number,
+    default: 0
+  },
   preciseLocation: {
     type: Point,
     required: true

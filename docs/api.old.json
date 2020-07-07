@@ -1601,6 +1601,258 @@
         }
       }
     },
+    "/locations/alarms": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "locationId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "locationId": "5eff1680631a7861da373e0f"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "_id": {
+                          "type": "string"
+                        },
+                        "accountId": {
+                          "type": "string"
+                        },
+                        "locationId": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "__v": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "alarm created",
+                  "data": {
+                    "status": "active",
+                    "_id": "5eff1680631a7861da373e17",
+                    "accountId": "5eff167e631a7861da373e00",
+                    "locationId": "5eff1680631a7861da373e0f",
+                    "createdAt": "2020-07-03T11:29:04.675Z",
+                    "updatedAt": "2020-07-03T11:29:04.675Z",
+                    "__v": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "accountId": {
+                            "type": "string"
+                          },
+                          "locationId": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          },
+                          "__v": {
+                            "type": "number"
+                          },
+                          "location": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string"
+                                },
+                                "visibility": {
+                                  "type": "string"
+                                },
+                                "tags": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "ownerId": {
+                                  "type": "string"
+                                },
+                                "ownerType": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "categoryId": {
+                                  "type": "string"
+                                },
+                                "eddress": {
+                                  "type": "string"
+                                },
+                                "preciseLocation": {
+                                  "type": "object",
+                                  "properties": {
+                                    "coordinates": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "_id": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "plusCode": {
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "string"
+                                },
+                                "updatedAt": {
+                                  "type": "string"
+                                },
+                                "__v": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    {
+                      "_id": "5eff1680631a7861da373e17",
+                      "status": "active",
+                      "accountId": "5eff167e631a7861da373e00",
+                      "locationId": "5eff1680631a7861da373e0f",
+                      "createdAt": "2020-07-03T11:29:04.675Z",
+                      "updatedAt": "2020-07-03T11:29:04.675Z",
+                      "__v": 0,
+                      "location": [
+                        {
+                          "_id": "5eff1680631a7861da373e0f",
+                          "visibility": "public",
+                          "tags": [],
+                          "ownerId": "5eff167e631a7861da373e00",
+                          "ownerType": "account",
+                          "name": "my house",
+                          "description": "my house at bayelsa test",
+                          "categoryId": "5eff1680631a7861da373e0e",
+                          "eddress": "myhouse",
+                          "preciseLocation": {
+                            "coordinates": [
+                              4.89898,
+                              4.384938
+                            ],
+                            "_id": "5eff1680631a7861da373e10",
+                            "type": "Point"
+                          },
+                          "plusCode": "6FP69VMX+XH",
+                          "createdAt": "2020-07-03T11:29:04.483Z",
+                          "updatedAt": "2020-07-03T11:29:04.483Z",
+                          "__v": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/files/upload": {
       "post": {
         "description": "",

@@ -121,7 +121,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "03ce5ef4da0c5af41f1ab20ed2ce401edccbfa860c2b086132b7c6d344589d83"
+                    "verificationToken": "71d9fb785206ec8941539b94e773adcf6795ee493d839583916ea8530c32b226"
                   }
                 }
               }
@@ -166,7 +166,7 @@
                 "email": "test2@example.com",
                 "username": "test2",
                 "password": "password",
-                "phoneNumberVerificationToken": "03ce5ef4da0c5af41f1ab20ed2ce401edccbfa860c2b086132b7c6d344589d83"
+                "phoneNumberVerificationToken": "71d9fb785206ec8941539b94e773adcf6795ee493d839583916ea8530c32b226"
               }
             }
           }
@@ -238,15 +238,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5efddf49fb07b66538f29cc8",
+                      "_id": "5f032b3d02830c2c1457662a",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-07-02T13:21:13.096Z",
-                      "updatedAt": "2020-07-02T13:21:13.096Z"
+                      "createdAt": "2020-07-06T13:46:37.727Z",
+                      "updatedAt": "2020-07-06T13:46:37.727Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmRkZjQ5ZmIwN2I2NjUzOGYyOWNjOCIsImNvdW50ZXIiOiJWRzM4c0QiLCJpYXQiOjE1OTM2OTYwNzMsImV4cCI6MTU5Mzc4MjQ3M30.KWKsOflklRuAnvKbLGLsjj2uZggov73MDGjwsrcy5-U"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDMyYjNkMDI4MzBjMmMxNDU3NjYyYSIsImNvdW50ZXIiOiJQM2x2VkEiLCJpYXQiOjE1OTQwNDMxOTcsImV4cCI6MTU5NDEyOTU5N30.bWWzxKAl5-DZ8yw9uE2ixCWqaTL-mT1D0Zw7AizYcyM"
                   }
                 }
               }
@@ -347,15 +347,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5efddf49fb07b66538f29cc8",
+                      "_id": "5f032b3d02830c2c1457662a",
                       "email": "test2@example.com",
                       "username": "test2",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-07-02T13:21:13.096Z",
-                      "updatedAt": "2020-07-02T13:21:13.096Z"
+                      "createdAt": "2020-07-06T13:46:37.727Z",
+                      "updatedAt": "2020-07-06T13:46:37.727Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmRkZjQ5ZmIwN2I2NjUzOGYyOWNjOCIsImNvdW50ZXIiOiJuempHQUoiLCJpYXQiOjE1OTM2OTYwNzMsImV4cCI6MTU5Mzc4MjQ3M30.VBL2Tr_X56rhisBO6OhlTbQpcdW9b9wwePLj64fYdaw"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDMyYjNkMDI4MzBjMmMxNDU3NjYyYSIsImNvdW50ZXIiOiJYUDhaa0MiLCJpYXQiOjE1OTQwNDMxOTgsImV4cCI6MTU5NDEyOTU5OH0.ddA-HUYUWKLvZ_YadVPml5t1r4TXEHTpI-hAe7D3j1k"
                   }
                 }
               }
@@ -418,6 +418,9 @@
                             "properties": {
                               "visibility": {
                                 "type": "string"
+                              },
+                              "followersCount": {
+                                "type": "number"
                               },
                               "tags": {
                                 "type": "array",
@@ -492,7 +495,7 @@
                   "data": {
                     "followersCount": 1,
                     "followingsCount": 0,
-                    "_id": "5efddf48fb07b66538f29cc4",
+                    "_id": "5f032b3c02830c2c14576626",
                     "email": "test1@example.com",
                     "username": "test1",
                     "location": "Choba, Port Harcourt",
@@ -500,185 +503,26 @@
                     "places": [
                       {
                         "visibility": "public",
+                        "followersCount": 0,
                         "tags": [],
-                        "_id": "5efddf49fb07b66538f29cd3",
-                        "ownerId": "5efddf48fb07b66538f29cc4",
+                        "_id": "5f032b3e02830c2c14576635",
+                        "ownerId": "5f032b3c02830c2c14576626",
                         "ownerType": "account",
                         "name": "my house",
                         "description": "my house at bayelsa test",
-                        "categoryId": "5efddf49fb07b66538f29cd2",
+                        "categoryId": "5f032b3e02830c2c14576634",
                         "eddress": "myhouse",
                         "preciseLocation": {
                           "coordinates": [
                             4.89898,
                             4.384938
                           ],
-                          "_id": "5efddf49fb07b66538f29cd4",
+                          "_id": "5f032b3e02830c2c14576636",
                           "type": "Point"
                         },
                         "plusCode": "6FP69VMX+XH",
-                        "createdAt": "2020-07-02T13:21:14.013Z",
-                        "updatedAt": "2020-07-02T13:21:14.013Z",
-                        "__v": 0
-                      }
-                    ],
-                    "projects": [],
-                    "projectsCount": 0
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/accounts/{username}/profile": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "username",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "username of the account"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "followersCount": {
-                          "type": "number"
-                        },
-                        "followingsCount": {
-                          "type": "number"
-                        },
-                        "_id": {
-                          "type": "string"
-                        },
-                        "username": {
-                          "type": "string"
-                        },
-                        "location": {
-                          "type": "string"
-                        },
-                        "placesCount": {
-                          "type": "number"
-                        },
-                        "places": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "visibility": {
-                                "type": "string"
-                              },
-                              "_id": {
-                                "type": "string"
-                              },
-                              "accountId": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string"
-                              },
-                              "eddress": {
-                                "type": "string"
-                              },
-                              "preciseLocation": {
-                                "type": "object",
-                                "properties": {
-                                  "coordinates": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "number"
-                                    }
-                                  },
-                                  "_id": {
-                                    "type": "string"
-                                  },
-                                  "type": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "plusCode": {
-                                "type": "string"
-                              },
-                              "createdAt": {
-                                "type": "string"
-                              },
-                              "updatedAt": {
-                                "type": "string"
-                              },
-                              "__v": {
-                                "type": "number"
-                              }
-                            }
-                          }
-                        },
-                        "projects": {
-                          "type": "array",
-                          "items": {}
-                        },
-                        "projectsCount": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": {
-                    "followersCount": 1,
-                    "followingsCount": 0,
-                    "_id": "5ef1c8e52b78fd2ec24206b7",
-                    "username": "test1",
-                    "location": "Choba, Port Harcourt",
-                    "placesCount": 1,
-                    "places": [
-                      {
-                        "visibility": "public",
-                        "_id": "5ef1c8e92b78fd2ec24206c0",
-                        "accountId": "5ef1c8e52b78fd2ec24206b7",
-                        "name": "my house",
-                        "description": "my house at bayelsa",
-                        "eddress": "myhouse",
-                        "preciseLocation": {
-                          "coordinates": [
-                            4.89898,
-                            4.384938
-                          ],
-                          "_id": "5ef1c8e92b78fd2ec24206c1",
-                          "type": "Point"
-                        },
-                        "plusCode": "6FP69VMX+XH",
-                        "createdAt": "2020-06-23T09:18:33.587Z",
-                        "updatedAt": "2020-06-23T09:18:33.587Z",
+                        "createdAt": "2020-07-06T13:46:38.935Z",
+                        "updatedAt": "2020-07-06T13:46:38.935Z",
                         "__v": 0
                       }
                     ],
@@ -845,7 +689,7 @@
                 }
               },
               "example": {
-                "accountId": "5efddf48fb07b66538f29cc4"
+                "accountId": "5f032b3c02830c2c14576626"
               }
             }
           }
@@ -919,7 +763,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5efddf48fb07b66538f29cc4",
+                      "_id": "5f032b3c02830c2c14576626",
                       "username": "test1"
                     }
                   ]
@@ -973,133 +817,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5efddf49fb07b66538f29cc8",
-                      "username": "test2"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/accounts/{accountId}/followers": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "accountId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "id of the account"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "username": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5eef38bb3c5157599ad8dcf7",
-                      "username": "test1"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/accounts/{accountId}/followings": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "accountId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "id of the account"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "username": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5eef38bc3c5157599ad8dcfb",
+                      "_id": "5f032b3d02830c2c1457662a",
                       "username": "test2"
                     }
                   ]
@@ -1134,7 +852,7 @@
                 }
               },
               "example": {
-                "accountId": "5efddf49fb07b66538f29cc8"
+                "accountId": "5f032b3d02830c2c1457662a"
               }
             }
           }
@@ -1217,46 +935,46 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5efddf49fb07b66538f29ccd",
+                      "_id": "5f032b3e02830c2c1457662f",
                       "name": "Office / Business Premises",
                       "__v": 0,
-                      "createdAt": "2020-07-02T13:21:13.930Z",
-                      "updatedAt": "2020-07-02T13:21:13.930Z"
+                      "createdAt": "2020-07-06T13:46:38.779Z",
+                      "updatedAt": "2020-07-06T13:46:38.779Z"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29cce",
+                      "_id": "5f032b3e02830c2c14576630",
                       "name": "Event Venue",
                       "__v": 0,
-                      "createdAt": "2020-07-02T13:21:13.930Z",
-                      "updatedAt": "2020-07-02T13:21:13.930Z"
+                      "createdAt": "2020-07-06T13:46:38.780Z",
+                      "updatedAt": "2020-07-06T13:46:38.780Z"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29ccf",
+                      "_id": "5f032b3e02830c2c14576631",
                       "name": "Project Site",
                       "__v": 0,
-                      "createdAt": "2020-07-02T13:21:13.930Z",
-                      "updatedAt": "2020-07-02T13:21:13.930Z"
+                      "createdAt": "2020-07-06T13:46:38.780Z",
+                      "updatedAt": "2020-07-06T13:46:38.780Z"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29cd0",
+                      "_id": "5f032b3e02830c2c14576632",
                       "name": "Property for Sale/Lease/Rent",
                       "__v": 0,
-                      "createdAt": "2020-07-02T13:21:13.931Z",
-                      "updatedAt": "2020-07-02T13:21:13.931Z"
+                      "createdAt": "2020-07-06T13:46:38.781Z",
+                      "updatedAt": "2020-07-06T13:46:38.781Z"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29cd1",
+                      "_id": "5f032b3e02830c2c14576633",
                       "name": "Place of Worship / Religion",
                       "__v": 0,
-                      "createdAt": "2020-07-02T13:21:13.931Z",
-                      "updatedAt": "2020-07-02T13:21:13.931Z"
+                      "createdAt": "2020-07-06T13:46:38.783Z",
+                      "updatedAt": "2020-07-06T13:46:38.783Z"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29cd2",
+                      "_id": "5f032b3e02830c2c14576634",
                       "name": "Others",
                       "__v": 0,
-                      "createdAt": "2020-07-02T13:21:13.931Z",
-                      "updatedAt": "2020-07-02T13:21:13.931Z"
+                      "createdAt": "2020-07-06T13:46:38.784Z",
+                      "updatedAt": "2020-07-06T13:46:38.784Z"
                     }
                   ]
                 }
@@ -1361,7 +1079,7 @@
               "example": {
                 "name": "my house",
                 "description": "my house at bayelsa test",
-                "categoryId": "5efddf49fb07b66538f29cd2",
+                "categoryId": "5f032b3e02830c2c14576634",
                 "visibility": "public",
                 "eddress": "myhouse",
                 "coordinates": {
@@ -1388,6 +1106,9 @@
                       "properties": {
                         "visibility": {
                           "type": "string"
+                        },
+                        "followersCount": {
+                          "type": "number"
                         },
                         "tags": {
                           "type": "array",
@@ -1451,25 +1172,26 @@
                   "status": "success",
                   "data": {
                     "visibility": "public",
+                    "followersCount": 0,
                     "tags": [],
-                    "_id": "5efddf49fb07b66538f29cd3",
-                    "ownerId": "5efddf48fb07b66538f29cc4",
+                    "_id": "5f032b3e02830c2c14576635",
+                    "ownerId": "5f032b3c02830c2c14576626",
                     "ownerType": "account",
                     "name": "my house",
                     "description": "my house at bayelsa test",
-                    "categoryId": "5efddf49fb07b66538f29cd2",
+                    "categoryId": "5f032b3e02830c2c14576634",
                     "eddress": "myhouse",
                     "preciseLocation": {
                       "coordinates": [
                         4.89898,
                         4.384938
                       ],
-                      "_id": "5efddf49fb07b66538f29cd4",
+                      "_id": "5f032b3e02830c2c14576636",
                       "type": "Point"
                     },
                     "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-07-02T13:21:14.013Z",
-                    "updatedAt": "2020-07-02T13:21:14.013Z",
+                    "createdAt": "2020-07-06T13:46:38.935Z",
+                    "updatedAt": "2020-07-06T13:46:38.935Z",
                     "__v": 0
                   }
                 }
@@ -1507,6 +1229,9 @@
                         "properties": {
                           "visibility": {
                             "type": "string"
+                          },
+                          "followersCount": {
+                            "type": "number"
                           },
                           "tags": {
                             "type": "array",
@@ -1572,81 +1297,29 @@
                   "data": [
                     {
                       "visibility": "public",
+                      "followersCount": 0,
                       "tags": [],
-                      "_id": "5efddf49fb07b66538f29cd3",
-                      "ownerId": "5efddf48fb07b66538f29cc4",
+                      "_id": "5f032b3e02830c2c14576635",
+                      "ownerId": "5f032b3c02830c2c14576626",
                       "ownerType": "account",
                       "name": "my house",
                       "description": "my house at bayelsa test",
-                      "categoryId": "5efddf49fb07b66538f29cd2",
+                      "categoryId": "5f032b3e02830c2c14576634",
                       "eddress": "myhouse",
                       "preciseLocation": {
                         "coordinates": [
                           4.89898,
                           4.384938
                         ],
-                        "_id": "5efddf49fb07b66538f29cd4",
+                        "_id": "5f032b3e02830c2c14576636",
                         "type": "Point"
                       },
                       "plusCode": "6FP69VMX+XH",
-                      "createdAt": "2020-07-02T13:21:14.013Z",
-                      "updatedAt": "2020-07-02T13:21:14.013Z",
+                      "createdAt": "2020-07-06T13:46:38.935Z",
+                      "updatedAt": "2020-07-06T13:46:38.935Z",
                       "__v": 0
                     }
                   ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/files/upload": {
-      "post": {
-        "description": "",
-        "parameters": [
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "filename": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": {
-                    "filename": "23OE0rL4M3t3UwwGbknFqVpiAlloFWY0KXw2PswBfXOupJHZuSukHAo7BWAnTSb4.file"
-                  }
                 }
               }
             }
@@ -1678,19 +1351,35 @@
                   "ownerType": {
                     "type": "string"
                   },
-                  "filename": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
+                  "photos": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "filename": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
                   }
                 }
               },
               "example": {
-                "ownerId": "5efddf49fb07b66538f29cd3",
+                "ownerId": "5f032b3e02830c2c14576635",
                 "ownerType": "location",
-                "filename": "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
-                "description": "1955"
+                "photos": [
+                  {
+                    "filename": "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
+                    "description": "1975"
+                  },
+                  {
+                    "filename": "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
+                    "description": "1955"
+                  }
+                ]
               }
             }
           }
@@ -1721,7 +1410,7 @@
         }
       }
     },
-    "/photos/{photoId}/delete": {
+    "/locations/alarms": {
       "post": {
         "description": "",
         "parameters": [
@@ -1731,16 +1420,25 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "path",
-            "name": "photoId",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "locationId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "locationId": "5f032b3e02830c2c14576635"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -1754,20 +1452,53 @@
                     },
                     "message": {
                       "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "_id": {
+                          "type": "string"
+                        },
+                        "accountId": {
+                          "type": "string"
+                        },
+                        "locationId": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "__v": {
+                          "type": "number"
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
                   "status": "success",
-                  "message": "success"
+                  "message": "alarm created",
+                  "data": {
+                    "status": "active",
+                    "_id": "5f032b3f02830c2c1457663c",
+                    "accountId": "5f032b3c02830c2c14576626",
+                    "locationId": "5f032b3e02830c2c14576635",
+                    "createdAt": "2020-07-06T13:46:39.146Z",
+                    "updatedAt": "2020-07-06T13:46:39.146Z",
+                    "__v": 0
+                  }
                 }
               }
             }
           }
         }
-      }
-    },
-    "/locations/{username}/{eddress}": {
+      },
       "get": {
         "description": "",
         "parameters": [
@@ -1777,24 +1508,174 @@
             "schema": {
               "type": "string"
             }
-          },
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "accountId": {
+                            "type": "string"
+                          },
+                          "locationId": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          },
+                          "__v": {
+                            "type": "number"
+                          },
+                          "location": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string"
+                                },
+                                "visibility": {
+                                  "type": "string"
+                                },
+                                "followersCount": {
+                                  "type": "number"
+                                },
+                                "tags": {
+                                  "type": "array",
+                                  "items": {}
+                                },
+                                "ownerId": {
+                                  "type": "string"
+                                },
+                                "ownerType": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "categoryId": {
+                                  "type": "string"
+                                },
+                                "eddress": {
+                                  "type": "string"
+                                },
+                                "preciseLocation": {
+                                  "type": "object",
+                                  "properties": {
+                                    "coordinates": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "_id": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "plusCode": {
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "string"
+                                },
+                                "updatedAt": {
+                                  "type": "string"
+                                },
+                                "__v": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    {
+                      "_id": "5f032b3f02830c2c1457663c",
+                      "status": "active",
+                      "accountId": "5f032b3c02830c2c14576626",
+                      "locationId": "5f032b3e02830c2c14576635",
+                      "createdAt": "2020-07-06T13:46:39.146Z",
+                      "updatedAt": "2020-07-06T13:46:39.146Z",
+                      "__v": 0,
+                      "location": [
+                        {
+                          "_id": "5f032b3e02830c2c14576635",
+                          "visibility": "public",
+                          "followersCount": 0,
+                          "tags": [],
+                          "ownerId": "5f032b3c02830c2c14576626",
+                          "ownerType": "account",
+                          "name": "my house",
+                          "description": "my house at bayelsa test",
+                          "categoryId": "5f032b3e02830c2c14576634",
+                          "eddress": "myhouse",
+                          "preciseLocation": {
+                            "coordinates": [
+                              4.89898,
+                              4.384938
+                            ],
+                            "_id": "5f032b3e02830c2c14576636",
+                            "type": "Point"
+                          },
+                          "plusCode": "6FP69VMX+XH",
+                          "createdAt": "2020-07-06T13:46:38.935Z",
+                          "updatedAt": "2020-07-06T13:46:38.935Z",
+                          "__v": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations/test1/myhouse": {
+      "get": {
+        "description": "",
+        "parameters": [
           {
-            "in": "path",
-            "name": "username",
+            "in": "header",
+            "name": "x-api-token",
             "schema": {
               "type": "string"
-            },
-            "required": true,
-            "description": "username of the account"
-          },
-          {
-            "in": "path",
-            "name": "eddress",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "eddress of the location"
+            }
           }
         ],
         "responses": {
@@ -1813,6 +1694,9 @@
                       "properties": {
                         "visibility": {
                           "type": "string"
+                        },
+                        "followersCount": {
+                          "type": "number"
                         },
                         "tags": {
                           "type": "array",
@@ -1908,49 +1792,88 @@
                   "status": "success",
                   "data": {
                     "visibility": "public",
+                    "followersCount": 0,
                     "tags": [],
-                    "_id": "5efddf49fb07b66538f29cd3",
-                    "ownerId": "5efddf48fb07b66538f29cc4",
+                    "_id": "5f032b3e02830c2c14576635",
+                    "ownerId": "5f032b3c02830c2c14576626",
                     "ownerType": "account",
                     "name": "my house",
                     "description": "my house at bayelsa test",
-                    "categoryId": "5efddf49fb07b66538f29cd2",
+                    "categoryId": "5f032b3e02830c2c14576634",
                     "eddress": "myhouse",
                     "preciseLocation": {
                       "coordinates": [
                         4.89898,
                         4.384938
                       ],
-                      "_id": "5efddf49fb07b66538f29cd4",
+                      "_id": "5f032b3e02830c2c14576636",
                       "type": "Point"
                     },
                     "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-07-02T13:21:14.013Z",
-                    "updatedAt": "2020-07-02T13:21:14.013Z",
+                    "createdAt": "2020-07-06T13:46:38.935Z",
+                    "updatedAt": "2020-07-06T13:46:38.935Z",
                     "__v": 0,
                     "photos": [
                       {
-                        "_id": "5efddf4afb07b66538f29cd6",
-                        "ownerId": "5efddf49fb07b66538f29cd3",
+                        "_id": "5f032b3f02830c2c14576639",
+                        "ownerId": "5f032b3e02830c2c14576635",
                         "ownerType": "location",
                         "filename": "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
                         "description": "1975",
-                        "createdAt": "2020-07-02T13:21:14.083Z",
-                        "updatedAt": "2020-07-02T13:21:14.083Z",
+                        "createdAt": "2020-07-06T13:46:39.049Z",
+                        "updatedAt": "2020-07-06T13:46:39.049Z",
                         "__v": 0
                       },
                       {
-                        "_id": "5efddf4afb07b66538f29cd7",
-                        "ownerId": "5efddf49fb07b66538f29cd3",
+                        "_id": "5f032b3f02830c2c1457663a",
+                        "ownerId": "5f032b3e02830c2c14576635",
                         "ownerType": "location",
                         "filename": "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
                         "description": "1955",
-                        "createdAt": "2020-07-02T13:21:14.117Z",
-                        "updatedAt": "2020-07-02T13:21:14.117Z",
+                        "createdAt": "2020-07-06T13:46:39.066Z",
+                        "updatedAt": "2020-07-06T13:46:39.066Z",
                         "__v": 0
                       }
                     ]
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/photos/5f032b3f02830c2c14576639/delete": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
                 }
               }
             }
@@ -2028,7 +1951,7 @@
                 }
               },
               "example": {
-                "territoryId": "5efddf4bfb07b66538f29cda"
+                "territoryId": "5f032b4202830c2c14576640"
               }
             }
           }
@@ -2129,7 +2052,7 @@
                 }
               },
               "example": {
-                "territoryId": "5efddf4bfb07b66538f29cda"
+                "territoryId": "5f032b4202830c2c14576640"
               }
             }
           }
@@ -2229,7 +2152,7 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5efddf48fb07b66538f29cc4",
+                      "_id": "5f032b3c02830c2c14576626",
                       "followersCount": 1,
                       "username": "test1",
                       "location": "Choba, Port Harcourt",
@@ -2237,7 +2160,7 @@
                       "_type": "account"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29cc8",
+                      "_id": "5f032b3d02830c2c1457662a",
                       "followersCount": 0,
                       "username": "test2",
                       "location": "Choba, Port Harcourt",
@@ -2245,7 +2168,7 @@
                       "_type": "account"
                     },
                     {
-                      "_id": "5efddf49fb07b66538f29cd3",
+                      "_id": "5f032b3e02830c2c14576635",
                       "name": "my house",
                       "eddress": "myhouse",
                       "longitude": 4.89898,
@@ -2433,7 +2356,7 @@
                   "data": [
                     {
                       "followersCount": 0,
-                      "_id": "5efddf5ffb07b66538f29dd8",
+                      "_id": "5f032b5602830c2c1457673e",
                       "name": "United Bank of Africa",
                       "image": "image.jpg"
                     }

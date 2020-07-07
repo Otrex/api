@@ -31,7 +31,10 @@ random.mockReturnValue(1234);
 beforeAll(async () => {
   state.connection = await db.createConnection();
   for (const model in db.models) {
-    await db.models[model].deleteMany({});
+    // eslint-disable-next-line no-prototype-builtins
+    if (db.models.hasOwnProperty(model)) {
+      await db.models[model].deleteMany({});
+    }
   }
   await new Promise(resolve => setTimeout(resolve, 5000));
 });
@@ -353,24 +356,54 @@ describe("locations and search", () => {
   });
 
   it("/photos - add photo to location", async () => {
-    await request(app)
-      .post("/photos")
-      .set("x-api-token", state.sessions[0].token)
-      .send({
-        ownerId: state.locations[0]._id,
-        ownerType: "location",
-        filename: "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
-        description: "1975"
-      });
     const res = await request(app)
       .post("/photos")
       .set("x-api-token", state.sessions[0].token)
       .send({
         ownerId: state.locations[0]._id,
         ownerType: "location",
-        filename: "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
-        description: "1955"
+        photos: [
+          {
+            filename: "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
+            description: "1975"
+          },
+          {
+            filename: "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
+            description: "1955"
+          }
+        ]
       });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/locations/alarms - post", async () => {
+    const res = await request(app)
+      .post("/locations/alarms")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        locationId: state.locations[0]._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      throw err;
+    }
+  });
+
+  it("/locations/alarms - get", async () => {
+    const res = await request(app)
+      .get("/locations/alarms")
+      .set("x-api-token", state.sessions[0].token);
     try {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");

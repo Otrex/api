@@ -16,8 +16,7 @@ module.exports = {
   slugify,
   generateRandomCode,
   generateHash,
-  deleteUploadedFile,
-  isEmail
+  deleteUploadedFile
 };
 
 async function bcryptHash(password) {
@@ -66,11 +65,6 @@ function errorResponse(error) {
     response.message = error;
     return response;
   }
-  if (error.name === "RepositoryError") {
-    response.message = error.message;
-    return response;
-  }
-  logg(error);
   response.error = error.toString();
   return response;
 }
@@ -93,30 +87,8 @@ function generateRandomCode(length) {
 }
 
 function generateHash(seed) {
-  const data = seed + Date.now().toString();
+  const data = seed.toString() + Date.now().toString();
   return crypto.createHash("sha256").update(data).digest("hex");
-}
-
-function generateVerificationCode(expiresIn = 24) {
-  const code = generateRandomCode(6);
-  const hash = crypto.createHash("sha256").update(code).digest("hex");
-  const expires = Date.now() + (expiresIn * 3600000);
-  return {
-    code, hash, expires,
-    string() {
-      return this.code + "-" + this.hash + "-" + this.expires;
-    }
-  };
-}
-
-function parseVerificationCode(verificationCode) {
-  const [code, hash, expires] = verificationCode.split("-");
-  return {
-    code, hash, expires,
-    string() {
-      return this.code + "-" + this.hash + "-" + this.expires;
-    }
-  };
 }
 
 function slugify(string = "") {
@@ -155,13 +127,4 @@ function deleteUploadedFile(filename) {
       resolve();
     });
   });
-}
-
-function logg(...args) {
-  console.log(...args);
-  // ["test", "development"].includes(process.env.NODE_ENV) && console.log(...args)
-}
-
-function isEmail(subject) {
-  return subject.toString().includes("@");
 }

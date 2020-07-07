@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   sendPhoneVerificationCode,
   checkPhoneVerificationCode
-} = require("../../controllers/verification");
+} = require("../../../controllers/verification");
 
 router.route("/phone/send")
   .post(sendPhoneVerificationCode);

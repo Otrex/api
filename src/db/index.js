@@ -4,18 +4,25 @@ module.exports = {
     MailingList: require("./models/MailingList"),
     PhoneVerification: require("./models/PhoneVerification"),
     Account: require("./models/Account"),
-    Session: require("./models/Session"),
-    Location: require("./models/Location"),
-    LocationCategory: require("./models/LocationCategory"),
     AccountFollower: require("./models/AccountFollower"),
+    Session: require("./models/Session"),
+    PasswordReset: require("./models/PasswordReset"),
     Page: require("./models/Page"),
     PageFollower: require("./models/PageFollower"),
-    PasswordReset: require("./models/PasswordReset"),
+    PageTeamMemberInvitation: require("./models/PageTeamMemberInvitation"),
+    LocationCategory: require("./models/LocationCategory"),
+    Location: require("./models/Location"),
+    LocationFollower: require("./models/LocationFollower"),
+    LocationAlarm: require("./models/LocationAlarm"),
     Territory: require("./models/Territory"),
     TerritoryTracker: require("./models/TerritoryTracker"),
     PendingUpload: require("./models/PendingUpload"),
     Admin: require("./models/Admin"),
     AdminSession: require("./models/AdminSession"),
-    Photo: require("./models/Photo")
+    Photo: require("./models/Photo"),
+    Event: require("./models/Event"),
+    Project: require("./models/Project")
   }
 };
+
+// stevehub, andrewtech

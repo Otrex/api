@@ -2,6 +2,7 @@ const {
   ServiceError
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
+const checkAuthorization = require("../_core/checkAuthorization");
 
 const utils = require("../../utils");
 
@@ -23,7 +24,10 @@ const { string, any } = require("../../validation");
 module.exports.createLocation = wrapServiceAction({
   params: {
     ownerId: { ...any },
-    ownerType: { type: "enum", values: ["account", "page"] },
+    ownerType: {
+      type: "enum",
+      values: ["account", "page"]
+    },
     name: {
       ...string,
       min: 4
@@ -98,6 +102,7 @@ module.exports.createLocation = wrapServiceAction({
 module.exports.updateLocation = wrapServiceAction({
   params: {
     $$strict: "remove",
+    accountId: { ...any },
     locationId: { ...any },
     name: {
       ...string,
@@ -118,6 +123,7 @@ module.exports.updateLocation = wrapServiceAction({
     }
   },
   async handler (params) {
+    await checkAuthorization(params.accountId, params.locationId, "location");
     return await models.Location.findByIdAndUpdate(params.locationId, {
       ...params
     }, { new: true });
@@ -164,6 +170,15 @@ module.exports.getLocationDetails = wrapServiceAction({
   }
 });
 
+module.exports.getLocationDetailsById = wrapServiceAction({
+  params: {
+    locationId: { ...any }
+  },
+  async handler (params) {
+    return await models.Location.findById(params.locationId);
+  }
+});
+
 module.exports.getAccountLocationsCount = wrapServiceAction({
   params: {
     accountId: { ...any }
@@ -178,5 +193,171 @@ module.exports.getAccountLocationsCount = wrapServiceAction({
 module.exports.getLocationCategories = wrapServiceAction({
   async handler () {
     return await models.LocationCategory.find();
+  }
+});
+
+module.exports.createLocationAlarm = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    locationId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const location = await models.Location.findById(params.locationId);
+    if (!location) {
+      throw new ServiceError("location not found");
+    }
+    // check permissions if location belongs to an account and is private
+    if (
+      location.visibility === "private" &&
+      location.ownerType === "account" &&
+      location.ownerId.toString() !== params.locationId.toString()
+    ) {
+      throw new ServiceError("you do not have sufficient permissions to access this object");
+    }
+    return await models.LocationAlarm.create({
+      accountId: params.accountId,
+      locationId: params.locationId
+    });
+  }
+});
+
+module.exports.getAccountLocationAlarms = wrapServiceAction({
+  params: {
+    accountId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    return models.LocationAlarm.aggregate([
+      {
+        $match: {
+          accountId: params.accountId
+        }
+      },
+      {
+        $lookup: {
+          from: models.Location.collection.collectionName,
+          localField: "locationId",
+          foreignField: "_id",
+          as: "location",
+        }
+      }
+    ]);
+  }
+});
+
+module.exports.followLocation = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    locationId: { ...any },
+    followerId: { ...any }
+  },
+  async handler (params) {
+    const location = await models.Location.findById(params.locationId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!location) {
+      throw new ServiceError("location not found");
+    }
+    if (!follower) {
+      throw new ServiceError("account not found");
+    }
+
+    const record = await models.LocationFollower.findOne({
+      locationId: params.locationId,
+      followerId: params.followerId
+    });
+
+    if (record) {
+      throw new ServiceError("you are already following this location");
+    }
+
+    location.followersCount++;
+
+    await Promise.all([
+      location.save()
+    ]);
+
+    return await models.LocationFollower.findOneAndUpdate({
+      locationId: params.locationId,
+      followerId: params.followerId
+    }, {}, {
+      upsert: true,
+      new: true
+    });
+  }
+});
+
+module.exports.unfollowLocation = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    locationId: { ...any },
+    followerId: { ...any }
+  },
+  async handler (params) {
+    const location = await models.Location.findById(params.locationId);
+    const follower = await models.Account.findById(params.followerId);
+    if (!location) {
+      throw new ServiceError("location not found");
+    }
+    if (!follower) {
+      throw new ServiceError("account not found");
+    }
+
+    const record = await models.LocationFollower.findOne({
+      locationId: params.locationId,
+      followerId: params.followerId
+    });
+
+    if (!record) {
+      throw new ServiceError("you are not following this location");
+    }
+
+    location.followersCount--;
+
+    await Promise.all([
+      location.save()
+    ]);
+
+    return await models.LocationFollower.findOneAndDelete({
+      locationId: params.locationId,
+      followerId: params.followerId
+    });
+  }
+});
+
+module.exports.getLocationFollowers = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    locationId: { ...any }
+  },
+  async handler (params) {
+    return models.LocationFollower.aggregate([
+      { $match: { locationId: params.locationId } },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "followerId",
+          foreignField: "_id",
+          as: "follower",
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: { $arrayElemAt: ["$follower", 0] }
+        }
+      },
+      {
+        $project: {
+          username: 1,
+          profileImage: 1
+        }
+      }
+    ]);
   }
 });

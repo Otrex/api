@@ -28,9 +28,13 @@ config.env.isProduction
   : app.use(morgan("dev"));
 
 // routes
-app.use(require("./routes"));
+app.use(require("./routes/v1"));
 
-app.use("/admin", require("./routes/admin"));
+app.use("/v2", (req, res) => {
+  return res.status(200).send({
+    status: "success"
+  });
+});
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
   subscribeToMailingList
-} = require("../../controllers/mailingList");
+} = require("../../../controllers/mailingList");
 
 router.route("/subscribe")
   .post(subscribeToMailingList);

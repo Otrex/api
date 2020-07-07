@@ -3,16 +3,15 @@ const router = express.Router();
 
 const {
   verifyAccountAuth,
-} = require("../../middlewares/authentication");
+} = require("../../../middlewares/authentication");
 
 const {
   addPhoto,
   deletePhoto
-} = require("../../controllers/photo");
+} = require("../../../controllers/photo");
 
 router.use(verifyAccountAuth());
 
-// TODO: check policies
 router.route("/")
   .post(addPhoto);
 

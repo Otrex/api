@@ -26,8 +26,15 @@ class AuthenticationError extends GenericError {
   }
 }
 
+class AuthorizationError extends GenericError {
+  constructor(message = "you are not authorized to perform this action") {
+    super(message);
+  }
+}
+
 module.exports = {
   ServiceError,
   ValidationError,
-  AuthenticationError
+  AuthenticationError,
+  AuthorizationError
 };

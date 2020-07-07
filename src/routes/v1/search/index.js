@@ -3,11 +3,11 @@ const router = express.Router();
 
 const {
   verifyAccountAuth,
-} = require("../../middlewares/authentication");
+} = require("../../../middlewares/authentication");
 
 const {
   search
-} = require("../../controllers/search");
+} = require("../../../controllers/search");
 
 router.use(verifyAccountAuth());
 

@@ -1,6 +1,17 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+const AssignedObject = new Schema({
+  objectType: {
+    type: String,
+    required: true
+  },
+  objectPath: {
+    type: String,
+    required: true
+  }
+});
+
 const TeamMember = new Schema({
   accountId: {
     type: mongoose.Types.ObjectId,
@@ -8,14 +19,10 @@ const TeamMember = new Schema({
   },
   role: {
     type: String,
+    enum: ["owner", "maintainer"],
     required: true
   },
-  assignedObjects: [
-    {
-      objectType: String,
-      objectPath: String
-    }
-  ]
+  assignedObjects: [AssignedObject]
 }, { timestamps: true });
 
 const schema = new Schema({
