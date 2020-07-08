@@ -58,9 +58,6 @@ module.exports.setAdminSession = async (req, res, next) => {
       models.Admin.findById(ObjectId(id)),
       models.AdminSession.findOne({ token })
     ]);
-    console.log(admin);
-    console.log("------------------");
-    console.log(session);
     if (!admin || !session) {
       return next(new AuthenticationError("token is invalid"));
     }
