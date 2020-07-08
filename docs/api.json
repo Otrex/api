@@ -6,16 +6,19 @@
   },
   "servers": [
     {
-      "url": "https://api.pointograph.com"
+      "url": "https://api.pointograph.com/_dev"
     },
     {
-      "url": "https://api.pointograph.com/_dev"
+      "url": "https://api.pointograph.com"
     }
   ],
   "paths": {
     "/verification/phone/send": {
       "post": {
         "description": "",
+        "tags": [
+          "verification"
+        ],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -33,7 +36,7 @@
               },
               "example": {
                 "countryCode": "NG",
-                "phoneNumber": "+2348023456789"
+                "phoneNumber": "+2348023456710"
               }
             }
           }
@@ -67,6 +70,9 @@
     "/verification/phone/check": {
       "post": {
         "description": "",
+        "tags": [
+          "verification"
+        ],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -87,7 +93,7 @@
               },
               "example": {
                 "countryCode": "NG",
-                "phoneNumber": "+2348023456789",
+                "phoneNumber": "+2348023456710",
                 "verificationCode": "1234"
               }
             }
@@ -121,7 +127,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "71d9fb785206ec8941539b94e773adcf6795ee493d839583916ea8530c32b226"
+                    "verificationToken": "9fdc4487e4ee5bc880c4d8a9c841649d8bfeae7d9c5ff4b6dffca0b8671b59bc"
                   }
                 }
               }
@@ -133,6 +139,9 @@
     "/auth/register": {
       "post": {
         "description": "",
+        "tags": [
+          "auth"
+        ],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -162,11 +171,11 @@
               },
               "example": {
                 "countryCode": "NG",
-                "phoneNumber": "+2348023456789",
-                "email": "test2@example.com",
-                "username": "test2",
+                "phoneNumber": "+2348023456710",
+                "email": "test3@example.com",
+                "username": "test3",
                 "password": "password",
-                "phoneNumberVerificationToken": "71d9fb785206ec8941539b94e773adcf6795ee493d839583916ea8530c32b226"
+                "phoneNumberVerificationToken": "9fdc4487e4ee5bc880c4d8a9c841649d8bfeae7d9c5ff4b6dffca0b8671b59bc"
               }
             }
           }
@@ -238,15 +247,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f032b3d02830c2c1457662a",
-                      "email": "test2@example.com",
-                      "username": "test2",
+                      "_id": "5f05afb63eadfb4333fc37e3",
+                      "email": "test3@example.com",
+                      "username": "test3",
                       "countryCode": "NG",
-                      "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-07-06T13:46:37.727Z",
-                      "updatedAt": "2020-07-06T13:46:37.727Z"
+                      "phoneNumber": "+2348023456710",
+                      "createdAt": "2020-07-08T11:36:22.556Z",
+                      "updatedAt": "2020-07-08T11:36:22.556Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDMyYjNkMDI4MzBjMmMxNDU3NjYyYSIsImNvdW50ZXIiOiJQM2x2VkEiLCJpYXQiOjE1OTQwNDMxOTcsImV4cCI6MTU5NDEyOTU5N30.bWWzxKAl5-DZ8yw9uE2ixCWqaTL-mT1D0Zw7AizYcyM"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVhZmI2M2VhZGZiNDMzM2ZjMzdlMyIsImNvdW50ZXIiOiJGRmtLM3giLCJpYXQiOjE1OTQyMDgxODIsImV4cCI6MTU5NDI5NDU4Mn0.ZguYLrxSHr4ApA0DhsWc2-XaAJvAGH3tMrFOyaeRIMU"
                   }
                 }
               }
@@ -258,6 +267,9 @@
     "/auth/login": {
       "post": {
         "description": "",
+        "tags": [
+          "auth"
+        ],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -274,7 +286,7 @@
                 }
               },
               "example": {
-                "identifier": "+2348023456789",
+                "identifier": "+2348023456710",
                 "password": "password"
               }
             }
@@ -347,269 +359,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f032b3d02830c2c1457662a",
-                      "email": "test2@example.com",
-                      "username": "test2",
+                      "_id": "5f05afb63eadfb4333fc37e3",
+                      "email": "test3@example.com",
+                      "username": "test3",
                       "countryCode": "NG",
-                      "phoneNumber": "+2348023456789",
-                      "createdAt": "2020-07-06T13:46:37.727Z",
-                      "updatedAt": "2020-07-06T13:46:37.727Z"
+                      "phoneNumber": "+2348023456710",
+                      "createdAt": "2020-07-08T11:36:22.556Z",
+                      "updatedAt": "2020-07-08T11:36:22.556Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDMyYjNkMDI4MzBjMmMxNDU3NjYyYSIsImNvdW50ZXIiOiJYUDhaa0MiLCJpYXQiOjE1OTQwNDMxOTgsImV4cCI6MTU5NDEyOTU5OH0.ddA-HUYUWKLvZ_YadVPml5t1r4TXEHTpI-hAe7D3j1k"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/accounts/profile": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "followersCount": {
-                          "type": "number"
-                        },
-                        "followingsCount": {
-                          "type": "number"
-                        },
-                        "_id": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "username": {
-                          "type": "string"
-                        },
-                        "location": {
-                          "type": "string"
-                        },
-                        "placesCount": {
-                          "type": "number"
-                        },
-                        "places": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "visibility": {
-                                "type": "string"
-                              },
-                              "followersCount": {
-                                "type": "number"
-                              },
-                              "tags": {
-                                "type": "array",
-                                "items": {}
-                              },
-                              "_id": {
-                                "type": "string"
-                              },
-                              "ownerId": {
-                                "type": "string"
-                              },
-                              "ownerType": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string"
-                              },
-                              "categoryId": {
-                                "type": "string"
-                              },
-                              "eddress": {
-                                "type": "string"
-                              },
-                              "preciseLocation": {
-                                "type": "object",
-                                "properties": {
-                                  "coordinates": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "number"
-                                    }
-                                  },
-                                  "_id": {
-                                    "type": "string"
-                                  },
-                                  "type": {
-                                    "type": "string"
-                                  }
-                                }
-                              },
-                              "plusCode": {
-                                "type": "string"
-                              },
-                              "createdAt": {
-                                "type": "string"
-                              },
-                              "updatedAt": {
-                                "type": "string"
-                              },
-                              "__v": {
-                                "type": "number"
-                              }
-                            }
-                          }
-                        },
-                        "projects": {
-                          "type": "array",
-                          "items": {}
-                        },
-                        "projectsCount": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": {
-                    "followersCount": 1,
-                    "followingsCount": 0,
-                    "_id": "5f032b3c02830c2c14576626",
-                    "email": "test1@example.com",
-                    "username": "test1",
-                    "location": "Choba, Port Harcourt",
-                    "placesCount": 0,
-                    "places": [
-                      {
-                        "visibility": "public",
-                        "followersCount": 0,
-                        "tags": [],
-                        "_id": "5f032b3e02830c2c14576635",
-                        "ownerId": "5f032b3c02830c2c14576626",
-                        "ownerType": "account",
-                        "name": "my house",
-                        "description": "my house at bayelsa test",
-                        "categoryId": "5f032b3e02830c2c14576634",
-                        "eddress": "myhouse",
-                        "preciseLocation": {
-                          "coordinates": [
-                            4.89898,
-                            4.384938
-                          ],
-                          "_id": "5f032b3e02830c2c14576636",
-                          "type": "Point"
-                        },
-                        "plusCode": "6FP69VMX+XH",
-                        "createdAt": "2020-07-06T13:46:38.935Z",
-                        "updatedAt": "2020-07-06T13:46:38.935Z",
-                        "__v": 0
-                      }
-                    ],
-                    "projects": [],
-                    "projectsCount": 0
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/accounts/profile/update": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "location": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "location": "Choba, Port Harcourt"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "username": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "location": {
-                          "type": "string"
-                        },
-                        "followersCount": {
-                          "type": "number"
-                        },
-                        "followingsCount": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "profile updated",
-                  "data": {
-                    "username": "test2",
-                    "email": "test2@example.com",
-                    "location": "Choba, Port Harcourt",
-                    "followersCount": 0,
-                    "followingsCount": 0
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVhZmI2M2VhZGZiNDMzM2ZjMzdlMyIsImNvdW50ZXIiOiJiOEJFTHciLCJpYXQiOjE1OTQyMDgxODMsImV4cCI6MTU5NDI5NDU4M30.aFIBunQIIY1quoZVX7G2z4G5zoqF0BEkHZtE8lfbHMY"
                   }
                 }
               }
@@ -621,6 +379,9 @@
     "/auth/reset-password/initiate": {
       "post": {
         "description": "",
+        "tags": [
+          "auth"
+        ],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -634,7 +395,7 @@
                 }
               },
               "example": {
-                "email": "test1@example.com"
+                "email": "test3@example.com"
               }
             }
           }
@@ -665,9 +426,185 @@
         }
       }
     },
-    "/accounts/follow": {
+    "/accounts/{username}/profile": {
+      "get": {
+        "description": "",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "username",
+            "description": "username of the account",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "followersCount": {
+                          "type": "number"
+                        },
+                        "followingsCount": {
+                          "type": "number"
+                        },
+                        "_id": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "placesCount": {
+                          "type": "number"
+                        },
+                        "places": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "projects": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "projectsCount": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": {
+                    "followersCount": 0,
+                    "followingsCount": 0,
+                    "_id": "5f05afb63eadfb4333fc37e3",
+                    "email": "test3@example.com",
+                    "username": "test3",
+                    "placesCount": 0,
+                    "places": [],
+                    "projects": [],
+                    "projectsCount": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/profile": {
+      "get": {
+        "description": "",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "followersCount": {
+                          "type": "number"
+                        },
+                        "followingsCount": {
+                          "type": "number"
+                        },
+                        "_id": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "placesCount": {
+                          "type": "number"
+                        },
+                        "places": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "projects": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "projectsCount": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": {
+                    "followersCount": 0,
+                    "followingsCount": 0,
+                    "_id": "5f05afb63eadfb4333fc37e3",
+                    "email": "test3@example.com",
+                    "username": "test3",
+                    "placesCount": 0,
+                    "places": [],
+                    "projects": [],
+                    "projectsCount": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/profile/update": {
       "post": {
         "description": "",
+        "tags": [
+          "accounts"
+        ],
         "parameters": [
           {
             "in": "header",
@@ -683,17 +620,164 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "accountId": {
+                  "profileImage": {
+                    "type": "string"
+                  },
+                  "location": {
                     "type": "string"
                   }
                 }
               },
               "example": {
-                "accountId": "5f032b3c02830c2c14576626"
+                "profileImage": "BFcUIHWo7uhUeMXK.png",
+                "location": "Choba, Port Harcourt"
               }
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "profileImage": {
+                          "type": "string"
+                        },
+                        "location": {
+                          "type": "string"
+                        },
+                        "followersCount": {
+                          "type": "number"
+                        },
+                        "followingsCount": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "profile updated",
+                  "data": {
+                    "username": "test3",
+                    "email": "test3@example.com",
+                    "profileImage": "BFcUIHWo7uhUeMXK.png",
+                    "location": "Choba, Port Harcourt",
+                    "followersCount": 0,
+                    "followingsCount": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/password/change": {
+      "post": {
+        "description": "",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "currentPassword": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "currentPassword": "password",
+                "password": "newPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "password changed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}/follow": {
+      "post": {
+        "description": "",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "accountId",
+            "description": "id of the account",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -723,6 +807,9 @@
     "/accounts/followers": {
       "get": {
         "description": "",
+        "tags": [
+          "accounts"
+        ],
         "parameters": [
           {
             "in": "header",
@@ -753,6 +840,9 @@
                           },
                           "username": {
                             "type": "string"
+                          },
+                          "profileImage": {
+                            "type": "string"
                           }
                         }
                       }
@@ -763,8 +853,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f032b3c02830c2c14576626",
-                      "username": "test1"
+                      "_id": "5f05afb63eadfb4333fc37e2",
+                      "username": "test1",
+                      "profileImage": "J79XuMC58IFpNfMg.png"
                     }
                   ]
                 }
@@ -777,6 +868,9 @@
     "/accounts/followings": {
       "get": {
         "description": "",
+        "tags": [
+          "accounts"
+        ],
         "parameters": [
           {
             "in": "header",
@@ -807,6 +901,9 @@
                           },
                           "username": {
                             "type": "string"
+                          },
+                          "profileImage": {
+                            "type": "string"
                           }
                         }
                       }
@@ -817,8 +914,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f032b3d02830c2c1457662a",
-                      "username": "test2"
+                      "_id": "5f05afb63eadfb4333fc37e4",
+                      "username": "test2",
+                      "profileImage": "Qjn0WJ1ptzYhfFvd.png"
                     }
                   ]
                 }
@@ -828,9 +926,12 @@
         }
       }
     },
-    "/accounts/unfollow": {
-      "post": {
+    "/accounts/{accountId}/followers": {
+      "get": {
         "description": "",
+        "tags": [
+          "accounts"
+        ],
         "parameters": [
           {
             "in": "header",
@@ -838,25 +939,119 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "path",
+            "name": "accountId",
+            "description": "id of the account",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "accountId": {
-                    "type": "string"
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
                   }
+                },
+                "example": {
+                  "status": "success",
+                  "data": []
                 }
-              },
-              "example": {
-                "accountId": "5f032b3d02830c2c1457662a"
               }
             }
           }
-        },
+        }
+      }
+    },
+    "/accounts/{accountId}/followings": {
+      "get": {
+        "description": "",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "accountId",
+            "description": "id of the account",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": []
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}/unfollow": {
+      "post": {
+        "description": "",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "accountId",
+            "description": "id of the account",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -876,1491 +1071,6 @@
                 "example": {
                   "status": "success",
                   "message": "successful"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locations/categories": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "__v": {
-                            "type": "number"
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          },
-                          "updatedAt": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5f032b3e02830c2c1457662f",
-                      "name": "Office / Business Premises",
-                      "__v": 0,
-                      "createdAt": "2020-07-06T13:46:38.779Z",
-                      "updatedAt": "2020-07-06T13:46:38.779Z"
-                    },
-                    {
-                      "_id": "5f032b3e02830c2c14576630",
-                      "name": "Event Venue",
-                      "__v": 0,
-                      "createdAt": "2020-07-06T13:46:38.780Z",
-                      "updatedAt": "2020-07-06T13:46:38.780Z"
-                    },
-                    {
-                      "_id": "5f032b3e02830c2c14576631",
-                      "name": "Project Site",
-                      "__v": 0,
-                      "createdAt": "2020-07-06T13:46:38.780Z",
-                      "updatedAt": "2020-07-06T13:46:38.780Z"
-                    },
-                    {
-                      "_id": "5f032b3e02830c2c14576632",
-                      "name": "Property for Sale/Lease/Rent",
-                      "__v": 0,
-                      "createdAt": "2020-07-06T13:46:38.781Z",
-                      "updatedAt": "2020-07-06T13:46:38.781Z"
-                    },
-                    {
-                      "_id": "5f032b3e02830c2c14576633",
-                      "name": "Place of Worship / Religion",
-                      "__v": 0,
-                      "createdAt": "2020-07-06T13:46:38.783Z",
-                      "updatedAt": "2020-07-06T13:46:38.783Z"
-                    },
-                    {
-                      "_id": "5f032b3e02830c2c14576634",
-                      "name": "Others",
-                      "__v": 0,
-                      "createdAt": "2020-07-06T13:46:38.784Z",
-                      "updatedAt": "2020-07-06T13:46:38.784Z"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locations": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "categoryId": {
-                    "type": "object",
-                    "properties": {
-                      "_bsontype": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "object",
-                        "properties": {
-                          "0": {
-                            "type": "number"
-                          },
-                          "1": {
-                            "type": "number"
-                          },
-                          "2": {
-                            "type": "number"
-                          },
-                          "3": {
-                            "type": "number"
-                          },
-                          "4": {
-                            "type": "number"
-                          },
-                          "5": {
-                            "type": "number"
-                          },
-                          "6": {
-                            "type": "number"
-                          },
-                          "7": {
-                            "type": "number"
-                          },
-                          "8": {
-                            "type": "number"
-                          },
-                          "9": {
-                            "type": "number"
-                          },
-                          "10": {
-                            "type": "number"
-                          },
-                          "11": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "visibility": {
-                    "type": "string"
-                  },
-                  "eddress": {
-                    "type": "string"
-                  },
-                  "coordinates": {
-                    "type": "object",
-                    "properties": {
-                      "latitude": {
-                        "type": "number"
-                      },
-                      "longitude": {
-                        "type": "number"
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "name": "my house",
-                "description": "my house at bayelsa test",
-                "categoryId": "5f032b3e02830c2c14576634",
-                "visibility": "public",
-                "eddress": "myhouse",
-                "coordinates": {
-                  "latitude": 4.384938,
-                  "longitude": 4.89898
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "visibility": {
-                          "type": "string"
-                        },
-                        "followersCount": {
-                          "type": "number"
-                        },
-                        "tags": {
-                          "type": "array",
-                          "items": {}
-                        },
-                        "_id": {
-                          "type": "string"
-                        },
-                        "ownerId": {
-                          "type": "string"
-                        },
-                        "ownerType": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "categoryId": {
-                          "type": "string"
-                        },
-                        "eddress": {
-                          "type": "string"
-                        },
-                        "preciseLocation": {
-                          "type": "object",
-                          "properties": {
-                            "coordinates": {
-                              "type": "array",
-                              "items": {
-                                "type": "number"
-                              }
-                            },
-                            "_id": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "plusCode": {
-                          "type": "string"
-                        },
-                        "createdAt": {
-                          "type": "string"
-                        },
-                        "updatedAt": {
-                          "type": "string"
-                        },
-                        "__v": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": {
-                    "visibility": "public",
-                    "followersCount": 0,
-                    "tags": [],
-                    "_id": "5f032b3e02830c2c14576635",
-                    "ownerId": "5f032b3c02830c2c14576626",
-                    "ownerType": "account",
-                    "name": "my house",
-                    "description": "my house at bayelsa test",
-                    "categoryId": "5f032b3e02830c2c14576634",
-                    "eddress": "myhouse",
-                    "preciseLocation": {
-                      "coordinates": [
-                        4.89898,
-                        4.384938
-                      ],
-                      "_id": "5f032b3e02830c2c14576636",
-                      "type": "Point"
-                    },
-                    "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-07-06T13:46:38.935Z",
-                    "updatedAt": "2020-07-06T13:46:38.935Z",
-                    "__v": 0
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "visibility": {
-                            "type": "string"
-                          },
-                          "followersCount": {
-                            "type": "number"
-                          },
-                          "tags": {
-                            "type": "array",
-                            "items": {}
-                          },
-                          "_id": {
-                            "type": "string"
-                          },
-                          "ownerId": {
-                            "type": "string"
-                          },
-                          "ownerType": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "categoryId": {
-                            "type": "string"
-                          },
-                          "eddress": {
-                            "type": "string"
-                          },
-                          "preciseLocation": {
-                            "type": "object",
-                            "properties": {
-                              "coordinates": {
-                                "type": "array",
-                                "items": {
-                                  "type": "number"
-                                }
-                              },
-                              "_id": {
-                                "type": "string"
-                              },
-                              "type": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "plusCode": {
-                            "type": "string"
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          },
-                          "updatedAt": {
-                            "type": "string"
-                          },
-                          "__v": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "visibility": "public",
-                      "followersCount": 0,
-                      "tags": [],
-                      "_id": "5f032b3e02830c2c14576635",
-                      "ownerId": "5f032b3c02830c2c14576626",
-                      "ownerType": "account",
-                      "name": "my house",
-                      "description": "my house at bayelsa test",
-                      "categoryId": "5f032b3e02830c2c14576634",
-                      "eddress": "myhouse",
-                      "preciseLocation": {
-                        "coordinates": [
-                          4.89898,
-                          4.384938
-                        ],
-                        "_id": "5f032b3e02830c2c14576636",
-                        "type": "Point"
-                      },
-                      "plusCode": "6FP69VMX+XH",
-                      "createdAt": "2020-07-06T13:46:38.935Z",
-                      "updatedAt": "2020-07-06T13:46:38.935Z",
-                      "__v": 0
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/photos": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "ownerId": {
-                    "type": "string"
-                  },
-                  "ownerType": {
-                    "type": "string"
-                  },
-                  "photos": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "filename": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "ownerId": "5f032b3e02830c2c14576635",
-                "ownerType": "location",
-                "photos": [
-                  {
-                    "filename": "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
-                    "description": "1975"
-                  },
-                  {
-                    "filename": "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
-                    "description": "1955"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "success"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locations/alarms": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "locationId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "locationId": "5f032b3e02830c2c14576635"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "string"
-                        },
-                        "_id": {
-                          "type": "string"
-                        },
-                        "accountId": {
-                          "type": "string"
-                        },
-                        "locationId": {
-                          "type": "string"
-                        },
-                        "createdAt": {
-                          "type": "string"
-                        },
-                        "updatedAt": {
-                          "type": "string"
-                        },
-                        "__v": {
-                          "type": "number"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "alarm created",
-                  "data": {
-                    "status": "active",
-                    "_id": "5f032b3f02830c2c1457663c",
-                    "accountId": "5f032b3c02830c2c14576626",
-                    "locationId": "5f032b3e02830c2c14576635",
-                    "createdAt": "2020-07-06T13:46:39.146Z",
-                    "updatedAt": "2020-07-06T13:46:39.146Z",
-                    "__v": 0
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "status": {
-                            "type": "string"
-                          },
-                          "accountId": {
-                            "type": "string"
-                          },
-                          "locationId": {
-                            "type": "string"
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          },
-                          "updatedAt": {
-                            "type": "string"
-                          },
-                          "__v": {
-                            "type": "number"
-                          },
-                          "location": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "_id": {
-                                  "type": "string"
-                                },
-                                "visibility": {
-                                  "type": "string"
-                                },
-                                "followersCount": {
-                                  "type": "number"
-                                },
-                                "tags": {
-                                  "type": "array",
-                                  "items": {}
-                                },
-                                "ownerId": {
-                                  "type": "string"
-                                },
-                                "ownerType": {
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "categoryId": {
-                                  "type": "string"
-                                },
-                                "eddress": {
-                                  "type": "string"
-                                },
-                                "preciseLocation": {
-                                  "type": "object",
-                                  "properties": {
-                                    "coordinates": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "number"
-                                      }
-                                    },
-                                    "_id": {
-                                      "type": "string"
-                                    },
-                                    "type": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "plusCode": {
-                                  "type": "string"
-                                },
-                                "createdAt": {
-                                  "type": "string"
-                                },
-                                "updatedAt": {
-                                  "type": "string"
-                                },
-                                "__v": {
-                                  "type": "number"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5f032b3f02830c2c1457663c",
-                      "status": "active",
-                      "accountId": "5f032b3c02830c2c14576626",
-                      "locationId": "5f032b3e02830c2c14576635",
-                      "createdAt": "2020-07-06T13:46:39.146Z",
-                      "updatedAt": "2020-07-06T13:46:39.146Z",
-                      "__v": 0,
-                      "location": [
-                        {
-                          "_id": "5f032b3e02830c2c14576635",
-                          "visibility": "public",
-                          "followersCount": 0,
-                          "tags": [],
-                          "ownerId": "5f032b3c02830c2c14576626",
-                          "ownerType": "account",
-                          "name": "my house",
-                          "description": "my house at bayelsa test",
-                          "categoryId": "5f032b3e02830c2c14576634",
-                          "eddress": "myhouse",
-                          "preciseLocation": {
-                            "coordinates": [
-                              4.89898,
-                              4.384938
-                            ],
-                            "_id": "5f032b3e02830c2c14576636",
-                            "type": "Point"
-                          },
-                          "plusCode": "6FP69VMX+XH",
-                          "createdAt": "2020-07-06T13:46:38.935Z",
-                          "updatedAt": "2020-07-06T13:46:38.935Z",
-                          "__v": 0
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locations/test1/myhouse": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "visibility": {
-                          "type": "string"
-                        },
-                        "followersCount": {
-                          "type": "number"
-                        },
-                        "tags": {
-                          "type": "array",
-                          "items": {}
-                        },
-                        "_id": {
-                          "type": "string"
-                        },
-                        "ownerId": {
-                          "type": "string"
-                        },
-                        "ownerType": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "categoryId": {
-                          "type": "string"
-                        },
-                        "eddress": {
-                          "type": "string"
-                        },
-                        "preciseLocation": {
-                          "type": "object",
-                          "properties": {
-                            "coordinates": {
-                              "type": "array",
-                              "items": {
-                                "type": "number"
-                              }
-                            },
-                            "_id": {
-                              "type": "string"
-                            },
-                            "type": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "plusCode": {
-                          "type": "string"
-                        },
-                        "createdAt": {
-                          "type": "string"
-                        },
-                        "updatedAt": {
-                          "type": "string"
-                        },
-                        "__v": {
-                          "type": "number"
-                        },
-                        "photos": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "_id": {
-                                "type": "string"
-                              },
-                              "ownerId": {
-                                "type": "string"
-                              },
-                              "ownerType": {
-                                "type": "string"
-                              },
-                              "filename": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string"
-                              },
-                              "createdAt": {
-                                "type": "string"
-                              },
-                              "updatedAt": {
-                                "type": "string"
-                              },
-                              "__v": {
-                                "type": "number"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": {
-                    "visibility": "public",
-                    "followersCount": 0,
-                    "tags": [],
-                    "_id": "5f032b3e02830c2c14576635",
-                    "ownerId": "5f032b3c02830c2c14576626",
-                    "ownerType": "account",
-                    "name": "my house",
-                    "description": "my house at bayelsa test",
-                    "categoryId": "5f032b3e02830c2c14576634",
-                    "eddress": "myhouse",
-                    "preciseLocation": {
-                      "coordinates": [
-                        4.89898,
-                        4.384938
-                      ],
-                      "_id": "5f032b3e02830c2c14576636",
-                      "type": "Point"
-                    },
-                    "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-07-06T13:46:38.935Z",
-                    "updatedAt": "2020-07-06T13:46:38.935Z",
-                    "__v": 0,
-                    "photos": [
-                      {
-                        "_id": "5f032b3f02830c2c14576639",
-                        "ownerId": "5f032b3e02830c2c14576635",
-                        "ownerType": "location",
-                        "filename": "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
-                        "description": "1975",
-                        "createdAt": "2020-07-06T13:46:39.049Z",
-                        "updatedAt": "2020-07-06T13:46:39.049Z",
-                        "__v": 0
-                      },
-                      {
-                        "_id": "5f032b3f02830c2c1457663a",
-                        "ownerId": "5f032b3e02830c2c14576635",
-                        "ownerType": "location",
-                        "filename": "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
-                        "description": "1955",
-                        "createdAt": "2020-07-06T13:46:39.066Z",
-                        "updatedAt": "2020-07-06T13:46:39.066Z",
-                        "__v": 0
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/photos/5f032b3f02830c2c14576639/delete": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "success"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/territories/track": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "territoryId": {
-                    "type": "object",
-                    "properties": {
-                      "_bsontype": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "object",
-                        "properties": {
-                          "0": {
-                            "type": "number"
-                          },
-                          "1": {
-                            "type": "number"
-                          },
-                          "2": {
-                            "type": "number"
-                          },
-                          "3": {
-                            "type": "number"
-                          },
-                          "4": {
-                            "type": "number"
-                          },
-                          "5": {
-                            "type": "number"
-                          },
-                          "6": {
-                            "type": "number"
-                          },
-                          "7": {
-                            "type": "number"
-                          },
-                          "8": {
-                            "type": "number"
-                          },
-                          "9": {
-                            "type": "number"
-                          },
-                          "10": {
-                            "type": "number"
-                          },
-                          "11": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "territoryId": "5f032b4202830c2c14576640"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "you are now tracking this territory"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/territories/untrack": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "territoryId": {
-                    "type": "object",
-                    "properties": {
-                      "_bsontype": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "object",
-                        "properties": {
-                          "0": {
-                            "type": "number"
-                          },
-                          "1": {
-                            "type": "number"
-                          },
-                          "2": {
-                            "type": "number"
-                          },
-                          "3": {
-                            "type": "number"
-                          },
-                          "4": {
-                            "type": "number"
-                          },
-                          "5": {
-                            "type": "number"
-                          },
-                          "6": {
-                            "type": "number"
-                          },
-                          "7": {
-                            "type": "number"
-                          },
-                          "8": {
-                            "type": "number"
-                          },
-                          "9": {
-                            "type": "number"
-                          },
-                          "10": {
-                            "type": "number"
-                          },
-                          "11": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "example": {
-                "territoryId": "5f032b4202830c2c14576640"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "you are no longer tracking this territory"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/search": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "query": {
-                    "type": "string"
-                  }
-                }
-              },
-              "example": {
-                "query": "test"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "_id": {
-                            "type": "string"
-                          },
-                          "followersCount": {
-                            "type": "number"
-                          },
-                          "username": {
-                            "type": "string"
-                          },
-                          "location": {
-                            "type": "string"
-                          },
-                          "_type": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "_id": "5f032b3c02830c2c14576626",
-                      "followersCount": 1,
-                      "username": "test1",
-                      "location": "Choba, Port Harcourt",
-                      "isFollowing": true,
-                      "_type": "account"
-                    },
-                    {
-                      "_id": "5f032b3d02830c2c1457662a",
-                      "followersCount": 0,
-                      "username": "test2",
-                      "location": "Choba, Port Harcourt",
-                      "isFollowing": false,
-                      "_type": "account"
-                    },
-                    {
-                      "_id": "5f032b3e02830c2c14576635",
-                      "name": "my house",
-                      "eddress": "myhouse",
-                      "longitude": 4.89898,
-                      "latitude": 4.384938,
-                      "_type": "location"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pages": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "shortName": {
-                    "type": "string"
-                  },
-                  "pageType": {
-                    "type": "string"
-                  },
-                  "industry": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "coverImage": {
-                    "type": "string"
-                  },
-                  "services": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "tags": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "streetAddress": {
-                    "type": "string"
-                  },
-                  "contactPhoneNumbers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "contactEmails": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "example": {
-                "name": "United Bank of Africa",
-                "description": "United Bank of Africa",
-                "shortName": "UBA",
-                "pageType": "bank",
-                "industry": "finance",
-                "image": "image.jpg",
-                "coverImage": "cover-image.jpg",
-                "services": [
-                  "money lending",
-                  "money doubling"
-                ],
-                "tags": [
-                  "money",
-                  "bank",
-                  "loan",
-                  "finance"
-                ],
-                "streetAddress": "33 Road Lane Street",
-                "contactPhoneNumbers": [
-                  "+234909099009",
-                  "+234909099001"
-                ],
-                "contactEmails": [
-                  "contact@uba.com",
-                  "help@uba.com"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "message": "success"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "x-api-token",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "followersCount": {
-                            "type": "number"
-                          },
-                          "_id": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "image": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "example": {
-                  "status": "success",
-                  "data": [
-                    {
-                      "followersCount": 0,
-                      "_id": "5f032b5602830c2c1457673e",
-                      "name": "United Bank of Africa",
-                      "image": "image.jpg"
-                    }
-                  ]
                 }
               }
             }

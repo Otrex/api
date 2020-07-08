@@ -309,9 +309,34 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
   }
 });
 
+module.exports.getPageTeamMemberInvitations = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    pageId: { ...any }
+  },
+  async handler (params) {
+    const page = models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    return await models.PageTeamMemberInvitation.find({
+      pageId: params.pageId
+    });
+  }
+});
+
 module.exports.acceptPageTeamMemberInvitation = wrapServiceAction({
   params: {
     $$strict: "remove",
+    pageId: { ...any },
     accountId: { ...any },
     inviteToken: { ...any }
   },
@@ -321,6 +346,7 @@ module.exports.acceptPageTeamMemberInvitation = wrapServiceAction({
       throw new ServiceError("account not found");
     }
     const pageTeamMemberInvitation = await models.PageTeamMemberInvitation.findOne({
+      pageId: params.pageId,
       inviteToken: params.inviteToken,
       inviteeEmail: account.email,
       inviteStatus: "pending"
@@ -347,6 +373,7 @@ module.exports.acceptPageTeamMemberInvitation = wrapServiceAction({
 module.exports.rejectPageTeamMemberInvitation = wrapServiceAction({
   params: {
     $$strict: "remove",
+    pageId: { ...any },
     accountId: { ...any },
     inviteToken: { ...any }
   },
@@ -356,6 +383,7 @@ module.exports.rejectPageTeamMemberInvitation = wrapServiceAction({
       throw new ServiceError("account not found");
     }
     const pageTeamMemberInvitation = await models.PageTeamMemberInvitation.findOne({
+      pageId: params.pageId,
       inviteToken: params.inviteToken,
       inviteeEmail: account.email,
       inviteStatus: "pending"
@@ -387,31 +415,6 @@ module.exports.getPageTeamMembers = wrapServiceAction({
       throw new AuthorizationError();
     }
     return page.teamMembers;
-  }
-});
-
-module.exports.removePageTeamMember = wrapServiceAction({
-  params: {
-    $$strict: "remove",
-    pageId: { ...any },
-    accountId: { ...any },
-    memberId: { ...any }
-  },
-  async handler (params) {
-    const page = await models.Page.findById(params.pageId);
-    if (!page) {
-      throw new ServiceError("page not found");
-    }
-    const isPageOwner = page.teamMembers.find(m => {
-      return (m.accountId.toString() === params.accountId.toString()) &&
-        (m.role === "owner");
-    });
-    if (!isPageOwner) {
-      throw new AuthorizationError();
-    }
-    page.teamMembers = page.teamMembers.filter(m => m.accountId.toString() !== params.memberId.toString());
-    await page.save();
-    return true;
   }
 });
 
@@ -492,6 +495,31 @@ module.exports.removeAssignedObjectFromPageTeamMember = wrapServiceAction({
     }
     teamMember.assignedObjects = teamMember.assignedObjects.filter(object => object._id.toString() !== params.assignedObjectId);
     page.teamMembers[teamMemberIndex] = teamMember;
+    await page.save();
+    return true;
+  }
+});
+
+module.exports.removePageTeamMember = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any },
+    memberId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    page.teamMembers = page.teamMembers.filter(m => m.accountId.toString() !== params.memberId.toString());
     await page.save();
     return true;
   }

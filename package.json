@@ -15,7 +15,7 @@
     "dev": "cross-env NODE_ENV=development nodemon pointograph.js",
     "prod": "cross-env NODE_ENV=production node pointograph.js",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit",
-    "test:endpoints": "npm run test -- endpoints",
+    "test:endpoints": "npm run test -- endpoints.v2",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
@@ -43,6 +43,7 @@
     "mongoose": "^5.9.17",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "open-location-code": "^1.0.3"
+    "open-location-code": "^1.0.3",
+    "swagger-ui-express": "^4.1.4"
   }
 }

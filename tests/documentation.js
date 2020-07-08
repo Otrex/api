@@ -6,10 +6,10 @@ const masterTemplate = {
   },
   servers: [
     {
-      url: "https://api.pointograph.com"
+      url: "https://api.pointograph.com/_dev"
     },
     {
-      url: "https://api.pointograph.com/_dev"
+      url: "https://api.pointograph.com"
     }
   ],
   paths: {}
@@ -52,12 +52,25 @@ const getHeaderParameters = headers => {
     }));
 };
 
-const getPath = (req, res) => {
+const getPathParameters = options => {
+  const params = options.pathParameters || [];
+  return params.map(param => ({
+    in: "path",
+    name: param.name,
+    description: param.description || "",
+    schema: getSchema("string"),
+    required: true
+  }));
+};
+
+const getPath = (req, res, options) => {
   return {
     [req.method]: {
       "description": "",
+      "tags": options.tags || [],
       "parameters": [
-        ...getHeaderParameters(req.headers)
+        ...getHeaderParameters(req.headers),
+        ...getPathParameters(options)
       ],
       ...(req.body ? {
         "requestBody": {
@@ -86,7 +99,7 @@ const getPath = (req, res) => {
 
 const endpoints = [];
 
-module.exports.addEndpoint = (res) => {
+module.exports.addEndpoint = (res, options = {}) => {
   const request = {
     method: res.request.method.toLowerCase(),
     path: res.res.req.path,
@@ -98,19 +111,35 @@ module.exports.addEndpoint = (res) => {
   };
   endpoints.push({
     request,
-    response
+    response,
+    options
   });
+};
+
+const transformPath = (path, options) => {
+  if (options.pathParameters) {
+    let pathArray = path.split("/").slice(1).map((segment, index) => {
+      const param = options.pathParameters.find(p => p.index === index);
+      if (param) {
+        return `{${param.name}}`;
+      }
+      return segment;
+    });
+    return "/" + pathArray.join("/");
+  }
+  return path;
 };
 
 module.exports.renderDocumentation = (name = "api") => {
   let template = Object.assign({}, masterTemplate);
   for (const endpoint of endpoints) {
     const {
-      request, response
+      request, response, options
     } = endpoint;
-    template.paths[request.path] = {
-      ...(template.paths[request.path] || {}),
-      ...getPath(request, response)
+    const path = transformPath(request.path, options);
+    template.paths[path] = {
+      ...(template.paths[path] || {}),
+      ...getPath(request, response, options)
     };
   }
   require("fs").writeFileSync(`docs/${name}.json`, JSON.stringify(template, undefined, 2), "utf8");

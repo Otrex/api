@@ -8,6 +8,7 @@ const {
 const {
   getProfile,
   updateProfile,
+  changePassword,
   followAccount,
   unfollowAccount,
   getFollowers,
@@ -23,10 +24,13 @@ router.route("/:username?/profile")
 router.route("/profile/update")
   .post(updateProfile);
 
-router.route("/follow")
+router.route("/password/change")
+  .post(changePassword);
+
+router.route("/:accountId?/follow")
   .post(followAccount);
 
-router.route("/unfollow")
+router.route("/:accountId?/unfollow")
   .post(unfollowAccount);
 
 router.route("/:accountId?/followers")

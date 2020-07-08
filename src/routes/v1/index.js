@@ -9,6 +9,14 @@ module.exports = router;
 
 router.use(setAccountSession);
 
+// Documentation
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("../../../docs/api.json");
+
+router.use("/docs", swaggerUi.serve);
+router.get("/docs", swaggerUi.setup(swaggerDocument));
+
+// Endpoints
 router.use("/verification", require("./verification"));
 
 router.use("/auth", require("./authentication"));

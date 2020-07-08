@@ -1,75 +1,77 @@
 Pointograph V2 API Methods
 
-[+] verification.phone.sendCode
-[+] verification.phone.checkCode
+[MET]
+[+++] verification.phone.sendCode
+[+++] verification.phone.checkCode
 
-[+] auth.register
-[+] auth.login
-[+] auth.passwordReset.initiate
-[+] auth.passwordReset.update
+[+++] auth.register
+[+++] auth.login
+[+++] auth.passwordReset.initiate
+[++-] auth.passwordReset.update
 
-[+] accounts.profile.info
-[+] accounts.profile.update
-[+] accounts.password.update
-[+] accounts.follow
-[+] accounts.unfollow
-[+] accounts.followers.list
-[+] accounts.followings.list
+[+++] accounts.profile.info
+[+++] accounts.profile.update
+[+++] accounts.password.update
+[++-] accounts.follow
+[++-] accounts.unfollow
+[++-] accounts.followers.list
+[++-] accounts.followings.list
 
-[+] pages.create
-[+] pages.list
-[+] pages.update
-[+] pages.delete
-[+] pages.follow
-[+] pages.unfollow
-[+] pages.followers.list
-[+] pages.teamMembers.sendInvite
-[+] pages.teamMembers.acceptInvite
-[+] pages.teamMembers.rejectInvite
-[+] pages.teamMembers.list
-[+] pages.teamMembers.remove
-[+] pages.teamMembers.assignObject
-[+] pages.teamMembers.unAssignObject
+[++-] pages.create
+[++-] pages.list
+[++-] pages.update
+[---] pages.delete
+[++-] pages.follow
+[++-] pages.unfollow
+[++-] pages.followers.list
+[++-] pages.teamMembers.invites.list
+[++-] pages.teamMembers.invites.send
+[++-] pages.teamMembers.invites.accept
+[++-] pages.teamMembers.invites.reject
+[++-] pages.teamMembers.list
+[++-] pages.teamMembers.assignObject
+[++-] pages.teamMembers.unAssignObject
+[++-] pages.teamMembers.remove
 
-[+] locations.add
-[+] locations.list
-[+] locations.update
-[+] locations.follow
-[+] locations.unfollow
-[+] locations.followers.list
+[+--] locations.add
+[+--] locations.list
+[+--] locations.update
+[+--] locations.follow
+[+--] locations.unfollow
+[+--] locations.followers.list
 
-[+] territories.list
-[+] territories.track
-[+] territories.unTrack
-[-] territories.events.list
-[-] territories.locations.list
+[+--] territories.list
+[+--] territories.track
+[+--] territories.unTrack
+[---] territories.events.list
+[---] territories.locations.list
 
-[+] files.upload
+[+--] files.upload
 
-[+] photos.add
-[+] photos.list
-[+] photos.delete
+[+--] photos.add
+[+--] photos.list
+[+--] photos.delete
 
-[+] events.add
-[+] events.list
-[+] events.update
-[-] events.delete
+[+--] events.add
+[+--] events.list
+[+--] events.update
+[---] events.delete
 
-[-] projects.add
-[-] projects.list
-[-] projects.update
-[-] projects.delete
+[---] projects.add
+[---] projects.list
+[---] projects.update
+[---] projects.delete
 
-[-] contacts.list
-[-] contacts.block
-[-] contacts.unblock
+[---] contacts.list
+[---] contacts.block
+[---] contacts.unblock
 
-[-] conversation.create
-[-] conversation.message.post
-[-] conversation.message.forward
-[-] conversation.message.delete
-[-] conversation.delete
+[---] conversation.create
+[---] conversation.message.post
+[---] conversation.message.forward
+[---] conversation.message.delete
+[---] conversation.delete
 
-[-] search
+[---] search
 
-[-] feeds
+[---] feeds

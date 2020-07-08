@@ -57,10 +57,22 @@ module.exports.updateProfile = async (req, res, next) => {
   }
 };
 
+module.exports.changePassword = async (req, res, next) => {
+  try {
+    await AccountService.changeAccountPassword({
+      ...req.body,
+      accountId: req.session.account._id
+    });
+    return res.send(successResponse("password changed"));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.followAccount = async (req, res, next) => {
   try {
     await AccountService.followAccount({
-      ...req.body,
+      accountId: req.params.accountId || req.body.accountId,
       followerId: req.session.account._id
     });
     return res.send(successResponse("successful"));
@@ -72,7 +84,7 @@ module.exports.followAccount = async (req, res, next) => {
 module.exports.unfollowAccount = async (req, res, next) => {
   try {
     await AccountService.unfollowAccount({
-      ...req.body,
+      accountId: req.params.accountId || req.body.accountId,
       followerId: req.session.account._id
     });
     return res.send(successResponse("successful"));
