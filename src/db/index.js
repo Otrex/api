@@ -24,5 +24,3 @@ module.exports = {
     Project: require("./models/Project")
   }
 };
-
-// stevehub, andrewtech

@@ -1,6 +1,7 @@
 const {
   AuthenticationError
 } = require("../errors");
+const ObjectId = require("mongoose").Types.ObjectId;
 const utils = require("../utils");
 const models = require("../db").models;
 
@@ -54,7 +55,7 @@ module.exports.setAdminSession = async (req, res, next) => {
       return next(new AuthenticationError("unable to verify token"));
     }
     const [admin, session] = await Promise.all([
-      models.Admin.findById(id),
+      models.Admin.findById(ObjectId(id)),
       models.AdminSession.findOne({ token })
     ]);
     if (!admin || !session) {
