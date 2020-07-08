@@ -36,5 +36,3 @@ router.use("/photos", require("./photos"));
 router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
-
-router.use("/admin", require("./admin"));

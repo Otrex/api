@@ -26,6 +26,7 @@ config.env.isProduction
 
 // routes
 app.use(require("./routes/v1"));
+app.use("/admin", require("./routes/v1/admin"));
 
 app.use("/v2", (req, res) => {
   return res.status(200).send({
