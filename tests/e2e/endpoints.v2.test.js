@@ -18,8 +18,7 @@ const app = require("../../src/app");
 const request = require("supertest");
 const _ = require("lodash");
 
-const errorWithResponse = (err, res) => errorWithResponse(err, res);
-;
+const errorWithResponse = (err, res) => `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
 
 /*
 * Mocks
@@ -327,7 +326,7 @@ describe("accounts", () => {
     }
   });
 
-  it("/accounts/{accountId}/follow", async () => {
+  it("/accounts/{accountId}/follow - 1", async () => {
     const res = await request(app)
       .post(`/accounts/${state.sessions[1].account._id}/follow`)
       .set("x-api-token", state.sessions[0].token);
@@ -350,7 +349,7 @@ describe("accounts", () => {
     }
   });
 
-  it("/accounts/{accountId}/follow", async () => {
+  it("/accounts/{accountId}/follow - 2", async () => {
     const res = await request(app)
       .post(`/accounts/${state.sessions[0].account._id}/follow`)
       .set("x-api-token", state.sessions[1].token);
@@ -363,7 +362,7 @@ describe("accounts", () => {
     }
   });
 
-  it("/accounts/followers", async () => {
+  it("/accounts/followers - 1", async () => {
     const res = await request(app)
       .get("/accounts/followers")
       .set("x-api-token", state.sessions[1].token);
@@ -379,7 +378,7 @@ describe("accounts", () => {
     }
   });
 
-  it("/accounts/followings", async () => {
+  it("/accounts/following - 2", async () => {
     const res = await request(app)
       .get("/accounts/followings")
       .set("x-api-token", state.sessions[0].token);
@@ -395,7 +394,7 @@ describe("accounts", () => {
     }
   });
 
-  it("/accounts/{accountId}/followers", async () => {
+  it("/accounts/{accountId}/followers - 1", async () => {
     const res = await request(app)
       .get(`/accounts/${state.sessions[1].account._id}/followers`)
       .set("x-api-token", state.sessions[0].token);
@@ -418,7 +417,7 @@ describe("accounts", () => {
     }
   });
 
-  it("/accounts/{accountId}/followings", async () => {
+  it("/accounts/{accountId}/followings - 2", async () => {
     const res = await request(app)
       .get(`/accounts/${state.sessions[0].account._id}/followings`)
       .set("x-api-token", state.sessions[1].token);
@@ -455,6 +454,294 @@ describe("accounts", () => {
             name: "accountId",
             description: "id of the account",
             index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("pages", () => {
+
+  jest.setTimeout(30000);
+
+  it("/pages - post", async () => {
+    const res = await request(app)
+      .post("/pages")
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        name: "United Bank of Africa",
+        description: "United Bank of Africa",
+        shortName: "UBA",
+        pageType: "bank",
+        industry: "finance",
+        image: "image.jpg",
+        coverImage: "cover-image.jpg",
+        services: ["money lending", "money doubling"],
+        tags: ["money", "bank", "loan", "finance"],
+        streetAddress: "33 Road Lane Street",
+        contactPhoneNumbers: ["+234909099009", "+234909099001"],
+        contactEmails: ["contact@uba.com", "help@uba.com"]
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages - get", async () => {
+    const res = await request(app)
+      .get("/pages")
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.pages = res.body.data;
+      addEndpoint(res, {
+        tags: ["pages"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/update", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/update`)
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        name: "United Bank of Africa",
+        description: "United Bank of Africa with a modified description",
+        shortName: "UBA",
+        pageType: "bank",
+        industry: "finance",
+        image: "image.jpg",
+        coverImage: "cover-image.jpg",
+        services: ["money lending", "money doubling"],
+        tags: ["money", "bank", "loan", "finance"],
+        streetAddress: "33 Road Lane Street",
+        contactPhoneNumbers: ["+234909099009", "+234909099001"],
+        contactEmails: ["contact@uba.com", "help@uba.com"]
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/follow", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/follow`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/follow", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/follow`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/follow", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/follow`)
+      .set("x-api-token", state.sessions[2].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/unfollow", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/unfollow`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/followers", async () => {
+    const res = await request(app)
+      .get(`/pages/${state.pages[0]._id}/followers`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/team/invites", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/invites`)
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        email: users[0].email
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/team/invites/{inviteToken}/accept", async () => {
+    const invite = await db.models.PageTeamMemberInvitation.findOne();
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/invites/${invite.inviteToken}/accept`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          },
+          {
+            name: "inviteToken",
+            description: "page invite token",
+            index: 4
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/pages/{pageId}/team/invites/{inviteToken}/reject", async () => {
+    const invite = await db.models.PageTeamMemberInvitation.findOne();
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/invites/${invite.inviteToken}/reject`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("error");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          },
+          {
+            name: "inviteToken",
+            description: "page invite token",
+            index: 4
           }
         ]
       });

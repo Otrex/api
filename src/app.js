@@ -11,9 +11,6 @@ const {
   notFoundHandler,
   errorHandler
 } = require("./middlewares");
-const {
-  setAccountSession
-} = require("./middlewares/authentication");
 
 app.set("trust proxy", true);
 app.use(cors());

@@ -49,10 +49,10 @@ router.route("/:pageId/team/invites")
 router.route("/:pageId/team/invites")
   .post(sendTeamMemberInvites);
 
-router.route("/:pageId/team/invites/:inviteId/accept")
+router.route("/:pageId/team/invites/:inviteToken/accept")
   .post(acceptTeamMemberInvite);
 
-router.route("/:pageId/team/invite/:inviteId/reject")
+router.route("/:pageId/team/invites/:inviteToken/reject")
   .post(rejectTeamMemberInvite);
 
 router.route("/:pageId/team/:memberId/objects")

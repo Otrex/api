@@ -3,6 +3,8 @@ const {
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 
+const ObjectId = require("mongoose").Types.ObjectId;
+
 const moment = require("moment");
 const omit = require("lodash/omit");
 const pick = require("lodash/pick");
@@ -363,7 +365,7 @@ module.exports.getAccountFollowers = wrapServiceAction({
   },
   async handler(params) {
     return models.AccountFollower.aggregate([
-      { $match: { accountId: params.accountId } },
+      { $match: { accountId: ObjectId(params.accountId) } },
       {
         $lookup: {
           from: models.Account.collection.collectionName,
@@ -394,7 +396,7 @@ module.exports.getAccountFollowings = wrapServiceAction({
   },
   async handler(params) {
     return models.AccountFollower.aggregate([
-      { $match: { followerId: params.accountId } },
+      { $match: { followerId: ObjectId(params.accountId) } },
       {
         $lookup: {
           from: models.Account.collection.collectionName,

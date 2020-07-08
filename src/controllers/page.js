@@ -116,6 +116,7 @@ module.exports.acceptTeamMemberInvite = async (req, res, next) => {
     await PageService.acceptPageTeamMemberInvitation({
       pageId: req.params.pageId,
       accountId: req.session.account._id,
+      inviteToken: req.params.inviteToken,
       email: req.body.email
     });
     return res.send(successResponse("success"));
@@ -129,6 +130,7 @@ module.exports.rejectTeamMemberInvite = async (req, res, next) => {
     await PageService.rejectPageTeamMemberInvitation({
       pageId: req.params.pageId,
       accountId: req.session.account._id,
+      inviteToken: req.params.inviteToken,
       email: req.body.email
     });
     return res.send(successResponse("success"));

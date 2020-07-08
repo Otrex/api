@@ -127,7 +127,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "9fdc4487e4ee5bc880c4d8a9c841649d8bfeae7d9c5ff4b6dffca0b8671b59bc"
+                    "verificationToken": "e63161c3bf00dce636d4abb4c26f76ff029aef7733e23dcb564486f86fa8a382"
                   }
                 }
               }
@@ -175,7 +175,7 @@
                 "email": "test3@example.com",
                 "username": "test3",
                 "password": "password",
-                "phoneNumberVerificationToken": "9fdc4487e4ee5bc880c4d8a9c841649d8bfeae7d9c5ff4b6dffca0b8671b59bc"
+                "phoneNumberVerificationToken": "e63161c3bf00dce636d4abb4c26f76ff029aef7733e23dcb564486f86fa8a382"
               }
             }
           }
@@ -247,15 +247,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f05afb63eadfb4333fc37e3",
+                      "_id": "5f05d0b0930ca145a2c3f572",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-08T11:36:22.556Z",
-                      "updatedAt": "2020-07-08T11:36:22.556Z"
+                      "createdAt": "2020-07-08T13:57:04.895Z",
+                      "updatedAt": "2020-07-08T13:57:04.895Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVhZmI2M2VhZGZiNDMzM2ZjMzdlMyIsImNvdW50ZXIiOiJGRmtLM3giLCJpYXQiOjE1OTQyMDgxODIsImV4cCI6MTU5NDI5NDU4Mn0.ZguYLrxSHr4ApA0DhsWc2-XaAJvAGH3tMrFOyaeRIMU"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVkMGIwOTMwY2ExNDVhMmMzZjU3MiIsImNvdW50ZXIiOiJYS1NrTjUiLCJpYXQiOjE1OTQyMTY2MjUsImV4cCI6MTU5NDMwMzAyNX0.DEdgo-Aiwd75QfX0gt3gs9zvYIv0HWYgkeA0O-uq2KA"
                   }
                 }
               }
@@ -359,15 +359,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f05afb63eadfb4333fc37e3",
+                      "_id": "5f05d0b0930ca145a2c3f572",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-08T11:36:22.556Z",
-                      "updatedAt": "2020-07-08T11:36:22.556Z"
+                      "createdAt": "2020-07-08T13:57:04.895Z",
+                      "updatedAt": "2020-07-08T13:57:04.895Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVhZmI2M2VhZGZiNDMzM2ZjMzdlMyIsImNvdW50ZXIiOiJiOEJFTHciLCJpYXQiOjE1OTQyMDgxODMsImV4cCI6MTU5NDI5NDU4M30.aFIBunQIIY1quoZVX7G2z4G5zoqF0BEkHZtE8lfbHMY"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVkMGIwOTMwY2ExNDVhMmMzZjU3MiIsImNvdW50ZXIiOiJSMUlwVlciLCJpYXQiOjE1OTQyMTY2MjUsImV4cCI6MTU5NDMwMzAyNX0.xQwGmF3ufaqHW5KJJSuUsqBIPBgCf_cQiUi-kFIOx78"
                   }
                 }
               }
@@ -502,7 +502,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f05afb63eadfb4333fc37e3",
+                    "_id": "5f05d0b0930ca145a2c3f572",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -584,7 +584,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f05afb63eadfb4333fc37e3",
+                    "_id": "5f05d0b0930ca145a2c3f572",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -629,7 +629,7 @@
                 }
               },
               "example": {
-                "profileImage": "BFcUIHWo7uhUeMXK.png",
+                "profileImage": "VsrOnXVAyEP8Nhgi.png",
                 "location": "Choba, Port Harcourt"
               }
             }
@@ -680,7 +680,7 @@
                   "data": {
                     "username": "test3",
                     "email": "test3@example.com",
-                    "profileImage": "BFcUIHWo7uhUeMXK.png",
+                    "profileImage": "VsrOnXVAyEP8Nhgi.png",
                     "location": "Choba, Port Harcourt",
                     "followersCount": 0,
                     "followingsCount": 0
@@ -853,9 +853,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f05afb63eadfb4333fc37e2",
+                      "_id": "5f05d0b0930ca145a2c3f571",
                       "username": "test1",
-                      "profileImage": "J79XuMC58IFpNfMg.png"
+                      "profileImage": "3Tgc5h0RozZBn4ek.png"
                     }
                   ]
                 }
@@ -914,9 +914,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f05afb63eadfb4333fc37e4",
+                      "_id": "5f05d0b0930ca145a2c3f573",
                       "username": "test2",
-                      "profileImage": "Qjn0WJ1ptzYhfFvd.png"
+                      "profileImage": "xO01szkWYf30U8C8.png"
                     }
                   ]
                 }
@@ -963,13 +963,32 @@
                     },
                     "data": {
                       "type": "array",
-                      "items": {}
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "profileImage": {
+                            "type": "string"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
                   "status": "success",
-                  "data": []
+                  "data": [
+                    {
+                      "_id": "5f05d0b0930ca145a2c3f571",
+                      "username": "test1",
+                      "profileImage": "3Tgc5h0RozZBn4ek.png"
+                    }
+                  ]
                 }
               }
             }
@@ -1014,13 +1033,32 @@
                     },
                     "data": {
                       "type": "array",
-                      "items": {}
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "profileImage": {
+                            "type": "string"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
                   "status": "success",
-                  "data": []
+                  "data": [
+                    {
+                      "_id": "5f05d0b0930ca145a2c3f573",
+                      "username": "test2",
+                      "profileImage": "xO01szkWYf30U8C8.png"
+                    }
+                  ]
                 }
               }
             }
@@ -1071,6 +1109,795 @@
                 "example": {
                   "status": "success",
                   "message": "successful"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "pageType": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "coverImage": {
+                    "type": "string"
+                  },
+                  "services": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "streetAddress": {
+                    "type": "string"
+                  },
+                  "contactPhoneNumbers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "contactEmails": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "example": {
+                "name": "United Bank of Africa",
+                "description": "United Bank of Africa",
+                "shortName": "UBA",
+                "pageType": "bank",
+                "industry": "finance",
+                "image": "image.jpg",
+                "coverImage": "cover-image.jpg",
+                "services": [
+                  "money lending",
+                  "money doubling"
+                ],
+                "tags": [
+                  "money",
+                  "bank",
+                  "loan",
+                  "finance"
+                ],
+                "streetAddress": "33 Road Lane Street",
+                "contactPhoneNumbers": [
+                  "+234909099009",
+                  "+234909099001"
+                ],
+                "contactEmails": [
+                  "contact@uba.com",
+                  "help@uba.com"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "followersCount": {
+                            "type": "number"
+                          },
+                          "_id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    {
+                      "followersCount": 0,
+                      "_id": "5f05d0b2930ca145a2c3f580",
+                      "name": "United Bank of Africa",
+                      "image": "image.jpg"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/update": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "pageType": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "coverImage": {
+                    "type": "string"
+                  },
+                  "services": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "streetAddress": {
+                    "type": "string"
+                  },
+                  "contactPhoneNumbers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "contactEmails": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "example": {
+                "name": "United Bank of Africa",
+                "description": "United Bank of Africa with a modified description",
+                "shortName": "UBA",
+                "pageType": "bank",
+                "industry": "finance",
+                "image": "image.jpg",
+                "coverImage": "cover-image.jpg",
+                "services": [
+                  "money lending",
+                  "money doubling"
+                ],
+                "tags": [
+                  "money",
+                  "bank",
+                  "loan",
+                  "finance"
+                ],
+                "streetAddress": "33 Road Lane Street",
+                "contactPhoneNumbers": [
+                  "+234909099009",
+                  "+234909099001"
+                ],
+                "contactEmails": [
+                  "contact@uba.com",
+                  "help@uba.com"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "followersCount": {
+                          "type": "number"
+                        },
+                        "services": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "contactPhoneNumbers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "contactEmails": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "_id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "shortName": {
+                          "type": "string"
+                        },
+                        "pageType": {
+                          "type": "string"
+                        },
+                        "industry": {
+                          "type": "string"
+                        },
+                        "image": {
+                          "type": "string"
+                        },
+                        "coverImage": {
+                          "type": "string"
+                        },
+                        "streetAddress": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "__v": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": {
+                    "followersCount": 0,
+                    "services": [
+                      "money lending",
+                      "money doubling"
+                    ],
+                    "tags": [
+                      "money",
+                      "bank",
+                      "loan",
+                      "finance"
+                    ],
+                    "contactPhoneNumbers": [
+                      "+234909099009",
+                      "+234909099001"
+                    ],
+                    "contactEmails": [
+                      "contact@uba.com",
+                      "help@uba.com"
+                    ],
+                    "_id": "5f05d0b2930ca145a2c3f580",
+                    "name": "United Bank of Africa",
+                    "description": "United Bank of Africa with a modified description",
+                    "shortName": "UBA",
+                    "pageType": "bank",
+                    "industry": "finance",
+                    "image": "image.jpg",
+                    "coverImage": "cover-image.jpg",
+                    "streetAddress": "33 Road Lane Street",
+                    "createdAt": "2020-07-08T13:57:06.644Z",
+                    "updatedAt": "2020-07-08T13:57:06.741Z",
+                    "__v": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/follow": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/unfollow": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/followers": {
+      "get": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "string"
+                          },
+                          "username": {
+                            "type": "string"
+                          },
+                          "profileImage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success",
+                  "data": [
+                    {
+                      "_id": "5f05d0b0930ca145a2c3f571",
+                      "username": "test1",
+                      "profileImage": "3Tgc5h0RozZBn4ek.png"
+                    },
+                    {
+                      "_id": "5f05d0b0930ca145a2c3f572",
+                      "username": "test3",
+                      "profileImage": "VsrOnXVAyEP8Nhgi.png"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team/invites": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "email": "test1@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team/invites/{inviteToken}/accept": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "inviteToken",
+            "description": "page invite token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team/invites/{inviteToken}/reject": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "inviteToken",
+            "description": "page invite token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "error",
+                  "message": "invitation has expired or has been revoked"
                 }
               }
             }

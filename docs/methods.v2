@@ -17,8 +17,8 @@ Pointograph V2 API Methods
 [++-] accounts.followers.list
 [++-] accounts.followings.list
 
-[++-] pages.create
-[++-] pages.list
+[+++] pages.create
+[+++] pages.list
 [++-] pages.update
 [---] pages.delete
 [++-] pages.follow

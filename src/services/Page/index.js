@@ -4,6 +4,8 @@ const {
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 
+const ObjectId = require("mongoose").Types.ObjectId;
+
 const utils = require("../../utils");
 
 const models = require("../../db").models;
@@ -128,7 +130,10 @@ module.exports.updatePage = wrapServiceAction({
     }
     const updatedPage = await models.Page.findByIdAndUpdate(page._id, {
       ...omit(params, ["accountId", "pageId"])
-    }, { new: true });
+    }, {
+      new: true,
+      fields: { teamMembers: 0 }
+    });
     if (page.image && params.image && page.image !== params.image) {
       await utils.deleteUploadedFile(page.image);
       await models.PendingUpload.deleteOne({
@@ -246,7 +251,7 @@ module.exports.getPageFollowers = wrapServiceAction({
   },
   async handler (params) {
     return models.PageFollower.aggregate([
-      { $match: { pageId: params.pageId } },
+      { $match: { pageId: ObjectId(params.pageId) } },
       {
         $lookup: {
           from: models.Account.collection.collectionName,
@@ -278,7 +283,7 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
     email: { ...email }
   },
   async handler (params) {
-    const page = models.Page.findById(params.pageId);
+    const page = await models.Page.findById(params.pageId);
     if (!page) {
       throw new ServiceError("page not found");
     }
@@ -356,7 +361,7 @@ module.exports.acceptPageTeamMemberInvitation = wrapServiceAction({
     }
     pageTeamMemberInvitation.inviteStatus = "accepted";
     await pageTeamMemberInvitation.save();
-    const page = models.Page.findById(pageTeamMemberInvitation.pageId);
+    const page = await models.Page.findById(pageTeamMemberInvitation.pageId);
     if (!page) {
       throw new ServiceError("page not found");
     }
