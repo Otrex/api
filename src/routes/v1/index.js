@@ -1,11 +1,12 @@
 const express = require("express");
+const combinedRouter = express.Router();
 const router = express.Router();
 
 const {
   setAccountSession
 } = require("../../middlewares/authentication");
 
-module.exports = router;
+module.exports = combinedRouter;
 
 router.use(setAccountSession);
 
@@ -36,3 +37,6 @@ router.use("/photos", require("./photos"));
 router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
+
+combinedRouter.use(router);
+combinedRouter.use("/admin", require("./admin"));

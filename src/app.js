@@ -25,9 +25,7 @@ config.env.isProduction
   : app.use(morgan("dev"));
 
 // routes
-app.use("/admin", require("./routes/v1/admin"));
 app.use(require("./routes/v1"));
-
 
 app.use("/v2", (req, res) => {
   return res.status(200).send({
