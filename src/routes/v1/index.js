@@ -38,5 +38,5 @@ router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
 
-combinedRouter.use(router);
 combinedRouter.use("/admin", require("./admin"));
+combinedRouter.use("/", router);

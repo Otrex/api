@@ -127,7 +127,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "e63161c3bf00dce636d4abb4c26f76ff029aef7733e23dcb564486f86fa8a382"
+                    "verificationToken": "ee1480d1227a36a8fe96a0fd738b3334f4bf806e972acd3ef41a8866f13702bc"
                   }
                 }
               }
@@ -175,7 +175,7 @@
                 "email": "test3@example.com",
                 "username": "test3",
                 "password": "password",
-                "phoneNumberVerificationToken": "e63161c3bf00dce636d4abb4c26f76ff029aef7733e23dcb564486f86fa8a382"
+                "phoneNumberVerificationToken": "ee1480d1227a36a8fe96a0fd738b3334f4bf806e972acd3ef41a8866f13702bc"
               }
             }
           }
@@ -247,15 +247,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f05d0b0930ca145a2c3f572",
+                      "_id": "5f06ed6b2ec0980ed9d4302d",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-08T13:57:04.895Z",
-                      "updatedAt": "2020-07-08T13:57:04.895Z"
+                      "createdAt": "2020-07-09T10:11:55.424Z",
+                      "updatedAt": "2020-07-09T10:11:55.424Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVkMGIwOTMwY2ExNDVhMmMzZjU3MiIsImNvdW50ZXIiOiJYS1NrTjUiLCJpYXQiOjE1OTQyMTY2MjUsImV4cCI6MTU5NDMwMzAyNX0.DEdgo-Aiwd75QfX0gt3gs9zvYIv0HWYgkeA0O-uq2KA"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDZlZDZiMmVjMDk4MGVkOWQ0MzAyZCIsImNvdW50ZXIiOiJZNmozSGoiLCJpYXQiOjE1OTQyODk1MTUsImV4cCI6MTU5NDM3NTkxNX0.ugk-M4-_4cGua0fvkir5PocD7SBoX8--46I-e1bwXHU"
                   }
                 }
               }
@@ -359,15 +359,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f05d0b0930ca145a2c3f572",
+                      "_id": "5f06ed6b2ec0980ed9d4302d",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-08T13:57:04.895Z",
-                      "updatedAt": "2020-07-08T13:57:04.895Z"
+                      "createdAt": "2020-07-09T10:11:55.424Z",
+                      "updatedAt": "2020-07-09T10:11:55.424Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDVkMGIwOTMwY2ExNDVhMmMzZjU3MiIsImNvdW50ZXIiOiJSMUlwVlciLCJpYXQiOjE1OTQyMTY2MjUsImV4cCI6MTU5NDMwMzAyNX0.xQwGmF3ufaqHW5KJJSuUsqBIPBgCf_cQiUi-kFIOx78"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDZlZDZiMmVjMDk4MGVkOWQ0MzAyZCIsImNvdW50ZXIiOiJ1enpXWXMiLCJpYXQiOjE1OTQyODk1MTUsImV4cCI6MTU5NDM3NTkxNX0.ZEG-Y59kHTskYdYSN6PUmtB1bYhXn08zTOK8PiFkeJc"
                   }
                 }
               }
@@ -502,7 +502,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f05d0b0930ca145a2c3f572",
+                    "_id": "5f06ed6b2ec0980ed9d4302d",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -584,7 +584,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f05d0b0930ca145a2c3f572",
+                    "_id": "5f06ed6b2ec0980ed9d4302d",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -629,7 +629,7 @@
                 }
               },
               "example": {
-                "profileImage": "VsrOnXVAyEP8Nhgi.png",
+                "profileImage": "EQYPfCZWHoqWWHMm.png",
                 "location": "Choba, Port Harcourt"
               }
             }
@@ -680,7 +680,7 @@
                   "data": {
                     "username": "test3",
                     "email": "test3@example.com",
-                    "profileImage": "VsrOnXVAyEP8Nhgi.png",
+                    "profileImage": "EQYPfCZWHoqWWHMm.png",
                     "location": "Choba, Port Harcourt",
                     "followersCount": 0,
                     "followingsCount": 0
@@ -853,9 +853,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f05d0b0930ca145a2c3f571",
+                      "_id": "5f06ed6b2ec0980ed9d4302e",
                       "username": "test1",
-                      "profileImage": "3Tgc5h0RozZBn4ek.png"
+                      "profileImage": "Koyi2EAa4Ci1CjEn.png"
                     }
                   ]
                 }
@@ -914,9 +914,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f05d0b0930ca145a2c3f573",
+                      "_id": "5f06ed6b2ec0980ed9d4302c",
                       "username": "test2",
-                      "profileImage": "xO01szkWYf30U8C8.png"
+                      "profileImage": "tCYzqJaOWcgBRsUw.png"
                     }
                   ]
                 }
@@ -984,9 +984,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f05d0b0930ca145a2c3f571",
+                      "_id": "5f06ed6b2ec0980ed9d4302e",
                       "username": "test1",
-                      "profileImage": "3Tgc5h0RozZBn4ek.png"
+                      "profileImage": "Koyi2EAa4Ci1CjEn.png"
                     }
                   ]
                 }
@@ -1054,9 +1054,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f05d0b0930ca145a2c3f573",
+                      "_id": "5f06ed6b2ec0980ed9d4302c",
                       "username": "test2",
-                      "profileImage": "xO01szkWYf30U8C8.png"
+                      "profileImage": "tCYzqJaOWcgBRsUw.png"
                     }
                   ]
                 }
@@ -1295,7 +1295,7 @@
                   "data": [
                     {
                       "followersCount": 0,
-                      "_id": "5f05d0b2930ca145a2c3f580",
+                      "_id": "5f06ed6d2ec0980ed9d4303b",
                       "name": "United Bank of Africa",
                       "image": "image.jpg"
                     }
@@ -1521,7 +1521,7 @@
                       "contact@uba.com",
                       "help@uba.com"
                     ],
-                    "_id": "5f05d0b2930ca145a2c3f580",
+                    "_id": "5f06ed6d2ec0980ed9d4303b",
                     "name": "United Bank of Africa",
                     "description": "United Bank of Africa with a modified description",
                     "shortName": "UBA",
@@ -1530,8 +1530,8 @@
                     "image": "image.jpg",
                     "coverImage": "cover-image.jpg",
                     "streetAddress": "33 Road Lane Street",
-                    "createdAt": "2020-07-08T13:57:06.644Z",
-                    "updatedAt": "2020-07-08T13:57:06.741Z",
+                    "createdAt": "2020-07-09T10:11:57.290Z",
+                    "updatedAt": "2020-07-09T10:11:57.391Z",
                     "__v": 1
                   }
                 }
@@ -1703,14 +1703,14 @@
                   "message": "success",
                   "data": [
                     {
-                      "_id": "5f05d0b0930ca145a2c3f571",
+                      "_id": "5f06ed6b2ec0980ed9d4302e",
                       "username": "test1",
-                      "profileImage": "3Tgc5h0RozZBn4ek.png"
+                      "profileImage": "Koyi2EAa4Ci1CjEn.png"
                     },
                     {
-                      "_id": "5f05d0b0930ca145a2c3f572",
+                      "_id": "5f06ed6b2ec0980ed9d4302d",
                       "username": "test3",
-                      "profileImage": "VsrOnXVAyEP8Nhgi.png"
+                      "profileImage": "EQYPfCZWHoqWWHMm.png"
                     }
                   ]
                 }
@@ -1898,6 +1898,116 @@
                 "example": {
                   "status": "error",
                   "message": "invitation has expired or has been revoked"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team": {
+      "get": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "assignedObjects": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "_id": {
+                                  "type": "string"
+                                },
+                                "objectType": {
+                                  "type": "string"
+                                },
+                                "objectPath": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "_id": {
+                            "type": "string"
+                          },
+                          "accountId": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    {
+                      "assignedObjects": [
+                        {
+                          "_id": "5f06ed6d2ec0980ed9d4303d",
+                          "objectType": "*",
+                          "objectPath": "*"
+                        }
+                      ],
+                      "_id": "5f06ed6d2ec0980ed9d4303c",
+                      "accountId": "5f06ed6b2ec0980ed9d4302c",
+                      "role": "owner",
+                      "createdAt": "2020-07-09T10:11:57.307Z",
+                      "updatedAt": "2020-07-09T10:11:57.307Z"
+                    },
+                    {
+                      "assignedObjects": [],
+                      "_id": "5f06ed6d2ec0980ed9d4303f",
+                      "accountId": "5f06ed6b2ec0980ed9d4302e",
+                      "role": "maintainer",
+                      "createdAt": "2020-07-09T10:11:57.838Z",
+                      "updatedAt": "2020-07-09T10:11:57.838Z"
+                    }
+                  ]
                 }
               }
             }

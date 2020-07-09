@@ -750,4 +750,27 @@ describe("pages", () => {
       throw err;
     }
   });
+
+  it("/pages/{pageId}/team", async () => {
+    const res = await request(app)
+      .get(`/pages/${state.pages[0]._id}/team`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
 });
