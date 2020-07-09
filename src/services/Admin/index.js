@@ -100,7 +100,7 @@ module.exports.getLocations = wrapServiceAction({
 module.exports.getPages = wrapServiceAction({
   async handler() {
     return await models.Page.find().select({
-      teamMembers: -1
+      teamMembers: 0
     });
   }
 });
