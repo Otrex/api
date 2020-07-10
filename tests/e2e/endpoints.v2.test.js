@@ -758,6 +758,7 @@ describe("pages", () => {
     try {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
+      state.pages[0].team = res.body.data;
       addEndpoint(res, {
         tags: ["pages"],
         pathParameters: [
@@ -765,6 +766,116 @@ describe("pages", () => {
             name: "pageId",
             description: "id of the page",
             index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("pages/{pageId}/team/{memberId}/objects", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/${state.pages[0].team[0]._id}/objects`)
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        objects: [
+          {
+            objectType: "location"
+          },
+          {
+            objectType: "event",
+            objectPath: state.pages[0].team[0]._id
+          },
+          {
+            objectType: "project",
+            objectPath: state.pages[0].team[0]._id
+          }
+        ]
+      });
+    const pagesRes = await request(app)
+      .get(`/pages/${state.pages[0]._id}/team`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      expect(pagesRes.statusCode).toEqual(200);
+      expect(pagesRes.body.status).toBe("success");
+      state.pages[0].team = pagesRes.body.data;
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          },
+          {
+            name: "memberId",
+            description: "id of the page team member",
+            index: 3
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("pages/{pageId}/team/{memberId}/objects/{objectId}/remove", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/${state.pages[0].team[0]._id}/objects/${state.pages[0].team[0].assignedObjects[0]._id}/remove`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          },
+          {
+            name: "memberId",
+            description: "id of the page team member",
+            index: 3
+          },
+          {
+            name: "objectId",
+            description: "id of the page team member's assigned object",
+            index: 5
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("pages/{pageId}/team/{memberId}/remove", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/${state.pages[0].team[0]._id}/remove`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          },
+          {
+            name: "memberId",
+            description: "id of the page team member",
+            index: 3
           }
         ]
       });

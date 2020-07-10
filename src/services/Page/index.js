@@ -419,7 +419,7 @@ module.exports.getPageTeamMembers = wrapServiceAction({
     if (!isPageOwner) {
       throw new AuthorizationError();
     }
-    return page.teamMembers;
+    return page.teamMembers.filter(m => m.role !== "owner");
   }
 });
 
@@ -458,8 +458,8 @@ module.exports.assignObjectsToPageTeamMember = wrapServiceAction({
     if (!isPageOwner) {
       throw new AuthorizationError();
     }
-    const teamMember = page.teamMembers.find(m => m.accountId.toString() === params.memberId.toString());
-    const teamMemberIndex = page.teamMembers.findIndex(m => m.accountId.toString() === params.memberId.toString());
+    const teamMember = page.teamMembers.find(m => m._id.toString() === params.memberId.toString());
+    const teamMemberIndex = page.teamMembers.findIndex(m => m._id.toString() === params.memberId.toString());
     if (!teamMember) {
       throw new ServiceError("user is not managing this page");
     }
@@ -493,8 +493,8 @@ module.exports.removeAssignedObjectFromPageTeamMember = wrapServiceAction({
     if (!isPageOwner) {
       throw new AuthorizationError();
     }
-    const teamMember = page.teamMembers.find(m => m.accountId.toString() === params.memberId.toString());
-    const teamMemberIndex = page.teamMembers.findIndex(m => m.accountId.toString() === params.memberId.toString());
+    const teamMember = page.teamMembers.find(m => m._id.toString() === params.memberId.toString());
+    const teamMemberIndex = page.teamMembers.findIndex(m => m._id.toString() === params.memberId.toString());
     if (!teamMember) {
       throw new ServiceError("user is not managing this page");
     }
@@ -524,7 +524,7 @@ module.exports.removePageTeamMember = wrapServiceAction({
     if (!isPageOwner) {
       throw new AuthorizationError();
     }
-    page.teamMembers = page.teamMembers.filter(m => m.accountId.toString() !== params.memberId.toString());
+    page.teamMembers = page.teamMembers.filter(m => m._id.toString() !== params.memberId.toString());
     await page.save();
     return true;
   }

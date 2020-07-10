@@ -12,10 +12,10 @@ Pointograph V2 API Methods
 [+++] accounts.profile.info
 [+++] accounts.profile.update
 [+++] accounts.password.update
-[++-] accounts.follow
-[++-] accounts.unfollow
-[++-] accounts.followers.list
-[++-] accounts.followings.list
+[+++] accounts.follow
+[+++] accounts.unfollow
+[+++] accounts.followers.list
+[+++] accounts.followings.list
 
 [+++] pages.create
 [+++] pages.list
@@ -29,9 +29,9 @@ Pointograph V2 API Methods
 [+++] pages.teamMembers.invites.accept
 [+++] pages.teamMembers.invites.reject
 [+++] pages.teamMembers.list
-[++-] pages.teamMembers.assignObject
-[++-] pages.teamMembers.unAssignObject
-[++-] pages.teamMembers.remove
+[+++] pages.teamMembers.assignObject
+[+++] pages.teamMembers.unAssignObject
+[+++] pages.teamMembers.remove
 
 [+--] locations.add
 [+--] locations.list

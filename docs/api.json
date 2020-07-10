@@ -127,7 +127,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "ee1480d1227a36a8fe96a0fd738b3334f4bf806e972acd3ef41a8866f13702bc"
+                    "verificationToken": "bb2367f1bde4e2e2d16bb1ee13e6b704f54949e43a06d3aba2640ff7aa11ece7"
                   }
                 }
               }
@@ -175,7 +175,7 @@
                 "email": "test3@example.com",
                 "username": "test3",
                 "password": "password",
-                "phoneNumberVerificationToken": "ee1480d1227a36a8fe96a0fd738b3334f4bf806e972acd3ef41a8866f13702bc"
+                "phoneNumberVerificationToken": "bb2367f1bde4e2e2d16bb1ee13e6b704f54949e43a06d3aba2640ff7aa11ece7"
               }
             }
           }
@@ -247,15 +247,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f06ed6b2ec0980ed9d4302d",
+                      "_id": "5f083b1b0287414d64ed8f31",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-09T10:11:55.424Z",
-                      "updatedAt": "2020-07-09T10:11:55.424Z"
+                      "createdAt": "2020-07-10T09:55:39.839Z",
+                      "updatedAt": "2020-07-10T09:55:39.839Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDZlZDZiMmVjMDk4MGVkOWQ0MzAyZCIsImNvdW50ZXIiOiJZNmozSGoiLCJpYXQiOjE1OTQyODk1MTUsImV4cCI6MTU5NDM3NTkxNX0.ugk-M4-_4cGua0fvkir5PocD7SBoX8--46I-e1bwXHU"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDgzYjFiMDI4NzQxNGQ2NGVkOGYzMSIsImNvdW50ZXIiOiJwQ0pPQjYiLCJpYXQiOjE1OTQzNzQ5MzksImV4cCI6MTU5NDQ2MTMzOX0.asCkYmyeNP2HhWAIz0I6CT13Pmf2ZAt1OIKF7DU3uw8"
                   }
                 }
               }
@@ -359,15 +359,15 @@
                       "followersCount": 0,
                       "followingsCount": 0,
                       "status": "active",
-                      "_id": "5f06ed6b2ec0980ed9d4302d",
+                      "_id": "5f083b1b0287414d64ed8f31",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-09T10:11:55.424Z",
-                      "updatedAt": "2020-07-09T10:11:55.424Z"
+                      "createdAt": "2020-07-10T09:55:39.839Z",
+                      "updatedAt": "2020-07-10T09:55:39.839Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDZlZDZiMmVjMDk4MGVkOWQ0MzAyZCIsImNvdW50ZXIiOiJ1enpXWXMiLCJpYXQiOjE1OTQyODk1MTUsImV4cCI6MTU5NDM3NTkxNX0.ZEG-Y59kHTskYdYSN6PUmtB1bYhXn08zTOK8PiFkeJc"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMDgzYjFiMDI4NzQxNGQ2NGVkOGYzMSIsImNvdW50ZXIiOiI3dTFFOG8iLCJpYXQiOjE1OTQzNzQ5NDAsImV4cCI6MTU5NDQ2MTM0MH0.C0pUgdbUc0kd_YQpC6aBJqUZ6ppt_T-wjfr8R-Dbv6E"
                   }
                 }
               }
@@ -502,7 +502,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f06ed6b2ec0980ed9d4302d",
+                    "_id": "5f083b1b0287414d64ed8f31",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -584,7 +584,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f06ed6b2ec0980ed9d4302d",
+                    "_id": "5f083b1b0287414d64ed8f31",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -629,7 +629,7 @@
                 }
               },
               "example": {
-                "profileImage": "EQYPfCZWHoqWWHMm.png",
+                "profileImage": "mE1RjDnAE8Ik9uc9.png",
                 "location": "Choba, Port Harcourt"
               }
             }
@@ -680,7 +680,7 @@
                   "data": {
                     "username": "test3",
                     "email": "test3@example.com",
-                    "profileImage": "EQYPfCZWHoqWWHMm.png",
+                    "profileImage": "mE1RjDnAE8Ik9uc9.png",
                     "location": "Choba, Port Harcourt",
                     "followersCount": 0,
                     "followingsCount": 0
@@ -853,9 +853,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f06ed6b2ec0980ed9d4302e",
+                      "_id": "5f083b1b0287414d64ed8f2f",
                       "username": "test1",
-                      "profileImage": "Koyi2EAa4Ci1CjEn.png"
+                      "profileImage": "yCQzc2nQIxm9iAus.png"
                     }
                   ]
                 }
@@ -914,9 +914,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f06ed6b2ec0980ed9d4302c",
+                      "_id": "5f083b1b0287414d64ed8f30",
                       "username": "test2",
-                      "profileImage": "tCYzqJaOWcgBRsUw.png"
+                      "profileImage": "E68Iaaq3CSlVTRPQ.png"
                     }
                   ]
                 }
@@ -984,9 +984,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f06ed6b2ec0980ed9d4302e",
+                      "_id": "5f083b1b0287414d64ed8f2f",
                       "username": "test1",
-                      "profileImage": "Koyi2EAa4Ci1CjEn.png"
+                      "profileImage": "yCQzc2nQIxm9iAus.png"
                     }
                   ]
                 }
@@ -1054,9 +1054,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f06ed6b2ec0980ed9d4302c",
+                      "_id": "5f083b1b0287414d64ed8f30",
                       "username": "test2",
-                      "profileImage": "tCYzqJaOWcgBRsUw.png"
+                      "profileImage": "E68Iaaq3CSlVTRPQ.png"
                     }
                   ]
                 }
@@ -1284,6 +1284,46 @@
                           },
                           "image": {
                             "type": "string"
+                          },
+                          "team": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "assignedObjects": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "_id": {
+                                        "type": "string"
+                                      },
+                                      "objectType": {
+                                        "type": "string"
+                                      },
+                                      "objectPath": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "_id": {
+                                  "type": "string"
+                                },
+                                "accountId": {
+                                  "type": "string"
+                                },
+                                "role": {
+                                  "type": "string"
+                                },
+                                "createdAt": {
+                                  "type": "string"
+                                },
+                                "updatedAt": {
+                                  "type": "string"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -1295,9 +1335,35 @@
                   "data": [
                     {
                       "followersCount": 0,
-                      "_id": "5f06ed6d2ec0980ed9d4303b",
+                      "_id": "5f083b1d0287414d64ed8f3e",
                       "name": "United Bank of Africa",
-                      "image": "image.jpg"
+                      "image": "image.jpg",
+                      "team": [
+                        {
+                          "assignedObjects": [
+                            {
+                              "_id": "5f083b1e0287414d64ed8f43",
+                              "objectType": "location",
+                              "objectPath": "*"
+                            },
+                            {
+                              "_id": "5f083b1e0287414d64ed8f44",
+                              "objectType": "event",
+                              "objectPath": "5f083b1e0287414d64ed8f42"
+                            },
+                            {
+                              "_id": "5f083b1e0287414d64ed8f45",
+                              "objectType": "project",
+                              "objectPath": "5f083b1e0287414d64ed8f42"
+                            }
+                          ],
+                          "_id": "5f083b1e0287414d64ed8f42",
+                          "accountId": "5f083b1b0287414d64ed8f2f",
+                          "role": "maintainer",
+                          "createdAt": "2020-07-10T09:55:42.152Z",
+                          "updatedAt": "2020-07-10T09:55:42.304Z"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1521,7 +1587,7 @@
                       "contact@uba.com",
                       "help@uba.com"
                     ],
-                    "_id": "5f06ed6d2ec0980ed9d4303b",
+                    "_id": "5f083b1d0287414d64ed8f3e",
                     "name": "United Bank of Africa",
                     "description": "United Bank of Africa with a modified description",
                     "shortName": "UBA",
@@ -1530,8 +1596,8 @@
                     "image": "image.jpg",
                     "coverImage": "cover-image.jpg",
                     "streetAddress": "33 Road Lane Street",
-                    "createdAt": "2020-07-09T10:11:57.290Z",
-                    "updatedAt": "2020-07-09T10:11:57.391Z",
+                    "createdAt": "2020-07-10T09:55:41.607Z",
+                    "updatedAt": "2020-07-10T09:55:41.708Z",
                     "__v": 1
                   }
                 }
@@ -1703,14 +1769,14 @@
                   "message": "success",
                   "data": [
                     {
-                      "_id": "5f06ed6b2ec0980ed9d4302e",
+                      "_id": "5f083b1b0287414d64ed8f2f",
                       "username": "test1",
-                      "profileImage": "Koyi2EAa4Ci1CjEn.png"
+                      "profileImage": "yCQzc2nQIxm9iAus.png"
                     },
                     {
-                      "_id": "5f06ed6b2ec0980ed9d4302d",
+                      "_id": "5f083b1b0287414d64ed8f31",
                       "username": "test3",
-                      "profileImage": "EQYPfCZWHoqWWHMm.png"
+                      "profileImage": "mE1RjDnAE8Ik9uc9.png"
                     }
                   ]
                 }
@@ -1947,20 +2013,7 @@
                         "properties": {
                           "assignedObjects": {
                             "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "_id": {
-                                  "type": "string"
-                                },
-                                "objectType": {
-                                  "type": "string"
-                                },
-                                "objectPath": {
-                                  "type": "string"
-                                }
-                              }
-                            }
+                            "items": {}
                           },
                           "_id": {
                             "type": "string"
@@ -1986,28 +2039,237 @@
                   "status": "success",
                   "data": [
                     {
-                      "assignedObjects": [
-                        {
-                          "_id": "5f06ed6d2ec0980ed9d4303d",
-                          "objectType": "*",
-                          "objectPath": "*"
-                        }
-                      ],
-                      "_id": "5f06ed6d2ec0980ed9d4303c",
-                      "accountId": "5f06ed6b2ec0980ed9d4302c",
-                      "role": "owner",
-                      "createdAt": "2020-07-09T10:11:57.307Z",
-                      "updatedAt": "2020-07-09T10:11:57.307Z"
-                    },
-                    {
                       "assignedObjects": [],
-                      "_id": "5f06ed6d2ec0980ed9d4303f",
-                      "accountId": "5f06ed6b2ec0980ed9d4302e",
+                      "_id": "5f083b1e0287414d64ed8f42",
+                      "accountId": "5f083b1b0287414d64ed8f2f",
                       "role": "maintainer",
-                      "createdAt": "2020-07-09T10:11:57.838Z",
-                      "updatedAt": "2020-07-09T10:11:57.838Z"
+                      "createdAt": "2020-07-10T09:55:42.152Z",
+                      "updatedAt": "2020-07-10T09:55:42.152Z"
                     }
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team/{memberId}/objects": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "memberId",
+            "description": "id of the page team member",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "objects": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "objectType": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "example": {
+                "objects": [
+                  {
+                    "objectType": "location"
+                  },
+                  {
+                    "objectType": "event",
+                    "objectPath": "5f083b1e0287414d64ed8f42"
+                  },
+                  {
+                    "objectType": "project",
+                    "objectPath": "5f083b1e0287414d64ed8f42"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team/{memberId}/objects/{objectId}/remove": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "memberId",
+            "description": "id of the page team member",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "objectId",
+            "description": "id of the page team member's assigned object",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pages/{pageId}/team/{memberId}/remove": {
+      "post": {
+        "description": "",
+        "tags": [
+          "pages"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "pageId",
+            "description": "id of the page",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "memberId",
+            "description": "id of the page team member",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "success",
+                  "message": "success"
                 }
               }
             }
