@@ -1,5 +1,6 @@
 const {
-  ServiceError
+  ServiceError,
+  AuthorizationError
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 const checkAuthorization = require("../_core/checkAuthorization");
@@ -212,18 +213,22 @@ module.exports.createLocationAlarm = wrapServiceAction({
     if (!location) {
       throw new ServiceError("location not found");
     }
-    // check permissions if location belongs to an account and is private
+    // check permissions
     if (
       location.visibility === "private" &&
       location.ownerType === "account" &&
-      location.ownerId.toString() !== params.locationId.toString()
+      location.ownerId.toString() !== params.accountId.toString()
     ) {
-      throw new ServiceError("you do not have sufficient permissions to access this object");
+      throw new AuthorizationError("you do not have sufficient permissions to access this object");
     }
-    return await models.LocationAlarm.create({
+    const alarm = await models.LocationAlarm.create({
       accountId: params.accountId,
       locationId: params.locationId
     });
+    return {
+      ...alarm.toObject(),
+      location
+    };
   }
 });
 

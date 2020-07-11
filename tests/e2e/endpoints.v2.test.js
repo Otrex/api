@@ -1066,4 +1066,39 @@ describe("locations", () => {
       throw err;
     }
   });
+
+  it("/locations/alarms - post", async () => {
+    const res = await request(app)
+      .post(`/locations/alarms`)
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        locationId: state.locations[0]._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/locations/alarms - get", async () => {
+    const res = await request(app)
+      .get(`/locations/alarms`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
 });

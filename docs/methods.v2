@@ -36,9 +36,11 @@ Pointograph V2 API Methods
 [+++] locations.add
 [+++] locations.list
 [+++] locations.update
-[+--] locations.follow
-[+--] locations.unfollow
-[+--] locations.followers.list
+[+++] locations.follow
+[+++] locations.unfollow
+[+++] locations.followers.list
+[+++] locations.alarms.add
+[+++] locations.alarms.list
 
 [+--] territories.list
 [+--] territories.track
