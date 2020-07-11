@@ -53,6 +53,7 @@ module.exports.updateLocation = async (req, res, next) => {
   try {
     const data = await LocationService.updateLocation({
       ...req.body,
+      accountId: req.session.account._id,
       locationId: req.params.locationId
     });
     return res.send(successResponse(undefined, data));
@@ -86,6 +87,41 @@ module.exports.getLocationAlarms = async (req, res, next) => {
   try {
     const data = await LocationService.getAccountLocationAlarms({
       accountId: req.session.account._id
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.followLocation = async (req, res, next) => {
+  try {
+    await LocationService.followLocation({
+      locationId: req.params.locationId,
+      followerId: req.session.account._id
+    });
+    return res.send(successResponse("success"));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.unfollowLocation = async (req, res, next) => {
+  try {
+    await LocationService.unfollowLocation({
+      locationId: req.params.locationId,
+      followerId: req.session.account._id
+    });
+    return res.send(successResponse("success"));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.getLocationFollowers = async (req, res, next) => {
+  try {
+    const data = await LocationService.getLocationFollowers({
+      locationId: req.params.locationId
     });
     return res.send(successResponse(undefined, data));
   } catch (e) {

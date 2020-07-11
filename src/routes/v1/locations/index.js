@@ -12,7 +12,10 @@ const {
   getLocationsCategories,
   updateLocation,
   createLocationAlarm,
-  getLocationAlarms
+  getLocationAlarms,
+  followLocation,
+  unfollowLocation,
+  getLocationFollowers
 } = require("../../../controllers/location");
 
 router.use(verifyAccountAuth());
@@ -21,11 +24,20 @@ router.route("/")
   .get(getAccountLocations)
   .post(createLocation);
 
-router.route("/:username/:eddress")
-  .get(getLocationDetails);
-
 router.route("/:locationId/update")
   .post(updateLocation);
+
+router.route("/:locationId/follow")
+  .post(followLocation);
+
+router.route("/:locationId/unfollow")
+  .post(unfollowLocation);
+
+router.route("/:locationId/followers")
+  .get(getLocationFollowers);
+
+router.route("/:username/:eddress")
+  .get(getLocationDetails);
 
 router.route("/categories")
   .get(getLocationsCategories);

@@ -6,6 +6,8 @@ const checkAuthorization = require("../_core/checkAuthorization");
 
 const utils = require("../../utils");
 
+const ObjectId = require("mongoose").Types.ObjectId;
+
 const models = require("../../db").models;
 const OpenLocationCode = require("../../lib/OpenLocationCode");
 
@@ -338,7 +340,7 @@ module.exports.getLocationFollowers = wrapServiceAction({
   },
   async handler (params) {
     return models.LocationFollower.aggregate([
-      { $match: { locationId: params.locationId } },
+      { $match: { locationId: ObjectId(params.locationId) } },
       {
         $lookup: {
           from: models.Account.collection.collectionName,

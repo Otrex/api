@@ -885,3 +885,185 @@ describe("pages", () => {
     }
   });
 });
+
+describe("locations", () => {
+
+  jest.setTimeout(30000);
+
+  it("/locations/categories", async () => {
+    state.locationCategories = await db.models.LocationCategory.insertMany([
+      { name: "Office / Business Premises" },
+      { name: "Event Venue" },
+      { name: "Project Site" },
+      { name: "Property for Sale/Lease/Rent" },
+      { name: "Place of Worship / Religion" },
+      { name: "Others" }
+    ]);
+    const res = await request(app)
+      .get("/locations/categories")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/locations - post", async () => {
+    const res = await request(app)
+      .post("/locations")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        name: "my house",
+        description: "my house at bayelsa test",
+        categoryId: state.locationCategories.pop()._id,
+        visibility: "public",
+        eddress: "myhouse",
+        tags: ["home", "village"],
+        coordinates: {
+          latitude: 4.384938,
+          longitude: 4.89898
+        }
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.locations = [
+        res.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/locations/{locationId}/update", async () => {
+    const res = await request(app)
+      .post(`/locations/${state.locations[0]._id}/update`)
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        name: "my house",
+        description: "my new house at Bayelsa test",
+        categoryId: state.locationCategories.pop()._id,
+        visibility: "private",
+        tags: ["home", "village"]
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      expect(res.body.data.description).toBe("my new house at Bayelsa test");
+      expect(res.body.data.visibility).toBe("private");
+      addEndpoint(res, {
+        tags: ["locations"],
+        pathParameters: [
+          {
+            name: "locationId",
+            description: "id of the location",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/locations - get", async () => {
+    const res = await request(app)
+      .get("/locations")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/locations/{locationId}/follow", async () => {
+    const responses = await Promise.all(users.map((data, index) => {
+      return request(app)
+        .post(`/locations/${state.locations[0]._id}/follow`)
+        .set("x-api-token", state.sessions[index].token);
+    }));
+    for (const [index, res] of responses.entries()) {
+      try {
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.status).toBe("success");
+        addEndpoint(res, {
+          tags: ["locations"],
+          pathParameters: [
+            {
+              name: "locationId",
+              description: "id of the location",
+              index: 1
+            }
+          ]
+        });
+      } catch (err) {
+        err.message = errorWithResponse(err, res);
+        throw err;
+      }
+    }
+  });
+
+  it("/locations/{locationId}/unfollow", async () => {
+    const res = await request(app)
+      .post(`/locations/${state.locations[0]._id}/unfollow`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["locations"],
+        pathParameters: [
+          {
+            name: "locationId",
+            description: "id of the location",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/locations/{locationId}/followers", async () => {
+    const res = await request(app)
+      .get(`/locations/${state.locations[0]._id}/followers`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["locations"],
+        pathParameters: [
+          {
+            name: "locationId",
+            description: "id of the location",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});

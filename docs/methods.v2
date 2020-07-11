@@ -33,9 +33,9 @@ Pointograph V2 API Methods
 [+++] pages.teamMembers.unAssignObject
 [+++] pages.teamMembers.remove
 
-[+--] locations.add
-[+--] locations.list
-[+--] locations.update
+[+++] locations.add
+[+++] locations.list
+[+++] locations.update
 [+--] locations.follow
 [+--] locations.unfollow
 [+--] locations.followers.list

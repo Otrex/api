@@ -16,6 +16,8 @@ const app = require("../../src/app");
 const request = require("supertest");
 const _ = require("lodash");
 
+const errorWithResponse = (err, res) => `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+
 const state = {
   sessions: []
 };
@@ -78,7 +80,7 @@ describe("accounts", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -97,7 +99,7 @@ describe("accounts", () => {
         state.sessions[index].verificationToken = res.body.data.verificationToken;
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -114,7 +116,7 @@ describe("accounts", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -131,7 +133,7 @@ describe("accounts", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -150,7 +152,7 @@ describe("accounts", () => {
         state.sessions[index].token = res.body.data.token;
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -164,7 +166,7 @@ describe("accounts", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -181,7 +183,7 @@ describe("accounts", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -198,7 +200,7 @@ describe("accounts", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -220,7 +222,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -237,7 +239,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -251,7 +253,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -265,7 +267,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -282,7 +284,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -310,7 +312,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -335,7 +337,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -350,7 +352,7 @@ describe("locations and search", () => {
       state.locations = res.body.data;
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -378,7 +380,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -395,7 +397,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -409,7 +411,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -424,7 +426,7 @@ describe("locations and search", () => {
       state.photo = res.body.data.photos[0];
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -438,7 +440,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -452,7 +454,7 @@ describe("locations and search", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -494,7 +496,7 @@ describe("territory", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -511,7 +513,7 @@ describe("territory", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -529,7 +531,7 @@ it("/search", async () => {
     expect(res.body.status).toBe("success");
     addEndpoint(res);
   } catch (err) {
-    err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+    err.message = errorWithResponse;
     throw err;
   }
 });
@@ -557,7 +559,7 @@ it("/pages - post", async () => {
     expect(res.body.status).toBe("success");
     addEndpoint(res);
   } catch (err) {
-    err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+    err.message = errorWithResponse;
     throw err;
   }
 });
@@ -571,7 +573,7 @@ it("/pages - get", async () => {
     expect(res.body.status).toBe("success");
     addEndpoint(res);
   } catch (err) {
-    err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+    err.message = errorWithResponse;
     throw err;
   }
 });
