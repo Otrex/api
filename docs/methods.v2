@@ -42,9 +42,10 @@ Pointograph V2 API Methods
 [+++] locations.alarms.add
 [+++] locations.alarms.list
 
-[+--] territories.list
-[+--] territories.track
-[+--] territories.unTrack
+[+++] territories.list
+[+++] territories.details
+[+++] territories.track
+[+++] territories.unTrack
 [---] territories.events.list
 [---] territories.locations.list
 

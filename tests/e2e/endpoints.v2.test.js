@@ -31,10 +31,30 @@ random.mockReturnValue(1234);
 beforeAll(async () => {
   state.connection = await db.createConnection();
   for (const model in db.models) {
+    if (model === "Territory") {
+      continue
+    }
     // eslint-disable-next-line no-prototype-builtins
     if (db.models.hasOwnProperty(model)) {
       await db.models[model].deleteMany({});
     }
+  }
+  state.territories = await db.models.Territory.find();
+  if (state.territories.length === 0) {
+    const TerritoryService = require("../../src/services/Territory");
+    const data = require("../../src/data/territories/NGA/gadm36_NGA_0.geo.json");
+    const data1 = require("../../src/data/territories/NGA/gadm36_NGA_1.geo.json");
+    const data2 = require("../../src/data/territories/NGA/gadm36_NGA_2.geo.json");
+    await TerritoryService.createTerritory({
+      geojson: data
+    });
+    await TerritoryService.createTerritory({
+      geojson: data1
+    });
+    await TerritoryService.createTerritory({
+      geojson: data2
+    });
+    state.territories = await db.models.Territory.find();
   }
   await new Promise(resolve => setTimeout(resolve, 5000));
 });
@@ -1095,6 +1115,86 @@ describe("locations", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
         tags: ["locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("territories", () => {
+
+  jest.setTimeout(60000);
+
+  it("/territories/{territoryId}", async () => {
+    const res = await request(app)
+      .get(`/territories/${state.territories[0]._id}`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["territories"],
+        pathParameters: [
+          {
+            name: "territoryId",
+            description: "id of the territory",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/territories/{territoryId}/track", async () => {
+    const res = await request(app)
+      .post(`/territories/${state.territories[0]._id}/track`)
+      .set("x-api-token", state.sessions[1].token);
+    await request(app)
+      .post("/territories/track")
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        territoryId: state.territories[1]._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["territories"],
+        pathParameters: [
+          {
+            name: "territoryId",
+            description: "id of the territory",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/territories/{territoryId}/untrack", async () => {
+    const res = await request(app)
+      .post(`/territories/${state.territories[0]._id}/untrack`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["territories"],
+        pathParameters: [
+          {
+            name: "territoryId",
+            description: "id of the territory",
+            index: 1
+          }
+        ]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);

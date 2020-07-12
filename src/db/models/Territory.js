@@ -35,8 +35,8 @@ const schema = new Schema({
     required: true
   },
   properties: {
-    ADMIN: String,
-    ISO_A3: String
+    type: Object,
+    required: true
   },
   geometry: {
     type: Schema.Types.Mixed,

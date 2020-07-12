@@ -6,6 +6,8 @@ const {
 } = require("../../../middlewares/authentication");
 
 const {
+  getTerritories,
+  createTerritory,
   trackTerritory,
   unTrackTerritory,
   getTerritoryDetails
@@ -13,13 +15,17 @@ const {
 
 router.use(verifyAccountAuth());
 
+router.route("/")
+  .get(getTerritories)
+  .post(createTerritory);
+
 router.route("/:territoryId")
   .get(getTerritoryDetails);
 
-router.route("/track")
+router.route("/:territoryId?/track")
   .post(trackTerritory);
 
-router.route("/untrack")
+router.route("/:territoryId?/untrack")
   .post(unTrackTerritory);
 
 module.exports = router;

@@ -16,19 +16,52 @@ const { string, any } = require("../../validation");
 * Service Dependencies
 * */
 
-
 /*
 * Service Actions
 * */
 module.exports.createTerritory = wrapServiceAction({
   params: {
-    name: { ...string },
-    description: { ...string }
+    geojson: { type: "object" }
   },
-  async handler(params) {
-    return models.Territory.create({
-      name: params.name,
-      description: params.description
+  async handler (params) {
+    for (const feature of params.geojson.features) {
+      try {
+        let {
+          NAME_0,
+          NAME_1,
+          NAME_2,
+          VARNAME_2
+        } = feature.properties;
+        NAME_2 = VARNAME_2 || NAME_2;
+        const name = [NAME_2, NAME_1, NAME_0].filter(n => !!n).join(", ");
+        await models.Territory.create({
+          name: name,
+          description: name,
+          properties: feature.properties,
+          geometry: feature.geometry
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return true;
+  }
+});
+
+module.exports.getTerritories = wrapServiceAction({
+  params: {
+    filters: {
+      type: "object",
+      optional: true,
+      default: {}
+    }
+  },
+  async handler (params) {
+    return await models.Territory.find(
+      params.filters
+    ).select({
+      name: 1,
+      description: 1
     });
   }
 });
@@ -38,7 +71,7 @@ module.exports.trackTerritory = wrapServiceAction({
     territoryId: { ...any },
     trackerId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const territory = await models.Territory.findById(params.territoryId);
     const tracker = await models.Account.findById(params.trackerId);
     if (!territory) {
@@ -62,7 +95,10 @@ module.exports.trackTerritory = wrapServiceAction({
     return await models.TerritoryTracker.findOneAndUpdate({
       territoryId: params.territoryId,
       trackerId: params.trackerId
-    }, {}, { upsert: true, new: true });
+    }, {}, {
+      upsert: true,
+      new: true
+    });
   }
 });
 
@@ -71,7 +107,7 @@ module.exports.unTrackTerritory = wrapServiceAction({
     territoryId: { ...any },
     trackerId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const territory = await models.Territory.findById(params.territoryId);
     const tracker = await models.Account.findById(params.trackerId);
     if (!territory) {
@@ -105,8 +141,12 @@ module.exports.getTerritoryDetails = wrapServiceAction({
     territoryId: { ...any },
     accountId: { ...any }
   },
-  async handler(params) {
-    const territory = await models.Territory.findById(params.territoryId);
+  async handler (params) {
+    const territory = await models.Territory.findById(params.territoryId).select({
+      name: 1,
+      description: 1,
+      trackersCount: 1
+    });
     const isTracking = await models.TerritoryTracker.findOne({
       territoryId: params.territoryId,
       trackerId: params.accountId

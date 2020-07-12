@@ -40,13 +40,25 @@ module.exports.createAccount = wrapServiceAction({
       lowercase: true,
       pattern: /^[a-z0-9]+$/
     },
-    password: { ...string, min: 6 },
-    countryCode: { ...string, length: 2 },
-    phoneNumber: { ...string, min: 9 },
+    password: {
+      ...string,
+      min: 6
+    },
+    countryCode: {
+      ...string,
+      length: 2
+    },
+    phoneNumber: {
+      ...string,
+      min: 9
+    },
     phoneNumberVerificationToken: { ...string },
-    profileImage: { ...string, optional: true }
+    profileImage: {
+      ...string,
+      optional: true
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const item = await models.Account.findOne({
       $or: [
         { email: params.email },
@@ -88,10 +100,16 @@ module.exports.createLoginSession = wrapServiceAction({
     $$strict: "remove",
     identifier: { ...string }, // phone number or username
     password: { ...string },
-    ip: { ...string, optional: true },
-    userAgent: { ...string, optional: true }
+    ip: {
+      ...string,
+      optional: true
+    },
+    userAgent: {
+      ...string,
+      optional: true
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const identifierType = params.identifier.includes("+")
       ? "phone number"
       : "username";
@@ -129,9 +147,12 @@ module.exports.changeAccountPassword = wrapServiceAction({
     $$strict: "remove",
     accountId: { ...any },
     currentPassword: { ...string },
-    password: { ...string, min: 6 }
+    password: {
+      ...string,
+      min: 6
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
@@ -151,7 +172,7 @@ module.exports.sendResetPasswordToken = wrapServiceAction({
     $$strict: "remove",
     email: { ...email }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findOne({
       email: params.email
     });
@@ -173,9 +194,12 @@ module.exports.resetAccountPassword = wrapServiceAction({
   params: {
     $$strict: "remove",
     resetToken: { ...string },
-    password: { ...string, min: 6 }
+    password: {
+      ...string,
+      min: 6
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const reset = await models.PasswordReset.findOne({
       resetToken: params.resetToken
     });
@@ -200,7 +224,7 @@ module.exports.getAccount = wrapServiceAction({
     $$strict: "remove",
     username: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findOne({
       username: params.username
     })
@@ -224,11 +248,20 @@ module.exports.updateAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
     accountId: { ...any },
-    location: { ...string, optional: true },
-    profileImage: { ...string, optional: true },
-    coverImage: { ...string, optional: true }
+    location: {
+      ...string,
+      optional: true
+    },
+    profileImage: {
+      ...string,
+      optional: true
+    },
+    coverImage: {
+      ...string,
+      optional: true
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
@@ -258,7 +291,7 @@ module.exports.updateAccount = wrapServiceAction({
       filename: account.coverImage
     });
 
-    return pick(account.toJSON(), ["username", "email", "profileImage", "coverImage",  "location", "followersCount", "followingsCount"]);
+    return pick(account.toJSON(), ["username", "email", "profileImage", "coverImage", "location", "followersCount", "followingsCount"]);
   }
 });
 
@@ -268,7 +301,7 @@ module.exports.followAccount = wrapServiceAction({
     accountId: { ...any },
     followerId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     const follower = await models.Account.findById(params.followerId);
     if (!account || !follower) {
@@ -299,7 +332,10 @@ module.exports.followAccount = wrapServiceAction({
     return await models.AccountFollower.findOneAndUpdate({
       accountId: params.accountId,
       followerId: params.followerId
-    }, {}, { upsert: true, new: true });
+    }, {}, {
+      upsert: true,
+      new: true
+    });
   }
 });
 
@@ -309,7 +345,7 @@ module.exports.checkAccountFollower = wrapServiceAction({
     accountId: { ...any },
     followerId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const record = await models.AccountFollower.findOne({
       accountId: params.accountId,
       followerId: params.followerId
@@ -324,7 +360,7 @@ module.exports.unfollowAccount = wrapServiceAction({
     accountId: { ...any },
     followerId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     const follower = await models.Account.findById(params.followerId);
     if (!account || !follower) {
@@ -363,7 +399,7 @@ module.exports.getAccountFollowers = wrapServiceAction({
     $$strict: "remove",
     accountId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     return models.AccountFollower.aggregate([
       { $match: { accountId: ObjectId(params.accountId) } },
       {
@@ -394,7 +430,7 @@ module.exports.getAccountFollowings = wrapServiceAction({
     $$strict: "remove",
     accountId: { ...any },
   },
-  async handler(params) {
+  async handler (params) {
     return models.AccountFollower.aggregate([
       { $match: { followerId: ObjectId(params.accountId) } },
       {
