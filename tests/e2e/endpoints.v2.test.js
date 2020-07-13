@@ -110,7 +110,7 @@ describe("verification", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["verification"]
+          tags: ["Verification"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -136,7 +136,7 @@ describe("verification", () => {
         state.sessions[index] = {};
         state.sessions[index].verificationToken = res.body.data.verificationToken;
         addEndpoint(res, {
-          tags: ["verification"]
+          tags: ["Verification"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -164,7 +164,7 @@ describe("auth", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["auth"]
+          tags: ["Auth"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -187,7 +187,7 @@ describe("auth", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["auth"]
+          tags: ["Auth"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -212,7 +212,7 @@ describe("auth", () => {
         state.sessions[index].account = res.body.data.account;
         state.sessions[index].token = res.body.data.token;
         addEndpoint(res, {
-          tags: ["auth"]
+          tags: ["Auth"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -234,7 +234,7 @@ describe("auth", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["auth"]
+          tags: ["Auth"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -260,7 +260,7 @@ describe("accounts", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["accounts"],
+          tags: ["Accounts"],
           pathParameters: [
             {
               name: "username",
@@ -287,7 +287,7 @@ describe("accounts", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["accounts"],
+          tags: ["Accounts"],
           pathParameters: []
         });
       } catch (err) {
@@ -312,7 +312,7 @@ describe("accounts", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["accounts"],
+          tags: ["Accounts"],
           pathParameters: []
         });
       } catch (err) {
@@ -337,7 +337,7 @@ describe("accounts", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["accounts"]
+          tags: ["Accounts"]
         });
       } catch (err) {
         err.message = errorWithResponse(err, res);
@@ -354,7 +354,7 @@ describe("accounts", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["accounts"],
+        tags: ["Accounts"],
         pathParameters: [
           {
             name: "accountId",
@@ -390,7 +390,7 @@ describe("accounts", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["accounts"]
+        tags: ["Accounts"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -406,7 +406,7 @@ describe("accounts", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["accounts"]
+        tags: ["Accounts"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -422,7 +422,7 @@ describe("accounts", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["accounts"],
+        tags: ["Accounts"],
         pathParameters: [
           {
             name: "accountId",
@@ -445,7 +445,7 @@ describe("accounts", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["accounts"],
+        tags: ["Accounts"],
         pathParameters: [
           {
             name: "accountId",
@@ -468,7 +468,7 @@ describe("accounts", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["accounts"],
+        tags: ["Accounts"],
         pathParameters: [
           {
             name: "accountId",
@@ -510,7 +510,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"]
+        tags: ["Pages"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -527,7 +527,7 @@ describe("pages", () => {
       expect(res.body.status).toBe("success");
       state.pages = res.body.data;
       addEndpoint(res, {
-        tags: ["pages"]
+        tags: ["Pages"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -557,7 +557,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -580,7 +580,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -603,7 +603,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -626,7 +626,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -649,7 +649,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -672,7 +672,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -698,7 +698,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -722,7 +722,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -751,7 +751,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("error");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -780,7 +780,7 @@ describe("pages", () => {
       expect(res.body.status).toBe("success");
       state.pages[0].team = res.body.data;
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -824,7 +824,7 @@ describe("pages", () => {
       expect(pagesRes.body.status).toBe("success");
       state.pages[0].team = pagesRes.body.data;
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -852,7 +852,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -885,7 +885,7 @@ describe("pages", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["pages"],
+        tags: ["Pages"],
         pathParameters: [
           {
             name: "pageId",
@@ -926,7 +926,7 @@ describe("locations", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["locations"]
+        tags: ["Locations"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -957,7 +957,7 @@ describe("locations", () => {
         res.body.data
       ];
       addEndpoint(res, {
-        tags: ["locations"]
+        tags: ["Locations"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -982,7 +982,7 @@ describe("locations", () => {
       expect(res.body.data.description).toBe("my new house at Bayelsa test");
       expect(res.body.data.visibility).toBe("private");
       addEndpoint(res, {
-        tags: ["locations"],
+        tags: ["Locations"],
         pathParameters: [
           {
             name: "locationId",
@@ -1005,7 +1005,7 @@ describe("locations", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["locations"]
+        tags: ["Locations"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -1024,7 +1024,7 @@ describe("locations", () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.status).toBe("success");
         addEndpoint(res, {
-          tags: ["locations"],
+          tags: ["Locations"],
           pathParameters: [
             {
               name: "locationId",
@@ -1049,7 +1049,7 @@ describe("locations", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["locations"],
+        tags: ["Locations"],
         pathParameters: [
           {
             name: "locationId",
@@ -1072,7 +1072,7 @@ describe("locations", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["locations"],
+        tags: ["Locations"],
         pathParameters: [
           {
             name: "locationId",
@@ -1098,7 +1098,7 @@ describe("locations", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["locations"]
+        tags: ["Locations"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -1114,7 +1114,7 @@ describe("locations", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["locations"]
+        tags: ["Locations"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -1135,7 +1135,7 @@ describe("territories", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["territories"],
+        tags: ["Territories"],
         pathParameters: [
           {
             name: "territoryId",
@@ -1164,7 +1164,7 @@ describe("territories", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["territories"],
+        tags: ["Territories"],
         pathParameters: [
           {
             name: "territoryId",
@@ -1187,7 +1187,7 @@ describe("territories", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["territories"],
+        tags: ["Territories"],
         pathParameters: [
           {
             name: "territoryId",
@@ -1225,7 +1225,7 @@ describe("files", () => {
         res2.body.data
       ];
       addEndpoint(res, {
-        tags: ["files"]
+        tags: ["Files"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -1240,7 +1240,7 @@ describe("files", () => {
     try {
       expect(res.statusCode).toEqual(200);
       addEndpoint(res, {
-        tags: ["files"],
+        tags: ["Files"],
         pathParameters: [
           {
             name: "filename",
@@ -1287,7 +1287,7 @@ describe("photos", () => {
         res.body.data
       ];
       addEndpoint(res, {
-        tags: ["photos"]
+        tags: ["Photos"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -1306,7 +1306,7 @@ describe("photos", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
-        tags: ["photos"],
+        tags: ["Photos"],
         pathParameters: [
           {
             name: "photoId",
@@ -1350,7 +1350,7 @@ describe("events", () => {
         res.body.data
       ];
       addEndpoint(res, {
-        tags: ["events"]
+        tags: ["Events"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);
@@ -1380,10 +1380,78 @@ describe("events", () => {
         res.body.data
       ];
       addEndpoint(res, {
-        tags: ["events"],
+        tags: ["Events"],
         pathParameters: [
           {
             name: "eventId",
+            description: "id of the event",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("projects", () => {
+
+  jest.setTimeout(10000);
+
+  it("/projects", async () => {
+
+    const res = await request(app)
+      .post("/projects")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        ownerId: state.sessions[0].account._id,
+        ownerType: "account",
+        name: "Niger Bridge",
+        description: "River Niger Bridge project",
+        visibility: "public",
+        locationId: state.locations[0]._id,
+        categoryId: state.locations[0]._id
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.projects = [
+        res.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["Projects"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/projects/{projectId}/update", async () => {
+
+    const res = await request(app)
+      .post(`/projects/${state.projects[0]._id}/update`)
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        name: "Niger Bridge",
+        description: "Second River Niger Bridge project",
+        visibility: "private",
+        locationId: state.locations[0]._id,
+        categoryId: state.locations[0]._id
+      });
+
+    try {
+      console.log(state.projects);
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Projects"],
+        pathParameters: [
+          {
+            name: "projectId",
             description: "id of the event",
             index: 1
           }

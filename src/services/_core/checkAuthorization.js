@@ -7,7 +7,8 @@ const {
 module.exports = async (accountId, objectId, objectType) => {
   const objectTypeModel = {
     location: models.Location,
-    event: models.Event
+    event: models.Event,
+    project: models.Project
   };
   const object = await objectTypeModel[objectType].findById(objectId);
   if (!object) {

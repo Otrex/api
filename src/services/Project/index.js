@@ -1,5 +1,6 @@
 const {
-  ServiceError
+  ServiceError,
+  AuthorizationError
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 const checkAuthorization = require("../_core/checkAuthorization");
@@ -23,6 +24,7 @@ const { string, any } = require("../../validation");
 module.exports.createProject = wrapServiceAction({
   params: {
     $$strict: "remove",
+    accountId: { ...any },
     ownerId: { ...any },
     ownerType: {
       type: "enum",
@@ -46,6 +48,16 @@ module.exports.createProject = wrapServiceAction({
     categoryId: { ...any }
   },
   async handler (params) {
+    if (params.ownerType === "account" && params.ownerId.toString() !== params.accountId.toString()) {
+      throw new AuthorizationError();
+    }
+    if (params.ownerType === "page") {
+      const page = await models.Page.findById(params.ownerId);
+      if (!page) {
+        throw new ServiceError("page not found");
+      }
+      await checkAuthorization(params.accountId, params.locationId, "location");
+    }
     const event = await models.Project.create({
       ...params
     });
@@ -86,8 +98,8 @@ module.exports.updateProject = wrapServiceAction({
     categoryId: { ...any }
   },
   async handler (params) {
-    await checkAuthorization(params.accountId, params.eventId, "event");
-    return await models.Project.findByIdAndUpdate(params.eventId, {
+    await checkAuthorization(params.accountId, params.projectId, "project");
+    return await models.Project.findByIdAndUpdate(params.projectId, {
       ...params
     }, { new: true });
     // TODO: delete coverImage and image from disk if updated

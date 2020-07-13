@@ -36,6 +36,8 @@ router.use("/photos", require("./photos"));
 
 router.use("/events", require("./events"));
 
+router.use("/projects", require("./projects"));
+
 router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));

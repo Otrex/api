@@ -56,14 +56,14 @@ Pointograph V2 API Methods
 [---] photos.list
 [+++] photos.delete
 
-[+--] events.add
+[+++] events.add
 [+--] events.list
-[+--] events.update
+[+++] events.update
 [---] events.delete
 
-[---] projects.add
+[++-] projects.add
 [---] projects.list
-[---] projects.update
+[++-] projects.update
 [---] projects.delete
 
 [---] contacts.list
