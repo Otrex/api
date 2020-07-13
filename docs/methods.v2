@@ -49,11 +49,12 @@ Pointograph V2 API Methods
 [---] territories.events.list
 [---] territories.locations.list
 
-[+--] files.upload
+[+++] files.upload
+[+++] files.fetch
 
-[+--] photos.add
-[+--] photos.list
-[+--] photos.delete
+[+++] photos.add
+[---] photos.list
+[+++] photos.delete
 
 [+--] events.add
 [+--] events.list

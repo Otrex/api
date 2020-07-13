@@ -32,7 +32,7 @@ beforeAll(async () => {
   state.connection = await db.createConnection();
   for (const model in db.models) {
     if (model === "Territory") {
-      continue
+      continue;
     }
     // eslint-disable-next-line no-prototype-builtins
     if (db.models.hasOwnProperty(model)) {
@@ -1192,6 +1192,199 @@ describe("territories", () => {
           {
             name: "territoryId",
             description: "id of the territory",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("files", () => {
+
+  jest.setTimeout(10000);
+
+  it("/files/upload", async () => {
+    const buffer = Buffer.from("a dummy file");
+    const res = await request(app)
+      .post("/files/upload")
+      .set("x-api-token", state.sessions[1].token)
+      .attach("file", buffer, "file.txt");
+    const res2 = await request(app)
+      .post("/files/upload")
+      .set("x-api-token", state.sessions[1].token)
+      .attach("file", buffer, "file.txt");
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.files = [
+        res.body.data,
+        res2.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["files"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/files/{filename}", async () => {
+    const res = await request(app)
+      .get(`/files/${state.files[0].filename}`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      addEndpoint(res, {
+        tags: ["files"],
+        pathParameters: [
+          {
+            name: "filename",
+            description: "name of the file",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("photos", () => {
+
+  jest.setTimeout(10000);
+
+  it("/photos", async () => {
+
+    const res = await request(app)
+      .post("/photos")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        ownerId: state.locations[0]._id,
+        ownerType: "location",
+        photos: [
+          {
+            filename: state.files[0].filename,
+            description: "My first location photo"
+          },
+          {
+            filename: state.files[1].filename,
+            description: "My second location photo"
+          }
+        ]
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.files = [
+        res.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["photos"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/photos/{photoId}/delete", async () => {
+
+    const photo = await db.models.Photo.findOne();
+    const res = await request(app)
+      .post(`/photos/${photo._id}/delete`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["photos"],
+        pathParameters: [
+          {
+            name: "photoId",
+            description: "id of the photo",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("events", () => {
+
+  jest.setTimeout(10000);
+
+  it("/events", async () => {
+
+    const res = await request(app)
+      .post("/events")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        ownerId: state.sessions[0].account._id,
+        ownerType: "account",
+        name: "5NOG",
+        description: "5 Nights of Glory",
+        time: "17:30",
+        startDate: "2020-07-13",
+        endDate: "2020-08-13",
+        visibility: "public",
+        locationId: state.locations[0]._id
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.events = [
+        res.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["events"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/events/{eventId}/update", async () => {
+
+    const res = await request(app)
+      .post(`/events/${state.events[0]._id}/update`)
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        name: "7NOG",
+        description: "7 Nights of Glory",
+        time: "17:40",
+        startDate: "2020-07-13",
+        endDate: "2023-08-13",
+        visibility: "private",
+        locationId: state.locations[0]._id
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.events = [
+        res.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["events"],
+        pathParameters: [
+          {
+            name: "eventId",
+            description: "id of the event",
             index: 1
           }
         ]

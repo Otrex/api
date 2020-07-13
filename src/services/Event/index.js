@@ -1,5 +1,6 @@
 const {
-  ServiceError
+  ServiceError,
+  AuthorizationError
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 const checkAuthorization = require("../_core/checkAuthorization");
@@ -23,6 +24,7 @@ const { string, any } = require("../../validation");
 module.exports.createEvent = wrapServiceAction({
   params: {
     $$strict: "remove",
+    accountId: { ...any },
     ownerId: { ...any },
     ownerType: {
       type: "enum",
@@ -36,14 +38,22 @@ module.exports.createEvent = wrapServiceAction({
       ...string,
       min: 8
     },
-    image: { ...string, optional: true },
-    coverImage: { ...string, optional: true },
+    image: {
+      ...string,
+      optional: true
+    },
+    coverImage: {
+      ...string,
+      optional: true
+    },
     time: { ...string },
     startDate: {
-      type: "date"
+      type: "date",
+      convert: true
     },
     endDate: {
-      type: "date"
+      type: "date",
+      convert: true
     },
     visibility: {
       type: "enum",
@@ -52,6 +62,16 @@ module.exports.createEvent = wrapServiceAction({
     locationId: { ...any }
   },
   async handler (params) {
+    if (params.ownerType === "account" && params.ownerId.toString() !== params.accountId.toString()) {
+      throw new AuthorizationError();
+    }
+    if (params.ownerType === "page") {
+      const page = await models.Page.findById(params.ownerId);
+      if (!page) {
+        throw new ServiceError("page not found");
+      }
+      await checkAuthorization(params.accountId, params.locationId, "location");
+    }
     const event = await models.Event.create({
       ...params
     });
@@ -82,14 +102,22 @@ module.exports.updateEvent = wrapServiceAction({
       ...string,
       min: 8
     },
-    image: { ...string, optional: true },
-    coverImage: { ...string, optional: true },
+    image: {
+      ...string,
+      optional: true
+    },
+    coverImage: {
+      ...string,
+      optional: true
+    },
     time: { ...string },
     startDate: {
-      type: "date"
+      type: "date",
+      convert: true
     },
     endDate: {
-      type: "date"
+      type: "date",
+      convert: true
     },
     visibility: {
       type: "enum",

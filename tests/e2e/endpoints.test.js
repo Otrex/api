@@ -460,65 +460,6 @@ describe("locations and search", () => {
   });
 });
 
-describe("territory", () => {
-  // eslint-disable-next-line no-undef
-  jest.setTimeout(30000);
-
-  it("/territories/track", async () => {
-    // populate territories
-    const countries = require("../../src/lib/countries.json");
-    for (const feature of countries.features) {
-      if (feature.properties.ADMIN === "Antarctica") {
-        continue;
-      }
-      await db.models.Territory.create({
-        name: feature.properties.ADMIN,
-        description: feature.properties.ADMIN,
-        properties: feature.properties,
-        geometry: feature.geometry
-      }).catch(console.error);
-    }
-    state.territories = await db.models.Territory.find();
-    const res = await request(app)
-      .post("/territories/track")
-      .set("x-api-token", state.sessions[1].token)
-      .send({
-        territoryId: state.territories[0]._id
-      });
-    await request(app)
-      .post("/territories/track")
-      .set("x-api-token", state.sessions[1].token)
-      .send({
-        territoryId: state.territories[1]._id
-      });
-    try {
-      expect(res.statusCode).toEqual(200);
-      expect(res.body.status).toBe("success");
-      addEndpoint(res);
-    } catch (err) {
-      err.message = errorWithResponse;
-      throw err;
-    }
-  });
-
-  it("/territories/untrack", async () => {
-    const res = await request(app)
-      .post("/territories/untrack")
-      .set("x-api-token", state.sessions[1].token)
-      .send({
-        territoryId: state.territories[0]._id
-      });
-    try {
-      expect(res.statusCode).toEqual(200);
-      expect(res.body.status).toBe("success");
-      addEndpoint(res);
-    } catch (err) {
-      err.message = errorWithResponse;
-      throw err;
-    }
-  });
-});
-
 it("/search", async () => {
   const res = await request(app)
     .post("/search")
