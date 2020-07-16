@@ -49,6 +49,11 @@ const schema = new Schema({
   },
   profileImage: { type: String },
   coverImage: { type: String },
+  visibility: {
+    type: String,
+    enum: ["public", "private"],
+    default: "private"
+  },
   status: {
     type: String,
     default: "active"

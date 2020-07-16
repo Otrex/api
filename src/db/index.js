@@ -21,6 +21,12 @@ module.exports = {
     AdminSession: require("./models/AdminSession"),
     Photo: require("./models/Photo"),
     Event: require("./models/Event"),
-    Project: require("./models/Project")
+    Project: require("./models/Project"),
+    Contact: require("./models/Contact"),
+    Conversation: require("./models/Conversation"),
+    ConversationMessage: require("./models/ConversationMessage")
+  },
+  utils: {
+    ObjectId: require("mongoose").Types.ObjectId
   }
 };

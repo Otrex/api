@@ -1444,7 +1444,6 @@ describe("projects", () => {
       });
 
     try {
-      console.log(state.projects);
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
@@ -1453,6 +1452,101 @@ describe("projects", () => {
           {
             name: "projectId",
             description: "id of the event",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("contacts", () => {
+
+  jest.setTimeout(10000);
+
+  it("/contacts", async () => {
+
+    const res = await request(app)
+      .post("/contacts")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        phoneNumbers: users.map(u => u.phoneNumber)
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Contacts"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/contacts", async () => {
+
+    const res = await request(app)
+      .get("/contacts")
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.contacts = res.body.data;
+      addEndpoint(res, {
+        tags: ["Contacts"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/contacts/{contactId}/block", async () => {
+
+    const res = await request(app)
+      .post(`/contacts/${state.contacts[0]._id}/block`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Contacts"],
+        pathParameters: [
+          {
+            name: "contactId",
+            description: "id of the contact",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/contacts/{contactId}/unblock", async () => {
+
+    const res = await request(app)
+      .post(`/contacts/${state.contacts[0]._id}/unblock`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Contacts"],
+        pathParameters: [
+          {
+            name: "contactId",
+            description: "id of the contact",
             index: 1
           }
         ]

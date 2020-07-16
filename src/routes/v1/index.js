@@ -38,6 +38,8 @@ router.use("/events", require("./events"));
 
 router.use("/projects", require("./projects"));
 
+router.use("/contacts", require("./contacts"));
+
 router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
