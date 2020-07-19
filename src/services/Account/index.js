@@ -37,7 +37,12 @@ module.exports.createAccount = wrapServiceAction({
       min: 4,
       max: 16,
       lowercase: true,
-      pattern: /^[a-z0-9]+$/
+      pattern: /^[a-z0-9_]+$/,
+      messages: {
+        stringMin: "your username should be more than 3 characters",
+        stringMax: "your username should not be at more than 16 characters",
+        stringPattern: "your username should only contain letters, numbers and underscores"
+      }
     },
     password: {
       ...string,

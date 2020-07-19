@@ -33,11 +33,17 @@ module.exports.createLocation = wrapServiceAction({
     },
     name: {
       ...string,
-      min: 4
+      min: 4,
+      messages: {
+        stringMin: "description should be more than 3 characters"
+      }
     },
     description: {
       ...string,
-      min: 8
+      min: 8,
+      messages: {
+        stringMin: "description should be more than 8 characters"
+      }
     },
     categoryId: { ...any },
     visibility: {
@@ -47,8 +53,14 @@ module.exports.createLocation = wrapServiceAction({
     eddress: {
       ...string,
       min: 4,
+      max: 32,
       lowercase: true,
-      pattern: /^[a-zA-Z0-9-_]+$/
+      pattern: /^[a-zA-Z0-9-_]+$/,
+      messages: {
+        stringMin: "eddress should be more than 3 characters",
+        stringMax: "eddress should not be at more than 32 characters",
+        stringPattern: "eddress should only contain letters, numbers, underscores and dashes"
+      }
     },
     tags: {
       type: "array",

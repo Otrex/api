@@ -13,8 +13,8 @@ class ServiceError extends GenericError {
 }
 
 class ValidationError extends GenericError {
-  constructor(errors = [], message = "validation error") {
-    message = `${message}: ${errors[0].message}`;
+  constructor(errors = [], message = "") {
+    message = `${errors[0].message}`;
     super(message);
     this.errors = errors;
   }
