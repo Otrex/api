@@ -127,7 +127,7 @@
                   "status": "success",
                   "message": "verification code has been verified",
                   "data": {
-                    "verificationToken": "d62424dcd566c14b51fb8a7331a35676838964e1f81c8256a2b06516cc5e698e"
+                    "verificationToken": "9bfb4ee8948a027c020223a804382a91deecfb94ea518a1e1f19bbfddb54d8b2"
                   }
                 }
               }
@@ -175,7 +175,7 @@
                 "email": "test3@example.com",
                 "username": "test3",
                 "password": "password",
-                "phoneNumberVerificationToken": "d62424dcd566c14b51fb8a7331a35676838964e1f81c8256a2b06516cc5e698e"
+                "phoneNumberVerificationToken": "9bfb4ee8948a027c020223a804382a91deecfb94ea518a1e1f19bbfddb54d8b2"
               }
             }
           }
@@ -251,15 +251,15 @@
                       "followingsCount": 0,
                       "visibility": "private",
                       "status": "active",
-                      "_id": "5f104e380e11957390b37126",
+                      "_id": "5f14a7f0c98e4c283be022f5",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-16T12:55:20.972Z",
-                      "updatedAt": "2020-07-16T12:55:20.972Z"
+                      "createdAt": "2020-07-19T20:07:12.115Z",
+                      "updatedAt": "2020-07-19T20:07:12.115Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTA0ZTM4MGUxMTk1NzM5MGIzNzEyNiIsImNvdW50ZXIiOiJnZ2VOc3oiLCJpYXQiOjE1OTQ5MDQxMjEsImV4cCI6MTU5NDk5MDUyMX0.M63Pp66RA7RfX_H6PofbfVkz5BjxIFXrbhDrled8ukU"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTRhN2YwYzk4ZTRjMjgzYmUwMjJmNSIsImNvdW50ZXIiOiJHM05Ob3MiLCJpYXQiOjE1OTUxODkyMzIsImV4cCI6MTU5NTI3NTYzMn0.jWKXWwhLs5h-PGwndpcr5tjB_SzkMgJRQmqmJte8pdc"
                   }
                 }
               }
@@ -367,15 +367,15 @@
                       "followingsCount": 0,
                       "visibility": "private",
                       "status": "active",
-                      "_id": "5f104e380e11957390b37126",
+                      "_id": "5f14a7f0c98e4c283be022f5",
                       "email": "test3@example.com",
                       "username": "test3",
                       "countryCode": "NG",
                       "phoneNumber": "+2348023456710",
-                      "createdAt": "2020-07-16T12:55:20.972Z",
-                      "updatedAt": "2020-07-16T12:55:20.972Z"
+                      "createdAt": "2020-07-19T20:07:12.115Z",
+                      "updatedAt": "2020-07-19T20:07:12.115Z"
                     },
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTA0ZTM4MGUxMTk1NzM5MGIzNzEyNiIsImNvdW50ZXIiOiJFeTVlVloiLCJpYXQiOjE1OTQ5MDQxMjEsImV4cCI6MTU5NDk5MDUyMX0.mut1XpGE79GogHGnb82Q0CCiW9vcwsXp_Myt8g4TkYE"
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTRhN2YwYzk4ZTRjMjgzYmUwMjJmNSIsImNvdW50ZXIiOiJmUjlrWGYiLCJpYXQiOjE1OTUxODkyMzIsImV4cCI6MTU5NTI3NTYzMn0.pA9_Q96K23pDEDwJJMWPjqLgXtnd8z3kcqtxrMirFiM"
                   }
                 }
               }
@@ -510,7 +510,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f104e380e11957390b37126",
+                    "_id": "5f14a7f0c98e4c283be022f5",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -592,7 +592,7 @@
                   "data": {
                     "followersCount": 0,
                     "followingsCount": 0,
-                    "_id": "5f104e380e11957390b37126",
+                    "_id": "5f14a7f0c98e4c283be022f5",
                     "email": "test3@example.com",
                     "username": "test3",
                     "placesCount": 0,
@@ -637,7 +637,7 @@
                 }
               },
               "example": {
-                "profileImage": "v8BxVajrDhMCVUhy.png",
+                "profileImage": "rElQ7T5Fn8rNaQyl.png",
                 "location": "Choba, Port Harcourt"
               }
             }
@@ -688,7 +688,7 @@
                   "data": {
                     "username": "test3",
                     "email": "test3@example.com",
-                    "profileImage": "v8BxVajrDhMCVUhy.png",
+                    "profileImage": "rElQ7T5Fn8rNaQyl.png",
                     "location": "Choba, Port Harcourt",
                     "followersCount": 0,
                     "followingsCount": 0
@@ -861,9 +861,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e380e11957390b37128",
+                      "_id": "5f14a7f0c98e4c283be022f6",
                       "username": "test1",
-                      "profileImage": "r8nr2rIAID3fRmKN.png"
+                      "profileImage": "dcB8iKI09kEOKysO.png"
                     }
                   ]
                 }
@@ -922,9 +922,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e380e11957390b37127",
+                      "_id": "5f14a7f0c98e4c283be022f7",
                       "username": "test2",
-                      "profileImage": "0TpkMYAm6QukNpLY.png"
+                      "profileImage": "uDnmFH695TRfy6h6.png"
                     }
                   ]
                 }
@@ -992,9 +992,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e380e11957390b37128",
+                      "_id": "5f14a7f0c98e4c283be022f6",
                       "username": "test1",
-                      "profileImage": "r8nr2rIAID3fRmKN.png"
+                      "profileImage": "dcB8iKI09kEOKysO.png"
                     }
                   ]
                 }
@@ -1062,9 +1062,9 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e380e11957390b37127",
+                      "_id": "5f14a7f0c98e4c283be022f7",
                       "username": "test2",
-                      "profileImage": "0TpkMYAm6QukNpLY.png"
+                      "profileImage": "uDnmFH695TRfy6h6.png"
                     }
                   ]
                 }
@@ -1343,33 +1343,33 @@
                   "data": [
                     {
                       "followersCount": 0,
-                      "_id": "5f104e3a0e11957390b37135",
+                      "_id": "5f14a7f1c98e4c283be02304",
                       "name": "United Bank of Africa",
                       "image": "image.jpg",
                       "team": [
                         {
                           "assignedObjects": [
                             {
-                              "_id": "5f104e3b0e11957390b3713a",
+                              "_id": "5f14a7f2c98e4c283be02309",
                               "objectType": "location",
                               "objectPath": "*"
                             },
                             {
-                              "_id": "5f104e3b0e11957390b3713b",
+                              "_id": "5f14a7f2c98e4c283be0230a",
                               "objectType": "event",
-                              "objectPath": "5f104e3b0e11957390b37139"
+                              "objectPath": "5f14a7f2c98e4c283be02308"
                             },
                             {
-                              "_id": "5f104e3b0e11957390b3713c",
+                              "_id": "5f14a7f2c98e4c283be0230b",
                               "objectType": "project",
-                              "objectPath": "5f104e3b0e11957390b37139"
+                              "objectPath": "5f14a7f2c98e4c283be02308"
                             }
                           ],
-                          "_id": "5f104e3b0e11957390b37139",
-                          "accountId": "5f104e380e11957390b37128",
+                          "_id": "5f14a7f2c98e4c283be02308",
+                          "accountId": "5f14a7f0c98e4c283be022f6",
                           "role": "maintainer",
-                          "createdAt": "2020-07-16T12:55:23.581Z",
-                          "updatedAt": "2020-07-16T12:55:23.729Z"
+                          "createdAt": "2020-07-19T20:07:14.395Z",
+                          "updatedAt": "2020-07-19T20:07:14.525Z"
                         }
                       ]
                     }
@@ -1595,7 +1595,7 @@
                       "contact@uba.com",
                       "help@uba.com"
                     ],
-                    "_id": "5f104e3a0e11957390b37135",
+                    "_id": "5f14a7f1c98e4c283be02304",
                     "name": "United Bank of Africa",
                     "description": "United Bank of Africa with a modified description",
                     "shortName": "UBA",
@@ -1604,8 +1604,8 @@
                     "image": "image.jpg",
                     "coverImage": "cover-image.jpg",
                     "streetAddress": "33 Road Lane Street",
-                    "createdAt": "2020-07-16T12:55:22.999Z",
-                    "updatedAt": "2020-07-16T12:55:23.109Z",
+                    "createdAt": "2020-07-19T20:07:13.863Z",
+                    "updatedAt": "2020-07-19T20:07:13.964Z",
                     "__v": 1
                   }
                 }
@@ -1777,14 +1777,14 @@
                   "message": "success",
                   "data": [
                     {
-                      "_id": "5f104e380e11957390b37128",
+                      "_id": "5f14a7f0c98e4c283be022f6",
                       "username": "test1",
-                      "profileImage": "r8nr2rIAID3fRmKN.png"
+                      "profileImage": "dcB8iKI09kEOKysO.png"
                     },
                     {
-                      "_id": "5f104e380e11957390b37126",
+                      "_id": "5f14a7f0c98e4c283be022f5",
                       "username": "test3",
-                      "profileImage": "v8BxVajrDhMCVUhy.png"
+                      "profileImage": "rElQ7T5Fn8rNaQyl.png"
                     }
                   ]
                 }
@@ -2048,11 +2048,11 @@
                   "data": [
                     {
                       "assignedObjects": [],
-                      "_id": "5f104e3b0e11957390b37139",
-                      "accountId": "5f104e380e11957390b37128",
+                      "_id": "5f14a7f2c98e4c283be02308",
+                      "accountId": "5f14a7f0c98e4c283be022f6",
                       "role": "maintainer",
-                      "createdAt": "2020-07-16T12:55:23.581Z",
-                      "updatedAt": "2020-07-16T12:55:23.581Z"
+                      "createdAt": "2020-07-19T20:07:14.395Z",
+                      "updatedAt": "2020-07-19T20:07:14.395Z"
                     }
                   ]
                 }
@@ -2121,11 +2121,11 @@
                   },
                   {
                     "objectType": "event",
-                    "objectPath": "5f104e3b0e11957390b37139"
+                    "objectPath": "5f14a7f2c98e4c283be02308"
                   },
                   {
                     "objectType": "project",
-                    "objectPath": "5f104e3b0e11957390b37139"
+                    "objectPath": "5f14a7f2c98e4c283be02308"
                   }
                 ]
               }
@@ -2340,46 +2340,46 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e3b0e11957390b3713d",
+                      "_id": "5f14a7f2c98e4c283be0230c",
                       "name": "Office / Business Premises",
                       "__v": 0,
-                      "createdAt": "2020-07-16T12:55:23.912Z",
-                      "updatedAt": "2020-07-16T12:55:23.912Z"
+                      "createdAt": "2020-07-19T20:07:14.704Z",
+                      "updatedAt": "2020-07-19T20:07:14.704Z"
                     },
                     {
-                      "_id": "5f104e3b0e11957390b3713e",
+                      "_id": "5f14a7f2c98e4c283be0230d",
                       "name": "Event Venue",
                       "__v": 0,
-                      "createdAt": "2020-07-16T12:55:23.913Z",
-                      "updatedAt": "2020-07-16T12:55:23.913Z"
+                      "createdAt": "2020-07-19T20:07:14.704Z",
+                      "updatedAt": "2020-07-19T20:07:14.704Z"
                     },
                     {
-                      "_id": "5f104e3b0e11957390b3713f",
+                      "_id": "5f14a7f2c98e4c283be0230e",
                       "name": "Project Site",
                       "__v": 0,
-                      "createdAt": "2020-07-16T12:55:23.913Z",
-                      "updatedAt": "2020-07-16T12:55:23.913Z"
+                      "createdAt": "2020-07-19T20:07:14.705Z",
+                      "updatedAt": "2020-07-19T20:07:14.705Z"
                     },
                     {
-                      "_id": "5f104e3b0e11957390b37140",
+                      "_id": "5f14a7f2c98e4c283be0230f",
                       "name": "Property for Sale/Lease/Rent",
                       "__v": 0,
-                      "createdAt": "2020-07-16T12:55:23.914Z",
-                      "updatedAt": "2020-07-16T12:55:23.914Z"
+                      "createdAt": "2020-07-19T20:07:14.705Z",
+                      "updatedAt": "2020-07-19T20:07:14.705Z"
                     },
                     {
-                      "_id": "5f104e3b0e11957390b37141",
+                      "_id": "5f14a7f2c98e4c283be02310",
                       "name": "Place of Worship / Religion",
                       "__v": 0,
-                      "createdAt": "2020-07-16T12:55:23.914Z",
-                      "updatedAt": "2020-07-16T12:55:23.914Z"
+                      "createdAt": "2020-07-19T20:07:14.706Z",
+                      "updatedAt": "2020-07-19T20:07:14.706Z"
                     },
                     {
-                      "_id": "5f104e3b0e11957390b37142",
+                      "_id": "5f14a7f2c98e4c283be02311",
                       "name": "Others",
                       "__v": 0,
-                      "createdAt": "2020-07-16T12:55:23.914Z",
-                      "updatedAt": "2020-07-16T12:55:23.914Z"
+                      "createdAt": "2020-07-19T20:07:14.706Z",
+                      "updatedAt": "2020-07-19T20:07:14.706Z"
                     }
                   ]
                 }
@@ -2493,7 +2493,7 @@
               "example": {
                 "name": "my house",
                 "description": "my house at bayelsa test",
-                "categoryId": "5f104e3b0e11957390b37142",
+                "categoryId": "5f14a7f2c98e4c283be02311",
                 "visibility": "public",
                 "eddress": "myhouse",
                 "tags": [
@@ -2597,24 +2597,24 @@
                       "home",
                       "village"
                     ],
-                    "_id": "5f104e3b0e11957390b37143",
-                    "ownerId": "5f104e380e11957390b37128",
+                    "_id": "5f14a7f2c98e4c283be02312",
+                    "ownerId": "5f14a7f0c98e4c283be022f6",
                     "ownerType": "account",
                     "name": "my house",
                     "description": "my house at bayelsa test",
-                    "categoryId": "5f104e3b0e11957390b37142",
+                    "categoryId": "5f14a7f2c98e4c283be02311",
                     "eddress": "myhouse",
                     "preciseLocation": {
                       "coordinates": [
                         4.89898,
                         4.384938
                       ],
-                      "_id": "5f104e3b0e11957390b37144",
+                      "_id": "5f14a7f2c98e4c283be02313",
                       "type": "Point"
                     },
                     "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-07-16T12:55:24.006Z",
-                    "updatedAt": "2020-07-16T12:55:24.006Z",
+                    "createdAt": "2020-07-19T20:07:14.781Z",
+                    "updatedAt": "2020-07-19T20:07:14.781Z",
                     "__v": 0
                   }
                 }
@@ -2730,24 +2730,24 @@
                         "home",
                         "village"
                       ],
-                      "_id": "5f104e3b0e11957390b37143",
-                      "ownerId": "5f104e380e11957390b37128",
+                      "_id": "5f14a7f2c98e4c283be02312",
+                      "ownerId": "5f14a7f0c98e4c283be022f6",
                       "ownerType": "account",
                       "name": "my house",
                       "description": "my new house at Bayelsa test",
-                      "categoryId": "5f104e3b0e11957390b37141",
+                      "categoryId": "5f14a7f2c98e4c283be02310",
                       "eddress": "myhouse",
                       "preciseLocation": {
                         "coordinates": [
                           4.89898,
                           4.384938
                         ],
-                        "_id": "5f104e3b0e11957390b37144",
+                        "_id": "5f14a7f2c98e4c283be02313",
                         "type": "Point"
                       },
                       "plusCode": "6FP69VMX+XH",
-                      "createdAt": "2020-07-16T12:55:24.006Z",
-                      "updatedAt": "2020-07-16T12:55:24.050Z",
+                      "createdAt": "2020-07-19T20:07:14.781Z",
+                      "updatedAt": "2020-07-19T20:07:14.824Z",
                       "__v": 0
                     }
                   ]
@@ -2857,7 +2857,7 @@
               "example": {
                 "name": "my house",
                 "description": "my new house at Bayelsa test",
-                "categoryId": "5f104e3b0e11957390b37141",
+                "categoryId": "5f14a7f2c98e4c283be02310",
                 "visibility": "private",
                 "tags": [
                   "home",
@@ -2956,24 +2956,24 @@
                       "home",
                       "village"
                     ],
-                    "_id": "5f104e3b0e11957390b37143",
-                    "ownerId": "5f104e380e11957390b37128",
+                    "_id": "5f14a7f2c98e4c283be02312",
+                    "ownerId": "5f14a7f0c98e4c283be022f6",
                     "ownerType": "account",
                     "name": "my house",
                     "description": "my new house at Bayelsa test",
-                    "categoryId": "5f104e3b0e11957390b37141",
+                    "categoryId": "5f14a7f2c98e4c283be02310",
                     "eddress": "myhouse",
                     "preciseLocation": {
                       "coordinates": [
                         4.89898,
                         4.384938
                       ],
-                      "_id": "5f104e3b0e11957390b37144",
+                      "_id": "5f14a7f2c98e4c283be02313",
                       "type": "Point"
                     },
                     "plusCode": "6FP69VMX+XH",
-                    "createdAt": "2020-07-16T12:55:24.006Z",
-                    "updatedAt": "2020-07-16T12:55:24.050Z",
+                    "createdAt": "2020-07-19T20:07:14.781Z",
+                    "updatedAt": "2020-07-19T20:07:14.824Z",
                     "__v": 0
                   }
                 }
@@ -3141,14 +3141,14 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e380e11957390b37126",
+                      "_id": "5f14a7f0c98e4c283be022f5",
                       "username": "test3",
-                      "profileImage": "v8BxVajrDhMCVUhy.png"
+                      "profileImage": "rElQ7T5Fn8rNaQyl.png"
                     },
                     {
-                      "_id": "5f104e380e11957390b37127",
+                      "_id": "5f14a7f0c98e4c283be022f7",
                       "username": "test2",
-                      "profileImage": "0TpkMYAm6QukNpLY.png"
+                      "profileImage": "uDnmFH695TRfy6h6.png"
                     }
                   ]
                 }
@@ -3185,7 +3185,7 @@
                 }
               },
               "example": {
-                "locationId": "5f104e3b0e11957390b37143"
+                "locationId": "5f14a7f2c98e4c283be02312"
               }
             }
           }
@@ -3304,11 +3304,11 @@
                   "message": "alarm created",
                   "data": {
                     "status": "active",
-                    "_id": "5f104e3c0e11957390b3714d",
-                    "accountId": "5f104e380e11957390b37128",
-                    "locationId": "5f104e3b0e11957390b37143",
-                    "createdAt": "2020-07-16T12:55:24.398Z",
-                    "updatedAt": "2020-07-16T12:55:24.398Z",
+                    "_id": "5f14a7f3c98e4c283be0231c",
+                    "accountId": "5f14a7f0c98e4c283be022f6",
+                    "locationId": "5f14a7f2c98e4c283be02312",
+                    "createdAt": "2020-07-19T20:07:15.173Z",
+                    "updatedAt": "2020-07-19T20:07:15.173Z",
                     "__v": 0,
                     "location": {
                       "visibility": "private",
@@ -3317,24 +3317,24 @@
                         "home",
                         "village"
                       ],
-                      "_id": "5f104e3b0e11957390b37143",
-                      "ownerId": "5f104e380e11957390b37128",
+                      "_id": "5f14a7f2c98e4c283be02312",
+                      "ownerId": "5f14a7f0c98e4c283be022f6",
                       "ownerType": "account",
                       "name": "my house",
                       "description": "my new house at Bayelsa test",
-                      "categoryId": "5f104e3b0e11957390b37141",
+                      "categoryId": "5f14a7f2c98e4c283be02310",
                       "eddress": "myhouse",
                       "preciseLocation": {
                         "coordinates": [
                           4.89898,
                           4.384938
                         ],
-                        "_id": "5f104e3b0e11957390b37144",
+                        "_id": "5f14a7f2c98e4c283be02313",
                         "type": "Point"
                       },
                       "plusCode": "6FP69VMX+XH",
-                      "createdAt": "2020-07-16T12:55:24.006Z",
-                      "updatedAt": "2020-07-16T12:55:24.316Z",
+                      "createdAt": "2020-07-19T20:07:14.781Z",
+                      "updatedAt": "2020-07-19T20:07:15.095Z",
                       "__v": 0
                     }
                   }
@@ -3474,39 +3474,39 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e3c0e11957390b3714d",
+                      "_id": "5f14a7f3c98e4c283be0231c",
                       "status": "active",
-                      "accountId": "5f104e380e11957390b37128",
-                      "locationId": "5f104e3b0e11957390b37143",
-                      "createdAt": "2020-07-16T12:55:24.398Z",
-                      "updatedAt": "2020-07-16T12:55:24.398Z",
+                      "accountId": "5f14a7f0c98e4c283be022f6",
+                      "locationId": "5f14a7f2c98e4c283be02312",
+                      "createdAt": "2020-07-19T20:07:15.173Z",
+                      "updatedAt": "2020-07-19T20:07:15.173Z",
                       "__v": 0,
                       "location": [
                         {
-                          "_id": "5f104e3b0e11957390b37143",
+                          "_id": "5f14a7f2c98e4c283be02312",
                           "visibility": "private",
                           "followersCount": 0,
                           "tags": [
                             "home",
                             "village"
                           ],
-                          "ownerId": "5f104e380e11957390b37128",
+                          "ownerId": "5f14a7f0c98e4c283be022f6",
                           "ownerType": "account",
                           "name": "my house",
                           "description": "my new house at Bayelsa test",
-                          "categoryId": "5f104e3b0e11957390b37141",
+                          "categoryId": "5f14a7f2c98e4c283be02310",
                           "eddress": "myhouse",
                           "preciseLocation": {
                             "coordinates": [
                               4.89898,
                               4.384938
                             ],
-                            "_id": "5f104e3b0e11957390b37144",
+                            "_id": "5f14a7f2c98e4c283be02313",
                             "type": "Point"
                           },
                           "plusCode": "6FP69VMX+XH",
-                          "createdAt": "2020-07-16T12:55:24.006Z",
-                          "updatedAt": "2020-07-16T12:55:24.316Z",
+                          "createdAt": "2020-07-19T20:07:14.781Z",
+                          "updatedAt": "2020-07-19T20:07:15.095Z",
                           "__v": 0
                         }
                       ]
@@ -3732,7 +3732,7 @@
                   "status": "success",
                   "message": "upload successful",
                   "data": {
-                    "filename": "mSFuYabZXQqhSAKsSa0oh8J0UdeP7sV35ZhM5efNAJuUuNSvhxNg4m2QSn9cF99W.txt"
+                    "filename": "3OZst1OuCnCDPhQPzFaX5PPc8UwCnKxvFmTA1XIhvkSHIrx590Vatv0FpkEPG8Ol.txt"
                   }
                 }
               }
@@ -3825,15 +3825,15 @@
                 }
               },
               "example": {
-                "ownerId": "5f104e3b0e11957390b37143",
+                "ownerId": "5f14a7f2c98e4c283be02312",
                 "ownerType": "location",
                 "photos": [
                   {
-                    "filename": "mSFuYabZXQqhSAKsSa0oh8J0UdeP7sV35ZhM5efNAJuUuNSvhxNg4m2QSn9cF99W.txt",
+                    "filename": "3OZst1OuCnCDPhQPzFaX5PPc8UwCnKxvFmTA1XIhvkSHIrx590Vatv0FpkEPG8Ol.txt",
                     "description": "My first location photo"
                   },
                   {
-                    "filename": "Jkr84exzfRfaPGjxV36Goo8XNbz926qz90nXJg12Axd5s1IneYHRT8kEBZhq5hMi.txt",
+                    "filename": "P3tcpdWnaYb9Rtx9SefcLFiVvphNHKtHEH2ZRHoO2dQyiUVaUmHDTm0N8q9xc5wi.txt",
                     "description": "My second location photo"
                   }
                 ]
@@ -3968,7 +3968,7 @@
                 }
               },
               "example": {
-                "ownerId": "5f104e380e11957390b37128",
+                "ownerId": "5f14a7f0c98e4c283be022f6",
                 "ownerType": "account",
                 "name": "5NOG",
                 "description": "5 Nights of Glory",
@@ -3976,7 +3976,7 @@
                 "startDate": "2020-07-13",
                 "endDate": "2020-08-13",
                 "visibility": "public",
-                "locationId": "5f104e3b0e11957390b37143"
+                "locationId": "5f14a7f2c98e4c283be02312"
               }
             }
           }
@@ -4046,17 +4046,17 @@
                   "message": "success",
                   "data": {
                     "visibility": "public",
-                    "_id": "5f104e3e0e11957390b37154",
-                    "ownerId": "5f104e380e11957390b37128",
+                    "_id": "5f14a7f4c98e4c283be02323",
+                    "ownerId": "5f14a7f0c98e4c283be022f6",
                     "ownerType": "account",
                     "name": "5NOG",
                     "description": "5 Nights of Glory",
                     "time": "17:30",
                     "startDate": "2020-07-13T00:00:00.000Z",
                     "endDate": "2020-08-13T00:00:00.000Z",
-                    "locationId": "5f104e3b0e11957390b37143",
-                    "createdAt": "2020-07-16T12:55:26.222Z",
-                    "updatedAt": "2020-07-16T12:55:26.222Z",
+                    "locationId": "5f14a7f2c98e4c283be02312",
+                    "createdAt": "2020-07-19T20:07:16.157Z",
+                    "updatedAt": "2020-07-19T20:07:16.157Z",
                     "__v": 0
                   }
                 }
@@ -4126,7 +4126,7 @@
                 "startDate": "2020-07-13",
                 "endDate": "2023-08-13",
                 "visibility": "private",
-                "locationId": "5f104e3b0e11957390b37143"
+                "locationId": "5f14a7f2c98e4c283be02312"
               }
             }
           }
@@ -4196,17 +4196,17 @@
                   "message": "success",
                   "data": {
                     "visibility": "private",
-                    "_id": "5f104e3e0e11957390b37154",
-                    "ownerId": "5f104e380e11957390b37128",
+                    "_id": "5f14a7f4c98e4c283be02323",
+                    "ownerId": "5f14a7f0c98e4c283be022f6",
                     "ownerType": "account",
                     "name": "7NOG",
                     "description": "7 Nights of Glory",
                     "time": "17:40",
                     "startDate": "2020-07-13T00:00:00.000Z",
                     "endDate": "2023-08-13T00:00:00.000Z",
-                    "locationId": "5f104e3b0e11957390b37143",
-                    "createdAt": "2020-07-16T12:55:26.222Z",
-                    "updatedAt": "2020-07-16T12:55:26.259Z",
+                    "locationId": "5f14a7f2c98e4c283be02312",
+                    "createdAt": "2020-07-19T20:07:16.157Z",
+                    "updatedAt": "2020-07-19T20:07:16.191Z",
                     "__v": 0
                   }
                 }
@@ -4261,13 +4261,13 @@
                 }
               },
               "example": {
-                "ownerId": "5f104e380e11957390b37128",
+                "ownerId": "5f14a7f0c98e4c283be022f6",
                 "ownerType": "account",
                 "name": "Niger Bridge",
                 "description": "River Niger Bridge project",
                 "visibility": "public",
-                "locationId": "5f104e3b0e11957390b37143",
-                "categoryId": "5f104e3b0e11957390b37143"
+                "locationId": "5f14a7f2c98e4c283be02312",
+                "categoryId": "5f14a7f2c98e4c283be02312"
               }
             }
           }
@@ -4331,15 +4331,15 @@
                   "message": "success",
                   "data": {
                     "visibility": "public",
-                    "_id": "5f104e3e0e11957390b37155",
-                    "ownerId": "5f104e380e11957390b37128",
+                    "_id": "5f14a7f4c98e4c283be02324",
+                    "ownerId": "5f14a7f0c98e4c283be022f6",
                     "ownerType": "account",
                     "name": "Niger Bridge",
                     "description": "River Niger Bridge project",
-                    "locationId": "5f104e3b0e11957390b37143",
-                    "categoryId": "5f104e3b0e11957390b37143",
-                    "createdAt": "2020-07-16T12:55:26.294Z",
-                    "updatedAt": "2020-07-16T12:55:26.294Z",
+                    "locationId": "5f14a7f2c98e4c283be02312",
+                    "categoryId": "5f14a7f2c98e4c283be02312",
+                    "createdAt": "2020-07-19T20:07:16.231Z",
+                    "updatedAt": "2020-07-19T20:07:16.231Z",
                     "__v": 0
                   }
                 }
@@ -4400,8 +4400,8 @@
                 "name": "Niger Bridge",
                 "description": "Second River Niger Bridge project",
                 "visibility": "private",
-                "locationId": "5f104e3b0e11957390b37143",
-                "categoryId": "5f104e3b0e11957390b37143"
+                "locationId": "5f14a7f2c98e4c283be02312",
+                "categoryId": "5f14a7f2c98e4c283be02312"
               }
             }
           }
@@ -4465,15 +4465,15 @@
                   "message": "success",
                   "data": {
                     "visibility": "private",
-                    "_id": "5f104e3e0e11957390b37155",
-                    "ownerId": "5f104e380e11957390b37128",
+                    "_id": "5f14a7f4c98e4c283be02324",
+                    "ownerId": "5f14a7f0c98e4c283be022f6",
                     "ownerType": "account",
                     "name": "Niger Bridge",
                     "description": "Second River Niger Bridge project",
-                    "locationId": "5f104e3b0e11957390b37143",
-                    "categoryId": "5f104e3b0e11957390b37143",
-                    "createdAt": "2020-07-16T12:55:26.294Z",
-                    "updatedAt": "2020-07-16T12:55:26.329Z",
+                    "locationId": "5f14a7f2c98e4c283be02312",
+                    "categoryId": "5f14a7f2c98e4c283be02312",
+                    "createdAt": "2020-07-19T20:07:16.231Z",
+                    "updatedAt": "2020-07-19T20:07:16.270Z",
                     "__v": 0
                   }
                 }
@@ -4568,21 +4568,21 @@
                   "message": "success",
                   "data": [
                     {
-                      "_id": "5f104e3e0e11957390b37156",
+                      "_id": "5f14a7f4c98e4c283be02325",
                       "isBlocked": false,
                       "account": {
                         "username": "test2",
                         "phoneNumber": "+2348023456789",
-                        "profileImage": "0TpkMYAm6QukNpLY.png"
+                        "profileImage": "uDnmFH695TRfy6h6.png"
                       }
                     },
                     {
-                      "_id": "5f104e3e0e11957390b37157",
+                      "_id": "5f14a7f4c98e4c283be02326",
                       "isBlocked": false,
                       "account": {
                         "username": "test3",
                         "phoneNumber": "+2348023456710",
-                        "profileImage": "v8BxVajrDhMCVUhy.png"
+                        "profileImage": "rElQ7T5Fn8rNaQyl.png"
                       }
                     }
                   ]
@@ -4648,21 +4648,21 @@
                   "status": "success",
                   "data": [
                     {
-                      "_id": "5f104e3e0e11957390b37156",
+                      "_id": "5f14a7f4c98e4c283be02325",
                       "isBlocked": false,
                       "account": {
                         "username": "test2",
                         "phoneNumber": "+2348023456789",
-                        "profileImage": "0TpkMYAm6QukNpLY.png"
+                        "profileImage": "uDnmFH695TRfy6h6.png"
                       }
                     },
                     {
-                      "_id": "5f104e3e0e11957390b37157",
+                      "_id": "5f14a7f4c98e4c283be02326",
                       "isBlocked": false,
                       "account": {
                         "username": "test3",
                         "phoneNumber": "+2348023456710",
-                        "profileImage": "v8BxVajrDhMCVUhy.png"
+                        "profileImage": "rElQ7T5Fn8rNaQyl.png"
                       }
                     }
                   ]
