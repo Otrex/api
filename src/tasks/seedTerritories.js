@@ -3,7 +3,7 @@ const TerritoryService = require("../services/Territory");
 
 (async function () {
   await db.createConnection();
-  console.log("[INFO] connected to DB");
+  console.log("[INFO] connected to DB!");
 
   console.log("--> Populating NGA Territories");
   const data = require("../data/territories/NGA/gadm36_NGA_0.geo.json");
