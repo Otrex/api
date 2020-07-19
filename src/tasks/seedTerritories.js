@@ -26,4 +26,5 @@ const TerritoryService = require("../services/Territory");
   });
 
   console.log("--> Finished Populating NGA Territories");
+  process.exit(0);
 })();
