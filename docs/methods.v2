@@ -66,10 +66,10 @@ Pointograph V2 API Methods
 [++-] projects.update
 [---] projects.delete
 
-[+--] contacts.populate
-[---] contacts.list
-[---] contacts.block
-[---] contacts.unblock
+[+++] contacts.populate
+[+++] contacts.list
+[+++] contacts.block
+[+++] contacts.unblock
 
 [---] conversation.create
 [---] conversation.messages.post

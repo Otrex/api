@@ -95,7 +95,7 @@ const users = [
 
 describe("verification", () => {
 
-  jest.setTimeout(30000);
+  jest.setTimeout(40000);
 
   it("/verification/phone/send", async () => {
     const responses = await Promise.all(users.map(data => {
@@ -148,7 +148,7 @@ describe("verification", () => {
 
 describe("auth", () => {
 
-  jest.setTimeout(30000);
+  jest.setTimeout(40000);
 
   it("/auth/register", async () => {
     const responses = await Promise.all(users.map((data, index) => {
@@ -247,7 +247,7 @@ describe("auth", () => {
 
 describe("accounts", () => {
 
-  jest.setTimeout(30000);
+  jest.setTimeout(40000);
 
   it("/accounts/{username}/profile", async () => {
     const responses = await Promise.all(users.map((data, index) => {
@@ -486,7 +486,7 @@ describe("accounts", () => {
 
 describe("pages", () => {
 
-  jest.setTimeout(30000);
+  jest.setTimeout(40000);
 
   it("/pages - post", async () => {
     const res = await request(app)
@@ -908,7 +908,7 @@ describe("pages", () => {
 
 describe("locations", () => {
 
-  jest.setTimeout(30000);
+  jest.setTimeout(40000);
 
   it("/locations/categories", async () => {
     state.locationCategories = await db.models.LocationCategory.insertMany([

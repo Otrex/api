@@ -166,3 +166,49 @@ module.exports.unblockContact = wrapServiceAction({
     return true;
   }
 });
+
+module.exports.createConversation = wrapServiceAction({
+  params: {
+    initiatedBy: { ...any },
+    members: {
+      type: "array",
+      items: { ...any }
+    }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.initiatedBy);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const members = [params.initiatedBy];
+    for (const member of params.members) {
+      const contact = await models.Contact.findOne({
+        contactId: member,
+        accountId: params.initiatedBy
+      });
+      if (!contact) {
+        throw new ServiceError("contact not found");
+      }
+      members.push(contact.contactId);
+    }
+    params.members = Array.from(new Set(members));
+    return await models.Conversation.create({
+      ...params
+    });
+  }
+});
+
+module.exports.getConversations = wrapServiceAction({
+  params: {
+    accountId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.initiatedBy);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    return await models.Conversation.find({
+      members: params.accountId
+    });
+  }
+});

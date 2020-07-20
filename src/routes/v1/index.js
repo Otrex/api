@@ -40,6 +40,8 @@ router.use("/projects", require("./projects"));
 
 router.use("/contacts", require("./contacts"));
 
+router.use("/conversations", require("./conversations"));
+
 router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
