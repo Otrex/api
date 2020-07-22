@@ -1468,10 +1468,29 @@ describe("contacts", () => {
   jest.setTimeout(10000);
 
   it("/contacts", async () => {
-
     const res = await request(app)
       .post("/contacts")
       .set("x-api-token", state.sessions[0].token)
+      .send({
+        phoneNumbers: users.map(u => u.phoneNumber)
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Contacts"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/contacts - hell", async () => {
+    const res = await request(app)
+      .post("/contacts")
+      .set("x-api-token", state.sessions[1].token)
       .send({
         phoneNumbers: users.map(u => u.phoneNumber)
       });
@@ -1547,6 +1566,192 @@ describe("contacts", () => {
           {
             name: "contactId",
             description: "id of the contact",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("conversations", () => {
+
+  jest.setTimeout(30000);
+
+  it("/conversations", async () => {
+
+    const res = await request(app)
+      .get("/conversations")
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.conversations = res.body.data;
+      addEndpoint(res, {
+        tags: ["Conversations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/conversations/{conversationId}/messages - post", async () => {
+
+    const res = await request(app)
+      .post(`/conversations/${state.conversations[0]._id}/messages`)
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        type: "text",
+        content: "Hola!"
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Conversations"],
+        pathParameters: [
+          {
+            name: "conversationId",
+            description: "id of the conversation",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/conversations - re", async () => {
+
+    const res = await request(app)
+      .get("/conversations")
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.conversations = res.body.data;
+      addEndpoint(res, {
+        tags: ["Conversations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/conversations/{conversationId}/messages - get", async () => {
+
+    const res = await request(app)
+      .get(`/conversations/${state.conversations[0]._id}/messages`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.conversations[0].messages = res.body.data;
+      addEndpoint(res, {
+        tags: ["Conversations"],
+        pathParameters: [
+          {
+            name: "conversationId",
+            description: "id of the conversation",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/conversations/{conversationId}/messages/{messageId}/forward", async () => {
+
+    const res = await request(app)
+      .post(`/conversations/${state.conversations[0]._id}/messages/${state.conversations[0].messages[0]._id}/forward`)
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        to: state.conversations[0]._id
+      });
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Conversations"],
+        pathParameters: [
+          {
+            name: "conversationId",
+            description: "id of the conversation",
+            index: 1
+          },
+          {
+            name: "messageId",
+            description: "id of the message",
+            index: 3
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/conversations/{conversationId}/messages/{messageId}/delete", async () => {
+
+    const res = await request(app)
+      .post(`/conversations/${state.conversations[0]._id}/messages/${state.conversations[0].messages[0]._id}/delete`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Conversations"],
+        pathParameters: [
+          {
+            name: "conversationId",
+            description: "id of the conversation",
+            index: 1
+          },
+          {
+            name: "messageId",
+            description: "id of the message",
+            index: 3
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/conversations/{conversationId}/delete", async () => {
+
+    const res = await request(app)
+      .post(`/conversations/${state.conversations[0]._id}/delete`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Conversations"],
+        pathParameters: [
+          {
+            name: "conversationId",
+            description: "id of the conversation",
             index: 1
           }
         ]

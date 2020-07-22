@@ -107,6 +107,16 @@ module.exports.populateContacts = wrapServiceAction({
           accountId: params.accountId,
           contactId: pointographAccount._id
         });
+        // create conversation between contact if not exists
+        const conversation = await models.Conversation.findOne({
+          members: { $all: [pointographAccount._id, account._id] }
+        });
+        if (!conversation) {
+          await models.Conversation.create({
+            initiatedBy: account._id,
+            members: [account._id, pointographAccount._id]
+          });
+        }
       }
     }
     return await module.exports.getContacts({
@@ -203,12 +213,254 @@ module.exports.getConversations = wrapServiceAction({
     accountId: { ...any }
   },
   async handler (params) {
-    const account = await models.Account.findById(params.initiatedBy);
+    const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
     }
-    return await models.Conversation.find({
-      members: params.accountId
+    return models.Conversation.aggregate([
+      {
+        $match: {
+          members: db.utils.ObjectId(params.accountId)
+        }
+      },
+      {
+        $set: {
+          members: {
+            $filter: {
+              input: "$members",
+              as: "member",
+              cond: { $ne: ["$$member", db.utils.ObjectId(params.accountId)] }
+            }
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          let: { members: "$members" },
+          pipeline: [
+            {
+              $match: {
+                $expr:
+                  {
+                    $and: [
+                      { $in: ["$_id", "$$members"] }
+                    ]
+                  }
+              }
+            },
+            {
+              $project: {
+                username: 1,
+                profileImage: 1,
+                phoneNumber: 1
+              }
+            }
+          ],
+          as: "members"
+        }
+      },
+      {
+        $lookup: {
+          from: models.ConversationMessage.collection.collectionName,
+          let: { conversationId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr:
+                  {
+                    $and: [
+                      { $eq: ["$$conversationId", "$conversationId"] }
+                    ]
+                  }
+              }
+            },
+            { $sort: { "_id": -1 } },
+            { $limit: 1 },
+            {
+              $project: {
+                deletedBy: 0
+              }
+            }
+          ],
+          as: "lastMessages"
+        }
+      },
+      {
+        $project: {
+          members: 1,
+          lastMessages: 1
+        }
+      }
+    ]);
+  }
+});
+
+module.exports.postConversationMessage = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    conversationId: { ...any },
+    type: {
+      type: "enum",
+      values: ["text", "photo", "video", "audio", "location"]
+    },
+    content: { ...string }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const conversation = await models.Conversation.findById(params.conversationId);
+    if (!conversation) {
+      throw new ServiceError("conversation not found");
+    }
+    const isMember = conversation.members.find(m => m.toString() === account._id.toString());
+    if (!isMember) {
+      throw new ServiceError("conversation not found ;)");
+    }
+    await models.ConversationMessage.create({
+      conversationId: params.conversationId,
+      senderId: params.accountId,
+      type: params.type,
+      content: params.content
     });
+    return true;
+  }
+});
+
+module.exports.getConversationMessages = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    conversationId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const conversation = await models.Conversation.findById(params.conversationId);
+    if (!conversation) {
+      throw new ServiceError("conversation not found");
+    }
+    // check if account is a member of the conversation
+    const isMember = conversation.members.find(m => m.toString() === account._id.toString());
+    if (!isMember) {
+      throw new ServiceError("conversation not found ;)");
+    }
+
+    // get messages
+    return await models.ConversationMessage.find({
+      conversationId: conversation._id
+    }).select({
+      deletedBy: 0
+    });
+  }
+});
+
+module.exports.forwardConversationMessage = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    sourceConversationId: { ...any },
+    destinationConversationId: { ...any },
+    messageId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const sourceConversation = await models.Conversation.findById(params.sourceConversationId);
+    if (!sourceConversation) {
+      throw new ServiceError("conversation not found");
+    }
+    const isSourceConversationMember = sourceConversation.members.find(m => m.toString() === account._id.toString());
+    if (!isSourceConversationMember) {
+      throw new ServiceError("conversation not found ;)");
+    }
+    const destinationConversation = await models.Conversation.findById(params.destinationConversationId);
+    if (!destinationConversation) {
+      throw new ServiceError("conversation not found");
+    }
+    const message = await models.ConversationMessage.findOne({
+      _id: params.messageId,
+      conversationId: params.sourceConversationId
+    });
+    if (!message) {
+      throw new ServiceError("message not found");
+    }
+    const isDestinationConversationMember = destinationConversation.members.find(m => m.toString() === account._id.toString());
+    if (!isDestinationConversationMember) {
+      throw new ServiceError("conversation not found ;)");
+    }
+    await models.ConversationMessage.create({
+      conversationId: params.destinationConversationId,
+      senderId: params.accountId,
+      type: message.type,
+      content: message.content,
+      isForwarded: true
+    });
+    return true;
+  }
+});
+
+module.exports.deleteConversationMessage = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    conversationId: { ...any },
+    messageId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const conversation = await models.Conversation.findById(params.conversationId);
+    if (!conversation) {
+      throw new ServiceError("conversation not found");
+    }
+    const isMember = conversation.members.find(m => m.toString() === account._id.toString());
+    if (!isMember) {
+      throw new ServiceError("conversation not found ;)");
+    }
+    const message = await models.ConversationMessage.findOne({
+      _id: params.messageId,
+      conversationId: params.conversationId
+    });
+    if (!message) {
+      throw new ServiceError("message not found");
+    }
+    const isDeleted = message.deletedBy.find(d => d.toString() === account._id.toString());
+    if (isDeleted) {
+      throw new ServiceError("message not found ;)");
+    }
+    message.deletedBy.push(account._id);
+    await message.save();
+    return true;
+  }
+});
+
+module.exports.deleteConversation = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    conversationId: { ...any }
+  },
+  async handler (params) {
+    const account = await models.Account.findById(params.accountId);
+    if (!account) {
+      throw new ServiceError("account not found");
+    }
+    const conversation = await models.Conversation.findById(params.conversationId);
+    if (!conversation) {
+      throw new ServiceError("conversation not found");
+    }
+    const isMember = conversation.members.find(m => m.toString() === account._id.toString());
+    if (!isMember) {
+      throw new ServiceError("conversation not found ;)");
+    }
+    await models.ConversationMessage.updateMany({
+      conversationId: params.conversationId
+    }, { $addToSet: { deletedBy: account._id } });
+    return true;
   }
 });

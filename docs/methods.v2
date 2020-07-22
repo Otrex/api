@@ -71,12 +71,12 @@ Pointograph V2 API Methods
 [+++] contacts.block
 [+++] contacts.unblock
 
-[---] conversation.create
-[---] conversation.messages.post
-[---] conversation.messages.list
-[---] conversation.messages.forward
-[---] conversation.messages.delete
-[---] conversation.delete
+[+++] conversation.create
+[+++] conversation.messages.post
+[+++] conversation.messages.list
+[+++] conversation.messages.forward
+[++-] conversation.messages.delete
+[++-] conversation.delete
 
 [---] search
 
