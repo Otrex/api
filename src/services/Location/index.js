@@ -15,7 +15,7 @@ const OpenLocationCode = require("../../lib/OpenLocationCode");
 /*
 * Validation Helpers
 * */
-const { string, any } = require("../../validation");
+const { string, any, objectId } = require("../../validation");
 
 /*
 * Service Dependencies
@@ -214,7 +214,7 @@ module.exports.getLocationCategories = wrapServiceAction({
 module.exports.createLocationAlarm = wrapServiceAction({
   params: {
     accountId: { ...any },
-    locationId: { ...any }
+    locationId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);

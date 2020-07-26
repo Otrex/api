@@ -1977,10 +1977,10 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fastest-validator@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/fastest-validator/-/fastest-validator-1.4.1.tgz#a49bb73bbb1cac3e94f890fb91f2f264a0957413"
-  integrity sha512-KOs52Z8HjcTPXzgxy9O0drpeuYq0epry/sZMIBwNOYB9bUyRgeGeyqbEsfX7HvIsBT8Yfb7LwgenaQ2obHF40Q==
+fastest-validator@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/fastest-validator/-/fastest-validator-1.5.1.tgz#faea81fb4b6adbe55f5504f0f855ae67a4b70325"
+  integrity sha512-Sy8VFWdfbgprm9jhzcZHTY0nNv6nrOfZVo1Lf/0gAvzQbMwlKgarZd4hU9Z+ucZRY0aV/5ZH/STdqtoLYmECTg==
 
 fb-watchman@^2.0.0:
   version "2.0.1"
