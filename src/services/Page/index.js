@@ -77,6 +77,14 @@ const createAndUpdateParams = {
 module.exports.createPage = wrapServiceAction({
   params: createAndUpdateParams,
   async handler (params) {
+    // check if page with this name already exists
+    const exists = await models.Page.findOne({
+      accountId: params.accountId,
+      name: params.name
+    });
+    if (exists) {
+      throw new ServiceError("you have already created a page with this name");
+    }
     const page = await models.Page.create({
       ...omit(params, ["accountId"])
     });

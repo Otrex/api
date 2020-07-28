@@ -59,7 +59,8 @@ module.exports.createEvent = wrapServiceAction({
       type: "enum",
       values: ["public", "private"]
     },
-    locationId: { ...objectId }
+    locationId: { ...objectId },
+    categoryId: { ...objectId }
   },
   async handler (params) {
     if (params.ownerType === "account" && params.ownerId.toString() !== params.accountId.toString()) {
@@ -129,7 +130,8 @@ module.exports.updateEvent = wrapServiceAction({
       type: "enum",
       values: ["public", "private"]
     },
-    locationId: { ...objectId }
+    locationId: { ...objectId },
+    categoryId: { ...objectId }
   },
   async handler (params) {
     await checkAuthorization(params.accountId, params.eventId, "event");

@@ -1092,7 +1092,8 @@ describe("locations", () => {
       .post(`/locations/alarms`)
       .set("x-api-token", state.sessions[0].token)
       .send({
-        locationId: state.locations[0]._id
+        locationId: state.locations[0]._id,
+        description: "Alarm description"
       });
     try {
       expect(res.statusCode).toEqual(200);
@@ -1276,6 +1277,9 @@ describe("photos", () => {
           {
             filename: state.files[1].filename,
             description: "My second location photo"
+          },
+          {
+            filename: state.files[1].filename
           }
         ]
       });
@@ -1287,6 +1291,7 @@ describe("photos", () => {
         res.body.data
       ];
       addEndpoint(res, {
+        description: "valid ownerType: [\"location\", \"project\", \"event\"]",
         tags: ["Photos"]
       });
     } catch (err) {
@@ -1361,7 +1366,8 @@ describe("events", () => {
         startDate: "2020-07-13",
         endDate: "2020-08-13",
         visibility: "public",
-        locationId: state.locations[0]._id
+        locationId: state.locations[0]._id,
+        categoryId: state.eventCategories[0]._id
       });
 
     try {
@@ -1391,7 +1397,8 @@ describe("events", () => {
         startDate: "2020-07-13",
         endDate: "2023-08-13",
         visibility: "private",
-        locationId: state.locations[0]._id
+        locationId: state.locations[0]._id,
+        categoryId: state.eventCategories[0]._id
       });
 
     try {

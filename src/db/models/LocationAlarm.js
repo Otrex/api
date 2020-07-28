@@ -10,6 +10,10 @@ const schema = new Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
+  description: {
+    type: String,
+    required: true
+  },
   status: {
     type: String,
     default: "active"

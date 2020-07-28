@@ -45,6 +45,10 @@ const schema = new Schema({
   locationId: {
     type: mongoose.Types.ObjectId,
     required: true
+  },
+  categoryId: {
+    type: mongoose.Types.ObjectId,
+    required: true
   }
 }, { timestamps: true });
 

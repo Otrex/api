@@ -66,7 +66,7 @@ const getPathParameters = options => {
 const getPath = (req, res, options) => {
   return {
     [req.method]: {
-      "description": "",
+      "description": options.description || "",
       "tags": options.tags || [],
       "parameters": [
         ...getHeaderParameters(req.headers),

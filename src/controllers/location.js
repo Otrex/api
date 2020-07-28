@@ -75,7 +75,8 @@ module.exports.createLocationAlarm = async (req, res, next) => {
   try {
     const data = await LocationService.createLocationAlarm({
       accountId: req.session.account._id,
-      locationId: req.body.locationId
+      locationId: req.body.locationId,
+      description: req.body.description
     });
     return res.send(successResponse("alarm created", data));
   } catch (e) {

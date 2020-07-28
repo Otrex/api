@@ -214,7 +214,8 @@ module.exports.getLocationCategories = wrapServiceAction({
 module.exports.createLocationAlarm = wrapServiceAction({
   params: {
     accountId: { ...any },
-    locationId: { ...objectId }
+    locationId: { ...objectId },
+    description: { ...string }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -233,9 +234,18 @@ module.exports.createLocationAlarm = wrapServiceAction({
     ) {
       throw new AuthorizationError("you do not have sufficient permissions to access this object");
     }
-    const alarm = await models.LocationAlarm.create({
+    // check if alarm exists in this location
+    const exists = await models.LocationAlarm.findOne({
       accountId: params.accountId,
       locationId: params.locationId
+    });
+    if (exists) {
+      throw new ServiceError("you have already created an alarm in this location")
+    }
+    const alarm = await models.LocationAlarm.create({
+      accountId: params.accountId,
+      locationId: params.locationId,
+      description: params.description
     });
     return {
       ...alarm.toObject(),
