@@ -14,7 +14,8 @@ const models = require("../../db").models;
 const {
   any,
   string,
-  email
+  email,
+  objectId
 } = require("../../validation");
 
 /*
@@ -65,7 +66,7 @@ module.exports.getAccounts = wrapServiceAction({
 
 module.exports.activateAccount = wrapServiceAction({
   params: {
-    id: { ...any }
+    id: { ...objectId }
   },
   async handler(params) {
     const account = await models.Account.findById(params.id);
@@ -79,7 +80,7 @@ module.exports.activateAccount = wrapServiceAction({
 
 module.exports.deactivateAccount = wrapServiceAction({
   params: {
-    id: { ...any }
+    id: { ...objectId }
   },
   async handler(params) {
     const account = await models.Account.findById(params.id);

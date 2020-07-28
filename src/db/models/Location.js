@@ -32,7 +32,7 @@ const schema = new Schema({
     required: true
   },
   categoryId: {
-    type: mongoose.Types.ObjectId,
+    type: String,
     required: true
   },
   visibility: {
@@ -58,7 +58,7 @@ const schema = new Schema({
   tags: [
     { type: String }
   ]
-}, { timestamps: true });
+}, { timestamps: true, toObject: { versionKey: false } });
 
 schema.index({ preciseLocation: "2dsphere" });
 schema.index({ visibility: 1, eddress: 1 });

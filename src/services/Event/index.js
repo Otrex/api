@@ -12,7 +12,7 @@ const models = require("../../db").models;
 /*
 * Validation Helpers
 * */
-const { string, any } = require("../../validation");
+const { string, any, objectId } = require("../../validation");
 
 /*
 * Service Dependencies
@@ -24,8 +24,8 @@ const { string, any } = require("../../validation");
 module.exports.createEvent = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    ownerId: { ...any },
+    accountId: { ...objectId },
+    ownerId: { ...objectId },
     ownerType: {
       type: "enum",
       values: ["account", "page"]
@@ -59,7 +59,7 @@ module.exports.createEvent = wrapServiceAction({
       type: "enum",
       values: ["public", "private"]
     },
-    locationId: { ...any }
+    locationId: { ...objectId }
   },
   async handler (params) {
     if (params.ownerType === "account" && params.ownerId.toString() !== params.accountId.toString()) {
@@ -89,11 +89,17 @@ module.exports.createEvent = wrapServiceAction({
   }
 });
 
+module.exports.getEventCategories = wrapServiceAction({
+  async handler () {
+    return await models.EventCategory.find();
+  }
+});
+
 module.exports.updateEvent = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    eventId: { ...any },
+    accountId: { ...objectId },
+    eventId: { ...objectId },
     name: {
       ...string,
       min: 4
@@ -123,7 +129,7 @@ module.exports.updateEvent = wrapServiceAction({
       type: "enum",
       values: ["public", "private"]
     },
-    locationId: { ...any }
+    locationId: { ...objectId }
   },
   async handler (params) {
     await checkAuthorization(params.accountId, params.eventId, "event");
@@ -136,7 +142,7 @@ module.exports.updateEvent = wrapServiceAction({
 
 module.exports.getAccountEvents = wrapServiceAction({
   params: {
-    accountId: { ...any },
+    accountId: { ...objectId },
     limit: {
       type: "number",
       default: 0
@@ -157,7 +163,7 @@ module.exports.getAccountEvents = wrapServiceAction({
 
 module.exports.getPageEvents = wrapServiceAction({
   params: {
-    pageId: { ...any },
+    pageId: { ...objectId },
     limit: {
       type: "number",
       default: 0

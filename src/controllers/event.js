@@ -27,3 +27,12 @@ module.exports.updateEvent = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.getEventCategories = async (req, res, next) => {
+  try {
+    const data = await EventService.getEventCategories();
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};

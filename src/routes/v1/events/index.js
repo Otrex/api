@@ -7,7 +7,8 @@ const {
 
 const {
   addEvent,
-  updateEvent
+  updateEvent,
+  getEventCategories
 } = require("../../../controllers/event");
 
 router.use(verifyAccountAuth());
@@ -17,5 +18,8 @@ router.route("/")
 
 router.route("/:eventId/update")
   .post(updateEvent);
+
+router.route("/categories")
+  .get(getEventCategories);
 
 module.exports = router;

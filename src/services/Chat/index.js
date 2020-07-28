@@ -15,7 +15,7 @@ const models = db.models;
 /*
 * Validation Helpers
 * */
-const { string, any } = require("../../validation");
+const { string, any, objectId } = require("../../validation");
 
 /*
 * Service Dependencies
@@ -27,7 +27,7 @@ const { string, any } = require("../../validation");
 
 module.exports.getContacts = wrapServiceAction({
   params: {
-    accountId: { ...any }
+    accountId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -68,7 +68,7 @@ module.exports.getContacts = wrapServiceAction({
 
 module.exports.populateContacts = wrapServiceAction({
   params: {
-    accountId: { ...any },
+    accountId: { ...objectId },
     phoneNumbers: {
       type: "array",
       items: {
@@ -127,8 +127,8 @@ module.exports.populateContacts = wrapServiceAction({
 
 module.exports.blockContact = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    contactId: { ...any }
+    accountId: { ...objectId },
+    contactId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -153,8 +153,8 @@ module.exports.blockContact = wrapServiceAction({
 
 module.exports.unblockContact = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    contactId: { ...any }
+    accountId: { ...objectId },
+    contactId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -179,10 +179,10 @@ module.exports.unblockContact = wrapServiceAction({
 
 module.exports.createConversation = wrapServiceAction({
   params: {
-    initiatedBy: { ...any },
+    initiatedBy: { ...objectId },
     members: {
       type: "array",
-      items: { ...any }
+      items: { ...objectId }
     }
   },
   async handler (params) {
@@ -210,7 +210,7 @@ module.exports.createConversation = wrapServiceAction({
 
 module.exports.getConversations = wrapServiceAction({
   params: {
-    accountId: { ...any }
+    accountId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -298,8 +298,8 @@ module.exports.getConversations = wrapServiceAction({
 
 module.exports.postConversationMessage = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    conversationId: { ...any },
+    accountId: { ...objectId },
+    conversationId: { ...objectId },
     type: {
       type: "enum",
       values: ["text", "photo", "video", "audio", "location"]
@@ -331,8 +331,8 @@ module.exports.postConversationMessage = wrapServiceAction({
 
 module.exports.getConversationMessages = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    conversationId: { ...any }
+    accountId: { ...objectId },
+    conversationId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -360,10 +360,10 @@ module.exports.getConversationMessages = wrapServiceAction({
 
 module.exports.forwardConversationMessage = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    sourceConversationId: { ...any },
-    destinationConversationId: { ...any },
-    messageId: { ...any }
+    accountId: { ...objectId },
+    sourceConversationId: { ...objectId },
+    destinationConversationId: { ...objectId },
+    messageId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -406,9 +406,9 @@ module.exports.forwardConversationMessage = wrapServiceAction({
 
 module.exports.deleteConversationMessage = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    conversationId: { ...any },
-    messageId: { ...any }
+    accountId: { ...objectId },
+    conversationId: { ...objectId },
+    messageId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -442,8 +442,8 @@ module.exports.deleteConversationMessage = wrapServiceAction({
 
 module.exports.deleteConversation = wrapServiceAction({
   params: {
-    accountId: { ...any },
-    conversationId: { ...any }
+    accountId: { ...objectId },
+    conversationId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);

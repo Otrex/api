@@ -21,6 +21,12 @@ const { string, any } = require("../../validation");
 /*
 * Service Actions
 * */
+module.exports.getProjectCategories = wrapServiceAction({
+  async handler () {
+    return await models.ProjectCategory.find();
+  }
+});
+
 module.exports.createProject = wrapServiceAction({
   params: {
     $$strict: "remove",

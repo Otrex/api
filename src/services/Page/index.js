@@ -15,10 +15,10 @@ const omit = require("lodash/omit");
 /*
 * Validation Helpers
 * */
-const { email, string, any } = require("../../validation");
+const { email, string, any, objectId } = require("../../validation");
 const createAndUpdateParams = {
   $$strict: "remove",
-  accountId: { ...any },
+  accountId: { ...objectId },
   name: {
     ...string,
     min: 4
@@ -109,7 +109,7 @@ module.exports.createPage = wrapServiceAction({
 module.exports.getPage = wrapServiceAction({
   params: {
     $$strict: "remove",
-    pageId: { ...any }
+    pageId: { ...objectId }
   },
   async handler (params) {
     return await models.Page.findById(params.pageId).select({
@@ -120,7 +120,7 @@ module.exports.getPage = wrapServiceAction({
 
 module.exports.updatePage = wrapServiceAction({
   params: {
-    pageId: { ...any },
+    pageId: { ...objectId },
     ...createAndUpdateParams
   },
   async handler (params) {
@@ -153,7 +153,7 @@ module.exports.updatePage = wrapServiceAction({
 module.exports.getPages = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any }
+    accountId: { ...objectId }
   },
   async handler (params) {
     return await models.Page.find({
@@ -169,8 +169,8 @@ module.exports.getPages = wrapServiceAction({
 module.exports.followPage = wrapServiceAction({
   params: {
     $$strict: "remove",
-    pageId: { ...any },
-    followerId: { ...any }
+    pageId: { ...objectId },
+    followerId: { ...objectId }
   },
   async handler (params) {
     const page = await models.Page.findById(params.pageId);
@@ -210,8 +210,8 @@ module.exports.followPage = wrapServiceAction({
 module.exports.unfollowPage = wrapServiceAction({
   params: {
     $$strict: "remove",
-    pageId: { ...any },
-    followerId: { ...any }
+    pageId: { ...objectId },
+    followerId: { ...objectId }
   },
   async handler (params) {
     const page = await models.Page.findById(params.pageId);
@@ -247,7 +247,7 @@ module.exports.unfollowPage = wrapServiceAction({
 module.exports.getPageFollowers = wrapServiceAction({
   params: {
     $$strict: "remove",
-    pageId: { ...any }
+    pageId: { ...objectId }
   },
   async handler (params) {
     return models.PageFollower.aggregate([
@@ -278,8 +278,8 @@ module.exports.getPageFollowers = wrapServiceAction({
 module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    pageId: { ...any },
+    accountId: { ...objectId },
+    pageId: { ...objectId },
     email: { ...email }
   },
   async handler (params) {

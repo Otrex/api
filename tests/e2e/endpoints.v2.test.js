@@ -1326,6 +1326,27 @@ describe("events", () => {
 
   jest.setTimeout(10000);
 
+  it("/events/categories", async () => {
+    state.eventCategories = await db.models.EventCategory.insertMany([
+      { name: "Trade fair" },
+      { name: "Crusade" },
+      { name: "Others" }
+    ]);
+    const res = await request(app)
+      .get("/events/categories")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Events"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("/events", async () => {
 
     const res = await request(app)
@@ -1400,6 +1421,27 @@ describe("projects", () => {
 
   jest.setTimeout(10000);
 
+  it("/projects/categories", async () => {
+    state.projectCategories = await db.models.ProjectCategory.insertMany([
+      { name: "Road" },
+      { name: "School" },
+      { name: "Others" }
+    ]);
+    const res = await request(app)
+      .get("/projects/categories")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Projects"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("/projects", async () => {
 
     const res = await request(app)
@@ -1412,7 +1454,7 @@ describe("projects", () => {
         description: "River Niger Bridge project",
         visibility: "public",
         locationId: state.locations[0]._id,
-        categoryId: state.locations[0]._id
+        categoryId: state.projectCategories[0]._id
       });
 
     try {

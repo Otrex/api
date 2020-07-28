@@ -17,7 +17,8 @@ const models = db.models;
 const {
   any,
   string,
-  email
+  email,
+  objectId
 } = require("../../validation");
 
 /*
@@ -149,7 +150,7 @@ module.exports.createLoginSession = wrapServiceAction({
 module.exports.changeAccountPassword = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
+    accountId: { ...objectId },
     currentPassword: { ...string },
     password: {
       ...string,
@@ -251,7 +252,7 @@ module.exports.getAccount = wrapServiceAction({
 module.exports.updateAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
+    accountId: { ...objectId },
     location: {
       ...string,
       optional: true
@@ -302,8 +303,8 @@ module.exports.updateAccount = wrapServiceAction({
 module.exports.followAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    followerId: { ...any }
+    accountId: { ...objectId },
+    followerId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -346,8 +347,8 @@ module.exports.followAccount = wrapServiceAction({
 module.exports.checkAccountFollower = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    followerId: { ...any }
+    accountId: { ...objectId },
+    followerId: { ...objectId }
   },
   async handler (params) {
     const record = await models.AccountFollower.findOne({
@@ -361,8 +362,8 @@ module.exports.checkAccountFollower = wrapServiceAction({
 module.exports.unfollowAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    followerId: { ...any }
+    accountId: { ...objectId },
+    followerId: { ...objectId }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
