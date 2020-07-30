@@ -1422,6 +1422,34 @@ describe("events", () => {
       throw err;
     }
   });
+
+  it("/accounts/{accountId}/events", async () => {
+
+    const res = await request(app)
+      .get(`/accounts/${state.sessions[0].account._id}/events`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.events = [
+        res.body.data
+      ];
+      addEndpoint(res, {
+        tags: ["Accounts"],
+        pathParameters: [
+          {
+            name: "accountId",
+            description: "id of the account",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
 });
 
 describe("projects", () => {
@@ -1501,6 +1529,31 @@ describe("projects", () => {
           {
             name: "projectId",
             description: "id of the event",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/accounts/{accountId}/projects", async () => {
+
+    const res = await request(app)
+      .get(`/accounts/${state.sessions[0].account._id}/projects`)
+      .set("x-api-token", state.sessions[0].token);
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Accounts"],
+        pathParameters: [
+          {
+            name: "accountId",
+            description: "id of the account",
             index: 1
           }
         ]

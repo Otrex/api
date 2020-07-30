@@ -12,7 +12,7 @@ const models = require("../../db").models;
 /*
 * Validation Helpers
 * */
-const { string, any } = require("../../validation");
+const { string, any, objectId } = require("../../validation");
 
 /*
 * Service Dependencies
@@ -111,3 +111,25 @@ module.exports.updateProject = wrapServiceAction({
     // TODO: delete coverImage and image from disk if updated
   }
 });
+
+module.exports.getAccountProjects = wrapServiceAction({
+  params: {
+    accountId: { ...objectId },
+    limit: {
+      type: "number",
+      default: 0
+    },
+    filter: {
+      type: "object",
+      default: {}
+    }
+  },
+  async handler (params) {
+    return await models.Project.find({
+      ownerId: params.accountId,
+      ownerType: "account",
+      ...params.filter,
+    }).sort({ _id: -1 }).limit(params.limit);
+  }
+});
+

@@ -12,7 +12,9 @@ const {
   followAccount,
   unfollowAccount,
   getFollowers,
-  getFollowings
+  getFollowings,
+  getEvents,
+  getProjects
 } = require("../../../controllers/account");
 
 
@@ -38,5 +40,11 @@ router.route("/:accountId?/followers")
 
 router.route("/:accountId?/followings")
   .get(getFollowings);
+
+router.route("/:accountId?/projects")
+  .get(getProjects);
+
+router.route("/:accountId?/events")
+  .get(getEvents);
 
 module.exports = router;

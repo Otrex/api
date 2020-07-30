@@ -1,5 +1,7 @@
 const AccountService = require("../services/Account");
 const LocationService = require("../services/Location");
+const EventService = require("../services/Event");
+const ProjectService = require("../services/Project");
 const {
   successResponse
 } = require("../utils");
@@ -110,6 +112,28 @@ module.exports.getFollowers = async (req, res, next) => {
 module.exports.getFollowings = async (req, res, next) => {
   try {
     const data = await AccountService.getAccountFollowings({
+      accountId: req.params.accountId || req.session.account._id
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.getEvents = async (req, res, next) => {
+  try {
+    const data = await EventService.getAccountEvents({
+      accountId: req.params.accountId || req.session.account._id
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.getProjects = async (req, res, next) => {
+  try {
+    const data = await ProjectService.getAccountProjects({
       accountId: req.params.accountId || req.session.account._id
     });
     return res.send(successResponse(undefined, data));
