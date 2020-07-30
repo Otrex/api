@@ -161,7 +161,7 @@ module.exports.getAccountLocations = wrapServiceAction({
     return await models.Location.find({
       ownerId: params.accountId,
       ownerType: "account",
-      ...params.filter,
+      ...params.filters,
     }).sort({ _id: -1 }).limit(params.limit);
   }
 });
