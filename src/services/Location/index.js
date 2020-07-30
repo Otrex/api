@@ -204,7 +204,8 @@ module.exports.getAccountLocationsCount = wrapServiceAction({
   },
   async handler (params) {
     return await models.Location.countDocuments({
-      accountId: params.accountId,
+      ownerId: params.accountId,
+      ownerType: "account",
       ...params.filters
     });
   }
