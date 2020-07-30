@@ -23,7 +23,10 @@ module.exports.getProfile = async (req, res, next) => {
       delete account.email;
     }
     const placesCount = await LocationService.getAccountLocationsCount({
-      accountId: account._id
+      accountId: account._id,
+      filters: is3rdPartyAccount ? {
+        visibility: "public"
+      } : {}
     });
     const places = await LocationService.getAccountLocations({
       accountId: account._id,

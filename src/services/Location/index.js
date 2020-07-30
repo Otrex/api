@@ -196,11 +196,16 @@ module.exports.getLocationDetailsById = wrapServiceAction({
 
 module.exports.getAccountLocationsCount = wrapServiceAction({
   params: {
-    accountId: { ...any }
+    accountId: { ...any },
+    filters: {
+      type: "object",
+      default: {}
+    }
   },
   async handler (params) {
     return await models.Location.countDocuments({
       accountId: params.accountId,
+      ...params.filters
     });
   }
 });
@@ -240,7 +245,7 @@ module.exports.createLocationAlarm = wrapServiceAction({
       locationId: params.locationId
     });
     if (exists) {
-      throw new ServiceError("you have already created an alarm in this location")
+      throw new ServiceError("you have already created an alarm in this location");
     }
     const alarm = await models.LocationAlarm.create({
       accountId: params.accountId,
