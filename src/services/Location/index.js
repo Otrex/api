@@ -152,7 +152,7 @@ module.exports.getAccountLocations = wrapServiceAction({
       type: "number",
       default: 0
     },
-    filter: {
+    filters: {
       type: "object",
       default: {}
     }
