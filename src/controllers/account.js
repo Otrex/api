@@ -37,13 +37,26 @@ module.exports.getProfile = async (req, res, next) => {
         visibility: "public"
       } : {}
     });
+    const projectsCount = await ProjectService.getAccountProjectsCount({
+      accountId: account._id,
+      filters: is3rdPartyAccount ? {
+        visibility: "public"
+      } : {}
+    });
+    const projects = await ProjectService.getAccountProjects({
+      accountId: account._id,
+      limit: 7,
+      filters: is3rdPartyAccount ? {
+        visibility: "public"
+      } : {}
+    });
     return res.send(successResponse(undefined, {
       ...account,
       isFollowing,
       placesCount,
       places,
-      projects: [],
-      projectsCount: 0
+      projects,
+      projectsCount
     }));
   } catch (e) {
     next(e);

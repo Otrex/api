@@ -112,6 +112,24 @@ module.exports.updateProject = wrapServiceAction({
   }
 });
 
+module.exports.getAccountProjectsCount = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    filters: {
+      type: "object",
+      default: {}
+    }
+  },
+  async handler (params) {
+    return await models.Project.countDocuments({
+      ownerId: params.accountId,
+      ownerType: "account",
+      ...params.filters
+    });
+  }
+});
+
+
 module.exports.getAccountProjects = wrapServiceAction({
   params: {
     accountId: { ...objectId },
@@ -119,7 +137,7 @@ module.exports.getAccountProjects = wrapServiceAction({
       type: "number",
       default: 0
     },
-    filter: {
+    filters: {
       type: "object",
       default: {}
     }
@@ -128,7 +146,7 @@ module.exports.getAccountProjects = wrapServiceAction({
     return await models.Project.find({
       ownerId: params.accountId,
       ownerType: "account",
-      ...params.filter,
+      ...params.filters,
     }).sort({ _id: -1 }).limit(params.limit);
   }
 });
