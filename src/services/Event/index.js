@@ -169,17 +169,12 @@ module.exports.getAccountEvents = wrapServiceAction({
       {
         $lookup: {
           from: models.Photo.collection.collectionName,
-          localField: "ownerId",
-          foreignField: "_id",
+          localField: "_id",
+          foreignField: "ownerId",
           as: "photos",
         }
       }
     ]);
-    // return await models.Event.find({
-    //   ownerId: params.accountId,
-    //   ownerType: "account",
-    //   ...params.filter,
-    // }).sort({ _id: -1 }).limit(params.limit);
   }
 });
 

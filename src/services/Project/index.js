@@ -168,8 +168,8 @@ module.exports.getAccountProjects = wrapServiceAction({
       {
         $lookup: {
           from: models.Photo.collection.collectionName,
-          localField: "ownerId",
-          foreignField: "_id",
+          localField: "_id",
+          foreignField: "ownerId",
           as: "photos",
         }
       },
