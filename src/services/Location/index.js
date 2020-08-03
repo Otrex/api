@@ -9,7 +9,8 @@ const utils = require("../../utils");
 
 const ObjectId = require("mongoose").Types.ObjectId;
 
-const models = require("../../db").models;
+const db = require("../../db");
+const models = db.models;
 const OpenLocationCode = require("../../lib/OpenLocationCode");
 
 /*
@@ -158,11 +159,30 @@ module.exports.getAccountLocations = wrapServiceAction({
     }
   },
   async handler (params) {
-    return await models.Location.find({
-      ownerId: params.accountId,
-      ownerType: "account",
-      ...params.filters,
-    }).sort({ _id: -1 }).limit(params.limit);
+    return  models.Location.aggregate([
+      {
+        $match: {
+          ownerId: db.utils.ObjectId(params.accountId),
+          ownerType: "account",
+          ...params.filters,
+        },
+      },
+      { $sort: { _id: -1 } },
+      ...(params.limit > 0 ? [{ $limit: params.limit }] : []),
+      {
+        $lookup: {
+          from: models.Photo.collection.collectionName,
+          localField: "_id",
+          foreignField: "ownerId",
+          as: "photos",
+        }
+      },
+    ]);
+    // return await models.Location.find({
+    //   ownerId: params.accountId,
+    //   ownerType: "account",
+    //   ...params.filters,
+    // }).sort({ _id: -1 }).limit(params.limit);
   }
 });
 
