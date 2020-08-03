@@ -7,12 +7,13 @@ const checkAuthorization = require("../_core/checkAuthorization");
 
 const utils = require("../../utils");
 
-const models = require("../../db").models;
+const db = require("../../db");
+const models = db.models;
 
 /*
 * Validation Helpers
 * */
-const { string, any, objectId } = require("../../validation");
+const { string, objectId } = require("../../validation");
 
 /*
 * Service Dependencies
@@ -155,11 +156,30 @@ module.exports.getAccountEvents = wrapServiceAction({
     }
   },
   async handler (params) {
-    return await models.Event.find({
-      ownerId: params.accountId,
-      ownerType: "account",
-      ...params.filter,
-    }).sort({ _id: -1 }).limit(params.limit);
+    return  models.Event.aggregate([
+      {
+        $match: {
+          ownerId: db.utils.ObjectId(params.accountId),
+          ownerType: "account",
+          ...params.filters,
+        },
+      },
+      { $sort: { _id: -1 } },
+      ...(params.limit > 0 ? [{ $limit: params.limit }] : []),
+      {
+        $lookup: {
+          from: models.Photo.collection.collectionName,
+          localField: "ownerId",
+          foreignField: "_id",
+          as: "photos",
+        }
+      }
+    ]);
+    // return await models.Event.find({
+    //   ownerId: params.accountId,
+    //   ownerType: "account",
+    //   ...params.filter,
+    // }).sort({ _id: -1 }).limit(params.limit);
   }
 });
 
