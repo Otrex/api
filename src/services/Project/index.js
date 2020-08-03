@@ -7,7 +7,8 @@ const checkAuthorization = require("../_core/checkAuthorization");
 
 const utils = require("../../utils");
 
-const models = require("../../db").models;
+const db = require("../../db");
+const models = db.models;
 
 /*
 * Validation Helpers
@@ -44,8 +45,14 @@ module.exports.createProject = wrapServiceAction({
       ...string,
       min: 8
     },
-    image: { ...string, optional: true },
-    coverImage: { ...string, optional: true },
+    image: {
+      ...string,
+      optional: true
+    },
+    coverImage: {
+      ...string,
+      optional: true
+    },
     visibility: {
       type: "enum",
       values: ["public", "private"]
@@ -94,8 +101,14 @@ module.exports.updateProject = wrapServiceAction({
       ...string,
       min: 8
     },
-    image: { ...string, optional: true },
-    coverImage: { ...string, optional: true },
+    image: {
+      ...string,
+      optional: true
+    },
+    coverImage: {
+      ...string,
+      optional: true
+    },
     visibility: {
       type: "enum",
       values: ["public", "private"]
@@ -129,7 +142,6 @@ module.exports.getAccountProjectsCount = wrapServiceAction({
   }
 });
 
-
 module.exports.getAccountProjects = wrapServiceAction({
   params: {
     accountId: { ...objectId },
@@ -143,11 +155,25 @@ module.exports.getAccountProjects = wrapServiceAction({
     }
   },
   async handler (params) {
-    return await models.Project.find({
-      ownerId: params.accountId,
-      ownerType: "account",
-      ...params.filters,
-    }).sort({ _id: -1 }).limit(params.limit);
+    return  models.Project.aggregate([
+      {
+        $match: {
+          ownerId: db.utils.ObjectId(params.accountId),
+          ownerType: "account",
+          ...params.filters,
+        },
+      },
+      { $sort: { _id: -1 } },
+      ...(params.limit > 0 ? [{ $limit: params.limit }] : []),
+      {
+        $lookup: {
+          from: models.Photo.collection.collectionName,
+          localField: "ownerId",
+          foreignField: "_id",
+          as: "photos",
+        }
+      },
+    ]);
   }
 });
 

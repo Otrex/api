@@ -45,7 +45,7 @@ module.exports.getProfile = async (req, res, next) => {
     });
     const projects = await ProjectService.getAccountProjects({
       accountId: account._id,
-      limit: 7,
+      limit: 6,
       filters: is3rdPartyAccount ? {
         visibility: "public"
       } : {}
