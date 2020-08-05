@@ -26,7 +26,9 @@ module.exports = {
     Project: require("./models/Project"),
     Contact: require("./models/Contact"),
     Conversation: require("./models/Conversation"),
-    ConversationMessage: require("./models/ConversationMessage")
+    ConversationMessage: require("./models/ConversationMessage"),
+    Action: require("./models/Action"),
+    FeedBucket: require("./models/FeedBucket")
   },
   utils: {
     ObjectId: require("mongoose").Types.ObjectId

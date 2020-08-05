@@ -334,6 +334,17 @@ module.exports.followAccount = wrapServiceAction({
       follower.save()
     ]);
 
+    // log action
+    await models.Action.create({
+      actorId: params.followerId,
+      type: "account.follow",
+      description: `${follower.username} followed you`,
+      data: {
+        followerAccountUsername: follower.username,
+        followedAccountUsername: account.username
+      }
+    });
+
     return await models.AccountFollower.findOneAndUpdate({
       accountId: params.accountId,
       followerId: params.followerId

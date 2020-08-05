@@ -205,6 +205,17 @@ module.exports.followPage = wrapServiceAction({
       page.save()
     ]);
 
+    // log action
+    await models.Action.create({
+      actorId: params.followerId,
+      type: "page.follow",
+      description: `${follower.username} followed your page ${page.name}`,
+      data: {
+        followerUsername: follower.username,
+        followedPageName: page.name
+      }
+    });
+
     return await models.PageFollower.findOneAndUpdate({
       pageId: params.pageId,
       followerId: params.followerId

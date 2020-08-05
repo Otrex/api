@@ -350,6 +350,38 @@ module.exports.getConversationMessages = wrapServiceAction({
     }
 
     // get messages
+    return models.ConversationMessage.aggregate([
+      {
+        $match: {
+          conversationId: conversation._id
+        }
+      },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          localField: "senderId",
+          foreignField: "_id",
+          as: "sender",
+        }
+      },
+      {
+        $set: {
+          sender: { $arrayElemAt: ["$sender", 0] }
+        }
+      },
+      {
+        $project: {
+          "isForwarded": 1,
+          "conversationId": 1,
+          "senderId": 1,
+          "sender.username": 1,
+          "sender.profileImage": 1,
+          "type": 1,
+          "content": 1,
+          "createdAt": 1
+        }
+      }
+    ]);
     return await models.ConversationMessage.find({
       conversationId: conversation._id
     }).select({
