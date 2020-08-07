@@ -159,7 +159,7 @@ module.exports.getAccountLocations = wrapServiceAction({
     }
   },
   async handler (params) {
-    return  models.Location.aggregate([
+    return models.Location.aggregate([
       {
         $match: {
           ownerId: db.utils.ObjectId(params.accountId),
@@ -261,18 +261,20 @@ module.exports.createLocationAlarm = wrapServiceAction({
       throw new AuthorizationError("you do not have sufficient permissions to access this object");
     }
     // check if alarm exists in this location
-    const exists = await models.LocationAlarm.findOne({
+    let alarm = await models.LocationAlarm.findOne({
       accountId: params.accountId,
       locationId: params.locationId
     });
-    if (exists) {
-      throw new ServiceError("you have already created an alarm in this location");
+    if (alarm) {
+      alarm.additionalDescriptions.push(params.description);
+      await alarm.save();
+    } else {
+      alarm = await models.LocationAlarm.create({
+        accountId: params.accountId,
+        locationId: params.locationId,
+        description: params.description
+      });
     }
-    const alarm = await models.LocationAlarm.create({
-      accountId: params.accountId,
-      locationId: params.locationId,
-      description: params.description
-    });
     return {
       ...alarm.toObject(),
       location

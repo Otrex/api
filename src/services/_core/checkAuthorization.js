@@ -1,7 +1,8 @@
 const models = require("../../db").models;
 const {
   ServiceError,
-  AuthorizationError
+  AuthorizationError,
+  NotFoundError
 } = require("../../errors");
 
 module.exports = async (accountId, objectId, objectType) => {
@@ -12,7 +13,7 @@ module.exports = async (accountId, objectId, objectType) => {
   };
   const object = await objectTypeModel[objectType].findById(objectId);
   if (!object) {
-    throw new ServiceError(`${objectType} not found`);
+    throw new NotFoundError(`${objectType} not found`);
   }
   if (
     object.ownerType === "account" &&
@@ -23,7 +24,7 @@ module.exports = async (accountId, objectId, objectType) => {
   if (object.ownerType === "page") {
     const page = models.Page.findById(object.ownerId);
     if (!page) {
-      throw new ServiceError(`${objectType} not found`);
+      throw new NotFoundError(`${objectType} not found`);
     }
     // check for page moderator membership
     const membership = page.teamMembers.find(m => m.accountId.toString() === accountId.toString());

@@ -33,6 +33,11 @@ module.exports.errorHandler = (err, req, res, next) => {
       status: "error",
       message: err.message
     });
+  case "NotFoundError":
+    return res.status(404).send({
+      status: "error",
+      message: err.message
+    });
   default:
     console.error(err);
     return res.status(500).send({

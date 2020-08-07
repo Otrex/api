@@ -14,6 +14,9 @@ const schema = new Schema({
     type: String,
     required: true
   },
+  additionalDescriptions: {
+    type: [String]
+  },
   status: {
     type: String,
     default: "active"
