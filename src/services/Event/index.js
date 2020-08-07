@@ -97,6 +97,18 @@ module.exports.getEventCategories = wrapServiceAction({
   }
 });
 
+module.exports.getEvent = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...objectId },
+    eventId: { ...objectId }
+  },
+  async handler (params) {
+    await checkAuthorization(params.accountId, params.eventId, "event");
+    return await models.Event.findById(params.eventId);
+  }
+});
+
 module.exports.updateEvent = wrapServiceAction({
   params: {
     $$strict: "remove",

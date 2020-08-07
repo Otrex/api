@@ -15,6 +15,19 @@ module.exports.addEvent = async (req, res, next) => {
   }
 };
 
+module.exports.getSingleEvent = async (req, res, next) => {
+  try {
+    const data = await EventService.getEvent({
+      ...req.body,
+      eventId: req.params.eventId,
+      accountId: req.session.account._id
+    });
+    return res.send(successResponse("success", data));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.updateEvent = async (req, res, next) => {
   try {
     const data = await EventService.updateEvent({

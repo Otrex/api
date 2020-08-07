@@ -535,6 +535,29 @@ describe("pages", () => {
     }
   });
 
+  it("/pages/{pageId}", async () => {
+    const res = await request(app)
+      .get(`/pages/${state.pages[0]._id}`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("/pages/{pageId}/update", async () => {
     const res = await request(app)
       .post(`/pages/${state.pages[0]._id}/update`)
@@ -1385,6 +1408,32 @@ describe("events", () => {
     }
   });
 
+  it("/events/{eventId}", async () => {
+
+    const res = await request(app)
+      .get(`/events/${state.events[0]._id}`)
+      .set("x-api-token", state.sessions[0].token)
+      .send();
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Events"],
+        pathParameters: [
+          {
+            name: "eventId",
+            description: "id of the event",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("/events/{eventId}/update", async () => {
 
     const res = await request(app)
@@ -1500,6 +1549,32 @@ describe("projects", () => {
       ];
       addEndpoint(res, {
         tags: ["Projects"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
+  it("/projects/{projectId}", async () => {
+
+    const res = await request(app)
+      .get(`/projects/${state.projects[0]._id}`)
+      .set("x-api-token", state.sessions[0].token)
+      .send();
+
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Projects"],
+        pathParameters: [
+          {
+            name: "projectId",
+            description: "id of the event",
+            index: 1
+          }
+        ]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);

@@ -8,6 +8,7 @@ const {
 const {
   createPage,
   getPages,
+  getSinglePage,
   updatePage,
   followPage,
   unfollowPage,
@@ -27,6 +28,9 @@ router.use(verifyAccountAuth());
 router.route("/")
   .get(getPages)
   .post(createPage);
+
+router.route("/:pageId")
+  .get(getSinglePage);
 
 router.route("/:pageId/update")
   .post(updatePage);

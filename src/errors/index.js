@@ -32,9 +32,16 @@ class AuthorizationError extends GenericError {
   }
 }
 
+class NotFoundError extends GenericError {
+  constructor(message) {
+    super(message);
+  }
+}
+
 module.exports = {
   ServiceError,
   ValidationError,
   AuthenticationError,
-  AuthorizationError
+  AuthorizationError,
+  NotFoundError
 };

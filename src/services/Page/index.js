@@ -117,10 +117,14 @@ module.exports.createPage = wrapServiceAction({
 module.exports.getPage = wrapServiceAction({
   params: {
     $$strict: "remove",
+    accountId: { ...objectId },
     pageId: { ...objectId }
   },
   async handler (params) {
-    return await models.Page.findById(params.pageId).select({
+    return await models.Page.findOne({
+      _id: params.pageId,
+      "teamMembers.accountId": params.accountId
+    }).select({
       teamMembers: 0
     });
   }

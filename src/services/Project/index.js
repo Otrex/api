@@ -88,6 +88,25 @@ module.exports.createProject = wrapServiceAction({
   }
 });
 
+module.exports.getProject = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...any },
+    projectId: { ...any }
+  },
+  async handler (params) {
+    await checkAuthorization(params.accountId, params.projectId, "project");
+    const project = await models.Project.findById(params.projectId);
+    const category = await models.ProjectCategory.findById(project.categoryId);
+    const location = await models.Location.findById(project.locationId);
+    return {
+      ...project.toJSON(),
+      category,
+      location
+    };
+  }
+});
+
 module.exports.updateProject = wrapServiceAction({
   params: {
     $$strict: "remove",
@@ -155,7 +174,7 @@ module.exports.getAccountProjects = wrapServiceAction({
     }
   },
   async handler (params) {
-    return  models.Project.aggregate([
+    return models.Project.aggregate([
       {
         $match: {
           ownerId: db.utils.ObjectId(params.accountId),

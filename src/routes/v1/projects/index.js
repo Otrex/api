@@ -7,6 +7,7 @@ const {
 
 const {
   addProject,
+  getSingleProject,
   updateProject,
   getProjectCategories
 } = require("../../../controllers/project");
@@ -16,10 +17,14 @@ router.use(verifyAccountAuth());
 router.route("/")
   .post(addProject);
 
+router.route("/categories")
+  .get(getProjectCategories);
+
+router.route("/:projectId")
+  .get(getSingleProject);
+
 router.route("/:projectId/update")
   .post(updateProject);
 
-router.route("/categories")
-  .get(getProjectCategories);
 
 module.exports = router;

@@ -15,6 +15,18 @@ module.exports.createPage = async (req, res, next) => {
   }
 };
 
+module.exports.getSinglePage = async (req, res, next) => {
+  try {
+    const data = await PageService.getPage({
+      accountId: req.session.account._id,
+      pageId: req.params.pageId
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.getPages = async (req, res, next) => {
   try {
     const data = await PageService.getPages({

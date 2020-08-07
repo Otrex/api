@@ -382,11 +382,6 @@ module.exports.getConversationMessages = wrapServiceAction({
         }
       }
     ]);
-    return await models.ConversationMessage.find({
-      conversationId: conversation._id
-    }).select({
-      deletedBy: 0
-    });
   }
 });
 
