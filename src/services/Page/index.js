@@ -307,6 +307,7 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
   },
   async handler (params) {
     const page = await models.Page.findById(params.pageId);
+    const account = await models.Account.findById(params.accountId);
     if (!page) {
       throw new ServiceError("page not found");
     }
@@ -316,6 +317,9 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
     });
     if (!isPageOwner) {
       throw new AuthorizationError();
+    }
+    if (account.email === params.email) {
+      throw new ServiceError("you cannot invite yourself");
     }
     const record = await models.PageTeamMemberInvitation.findOne({
       pageId: params.pageId,
