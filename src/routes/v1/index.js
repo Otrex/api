@@ -46,5 +46,7 @@ router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
 
+router.use("/feeds", require("./mailingList"));
+
 combinedRouter.use("/admin", require("./admin"));
 combinedRouter.use("/", router);

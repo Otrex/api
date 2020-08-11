@@ -493,6 +493,7 @@ describe("pages", () => {
       .post("/pages")
       .set("x-api-token", state.sessions[1].token)
       .send({
+        username: "uba",
         name: "United Bank of Africa",
         description: "United Bank of Africa",
         shortName: "UBA",

@@ -26,6 +26,11 @@ const TeamMember = new Schema({
 }, { timestamps: true });
 
 const schema = new Schema({
+  username: {
+    type: String,
+    lowercase: true,
+    unique: true
+  },
   name: {
     type: String,
     required: true

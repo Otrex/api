@@ -76,8 +76,32 @@ const createAndUpdateParams = {
 * Service Actions
 * */
 module.exports.createPage = wrapServiceAction({
-  params: createAndUpdateParams,
+  params: {
+    username: {
+      ...string,
+      min: 3,
+      max: 16,
+      lowercase: true,
+      pattern: /^[a-z0-9_]+$/,
+      messages: {
+        stringMin: "your username should be more than 2 characters",
+        stringMax: "your username should not be at more than 16 characters",
+        stringPattern: "your username should only contain letters, numbers and underscores"
+      }
+    },
+    ...createAndUpdateParams
+  },
   async handler (params) {
+    // check if username already exists
+    const usernameTakenByPage = await models.Page.findOne({
+      username: params.username
+    });
+    const usernameTakenByAccount = await models.Account.findOne({
+      username: params.username
+    });
+    if (usernameTakenByPage || usernameTakenByAccount) {
+      throw new ServiceError("an account with this username already exists");
+    }
     // check if page with this name already exists
     const exists = await models.Page.findOne({
       accountId: params.accountId,
