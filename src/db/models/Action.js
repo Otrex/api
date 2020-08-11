@@ -6,6 +6,11 @@ const schema = new Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
+  actorType: {
+    type: String,
+    enum: ["account", "page"],
+    required: true
+  },
   type: {
     type: String,
     required: true

@@ -8,6 +8,7 @@ const checkAuthorization = require("../_core/checkAuthorization");
 const utils = require("../../utils");
 
 const db = require("../../db");
+const pick = require("lodash/pick");
 const models = db.models;
 
 /*
@@ -64,8 +65,12 @@ module.exports.createEvent = wrapServiceAction({
     categoryId: { ...objectId }
   },
   async handler (params) {
-    if (params.ownerType === "account" && params.ownerId.toString() !== params.accountId.toString()) {
-      throw new AuthorizationError();
+    let actor;
+    if (params.ownerType === "account") {
+      if (params.ownerId.toString() !== params.accountId.toString()) {
+        throw new AuthorizationError();
+      }
+      actor = await models.Account.findById(params.ownerId);
     }
     if (params.ownerType === "page") {
       const page = await models.Page.findById(params.ownerId);
@@ -73,7 +78,10 @@ module.exports.createEvent = wrapServiceAction({
         throw new ServiceError("page not found");
       }
       await checkAuthorization(params.accountId, params.locationId, "location");
+      actor = page;
     }
+    const category = await models.EventCategory.findById(params.categoryId);
+    const location = await models.Location.findById(params.locationId);
     const event = await models.Event.create({
       ...params
     });
@@ -87,6 +95,23 @@ module.exports.createEvent = wrapServiceAction({
         filename: params.coverImage
       });
     }
+    actor = params.ownerType === "account"
+      ? pick(actor, ["_id", "username", "profileImage"])
+      : pick(actor, ["_id", "username", "image"]);
+    await models.Action.create({
+      actorId: params.ownerId,
+      actorType: params.ownerType,
+      type: "event.add",
+      description: `${actor.username} has added a new event`,
+      data: {
+        actor,
+        event: {
+          ...event.toObject(),
+          location,
+          category
+        }
+      }
+    });
     return event;
   }
 });
@@ -168,7 +193,7 @@ module.exports.getAccountEvents = wrapServiceAction({
     }
   },
   async handler (params) {
-    return  models.Event.aggregate([
+    return models.Event.aggregate([
       {
         $match: {
           ownerId: db.utils.ObjectId(params.accountId),

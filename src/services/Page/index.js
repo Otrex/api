@@ -11,6 +11,7 @@ const utils = require("../../utils");
 const models = require("../../db").models;
 
 const omit = require("lodash/omit");
+const pick = require("lodash/pick");
 
 /*
 * Validation Helpers
@@ -212,11 +213,12 @@ module.exports.followPage = wrapServiceAction({
     // log action
     await models.Action.create({
       actorId: params.followerId,
+      actorType: "account",
       type: "page.follow",
       description: `${follower.username} followed your page ${page.name}`,
       data: {
-        followerUsername: follower.username,
-        followedPageName: page.name
+        followerAccount: pick(follower, ["_id", "username", "profileImage"]),
+        followedPage: pick(page, ["_id", "name"])
       }
     });
 
@@ -324,7 +326,7 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
     const record = await models.PageTeamMemberInvitation.findOne({
       pageId: params.pageId,
       inviteeEmail: params.email,
-      invitationStatus: "pending"
+      inviteStatus: "pending"
     });
     if (record) {
       throw new ServiceError("you have already invited this person");

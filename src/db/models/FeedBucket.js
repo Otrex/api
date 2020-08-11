@@ -2,8 +2,13 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const schema = new Schema({
-  accountId: {
+  ownerId: {
     type: mongoose.Types.ObjectId,
+    required: true
+  },
+  ownerType: {
+    type: String,
+    enum: ["account", "page"],
     required: true
   },
   count: {

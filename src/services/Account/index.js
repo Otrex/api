@@ -337,11 +337,12 @@ module.exports.followAccount = wrapServiceAction({
     // log action
     await models.Action.create({
       actorId: params.followerId,
+      actorType: "account",
       type: "account.follow",
       description: `${follower.username} followed you`,
       data: {
-        followerAccountUsername: follower.username,
-        followedAccountUsername: account.username
+        followerAccount: pick(follower, ["_id", "username", "profileImage"]),
+        followedAccount: pick(account, ["_id", "username", "profileImage"])
       }
     });
 
