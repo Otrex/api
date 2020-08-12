@@ -99,10 +99,15 @@ module.exports.getProject = wrapServiceAction({
     const project = await models.Project.findById(params.projectId);
     const category = await models.ProjectCategory.findById(project.categoryId);
     const location = await models.Location.findById(project.locationId);
+    const photos = await models.Photo.find({
+      ownerType: "project",
+      ownerId: params.projectId
+    });
     return {
       ...project.toJSON(),
       category,
-      location
+      location,
+      photos
     };
   }
 });
