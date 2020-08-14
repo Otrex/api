@@ -8,6 +8,7 @@ const PNF = libPhoneNumber.PhoneNumberFormat;
 const phoneUtil = libPhoneNumber.PhoneNumberUtil.getInstance();
 
 const utils = require("../../utils");
+const pick = require("lodash/pick");
 
 const db = require("../../db");
 const models = db.models;
@@ -20,11 +21,11 @@ const { string, any, objectId } = require("../../validation");
 /*
 * Service Dependencies
 * */
+const WebsocketService = require("../Websocket");
 
 /*
 * Service Actions
 * */
-
 module.exports.getContacts = wrapServiceAction({
   params: {
     accountId: { ...objectId }
@@ -319,12 +320,29 @@ module.exports.postConversationMessage = wrapServiceAction({
     if (!isMember) {
       throw new ServiceError("conversation not found ;)");
     }
-    await models.ConversationMessage.create({
+    const message = await models.ConversationMessage.create({
       conversationId: params.conversationId,
       senderId: params.accountId,
       type: params.type,
       content: params.content
     });
+    const otherMembers = conversation.members.filter(m => m.toString() !== account._id.toString());
+    for (const member of otherMembers) {
+      const connection = await models.WebSocketConnection.findOne({
+        accountId: member
+      });
+      if (connection) {
+        await WebsocketService.emitChatNotification({
+          socketId: connection.socketId,
+          event: "conversation.messages.new",
+          payload: {
+            conversationId: conversation._id,
+            message: pick(message.toObject(), ["type", "content", "createdAt"]),
+            sender: pick(account.toObject(), ["username", "profileImage"])
+          }
+        });
+      }
+    }
     return true;
   }
 });

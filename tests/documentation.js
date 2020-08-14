@@ -10,6 +10,9 @@ const masterTemplate = {
     },
     {
       url: "https://api.pointograph.com"
+    },
+    {
+      "url": "http://localhost:7701"
     }
   ],
   paths: {}
