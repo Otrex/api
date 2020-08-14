@@ -130,7 +130,19 @@ module.exports.getEvent = wrapServiceAction({
   },
   async handler (params) {
     await checkAuthorization(params.accountId, params.eventId, "event");
-    return await models.Event.findById(params.eventId);
+    const event = await models.Event.findById(params.eventId);
+    const category = await models.EventCategory.findById(event.categoryId);
+    const location = await models.Location.findById(event.locationId);
+    const photos = await models.Photo.find({
+      ownerType: "event",
+      ownerId: params.eventId
+    });
+    return {
+      ...event.toJSON(),
+      category,
+      location,
+      photos
+    };
   }
 });
 
