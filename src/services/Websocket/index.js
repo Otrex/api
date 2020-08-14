@@ -57,7 +57,6 @@ module.exports.setUpSocketIOServer = wrapServiceAction({
         }, {
           socketId: socket.id
         }, { upsert: true });
-        console.log(`connected: ${socket.id}`);
         /*
         * Socket handlers
         * */
@@ -66,7 +65,6 @@ module.exports.setUpSocketIOServer = wrapServiceAction({
             accountId: socket.$accountId,
             socketId: socket.id
           });
-          console.log(`disconnected: ${socket.id}`);
         });
       } catch (e) {
         console.error(e);
