@@ -320,7 +320,7 @@ module.exports.postConversationMessage = wrapServiceAction({
     if (!isMember) {
       throw new ServiceError("conversation not found ;)");
     }
-    const message = await models.ConversationMessage.create({
+    await models.ConversationMessage.create({
       conversationId: params.conversationId,
       senderId: params.accountId,
       type: params.type,
@@ -332,13 +332,47 @@ module.exports.postConversationMessage = wrapServiceAction({
         accountId: member
       });
       if (connection) {
+        // get messages
+        const messages = await models.ConversationMessage.aggregate([
+          {
+            $match: {
+              conversationId: conversation._id
+            }
+          },
+          {
+            $lookup: {
+              from: models.Account.collection.collectionName,
+              localField: "senderId",
+              foreignField: "_id",
+              as: "sender",
+            }
+          },
+          {
+            $set: {
+              sender: { $arrayElemAt: ["$sender", 0] }
+            }
+          },
+          {
+            $project: {
+              "isForwarded": 1,
+              "conversationId": 1,
+              "senderId": 1,
+              "sender.username": 1,
+              "sender.profileImage": 1,
+              "type": 1,
+              "content": 1,
+              "createdAt": 1
+            }
+          }
+        ]);
         await WebsocketService.emitChatNotification({
           socketId: connection.socketId,
           event: "conversation.messages.new",
           payload: {
-            conversationId: conversation._id,
-            message: pick(message.toObject(), ["type", "content", "createdAt"]),
-            sender: pick(account.toObject(), ["username", "profileImage"])
+            conversation: {
+              ...conversation.toObject(),
+              messages
+            },
           }
         });
       }
