@@ -91,11 +91,13 @@ module.exports.createPage = wrapServiceAction({
         stringMin: "your username should be more than 2 characters",
         stringMax: "your username should not be at more than 16 characters",
         stringPattern: "your username should only contain letters, numbers and underscores"
-      }
+      },
+      optional: true
     },
     ...createAndUpdateParams
   },
   async handler (params) {
+    params.username = params.username || params.name.toLowerCase().replace(/[^a-z0-9_]+/g, "");
     // check if username already exists
     const usernameTakenByPage = await models.Page.findOne({
       username: params.username
