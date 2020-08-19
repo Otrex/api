@@ -60,6 +60,8 @@ module.exports.setUpSocketIOServer = wrapServiceAction({
         /*
         * Socket handlers
         * */
+        socket.emit("conversation.messages.new", "you are now online!!!");
+        socket.emit("new_message", "you are now online!!!");
         socket.on("disconnect", async () => {
           await models.WebSocketConnection.deleteOne({
             accountId: socket.$accountId,

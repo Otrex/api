@@ -375,6 +375,16 @@ module.exports.postConversationMessage = wrapServiceAction({
             },
           }
         });
+        await WebsocketService.emitChatNotification({
+          socketId: connection.socketId,
+          event: "new_message",
+          payload: {
+            conversation: {
+              ...conversation.toObject(),
+              messages
+            },
+          }
+        });
       }
     }
     return true;

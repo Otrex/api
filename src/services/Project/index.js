@@ -200,3 +200,24 @@ module.exports.getAccountProjects = wrapServiceAction({
     ]);
   }
 });
+
+module.exports.getPageProjects = wrapServiceAction({
+  params: {
+    pageId: { ...objectId },
+    limit: {
+      type: "number",
+      default: 0
+    },
+    filter: {
+      type: "object",
+      default: {}
+    }
+  },
+  async handler (params) {
+    return await models.Project.find({
+      ownerId: params.pageId,
+      ownerType: "page",
+      ...params.filter,
+    }).sort({ _id: -1 }).limit(params.limit);
+  }
+});

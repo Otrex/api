@@ -71,6 +71,10 @@ const createAndUpdateParams = {
 /*
 * Service Dependencies
 * */
+const PhotoService = require("../Photo");
+const ProjectService = require("../Project");
+const EventService = require("../Event");
+const LocationService = require("../Location");
 
 /*
 * Service Actions
@@ -146,12 +150,23 @@ module.exports.getPage = wrapServiceAction({
     pageId: { ...objectId }
   },
   async handler (params) {
-    return await models.Page.findOne({
+    const projects = await ProjectService.getPageProjects({
+      pageId: params.pageId
+    });
+    const events = await EventService.getPageEvents({
+      pageId: params.pageId
+    });
+    const page = await models.Page.findOne({
       _id: params.pageId,
       "teamMembers.accountId": params.accountId
     }).select({
       teamMembers: 0
     });
+    return {
+      ...page.toObject(),
+      projects,
+      events
+    };
   }
 });
 
