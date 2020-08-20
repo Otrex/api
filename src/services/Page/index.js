@@ -109,6 +109,8 @@ module.exports.createPage = wrapServiceAction({
       throw new ServiceError("an account with this username already exists");
     }
     // check if page with this name already exists
+    const account = await models.Account.findById(params.accountId);
+    // check if page with this name already exists
     const exists = await models.Page.findOne({
       accountId: params.accountId,
       name: params.name
@@ -122,6 +124,7 @@ module.exports.createPage = wrapServiceAction({
     page.teamMembers.push({
       accountId: params.accountId,
       role: "owner",
+      email: account.email,
       assignedObjects: [
         {
           objectType: "*",
@@ -439,6 +442,7 @@ module.exports.acceptPageTeamMemberInvitation = wrapServiceAction({
     }
     page.teamMembers.push({
       accountId: account._id,
+      email: account.email,
       role: "maintainer",
       assignedObjects: pageTeamMemberInvitation.assignedObjects
     });

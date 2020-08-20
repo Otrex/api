@@ -17,6 +17,10 @@ const TeamMember = new Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
+  email: {
+    type: String,
+    required: true
+  },
   role: {
     type: String,
     enum: ["owner", "maintainer"],
