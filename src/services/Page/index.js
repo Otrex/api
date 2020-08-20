@@ -367,7 +367,9 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
     const record = await models.PageTeamMemberInvitation.findOne({
       pageId: params.pageId,
       inviteeEmail: params.email,
-      inviteStatus: "pending"
+      inviteStatus: {
+        $in: ["pending", "accepted"]
+      }
     });
     if (record) {
       throw new ServiceError("you have already invited this person");
