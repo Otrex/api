@@ -928,6 +928,29 @@ describe("pages", () => {
       throw err;
     }
   });
+
+  it("pages/{pageId}/delete", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/delete`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
 });
 
 describe("locations", () => {

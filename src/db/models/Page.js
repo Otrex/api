@@ -90,7 +90,11 @@ const schema = new Schema({
       type: String
     }
   ],
-  teamMembers: [TeamMember]
+  teamMembers: [TeamMember],
+  status: {
+    type: String,
+    default: "active"
+  }
 }, { timestamps: true });
 
 schema.index({

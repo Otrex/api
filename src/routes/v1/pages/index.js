@@ -20,7 +20,8 @@ const {
   rejectTeamMemberInvite,
   assignObjectsToTeamMember,
   removeAssignedObjectFromTeamMember,
-  removeTeamMember
+  removeTeamMember,
+  removePage
 } = require("../../../controllers/page");
 
 router.use(verifyAccountAuth());
@@ -67,5 +68,8 @@ router.route("/:pageId/team/:memberId/objects/:objectId/remove")
 
 router.route("/:pageId/team/:memberId/remove")
   .post(removeTeamMember);
+
+router.route("/:pageId/delete")
+  .post(removePage);
 
 module.exports = router;

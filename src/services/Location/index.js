@@ -186,6 +186,41 @@ module.exports.getAccountLocations = wrapServiceAction({
   }
 });
 
+module.exports.getPageLocations = wrapServiceAction({
+  params: {
+    pageId: { ...any },
+    limit: {
+      type: "number",
+      default: 0
+    },
+    filters: {
+      type: "object",
+      default: {}
+    }
+  },
+  async handler (params) {
+    return models.Location.aggregate([
+      {
+        $match: {
+          ownerId: db.utils.ObjectId(params.pageId),
+          ownerType: "page",
+          ...params.filters,
+        },
+      },
+      { $sort: { _id: -1 } },
+      ...(params.limit > 0 ? [{ $limit: params.limit }] : []),
+      {
+        $lookup: {
+          from: models.Photo.collection.collectionName,
+          localField: "_id",
+          foreignField: "ownerId",
+          as: "photos",
+        }
+      },
+    ]);
+  }
+});
+
 module.exports.getLocationDetails = wrapServiceAction({
   params: {
     username: { ...string },

@@ -191,3 +191,15 @@ module.exports.removeTeamMember = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.removePage = async (req, res, next) => {
+  try {
+    await PageService.removePage({
+      accountId: req.session.account._id,
+      pageId: req.params.pageId
+    });
+    return res.send(successResponse("success"));
+  } catch (e) {
+    next(e);
+  }
+};

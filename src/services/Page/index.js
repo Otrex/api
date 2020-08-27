@@ -161,6 +161,9 @@ module.exports.getPage = wrapServiceAction({
     const events = await EventService.getPageEvents({
       pageId: params.pageId
     });
+    const locations = await LocationService.getPageLocations({
+      pageId: params.pageId
+    });
     const page = await models.Page.findOne({
       _id: params.pageId,
       "teamMembers.accountId": params.accountId
@@ -169,6 +172,7 @@ module.exports.getPage = wrapServiceAction({
     });
     return {
       ...page.toObject(),
+      locations,
       projects,
       events
     };
@@ -214,9 +218,11 @@ module.exports.getPages = wrapServiceAction({
   },
   async handler (params) {
     return await models.Page.find({
-      "teamMembers.accountId": params.accountId
+      "teamMembers.accountId": params.accountId,
+      status: "active"
     }).select({
       name: 1,
+      username: 1,
       image: 1,
       followersCount: 1
     });
@@ -605,3 +611,29 @@ module.exports.removePageTeamMember = wrapServiceAction({
     return true;
   }
 });
+
+module.exports.removePage = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    page.status = "inactive";
+    await page.save();
+    return true;
+  }
+});
+
+
