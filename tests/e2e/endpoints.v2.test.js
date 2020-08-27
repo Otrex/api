@@ -73,7 +73,7 @@ const users = [
   {
     countryCode: "NG",
     phoneNumber: "+2348012345678",
-    email: "test1@example.com",
+    email: "alortee@gmail.com",
     username: "test1",
     password: "password",
   },

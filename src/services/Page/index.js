@@ -391,6 +391,11 @@ module.exports.sendPageTeamMemberInvitation = wrapServiceAction({
       inviteStatus: "pending"
     });
     // TODO: send invitation email
+    const MailerService = require("../Mailer");
+    await MailerService.send(MailerService.events.PAGE_TEAM_MEMBER_INVITED, params.email, {
+      page: page.toObject(),
+      link: `https://dev.pointograph.com/page/${page.id}/invite/${inviteToken}/accept`
+    });
     return true;
   }
 });

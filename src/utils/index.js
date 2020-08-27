@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Handlebars = require("handlebars");
 const config = require("../config");
 
 module.exports = {
@@ -16,7 +17,8 @@ module.exports = {
   slugify,
   generateRandomCode,
   generateHash,
-  deleteUploadedFile
+  deleteUploadedFile,
+  renderTemplate
 };
 
 async function bcryptHash(password) {
@@ -127,4 +129,8 @@ function deleteUploadedFile(filename) {
       resolve();
     });
   });
+}
+
+function renderTemplate(template, context) {
+  return Handlebars.compile(template)(context);
 }

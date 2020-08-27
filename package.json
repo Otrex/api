@@ -27,6 +27,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.4",
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
@@ -35,6 +36,7 @@
     "express-fileupload": "^1.1.7-alpha.3",
     "fastest-validator": "^1.5.1",
     "google-libphonenumber": "^3.2.10",
+    "handlebars": "^4.7.6",
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
