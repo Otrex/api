@@ -36,6 +36,11 @@ const wrapServiceAction = (action) => {
 
   return async function (params) {
     if (validate) {
+      Object.keys(params).forEach(k => {
+        if (params[k] === "") {
+          delete params[k];
+        }
+      });
       const errors = validate(params);
       if (Array.isArray(errors)) {
         throw new ValidationError(errors);
