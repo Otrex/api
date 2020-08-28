@@ -1,4 +1,5 @@
 const PageService = require("../services/Page");
+const LocationService = require("../services/Location");
 const {
   successResponse
 } = require("../utils");
@@ -81,6 +82,19 @@ module.exports.getFollowers = async (req, res, next) => {
       pageId: req.params.pageId
     });
     return res.send(successResponse("success", data));
+  } catch (e) {
+    next(e);
+  }
+};
+
+module.exports.addLocationToPage = async (req, res, next) => {
+  try {
+    const data = await LocationService.createLocation({
+      ...req.body,
+      ownerId: req.params.pageId,
+      ownerType: "page"
+    });
+    return res.send(successResponse(undefined, data));
   } catch (e) {
     next(e);
   }

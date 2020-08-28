@@ -13,6 +13,7 @@ const {
   followPage,
   unfollowPage,
   getFollowers,
+  addLocationToPage,
   getTeamMembers,
   getTeamMemberInvites,
   sendTeamMemberInvites,
@@ -44,6 +45,9 @@ router.route("/:pageId/unfollow")
 
 router.route("/:pageId/followers")
   .get(getFollowers);
+
+router.route("/:pageId/locations")
+  .post(addLocationToPage);
 
 router.route("/:pageId/team")
   .get(getTeamMembers);

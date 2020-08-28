@@ -93,7 +93,6 @@ module.exports.createLocation = wrapServiceAction({
       accountId: params.accountId,
       eddress: params.eddress
     });
-
     if (location) {
       throw new ServiceError("you have already added a location with this eddress");
     }
