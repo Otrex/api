@@ -180,7 +180,7 @@ module.exports.getAccountLocations = wrapServiceAction({
         $lookup: {
           from: models.Project.collection.collectionName,
           localField: "_id",
-          foreignField: "ownerId",
+          foreignField: "locationId",
           as: "projects",
         }
       },
@@ -188,7 +188,7 @@ module.exports.getAccountLocations = wrapServiceAction({
         $lookup: {
           from: models.Event.collection.collectionName,
           localField: "_id",
-          foreignField: "ownerId",
+          foreignField: "locationId",
           as: "events",
         }
       }
@@ -236,7 +236,7 @@ module.exports.getPageLocations = wrapServiceAction({
         $lookup: {
           from: models.Project.collection.collectionName,
           localField: "_id",
-          foreignField: "ownerId",
+          foreignField: "locationId",
           as: "projects",
         }
       },
@@ -244,7 +244,7 @@ module.exports.getPageLocations = wrapServiceAction({
         $lookup: {
           from: models.Event.collection.collectionName,
           localField: "_id",
-          foreignField: "ownerId",
+          foreignField: "locationId",
           as: "events",
         }
       }
