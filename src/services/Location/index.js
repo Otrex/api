@@ -175,6 +175,22 @@ module.exports.getAccountLocations = wrapServiceAction({
           foreignField: "ownerId",
           as: "photos",
         }
+      },
+      {
+        $lookup: {
+          from: models.Project.collection.collectionName,
+          localField: "_id",
+          foreignField: "ownerId",
+          as: "projects",
+        }
+      },
+      {
+        $lookup: {
+          from: models.Event.collection.collectionName,
+          localField: "_id",
+          foreignField: "ownerId",
+          as: "events",
+        }
       }
     ]);
     // return await models.Location.find({
