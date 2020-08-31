@@ -1774,7 +1774,13 @@ describe("contacts", () => {
       expect(res.body.status).toBe("success");
       state.contacts = res.body.data;
       addEndpoint(res, {
-        tags: ["Contacts"]
+        tags: ["Contacts"],
+        queryParameters: [
+          {
+            name: "blocked",
+            description: "return only blocked contacts (default: false)",
+          }
+        ]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);

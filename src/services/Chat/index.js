@@ -28,7 +28,8 @@ const WebsocketService = require("../Websocket");
 * */
 module.exports.getContacts = wrapServiceAction({
   params: {
-    accountId: { ...objectId }
+    accountId: { ...objectId },
+    isBlocked: { type: "boolean", default: false }
   },
   async handler (params) {
     const account = await models.Account.findById(params.accountId);
@@ -39,7 +40,7 @@ module.exports.getContacts = wrapServiceAction({
       {
         $match: {
           accountId: db.utils.ObjectId(params.accountId),
-          isBlocked: false
+          isBlocked: params.isBlocked
         }
       },
       {

@@ -18,7 +18,8 @@ module.exports.populateContacts = async (req, res, next) => {
 module.exports.getContacts = async (req, res, next) => {
   try {
     const data = await ChatService.getContacts({
-      accountId: req.session.account._id
+      accountId: req.session.account._id,
+      isBlocked: !!req.query.blocked
     });
     return res.send(successResponse(undefined, data));
   } catch (e) {

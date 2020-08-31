@@ -66,6 +66,17 @@ const getPathParameters = options => {
   }));
 };
 
+const getQueryParameters = options => {
+  const params = options.queryParameters || [];
+  return params.map(param => ({
+    in: "query",
+    name: param.name,
+    description: param.description || "",
+    schema: getSchema("string"),
+    required: !!param.required
+  }));
+};
+
 const getPath = (req, res, options) => {
   return {
     [req.method]: {
@@ -73,7 +84,8 @@ const getPath = (req, res, options) => {
       "tags": options.tags || [],
       "parameters": [
         ...getHeaderParameters(req.headers),
-        ...getPathParameters(options)
+        ...getPathParameters(options),
+        ...getQueryParameters(options)
       ],
       ...(req.body ? {
         "requestBody": {
