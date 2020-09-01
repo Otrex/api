@@ -29,7 +29,8 @@ module.exports = {
     ConversationMessage: require("./models/ConversationMessage"),
     Action: require("./models/Action"),
     FeedBucket: require("./models/FeedBucket"),
-    WebSocketConnection: require("./models/WebSocketConnection")
+    WebSocketConnection: require("./models/WebSocketConnection"),
+    FrequentlyAskedQuestion: require("./models/FrequentlyAskedQuestion")
   },
   utils: {
     ObjectId: require("mongoose").Types.ObjectId

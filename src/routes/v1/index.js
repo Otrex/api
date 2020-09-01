@@ -48,5 +48,7 @@ router.use("/mailing-list", require("./mailingList"));
 
 router.use("/feeds", require("./mailingList"));
 
+router.use("/faqs", require("./faq"));
+
 combinedRouter.use("/admin", require("./admin"));
 combinedRouter.use("/", router);

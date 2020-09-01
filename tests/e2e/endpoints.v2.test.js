@@ -2024,3 +2024,34 @@ describe("conversations", () => {
     }
   });
 });
+
+describe("faqs", () => {
+
+  jest.setTimeout(60000);
+
+  it("/faqs", async () => {
+    await db.models.FrequentlyAskedQuestion.insertMany([
+      {
+        question: "How Do I Create An Account",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+      },
+      {
+        question: "How Do I Create An Account",
+        answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+      }
+    ]);
+    const res = await request(app)
+      .get(`/faqs`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["FAQs"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
