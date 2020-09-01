@@ -6,12 +6,14 @@ const {
 } = require("../../../middlewares/authentication");
 
 const {
-  getQuestions
+  getQuestions,
+  addQuestion
 } = require("../../../controllers/faq");
 
 router.use(verifyAccountAuth());
 
 router.route("/")
+  .post(addQuestion)
   .get(getQuestions);
 
 module.exports = router;
