@@ -329,63 +329,65 @@ module.exports.postConversationMessage = wrapServiceAction({
     });
     const otherMembers = conversation.members.filter(m => m.toString() !== account._id.toString());
     for (const member of otherMembers) {
-      const connection = await models.WebSocketConnection.findOne({
+      const connections = await models.WebSocketConnection.find({
         accountId: member
       });
-      if (connection) {
-        // get messages
-        const messages = await models.ConversationMessage.aggregate([
-          {
-            $match: {
-              conversationId: conversation._id
-            }
-          },
-          {
-            $lookup: {
-              from: models.Account.collection.collectionName,
-              localField: "senderId",
-              foreignField: "_id",
-              as: "sender",
-            }
-          },
-          {
-            $set: {
-              sender: { $arrayElemAt: ["$sender", 0] }
-            }
-          },
-          {
-            $project: {
-              "isForwarded": 1,
-              "conversationId": 1,
-              "senderId": 1,
-              "sender.username": 1,
-              "sender.profileImage": 1,
-              "type": 1,
-              "content": 1,
-              "createdAt": 1
-            }
-          }
-        ]);
-        await WebsocketService.emitChatNotification({
-          socketId: connection.socketId,
-          event: "conversation.messages.new",
-          payload: {
-            conversation: {
-              ...conversation.toObject(),
-              messages
+      for (const connection of connections) {
+        if (connection) {
+          // get messages
+          const messages = await models.ConversationMessage.aggregate([
+            {
+              $match: {
+                conversationId: conversation._id
+              }
             },
-          }
-        });
-        await WebsocketService.emitChatNotification({
-          socketId: connection.socketId,
-          event: "new_message",
-          payload: {
-            conversation: {
-              ...conversation.toObject(),
-              messages
+            {
+              $lookup: {
+                from: models.Account.collection.collectionName,
+                localField: "senderId",
+                foreignField: "_id",
+                as: "sender",
+              }
             },
-          }
-        });
+            {
+              $set: {
+                sender: { $arrayElemAt: ["$sender", 0] }
+              }
+            },
+            {
+              $project: {
+                "isForwarded": 1,
+                "conversationId": 1,
+                "senderId": 1,
+                "sender.username": 1,
+                "sender.profileImage": 1,
+                "type": 1,
+                "content": 1,
+                "createdAt": 1
+              }
+            }
+          ]);
+          await WebsocketService.emitChatNotification({
+            socketId: connection.socketId,
+            event: "conversation.messages.new",
+            payload: {
+              conversation: {
+                ...conversation.toObject(),
+                messages
+              },
+            }
+          });
+          await WebsocketService.emitChatNotification({
+            socketId: connection.socketId,
+            event: "new_message",
+            payload: {
+              conversation: {
+                ...conversation.toObject(),
+                messages
+              },
+            }
+          });
+        }
       }
     }
     return true;

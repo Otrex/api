@@ -52,21 +52,14 @@ module.exports.setUpSocketIOServer = wrapServiceAction({
     });
     ChatNamespace.on("connect", async socket => {
       try {
-        await models.WebSocketConnection.updateOne({
-          accountId: socket.$accountId
-        }, {
+        await models.WebSocketConnection.create({
+          accountId: socket.$accountId,
           socketId: socket.id
-        }, { upsert: true });
+        });
         /*
         * Socket handlers
         * */
-        // socket.emit("conversation.messages.new", {
-        //   conversation: {},
-        //   messages
-        // });
-        // socket.emit("new_message", {
-        //
-        // });
+
         socket.on("disconnect", async () => {
           await models.WebSocketConnection.deleteOne({
             accountId: socket.$accountId,
