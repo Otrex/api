@@ -332,41 +332,41 @@ module.exports.postConversationMessage = wrapServiceAction({
       const connections = await models.WebSocketConnection.find({
         accountId: member
       });
+      // get messages
+      const messages = await models.ConversationMessage.aggregate([
+        {
+          $match: {
+            conversationId: conversation._id
+          }
+        },
+        {
+          $lookup: {
+            from: models.Account.collection.collectionName,
+            localField: "senderId",
+            foreignField: "_id",
+            as: "sender",
+          }
+        },
+        {
+          $set: {
+            sender: { $arrayElemAt: ["$sender", 0] }
+          }
+        },
+        {
+          $project: {
+            "isForwarded": 1,
+            "conversationId": 1,
+            "senderId": 1,
+            "sender.username": 1,
+            "sender.profileImage": 1,
+            "type": 1,
+            "content": 1,
+            "createdAt": 1
+          }
+        }
+      ]);
       for (const connection of connections) {
         if (connection) {
-          // get messages
-          const messages = await models.ConversationMessage.aggregate([
-            {
-              $match: {
-                conversationId: conversation._id
-              }
-            },
-            {
-              $lookup: {
-                from: models.Account.collection.collectionName,
-                localField: "senderId",
-                foreignField: "_id",
-                as: "sender",
-              }
-            },
-            {
-              $set: {
-                sender: { $arrayElemAt: ["$sender", 0] }
-              }
-            },
-            {
-              $project: {
-                "isForwarded": 1,
-                "conversationId": 1,
-                "senderId": 1,
-                "sender.username": 1,
-                "sender.profileImage": 1,
-                "type": 1,
-                "content": 1,
-                "createdAt": 1
-              }
-            }
-          ]);
           await WebsocketService.emitChatNotification({
             socketId: connection.socketId,
             event: "conversation.messages.new",
