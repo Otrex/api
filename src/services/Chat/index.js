@@ -327,7 +327,7 @@ module.exports.postConversationMessage = wrapServiceAction({
       type: params.type,
       content: params.content
     });
-    const otherMembers = conversation.members.filter(m => m.toString() !== account._id.toString());
+    const otherMembers = conversation.members;
     for (const member of otherMembers) {
       const connections = await models.WebSocketConnection.find({
         accountId: member
