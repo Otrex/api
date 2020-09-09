@@ -56,10 +56,10 @@ module.exports.setUpSocketIOServer = wrapServiceAction({
           accountId: socket.$accountId,
           socketId: socket.id
         });
+        
         /*
         * Socket handlers
         * */
-
         socket.on("disconnect", async () => {
           await models.WebSocketConnection.deleteOne({
             accountId: socket.$accountId,

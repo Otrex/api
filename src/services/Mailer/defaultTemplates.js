@@ -22,10 +22,10 @@ module.exports = {
     ...commonFields,
     subject: "Reset your password",
     body: `
-      <h3>Hello {{ first_name }},</h3>
-      <p>Use this code to reset you password.</p>
-      <p>Code: {{ code }}</p>
-      <p>Code expires after 30 minutes.</p>
+      <h3>Hello</h3>
+      <p>You have requested to reset your password</p>
+      <p>Click this link to reset your password <a href="{{ link }}">{{ link }}</a></p>
+      <p>Link expires after 1 hour.</p>
     `
   },
   [events.PASSWORD_RESET_SUCCESSFUL]: {

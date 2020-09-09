@@ -191,6 +191,10 @@ module.exports.sendResetPasswordToken = wrapServiceAction({
       resetTokenExpiresAt: moment().add(1, "h")
     });
     // TODO: send the mail
+    const MailerService = require("../Mailer");
+    await MailerService.send(MailerService.events.PASSWORD_RESET_REQUESTED, params.email, {
+      link: `https://dev.pointograph.com/auth/reset-password/${resetToken}`
+    });
     return true;
   }
 });

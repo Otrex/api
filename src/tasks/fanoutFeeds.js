@@ -52,7 +52,6 @@ const getActionAudience = {
         }
       }
     });
-    console.log(territory);
     if (territory) {
       // get territory trackers
       let t = await models.TerritoryTracker.find({
