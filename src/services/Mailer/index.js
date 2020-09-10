@@ -84,7 +84,8 @@ const send = async (event, email, context = {}, sendgridOptions = {}) => {
     }),
     ...sendgridOptions
   };
-  return await sgMail.send(msg);
+  // return await sgMail.send(msg);
+  return true;
 };
 
 module.exports = {

@@ -80,14 +80,14 @@ const users = [
   {
     countryCode: "NG",
     phoneNumber: "+2348023456789",
-    email: "test2@example.com",
+    email: "alortee+1@gmail.com",
     username: "test2",
     password: "password",
   },
   {
     countryCode: "NG",
     phoneNumber: "+2348023456710",
-    email: "test3@example.com",
+    email: "alortee+2@gmail.com",
     username: "test3",
     password: "password",
   },
@@ -2048,6 +2048,28 @@ describe("faqs", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res, {
         tags: ["FAQs"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+});
+
+describe("feeds", () => {
+
+  jest.setTimeout(60000);
+
+  it("/feeds", async () => {
+    await require("../../src/tasks/fanoutFeeds")();
+    const res = await request(app)
+      .get(`/feeds`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Feeds"]
       });
     } catch (err) {
       err.message = errorWithResponse(err, res);

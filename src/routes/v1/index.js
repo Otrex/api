@@ -46,7 +46,7 @@ router.use("/search", require("./search"));
 
 router.use("/mailing-list", require("./mailingList"));
 
-router.use("/feeds", require("./mailingList"));
+router.use("/feeds", require("./feeds"));
 
 router.use("/faqs", require("./faq"));
 

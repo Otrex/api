@@ -69,7 +69,7 @@ const getActionAudience = {
 
 const run = async () => {
   await db.createConnection();
-  console.log("[INFO] connected to DB!");
+  console.log("[INFO] [FAN_OUT_FEEDS] connected to DB!");
   // get pending actions
   const pendingActions = await models.Action.find({
     fanOutStatus: "pending"
@@ -79,13 +79,14 @@ const run = async () => {
       $in: pendingActions.map(a => a._id)
     }
   }, { $set: { fanOutStatus: "in_progress" } });
+  console.log(`[INFO] [FAN_OUT_FEEDS] Processing ${pendingActions.length} pending actions`);
   for (const action of pendingActions) {
     const audience = await getActionAudience[action.type](action);
     for (const aud of audience) {
       const conditions = {
         ownerId: aud.id,
         ownerType: aud.type,
-        count: { $lt: 1000 }
+        count: { $lt: 1 }
       };
       await models.FeedBucket.updateOne(conditions,
         {
@@ -104,4 +105,5 @@ const run = async () => {
   }
 };
 
-run().then(() => process.exit(0)).catch(console.error);
+module.exports = run;
+// run().then(() => process.exit(0)).catch(console.error);

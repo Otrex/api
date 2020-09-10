@@ -24,3 +24,6 @@ const websocket = async () => {
 };
 
 websocket().catch((e) => console.log(e) && process.exit(-1));
+
+// cron jobs
+require("./src/tasks/cron");
