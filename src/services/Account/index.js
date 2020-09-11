@@ -61,6 +61,11 @@ module.exports.createAccount = wrapServiceAction({
     profileImage: {
       ...string,
       optional: true
+    },
+    visibility: {
+      type: "enum", values: ["private", "public"],
+      optional: true,
+      default: "public"
     }
   },
   async handler (params) {
@@ -86,7 +91,8 @@ module.exports.createAccount = wrapServiceAction({
       password: await utils.bcryptHash(params.password),
       countryCode: params.countryCode,
       phoneNumber: verification.phoneNumber,
-      profileImage: params.profileImage
+      profileImage: params.profileImage,
+      visibility: params.visibility
     });
 
     // TODO: registration successful event

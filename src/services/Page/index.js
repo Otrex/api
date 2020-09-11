@@ -620,12 +620,17 @@ module.exports.removePage = wrapServiceAction({
   params: {
     $$strict: "remove",
     pageId: { ...any },
-    accountId: { ...any }
+    accountId: { ...any },
+    password: { ...string }
   },
   async handler (params) {
     const page = await models.Page.findById(params.pageId);
     if (!page) {
       throw new ServiceError("page not found");
+    }
+    const account = await models.Account.findById(params.accountId);
+    if (!(await utils.bcryptCompare(params.password, account.password))) {
+      throw new ServiceError("password is incorrect");
     }
     const isPageOwner = page.teamMembers.find(m => {
       return (m.accountId.toString() === params.accountId.toString()) &&

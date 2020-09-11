@@ -52,7 +52,7 @@ const schema = new Schema({
   visibility: {
     type: String,
     enum: ["public", "private"],
-    default: "private"
+    default: "public"
   },
   status: {
     type: String,

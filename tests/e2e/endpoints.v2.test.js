@@ -24,9 +24,12 @@ const errorWithResponse = (err, res) => `${err.message}\n\nResponse: ${JSON.stri
 * Mocks
 * */
 const random = require("lodash/random");
-
 jest.mock("lodash/random");
 random.mockReturnValue(1234);
+
+const sgMail = require("@sendgrid/mail");
+jest.mock("@sendgrid/mail");
+sgMail.send.mockResolvedValue({});
 
 beforeAll(async () => {
   state.connection = await db.createConnection();
@@ -932,7 +935,10 @@ describe("pages", () => {
   it("pages/{pageId}/delete", async () => {
     const res = await request(app)
       .post(`/pages/${state.pages[0]._id}/delete`)
-      .set("x-api-token", state.sessions[1].token);
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        password: "newPassword"
+      });
     try {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");

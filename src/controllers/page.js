@@ -210,7 +210,8 @@ module.exports.removePage = async (req, res, next) => {
   try {
     await PageService.removePage({
       accountId: req.session.account._id,
-      pageId: req.params.pageId
+      pageId: req.params.pageId,
+      password: req.body.password
     });
     return res.send(successResponse("success"));
   } catch (e) {
