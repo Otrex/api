@@ -15,12 +15,16 @@ const options = {
 };
 
 const connect = async () => {
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection;
+  }
   try {
     const db = config.db;
     const uri = `mongodb://${db.host}:${db.port}/${db.database}`;
     await mongoose.connect(uri, options);
     return mongoose.connection;
   } catch (e) {
+    console.log(e);
     process.exit(-1);
   }
 };
