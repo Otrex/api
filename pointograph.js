@@ -7,7 +7,7 @@ db.createConnection().then(async () => {
   http.createServer(app).listen(config.app.port, () => {
     console.log(`http server listening on port: ${config.app.port}`);
   });
-});
+}).catch((e) => console.log(e) && process.exit(-1));
 
 // websocket
 const websocket = async () => {
