@@ -87,6 +87,17 @@ module.exports.getFollowers = async (req, res, next) => {
   }
 };
 
+module.exports.getPageLocations = async (req, res, next) => {
+  try {
+    const data = await LocationService.getPageLocations({
+      pageId: req.params.pageId
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.addLocationToPage = async (req, res, next) => {
   try {
     const data = await LocationService.createLocation({

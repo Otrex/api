@@ -1053,6 +1053,29 @@ describe("locations", () => {
     }
   });
 
+  it("/pages/{pageId}/locations -- get", async () => {
+    const res = await request(app)
+      .get(`/pages/${state.pages[0]._id}/locations`)
+      .set("x-api-token", state.sessions[2].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("/locations/{locationId}/update", async () => {
     const res = await request(app)
       .post(`/locations/${state.locations[0]._id}/update`)
