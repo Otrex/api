@@ -1,5 +1,7 @@
 const LocationService = require("../services/Location");
 const PhotoService = require("../services/Photo");
+const ProjectService = require("../services/Project");
+const EventService = require("../services/Event");
 
 const {
   successResponse
@@ -26,9 +28,23 @@ module.exports.getLocationDetails = async (req, res, next) => {
       ownerId: location._id,
       ownerType: "location"
     });
+    const projects = await ProjectService.getAccountProjects({
+      accountId: req.session.account._id,
+      filters: {
+        locationId: location._id,
+      }
+    })
+    const events = await EventService.getAccountEvents({
+      accountId: req.session.account._id,
+      filters: {
+        locationId: location._id,
+      }
+    })
     const data = {
       ...location.toJSON(),
-      photos
+      photos,
+      projects,
+      events
     };
     return res.send(successResponse(undefined, data));
   } catch (e) {
