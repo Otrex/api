@@ -40,7 +40,8 @@ module.exports.search = wrapServiceAction({
         $match: {
           username: {
             $regex: new RegExp(params.query, "i")
-          }
+          },
+          visibility: "public"
         }
       },
       {
@@ -185,14 +186,14 @@ module.exports.search = wrapServiceAction({
       {
         $lookup: {
           from: models.Account.collection.collectionName,
-          let: { accountId: "$accountId" },
+          let: { ownerId: "$ownerId" },
           pipeline: [
             {
               $match: {
                 $expr:
                   {
                     $and: [
-                      { $eq: ["$$accountId", "$_id"] }
+                      { $eq: ["$$ownerId", "$_id"] }
                     ]
                   }
               }
