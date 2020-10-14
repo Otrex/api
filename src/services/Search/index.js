@@ -208,6 +208,30 @@ module.exports.search = wrapServiceAction({
         }
       },
       {
+        $lookup: {
+          from: models.Page.collection.collectionName,
+          let: { ownerId: "$ownerId" },
+          pipeline: [
+            {
+              $match: {
+                $expr:
+                  {
+                    $and: [
+                      { $eq: ["$$ownerId", "$_id"] }
+                    ]
+                  }
+              }
+            },
+            {
+              $project: {
+                username: 1
+              }
+            }
+          ],
+          as: "owner"
+        }
+      },
+      {
         $set: {
           longitude: { $arrayElemAt: ["$preciseLocation.coordinates", 0] },
           latitude: { $arrayElemAt: ["$preciseLocation.coordinates", 1] },
