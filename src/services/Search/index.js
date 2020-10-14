@@ -185,7 +185,9 @@ module.exports.search = wrapServiceAction({
       },
       {
         $lookup: {
-          from: models.Page.collection.collectionName,
+          from: {
+            $cond: { if: { $eq: [ "$ownerType", "account" ] }, then: models.Account.collection.collectionName, else: models.Page.collection.collectionName }
+          },
           let: { ownerId: "$ownerId" },
           pipeline: [
             {
@@ -207,30 +209,30 @@ module.exports.search = wrapServiceAction({
           as: "owner"
         }
       },
-      {
-        $lookup: {
-          from: models.Account.collection.collectionName,
-          let: { ownerId: "$ownerId" },
-          pipeline: [
-            {
-              $match: {
-                $expr:
-                  {
-                    $and: [
-                      { $eq: ["$$ownerId", "$_id"] }
-                    ]
-                  }
-              }
-            },
-            {
-              $project: {
-                username: 1
-              }
-            }
-          ],
-          as: "owner"
-        }
-      },
+      // {
+      //   $lookup: {
+      //     from: models.Account.collection.collectionName,
+      //     let: { ownerId: "$ownerId" },
+      //     pipeline: [
+      //       {
+      //         $match: {
+      //           $expr:
+      //             {
+      //               $and: [
+      //                 { $eq: ["$$ownerId", "$_id"] }
+      //               ]
+      //             }
+      //         }
+      //       },
+      //       {
+      //         $project: {
+      //           username: 1
+      //         }
+      //       }
+      //     ],
+      //     as: "owner"
+      //   }
+      // },
       {
         $set: {
           longitude: { $arrayElemAt: ["$preciseLocation.coordinates", 0] },
