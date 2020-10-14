@@ -4,7 +4,8 @@ const ProjectService = require("../services/Project");
 const EventService = require("../services/Event");
 
 const {
-  successResponse
+  successResponse,
+  errorResponse
 } = require("../utils");
 
 module.exports.getAccountLocations = async (req, res, next) => {
@@ -24,6 +25,9 @@ module.exports.getLocationDetails = async (req, res, next) => {
       username: req.params.username,
       eddress: req.params.eddress
     });
+    if (!location) {
+      return res.send(errorResponse("location not found"));
+    }
     const photos = await PhotoService.getPhotos({
       ownerId: location._id,
       ownerType: "location"
@@ -33,13 +37,13 @@ module.exports.getLocationDetails = async (req, res, next) => {
       filters: {
         locationId: location._id,
       }
-    })
+    });
     const events = await EventService.getAccountEvents({
       accountId: req.session.account._id,
       filters: {
         locationId: location._id,
       }
-    })
+    });
     const data = {
       ...location.toJSON(),
       photos,

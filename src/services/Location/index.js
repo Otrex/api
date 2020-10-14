@@ -261,11 +261,14 @@ module.exports.getLocationDetails = wrapServiceAction({
     const account = await models.Account.findOne({
       username: params.username
     });
-    if (!account) {
-      throw new ServiceError("account not found");
+    const page = await models.Page.findOne({
+      username: params.username
+    });
+    if (!account && !page) {
+      throw new ServiceError("location not found");
     }
     return await models.Location.findOne({
-      ownerId: account._id,
+      ownerId: (account || page)._id,
       eddress: params.eddress
     });
   }
