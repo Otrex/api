@@ -185,7 +185,7 @@ module.exports.search = wrapServiceAction({
       },
       {
         $lookup: {
-          from: models.Account.collection.collectionName,
+          from: models.Page.collection.collectionName,
           let: { ownerId: "$ownerId" },
           pipeline: [
             {
@@ -209,7 +209,7 @@ module.exports.search = wrapServiceAction({
       },
       {
         $lookup: {
-          from: models.Page.collection.collectionName,
+          from: models.Account.collection.collectionName,
           let: { ownerId: "$ownerId" },
           pipeline: [
             {
