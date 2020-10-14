@@ -185,9 +185,7 @@ module.exports.search = wrapServiceAction({
       },
       {
         $lookup: {
-          from: {
-            $cond: { if: { $eq: [ "$ownerType", "account" ] }, then: models.Account.collection.collectionName, else: models.Page.collection.collectionName }
-          },
+          from: models.Page.collection.collectionName,
           let: { ownerId: "$ownerId" },
           pipeline: [
             {
@@ -206,38 +204,40 @@ module.exports.search = wrapServiceAction({
               }
             }
           ],
-          as: "owner"
+          as: "pageOwner"
         }
       },
-      // {
-      //   $lookup: {
-      //     from: models.Account.collection.collectionName,
-      //     let: { ownerId: "$ownerId" },
-      //     pipeline: [
-      //       {
-      //         $match: {
-      //           $expr:
-      //             {
-      //               $and: [
-      //                 { $eq: ["$$ownerId", "$_id"] }
-      //               ]
-      //             }
-      //         }
-      //       },
-      //       {
-      //         $project: {
-      //           username: 1
-      //         }
-      //       }
-      //     ],
-      //     as: "owner"
-      //   }
-      // },
+      {
+        $lookup: {
+          from: models.Account.collection.collectionName,
+          let: { ownerId: "$ownerId" },
+          pipeline: [
+            {
+              $match: {
+                $expr:
+                  {
+                    $and: [
+                      { $eq: ["$$ownerId", "$_id"] }
+                    ]
+                  }
+              }
+            },
+            {
+              $project: {
+                username: 1
+              }
+            }
+          ],
+          as: "accountOwner"
+        }
+      },
       {
         $set: {
           longitude: { $arrayElemAt: ["$preciseLocation.coordinates", 0] },
           latitude: { $arrayElemAt: ["$preciseLocation.coordinates", 1] },
-          owner: { $arrayElemAt: ["$owner", 0] },
+          owner: {
+            $cond: [ { $eq: [ "$ownerType", "account" ] }, { $arrayElemAt: ["$accountOwner", 0] }, { $arrayElemAt: ["$pageOwner", 0] } ]
+          },
         }
       },
       {
