@@ -27,6 +27,7 @@ module.exports = async (accountId, objectId, objectType) => {
       throw new NotFoundError(`${objectType} not found`);
     }
     // check for page moderator membership
+    console.log(page.toJSON());
     const membership = page.teamMembers.find(m => m.accountId.toString() === accountId.toString());
     if (!membership) {
       throw new AuthorizationError();
