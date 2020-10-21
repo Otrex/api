@@ -22,12 +22,11 @@ module.exports = async (accountId, objectId, objectType) => {
     throw new AuthorizationError();
   }
   if (object.ownerType === "page") {
-    const page = models.Page.findById(object.ownerId);
+    const page = await models.Page.findById(object.ownerId);
     if (!page) {
       throw new NotFoundError(`${objectType} not found`);
     }
     // check for page moderator membership
-    console.log(page.toJSON());
     const membership = page.teamMembers.find(m => m.accountId.toString() === accountId.toString());
     if (!membership) {
       throw new AuthorizationError();
