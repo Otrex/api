@@ -20,6 +20,7 @@ const {
   sendTeamMemberInvites,
   acceptTeamMemberInvite,
   rejectTeamMemberInvite,
+  updateTeamMember,
   assignObjectsToTeamMember,
   removeAssignedObjectFromTeamMember,
   removeTeamMember,
@@ -65,6 +66,9 @@ router.route("/:pageId/team/invites/:inviteToken/accept")
 
 router.route("/:pageId/team/invites/:inviteToken/reject")
   .post(rejectTeamMemberInvite);
+
+router.route("/:pageId/team/:memberId/update")
+  .post(updateTeamMember);
 
 router.route("/:pageId/team/:memberId/objects")
   .post(assignObjectsToTeamMember);

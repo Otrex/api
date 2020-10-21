@@ -509,6 +509,56 @@ module.exports.getPageTeamMembers = wrapServiceAction({
   }
 });
 
+module.exports.updatePageTeamMember = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    pageId: { ...any },
+    accountId: { ...any },
+    memberId: { ...any },
+    objects: {
+      type: "array",
+      items: {
+        type: "object",
+        props: {
+          objectType: {
+            type: "enum",
+            values: ["location", "event", "project"]
+          },
+          objectPath: {
+            ...string,
+            optional: true
+          }
+        }
+      }
+    }
+  },
+  async handler (params) {
+    const page = await models.Page.findById(params.pageId);
+    if (!page) {
+      throw new ServiceError("page not found");
+    }
+    const isPageOwner = page.teamMembers.find(m => {
+      return (m.accountId.toString() === params.accountId.toString()) &&
+        (m.role === "owner");
+    });
+    if (!isPageOwner) {
+      throw new AuthorizationError();
+    }
+    const teamMember = page.teamMembers.find(m => m._id.toString() === params.memberId.toString());
+    const teamMemberIndex = page.teamMembers.findIndex(m => m._id.toString() === params.memberId.toString());
+    if (!teamMember) {
+      throw new ServiceError("user is not managing this page");
+    }
+    teamMember.assignedObjects = params.objects.map(object => ({
+      objectType: object.objectType,
+      objectPath: object.objectPath || "*"
+    }));
+    page.teamMembers[teamMemberIndex] = teamMember;
+    await page.save();
+    return true;
+  }
+});
+
 module.exports.assignObjectsToPageTeamMember = wrapServiceAction({
   params: {
     $$strict: "remove",

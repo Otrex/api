@@ -822,6 +822,55 @@ describe("pages", () => {
     }
   });
 
+  it("pages/{pageId}/team/{memberId}/update", async () => {
+    const res = await request(app)
+      .post(`/pages/${state.pages[0]._id}/team/${state.pages[0].team[0]._id}/update`)
+      .set("x-api-token", state.sessions[1].token)
+      .send({
+        objects: [
+          {
+            objectType: "location"
+          },
+          {
+            objectType: "event",
+            objectPath: state.pages[0].team[0]._id
+          },
+          {
+            objectType: "project",
+            objectPath: state.pages[0].team[0]._id
+          }
+        ]
+      });
+    const pagesRes = await request(app)
+      .get(`/pages/${state.pages[0]._id}/team`)
+      .set("x-api-token", state.sessions[1].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      expect(pagesRes.statusCode).toEqual(200);
+      expect(pagesRes.body.status).toBe("success");
+      state.pages[0].team = pagesRes.body.data;
+      addEndpoint(res, {
+        tags: ["Pages"],
+        pathParameters: [
+          {
+            name: "pageId",
+            description: "id of the page",
+            index: 1
+          },
+          {
+            name: "memberId",
+            description: "id of the page team member",
+            index: 3
+          }
+        ]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("pages/{pageId}/team/{memberId}/objects", async () => {
     const res = await request(app)
       .post(`/pages/${state.pages[0]._id}/team/${state.pages[0].team[0]._id}/objects`)

@@ -176,6 +176,20 @@ module.exports.rejectTeamMemberInvite = async (req, res, next) => {
   }
 };
 
+module.exports.updateTeamMember = async (req, res, next) => {
+  try {
+    await PageService.updatePageTeamMember({
+      accountId: req.session.account._id,
+      pageId: req.params.pageId,
+      memberId: req.params.memberId,
+      objects: req.body.objects
+    });
+    return res.send(successResponse("success"));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.assignObjectsToTeamMember = async (req, res, next) => {
   try {
     await PageService.assignObjectsToPageTeamMember({
