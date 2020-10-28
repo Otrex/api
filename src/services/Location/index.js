@@ -212,7 +212,7 @@ module.exports.getAccountFollowedLocations = wrapServiceAction({
     const locations = await models.LocationFollower.find({
       followerId: db.utils.ObjectId(params.accountId)
     });
-    const ids = locations.map(l => l._id);
+    const ids = locations.map(l => l.locationId);
     return models.Location.aggregate([
       {
         $match: {
