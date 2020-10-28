@@ -1200,6 +1200,22 @@ describe("locations", () => {
     }
   });
 
+  it("/locations/followed - get", async () => {
+    const res = await request(app)
+      .get("/locations/followed")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res, {
+        tags: ["Locations"]
+      });
+    } catch (err) {
+      err.message = errorWithResponse(err, res);
+      throw err;
+    }
+  });
+
   it("/locations/{locationId}/unfollow", async () => {
     const res = await request(app)
       .post(`/locations/${state.locations[0]._id}/unfollow`)

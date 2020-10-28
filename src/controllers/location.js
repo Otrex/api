@@ -19,6 +19,17 @@ module.exports.getAccountLocations = async (req, res, next) => {
   }
 };
 
+module.exports.getAccountFollowedLocations = async (req, res, next) => {
+  try {
+    const data = await LocationService.getAccountFollowedLocations({
+      accountId: req.session.account._id
+    });
+    return res.send(successResponse(undefined, data));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports.getLocationDetails = async (req, res, next) => {
   try {
     const location = await LocationService.getLocationDetails({

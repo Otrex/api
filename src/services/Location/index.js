@@ -193,11 +193,60 @@ module.exports.getAccountLocations = wrapServiceAction({
         }
       }
     ]);
-    // return await models.Location.find({
-    //   ownerId: params.accountId,
-    //   ownerType: "account",
-    //   ...params.filters,
-    // }).sort({ _id: -1 }).limit(params.limit);
+  }
+});
+
+module.exports.getAccountFollowedLocations = wrapServiceAction({
+  params: {
+    accountId: { ...any },
+    limit: {
+      type: "number",
+      default: 0
+    },
+    filters: {
+      type: "object",
+      default: {}
+    }
+  },
+  async handler (params) {
+    const locations = await models.LocationFollower.find({
+      followerId: db.utils.ObjectId(params.accountId)
+    });
+    const ids = locations.map(l => l._id);
+    return models.Location.aggregate([
+      {
+        $match: {
+          _id: { $in: ids },
+          ...params.filters,
+        },
+      },
+      { $sort: { _id: -1 } },
+      ...(params.limit > 0 ? [{ $limit: params.limit }] : []),
+      {
+        $lookup: {
+          from: models.Photo.collection.collectionName,
+          localField: "_id",
+          foreignField: "ownerId",
+          as: "photos",
+        }
+      },
+      {
+        $lookup: {
+          from: models.Project.collection.collectionName,
+          localField: "_id",
+          foreignField: "locationId",
+          as: "projects",
+        }
+      },
+      {
+        $lookup: {
+          from: models.Event.collection.collectionName,
+          localField: "_id",
+          foreignField: "locationId",
+          as: "events",
+        }
+      }
+    ]);
   }
 });
 

@@ -8,6 +8,7 @@ const {
 const {
   createLocation,
   getAccountLocations,
+  getAccountFollowedLocations,
   getLocationDetails,
   getLocationsCategories,
   updateLocation,
@@ -23,6 +24,9 @@ router.use(verifyAccountAuth());
 router.route("/")
   .get(getAccountLocations)
   .post(createLocation);
+
+router.route("/followed")
+  .get(getAccountFollowedLocations);
 
 router.route("/:locationId/update")
   .post(updateLocation);
