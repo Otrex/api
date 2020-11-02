@@ -3,6 +3,8 @@ const {
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 
+const Jusibe = require("jusibe");
+const jusibe = new Jusibe("18d9a4c3def23c8c24e622f17ae5a50d", "82e9c8b4200c6b4633a6ab99a9422064");
 const omit = require("lodash/omit");
 const random = require("lodash/random");
 const moment = require("moment");
@@ -52,6 +54,13 @@ module.exports.sendVerificationCode = wrapServiceAction({
       upsert: true
     });
     // TODO: send verification code
+
+    await jusibe.sendSMS({
+      to: formattedPhoneNumber,
+      from: "pointograph",
+      message: "Hello, \nThanks for signing up on pointograph.com.\nYour mobile number verification code is:" + code
+    });
+
     return verificationEntry;
   }
 });

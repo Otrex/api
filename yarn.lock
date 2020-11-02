@@ -3479,6 +3479,13 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+jusibe@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/jusibe/-/jusibe-1.0.3.tgz#841e5b266a4810757acefc16c83f79be6a34474c"
+  integrity sha512-NCivNFRiRuU8s8eFnaklH62sl35XKk/QEIV2JfNIUHLRaZZXop2CsxYuabDMIOXcejAZT2xVFkSZscnFW4RAFw==
+  dependencies:
+    request "^2.81.0"
+
 jwa@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
@@ -4630,7 +4637,7 @@ request-promise-native@^1.0.8:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.88.2:
+request@^2.81.0, request@^2.88.2:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
