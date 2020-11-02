@@ -58,7 +58,7 @@ module.exports.sendVerificationCode = wrapServiceAction({
     await jusibe.sendSMS({
       to: formattedPhoneNumber,
       from: "pointograph",
-      message: "Hello, \nThanks for signing up on pointograph.com.\nYour mobile number verification code is:" + code
+      message: "Hello, \nThanks for signing up on pointograph.com\nYour mobile number verification code is:" + code
     });
 
     return verificationEntry;
