@@ -3,6 +3,9 @@ const {
 } = require("../../errors");
 const wrapServiceAction = require("../_core/wrapServiceAction");
 
+const Jusibe = require("jusibe");
+// const jusibe = new Jusibe("18d9a4c3def23c8c24e622f17ae5a50d", "82e9c8b4200c6b4633a6ab99a9422064");
+const jusibe = new Jusibe("4cdec4560f407039fa4730a87de06bfd", "852f6cb559f2eb13ee5e7e87713777a5");
 const omit = require("lodash/omit");
 const random = require("lodash/random");
 const moment = require("moment");
@@ -36,23 +39,29 @@ module.exports.sendVerificationCode = wrapServiceAction({
     const formattedPhoneNumber = phoneUtil.format(phoneNumber, PNF.E164);
 
     const filter = {
-      phoneNumber: formattedPhoneNumber,
-      phoneNumberVerifiedAt: { $exists: true }
+      phoneNumber: formattedPhoneNumber
     };
-    let verificationEntry = await models.PhoneVerification.findOne(filter);
+    let verificationEntry = await models.Account.findOne(filter);
     if (verificationEntry) {
       throw new ServiceError("an account with this phone number already exists");
     }
-    const code = 1234 || random(1000, 9999);
+    const code = random(1000, 9999);
     const updates = {
       verificationCode: code,
       verificationCodeExpiresAt: moment().add(1, "h")
     };
-    verificationEntry = await models.PhoneVerification.findOneAndUpdate(omit(filter, "phoneNumberVerifiedAt"), updates, {
+    verificationEntry = await models.PhoneVerification.findOneAndUpdate(omit(filter, "verifiedAt"), updates, {
       new: true,
       upsert: true
     });
     // TODO: send verification code
+
+    await jusibe.sendSMS({
+      to: formattedPhoneNumber,
+      from: "pointograph",
+      message: "Hello, \nThanks for signing up on pointograph.com\nYour mobile number verification code is:" + code
+    });
+
     return verificationEntry;
   }
 });
@@ -73,7 +82,7 @@ module.exports.checkVerificationCode = wrapServiceAction({
 
     const filter = {
       phoneNumber: formattedPhoneNumber,
-      phoneNumberVerifiedAt: { $exists: false }
+      verifiedAt: { $exists: false }
     };
     let verificationEntry = await models.PhoneVerification.findOne(filter);
     if (!verificationEntry) {

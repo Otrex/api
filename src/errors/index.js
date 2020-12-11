@@ -13,8 +13,8 @@ class ServiceError extends GenericError {
 }
 
 class ValidationError extends GenericError {
-  constructor(errors = [], message = "validation error") {
-    message = `${message}: ${errors[0].message}`;
+  constructor(errors = [], message = "") {
+    message = `${errors[0].message}`;
     super(message);
     this.errors = errors;
   }
@@ -26,8 +26,22 @@ class AuthenticationError extends GenericError {
   }
 }
 
+class AuthorizationError extends GenericError {
+  constructor(message = "you are not authorized to perform this action") {
+    super(message);
+  }
+}
+
+class NotFoundError extends GenericError {
+  constructor(message) {
+    super(message);
+  }
+}
+
 module.exports = {
   ServiceError,
   ValidationError,
-  AuthenticationError
+  AuthenticationError,
+  AuthorizationError,
+  NotFoundError
 };

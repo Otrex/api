@@ -1,0 +1,85 @@
+Pointograph V2 API Methods
+
+[MET]
+[+++] verification.phone.sendCode
+[+++] verification.phone.checkCode
+
+[+++] auth.register
+[+++] auth.login
+[+++] auth.passwordReset.initiate
+[++-] auth.passwordReset.update
+
+[+++] accounts.profile.info
+[+++] accounts.profile.update
+[+++] accounts.password.update
+[+++] accounts.follow
+[+++] accounts.unfollow
+[+++] accounts.followers.list
+[+++] accounts.followings.list
+
+[+++] pages.create
+[+++] pages.list
+[++-] pages.update
+[---] pages.delete
+[+++] pages.follow
+[+++] pages.unfollow
+[+++] pages.followers.list
+[+++] pages.teamMembers.invites.list
+[+++] pages.teamMembers.invites.send
+[+++] pages.teamMembers.invites.accept
+[+++] pages.teamMembers.invites.reject
+[+++] pages.teamMembers.list
+[+++] pages.teamMembers.assignObject
+[+++] pages.teamMembers.unAssignObject
+[+++] pages.teamMembers.remove
+
+[+++] locations.add
+[+++] locations.list
+[+++] locations.update
+[+++] locations.follow
+[+++] locations.unfollow
+[+++] locations.followers.list
+[+++] locations.alarms.add
+[+++] locations.alarms.list
+
+[+++] territories.list
+[+++] territories.details
+[+++] territories.track
+[+++] territories.unTrack
+[---] territories.events.list
+[---] territories.locations.list
+
+[+++] files.upload
+[+++] files.fetch
+
+[+++] photos.add
+[---] photos.list
+[+++] photos.delete
+
+[+++] events.add
+[+--] events.list
+[+++] events.update
+[---] events.delete
+
+[++-] projects.add
+[---] projects.list
+[++-] projects.update
+[---] projects.delete
+
+[+++] contacts.populate
+[+++] contacts.list
+[+++] contacts.block
+[+++] contacts.unblock
+
+[+++] conversations.create
+[+++] conversations.messages.post
+[+++] conversations.messages.list
+[+++] conversations.messages.forward
+[++-] conversations.messages.delete
+[++-] conversations.delete
+
+[---] search
+
+[---] notifications
+
+[---] feeds

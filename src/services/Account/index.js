@@ -8,7 +8,8 @@ const omit = require("lodash/omit");
 const pick = require("lodash/pick");
 const utils = require("../../utils");
 
-const models = require("../../db").models;
+const db = require("../../db");
+const models = db.models;
 
 /*
 * Validation Helpers
@@ -16,7 +17,8 @@ const models = require("../../db").models;
 const {
   any,
   string,
-  email
+  email,
+  objectId
 } = require("../../validation");
 
 /*
@@ -36,14 +38,37 @@ module.exports.createAccount = wrapServiceAction({
       min: 4,
       max: 16,
       lowercase: true,
-      pattern: /^[a-z0-9]+$/
+      pattern: /^[a-z0-9_]+$/,
+      messages: {
+        stringMin: "your username should be more than 3 characters",
+        stringMax: "your username should not be at more than 16 characters",
+        stringPattern: "your username should only contain letters, numbers and underscores"
+      }
     },
-    password: { ...string, min: 6 },
-    countryCode: { ...string, length: 2 },
-    phoneNumber: { ...string, min: 9 },
-    phoneNumberVerificationToken: { ...string }
+    password: {
+      ...string,
+      min: 6
+    },
+    countryCode: {
+      ...string,
+      length: 2
+    },
+    phoneNumber: {
+      ...string,
+      min: 9
+    },
+    phoneNumberVerificationToken: { ...string },
+    profileImage: {
+      ...string,
+      optional: true
+    },
+    visibility: {
+      type: "enum", values: ["private", "public"],
+      optional: true,
+      default: "public"
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const item = await models.Account.findOne({
       $or: [
         { email: params.email },
@@ -65,10 +90,18 @@ module.exports.createAccount = wrapServiceAction({
       username: params.username,
       password: await utils.bcryptHash(params.password),
       countryCode: params.countryCode,
-      phoneNumber: verification.phoneNumber
+      phoneNumber: verification.phoneNumber,
+      profileImage: params.profileImage,
+      visibility: params.visibility
     });
+
     // TODO: registration successful event
-    console.log(account._id);
+
+    if (params.profileImage) {
+      await models.PendingUpload.deleteOne({
+        filename: params.profileImage
+      });
+    }
     return account;
   }
 });
@@ -78,10 +111,16 @@ module.exports.createLoginSession = wrapServiceAction({
     $$strict: "remove",
     identifier: { ...string }, // phone number or username
     password: { ...string },
-    ip: { ...string, optional: true },
-    userAgent: { ...string, optional: true }
+    ip: {
+      ...string,
+      optional: true
+    },
+    userAgent: {
+      ...string,
+      optional: true
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const identifierType = params.identifier.includes("+")
       ? "phone number"
       : "username";
@@ -117,11 +156,14 @@ module.exports.createLoginSession = wrapServiceAction({
 module.exports.changeAccountPassword = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
+    accountId: { ...objectId },
     currentPassword: { ...string },
-    password: { ...string, min: 6 }
+    password: {
+      ...string,
+      min: 6
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
@@ -141,7 +183,7 @@ module.exports.sendResetPasswordToken = wrapServiceAction({
     $$strict: "remove",
     email: { ...email }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findOne({
       email: params.email
     });
@@ -155,6 +197,10 @@ module.exports.sendResetPasswordToken = wrapServiceAction({
       resetTokenExpiresAt: moment().add(1, "h")
     });
     // TODO: send the mail
+    const MailerService = require("../Mailer");
+    await MailerService.send(MailerService.events.PASSWORD_RESET_REQUESTED, params.email, {
+      link: `https://dev.pointograph.com/auth/reset-password/${resetToken}`
+    });
     return true;
   }
 });
@@ -163,9 +209,12 @@ module.exports.resetAccountPassword = wrapServiceAction({
   params: {
     $$strict: "remove",
     resetToken: { ...string },
-    password: { ...string, min: 6 }
+    password: {
+      ...string,
+      min: 6
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const reset = await models.PasswordReset.findOne({
       resetToken: params.resetToken
     });
@@ -188,17 +237,21 @@ module.exports.resetAccountPassword = wrapServiceAction({
 module.exports.getAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    isOwnAccount: { type: "boolean" }
+    username: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findOne({
-      $or: [
-        { _id: params.accountId },
-        { username: params.accountId }
-      ]
+      username: params.username
     })
-      .select(`username${ params.isOwnAccount ? " email " : " " }location followersCount followingsCount`);
+      .select({
+        username: 1,
+        email: 1,
+        location: 1,
+        followersCount: 1,
+        followingsCount: 1,
+        profileImage: 1,
+        coverImage: 1
+      });
     if (!account) {
       throw new ServiceError("account not found");
     }
@@ -209,27 +262,61 @@ module.exports.getAccount = wrapServiceAction({
 module.exports.updateAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    location: { ...string }
+    accountId: { ...objectId },
+    location: {
+      ...string,
+      optional: true
+    },
+    profileImage: {
+      ...string,
+      optional: true
+    },
+    coverImage: {
+      ...string,
+      optional: true
+    }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
     }
+
+    if (params.profileImage && account.profileImage) {
+      if (params.profileImage !== account.profileImage) {
+        await utils.deleteUploadedFile(account.profileImage).catch(console.error);
+      }
+    }
+
+    if (params.coverImage && account.coverImage) {
+      if (params.coverImage !== account.coverImage) {
+        await utils.deleteUploadedFile(account.coverImage).catch(console.error);
+      }
+    }
+
     account.location = params.location;
+    account.profileImage = params.profileImage || account.profileImage;
+    account.coverImage = params.coverImage || account.coverImage;
     await account.save();
-    return pick(account.toJSON(), ["username", "email", "location", "followersCount", "followingsCount"]);
+
+    await models.PendingUpload.deleteOne({
+      filename: account.profileImage
+    });
+    await models.PendingUpload.deleteOne({
+      filename: account.coverImage
+    });
+
+    return pick(account.toJSON(), ["username", "email", "profileImage", "coverImage", "location", "followersCount", "followingsCount"]);
   }
 });
 
 module.exports.followAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    followerId: { ...any }
+    accountId: { ...objectId },
+    followerId: { ...objectId }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     const follower = await models.Account.findById(params.followerId);
     if (!account || !follower) {
@@ -240,6 +327,15 @@ module.exports.followAccount = wrapServiceAction({
       throw new ServiceError("you cannot follow yourself");
     }
 
+    const record = await models.AccountFollower.findOne({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+
+    if (record) {
+      throw new ServiceError("you are already following this account");
+    }
+
     account.followersCount++;
     follower.followingsCount++;
 
@@ -248,20 +344,50 @@ module.exports.followAccount = wrapServiceAction({
       follower.save()
     ]);
 
+    // log action
+    await models.Action.create({
+      actorId: params.followerId,
+      actorType: "account",
+      type: "account.follow",
+      description: `${follower.username} followed you`,
+      data: {
+        followerAccount: pick(follower, ["_id", "username", "profileImage"]),
+        followedAccount: pick(account, ["_id", "username", "profileImage"])
+      }
+    });
+
     return await models.AccountFollower.findOneAndUpdate({
       accountId: params.accountId,
       followerId: params.followerId
-    }, {}, { upsert: true, new: true });
+    }, {}, {
+      upsert: true,
+      new: true
+    });
+  }
+});
+
+module.exports.checkAccountFollower = wrapServiceAction({
+  params: {
+    $$strict: "remove",
+    accountId: { ...objectId },
+    followerId: { ...objectId }
+  },
+  async handler (params) {
+    const record = await models.AccountFollower.findOne({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+    return !!record;
   }
 });
 
 module.exports.unfollowAccount = wrapServiceAction({
   params: {
     $$strict: "remove",
-    accountId: { ...any },
-    followerId: { ...any }
+    accountId: { ...objectId },
+    followerId: { ...objectId }
   },
-  async handler(params) {
+  async handler (params) {
     const account = await models.Account.findById(params.accountId);
     const follower = await models.Account.findById(params.followerId);
     if (!account || !follower) {
@@ -270,6 +396,15 @@ module.exports.unfollowAccount = wrapServiceAction({
 
     if (account._id.equals(follower._id)) {
       throw new ServiceError("you cannot unfollow yourself");
+    }
+
+    const record = await models.AccountFollower.findOne({
+      accountId: params.accountId,
+      followerId: params.followerId
+    });
+
+    if (!record) {
+      throw new ServiceError("you are not following this account");
     }
 
     account.followersCount--;
@@ -291,9 +426,9 @@ module.exports.getAccountFollowers = wrapServiceAction({
     $$strict: "remove",
     accountId: { ...any }
   },
-  async handler(params) {
+  async handler (params) {
     return models.AccountFollower.aggregate([
-      { $match: { accountId: params.accountId } },
+      { $match: { accountId: db.utils.ObjectId(params.accountId) } },
       {
         $lookup: {
           from: models.Account.collection.collectionName,
@@ -309,7 +444,8 @@ module.exports.getAccountFollowers = wrapServiceAction({
       },
       {
         $project: {
-          username: 1
+          username: 1,
+          profileImage: 1
         }
       }
     ]);
@@ -321,9 +457,9 @@ module.exports.getAccountFollowings = wrapServiceAction({
     $$strict: "remove",
     accountId: { ...any },
   },
-  async handler(params) {
+  async handler (params) {
     return models.AccountFollower.aggregate([
-      { $match: { followerId: params.accountId } },
+      { $match: { followerId: db.utils.ObjectId(params.accountId) } },
       {
         $lookup: {
           from: models.Account.collection.collectionName,
@@ -339,7 +475,8 @@ module.exports.getAccountFollowings = wrapServiceAction({
       },
       {
         $project: {
-          username: 1
+          username: 1,
+          profileImage: 1
         }
       }
     ]);

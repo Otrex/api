@@ -46,6 +46,17 @@ const schema = new Schema({
   },
   location: {
     type: String
+  },
+  profileImage: { type: String },
+  coverImage: { type: String },
+  visibility: {
+    type: String,
+    enum: ["public", "private"],
+    default: "public"
+  },
+  status: {
+    type: String,
+    default: "active"
   }
 }, { timestamps: true });
 

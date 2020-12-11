@@ -16,6 +16,8 @@ const app = require("../../src/app");
 const request = require("supertest");
 const _ = require("lodash");
 
+const errorWithResponse = (err, res) => `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+
 const state = {
   sessions: []
 };
@@ -30,7 +32,12 @@ random.mockReturnValue(1234);
 
 beforeAll(async () => {
   state.connection = await db.createConnection();
-  await state.connection.dropDatabase();
+  for (const model in db.models) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (db.models.hasOwnProperty(model)) {
+      await db.models[model].deleteMany({});
+    }
+  }
   await new Promise(resolve => setTimeout(resolve, 5000));
 });
 
@@ -40,8 +47,7 @@ afterAll(async () => {
   await new Promise(resolve => setTimeout(resolve, 5000));
 });
 
-
-describe("account registration", () => {
+describe("accounts", () => {
   // eslint-disable-next-line no-undef
   jest.setTimeout(30000);
 
@@ -74,7 +80,7 @@ describe("account registration", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -93,7 +99,7 @@ describe("account registration", () => {
         state.sessions[index].verificationToken = res.body.data.verificationToken;
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -110,7 +116,7 @@ describe("account registration", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -127,7 +133,7 @@ describe("account registration", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -146,7 +152,7 @@ describe("account registration", () => {
         state.sessions[index].token = res.body.data.token;
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -160,7 +166,7 @@ describe("account registration", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -177,7 +183,7 @@ describe("account registration", () => {
         expect(res.body.status).toBe("success");
         addEndpoint(res);
       } catch (err) {
-        err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+        err.message = errorWithResponse;
         throw err;
       }
     });
@@ -194,7 +200,7 @@ describe("account registration", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -216,7 +222,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -233,7 +239,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -247,7 +253,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -261,7 +267,7 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
@@ -278,36 +284,48 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
 
-  it("/search", async () => {
+});
+
+describe("locations and search", () => {
+  // eslint-disable-next-line no-undef
+  jest.setTimeout(30000);
+
+  it("/locations/categories", async () => {
+    state.locationCategories = await db.models.LocationCategory.insertMany([
+      { name: "Office / Business Premises" },
+      { name: "Event Venue" },
+      { name: "Project Site" },
+      { name: "Property for Sale/Lease/Rent" },
+      { name: "Place of Worship / Religion" },
+      { name: "Others" }
+    ]);
     const res = await request(app)
-      .post("/search")
-      .set("x-api-token", state.sessions[0].token)
-      .send({
-        query: "test"
-      });
+      .get("/locations/categories")
+      .set("x-api-token", state.sessions[0].token);
     try {
       expect(res.statusCode).toEqual(200);
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
 
-  it("/locations", async () => {
+  it("/locations - post", async () => {
     const res = await request(app)
       .post("/locations")
       .set("x-api-token", state.sessions[0].token)
       .send({
         name: "my house",
-        description: "my house at bayelsa",
-        visibility: "private",
+        description: "my house at bayelsa test",
+        categoryId: state.locationCategories.pop()._id,
+        visibility: "public",
         eddress: "myhouse",
         coordinates: {
           latitude: 4.384938,
@@ -319,8 +337,184 @@ describe("followings and followers", () => {
       expect(res.body.status).toBe("success");
       addEndpoint(res);
     } catch (err) {
-      err.message = `${err.message}\n\nResponse: ${JSON.stringify(res.body, undefined, 2)}`;
+      err.message = errorWithResponse;
       throw err;
     }
   });
+
+  it("/locations - get", async () => {
+    const res = await request(app)
+      .get("/locations")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.locations = res.body.data;
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+
+  it("/photos - add photo to location", async () => {
+    const res = await request(app)
+      .post("/photos")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        ownerId: state.locations[0]._id,
+        ownerType: "location",
+        photos: [
+          {
+            filename: "3eo9sh3vh03g0fe3eh7n09ihu39d8fk3wu4dt4uh8.jpeg",
+            description: "1975"
+          },
+          {
+            filename: "dt4ui3eh7f9sh3vhk3eo39d8093wu4hgn308hu0fe.jpeg",
+            description: "1955"
+          }
+        ]
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+
+  it("/locations/alarms - post", async () => {
+    const res = await request(app)
+      .post("/locations/alarms")
+      .set("x-api-token", state.sessions[0].token)
+      .send({
+        locationId: state.locations[0]._id
+      });
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+
+  it("/locations/alarms - get", async () => {
+    const res = await request(app)
+      .get("/locations/alarms")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+
+  it("/locations/{username}/{eddress} - get", async () => {
+    const res = await request(app)
+      .get(`/locations/${state.sessions[0].account.username}/${"myhouse"}`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      state.photo = res.body.data.photos[0];
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+
+  it("/photos - remove photo", async () => {
+    const res = await request(app)
+      .post(`/photos/${state.photo._id}/delete`)
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+
+  it("/accounts/profile", async () => {
+    const res = await request(app)
+      .get("/accounts/profile")
+      .set("x-api-token", state.sessions[0].token);
+    try {
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.status).toBe("success");
+      addEndpoint(res);
+    } catch (err) {
+      err.message = errorWithResponse;
+      throw err;
+    }
+  });
+});
+
+it("/search", async () => {
+  const res = await request(app)
+    .post("/search")
+    .set("x-api-token", state.sessions[1].token)
+    .send({
+      query: "test"
+    });
+  try {
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.status).toBe("success");
+    addEndpoint(res);
+  } catch (err) {
+    err.message = errorWithResponse;
+    throw err;
+  }
+});
+
+it("/pages - post", async () => {
+  const res = await request(app)
+    .post("/pages")
+    .set("x-api-token", state.sessions[1].token)
+    .send({
+      name: "United Bank of Africa",
+      description: "United Bank of Africa",
+      shortName: "UBA",
+      pageType: "bank",
+      industry: "finance",
+      image: "image.jpg",
+      coverImage: "cover-image.jpg",
+      services: ["money lending", "money doubling"],
+      tags: ["money", "bank", "loan", "finance"],
+      streetAddress: "33 Road Lane Street",
+      contactPhoneNumbers: ["+234909099009", "+234909099001"],
+      contactEmails: ["contact@uba.com", "help@uba.com"]
+    });
+  try {
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.status).toBe("success");
+    addEndpoint(res);
+  } catch (err) {
+    err.message = errorWithResponse;
+    throw err;
+  }
+});
+
+it("/pages - get", async () => {
+  const res = await request(app)
+    .get("/pages")
+    .set("x-api-token", state.sessions[1].token);
+  try {
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.status).toBe("success");
+    addEndpoint(res);
+  } catch (err) {
+    err.message = errorWithResponse;
+    throw err;
+  }
 });

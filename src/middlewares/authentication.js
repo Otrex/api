@@ -1,6 +1,7 @@
 const {
   AuthenticationError
 } = require("../errors");
+const ObjectId = require("mongoose").Types.ObjectId;
 const utils = require("../utils");
 const models = require("../db").models;
 
@@ -40,6 +41,42 @@ module.exports.setAccountSession = async (req, res, next) => {
   }
 };
 
+module.exports.setAdminSession = async (req, res, next) => {
+  try {
+    req.session = req.session || {};
+
+    const token = req.header("x-api-token") || req.body.token;
+    if (!token) {
+      return next();
+    }
+
+    const { id } = await utils.decodeToken(token);
+    if (!id) {
+      return next(new AuthenticationError("unable to verify token"));
+    }
+    const [admin, session] = await Promise.all([
+      models.Admin.findById(ObjectId(id)),
+      models.AdminSession.findOne({ token })
+    ]);
+    if (!admin || !session) {
+      return next(new AuthenticationError("token is invalid"));
+    }
+    req.session.admin = admin;
+    next();
+  } catch (e) {
+    switch (e.name) {
+    case "TokenExpiredError":
+      return next(new AuthenticationError("token has expired"));
+    case "JsonWebTokenError":
+      return next(new AuthenticationError(e.message));
+    case "NotBeforeError":
+      return next(new AuthenticationError(e.message));
+    default:
+      return next(e);
+    }
+  }
+};
+
 module.exports.verifyAccountAuth = (roles = []) => {
   const validRoles = ["*"];
   if (roles.some((type) => !validRoles.includes(type))) {
@@ -50,6 +87,24 @@ module.exports.verifyAccountAuth = (roles = []) => {
       const account = req.session.account;
       if (!account) {
         return next(new AuthenticationError("you need to be authenticated to access this endpoint"));
+      }
+      next();
+    } catch (e) {
+      next(e);
+    }
+  };
+};
+
+module.exports.verifyAdminAuth = (roles = []) => {
+  const validRoles = ["*"];
+  if (roles.some((type) => !validRoles.includes(type))) {
+    throw new Error("invalid role passed to middleware constructor");
+  }
+  return (req, res, next) => {
+    try {
+      const admin = req.session.admin;
+      if (!admin) {
+        return next(new AuthenticationError("you need to be an admin to access this endpoint"));
       }
       next();
     } catch (e) {
