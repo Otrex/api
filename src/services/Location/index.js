@@ -84,7 +84,7 @@ module.exports.createLocation = wrapServiceAction({
       }
     }
   },
-  async handler (params) {
+  async handler(params) {
     const {
       latitude,
       longitude
@@ -137,7 +137,7 @@ module.exports.updateLocation = wrapServiceAction({
       items: "string"
     }
   },
-  async handler (params) {
+  async handler(params) {
     await checkAuthorization(params.accountId, params.locationId, "location");
     return await models.Location.findByIdAndUpdate(params.locationId, {
       ...params
@@ -157,14 +157,15 @@ module.exports.getAccountLocations = wrapServiceAction({
       default: {}
     }
   },
-  async handler (params) {
+  async handler(params) {
+    const account = await models.Account.findById(params.accountId);
     return models.Location.aggregate([
       {
         $match: {
           ownerId: db.utils.ObjectId(params.accountId),
           ownerType: "account",
-          ...params.filters,
-        },
+          ...params.filters
+        }
       },
       { $sort: { _id: -1 } },
       ...(params.limit > 0 ? [{ $limit: params.limit }] : []),
@@ -208,7 +209,7 @@ module.exports.getAccountFollowedLocations = wrapServiceAction({
       default: {}
     }
   },
-  async handler (params) {
+  async handler(params) {
     const locations = await models.LocationFollower.find({
       followerId: db.utils.ObjectId(params.accountId)
     });
@@ -262,7 +263,7 @@ module.exports.getPageLocations = wrapServiceAction({
       default: {}
     }
   },
-  async handler (params) {
+  async handler(params) {
     return models.Location.aggregate([
       {
         $match: {
@@ -306,7 +307,7 @@ module.exports.getLocationDetails = wrapServiceAction({
     username: { ...string },
     eddress: { ...string }
   },
-  async handler (params) {
+  async handler(params) {
     const account = await models.Account.findOne({
       username: params.username
     });
@@ -327,7 +328,7 @@ module.exports.getLocationDetailsById = wrapServiceAction({
   params: {
     locationId: { ...any }
   },
-  async handler (params) {
+  async handler(params) {
     return await models.Location.findById(params.locationId);
   }
 });
@@ -340,7 +341,7 @@ module.exports.getAccountLocationsCount = wrapServiceAction({
       default: {}
     }
   },
-  async handler (params) {
+  async handler(params) {
     return await models.Location.countDocuments({
       ownerId: params.accountId,
       ownerType: "account",
@@ -350,7 +351,7 @@ module.exports.getAccountLocationsCount = wrapServiceAction({
 });
 
 module.exports.getLocationCategories = wrapServiceAction({
-  async handler () {
+  async handler() {
     return await models.LocationCategory.find();
   }
 });
@@ -361,7 +362,7 @@ module.exports.createLocationAlarm = wrapServiceAction({
     locationId: { ...objectId },
     description: { ...string }
   },
-  async handler (params) {
+  async handler(params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
@@ -404,7 +405,7 @@ module.exports.getAccountLocationAlarms = wrapServiceAction({
   params: {
     accountId: { ...any }
   },
-  async handler (params) {
+  async handler(params) {
     const account = await models.Account.findById(params.accountId);
     if (!account) {
       throw new ServiceError("account not found");
@@ -433,7 +434,7 @@ module.exports.followLocation = wrapServiceAction({
     locationId: { ...any },
     followerId: { ...any }
   },
-  async handler (params) {
+  async handler(params) {
     const location = await models.Location.findById(params.locationId);
     const follower = await models.Account.findById(params.followerId);
     if (!location) {
@@ -474,7 +475,7 @@ module.exports.unfollowLocation = wrapServiceAction({
     locationId: { ...any },
     followerId: { ...any }
   },
-  async handler (params) {
+  async handler(params) {
     const location = await models.Location.findById(params.locationId);
     const follower = await models.Account.findById(params.followerId);
     if (!location) {
@@ -511,7 +512,7 @@ module.exports.getLocationFollowers = wrapServiceAction({
     $$strict: "remove",
     locationId: { ...any }
   },
-  async handler (params) {
+  async handler(params) {
     return models.LocationFollower.aggregate([
       { $match: { locationId: ObjectId(params.locationId) } },
       {
