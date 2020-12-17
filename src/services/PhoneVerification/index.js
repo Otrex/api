@@ -56,11 +56,15 @@ module.exports.sendVerificationCode = wrapServiceAction({
     });
     // TODO: send verification code
 
-    await jusibe.sendSMS({
-      to: formattedPhoneNumber,
-      from: "pointograph",
-      message: "Hello, \nThanks for signing up on pointograph.com\nYour mobile number verification code is:" + code
-    });
+    try {
+      await jusibe.sendSMS({
+        to: formattedPhoneNumber,
+        from: "pointograph",
+        message: "Hello, \nThanks for signing up on pointograph.com\nYour mobile number verification code is:" + code
+      });
+    } catch (e) {
+      throw new ServiceError("the phone number is not valid");
+    }
 
     return verificationEntry;
   }
