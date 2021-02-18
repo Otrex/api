@@ -75,7 +75,7 @@ const state = {
 const users = [
   {
     countryCode: "NG",
-    phoneNumber: "+2348012345678",
+    phoneNumber: "+2348165244395",
     email: "alortee@gmail.com",
     username: "test1",
     password: "password",
